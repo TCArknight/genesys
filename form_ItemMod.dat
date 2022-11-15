@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains the definition of the "static" form for the game system.
+      The "static" form represents the region at the top of the main window that
+      is always visible for every actor (hence the term "static"). It's an area of
+      limited vertical height that spans the entire width of the main window, less
+      the region needed for the validation button and the dashboard (if visible).
+
+      In general, the "static" form should contain the character's name and core
+      aspects of the character that the user will often want to refer to. However,
+      there are no hard requirements for what is placed in the "static" form.
+
+      NOTE! The unique id of the "static" form is specially recognized by Hero Lab
+      as the form to be used across the top of the main window. A form with the
+      id "static" is required within your data files.
+-->
+
+<document signature="Hero Lab Data">
+	
+  <!-- Item Mod portal -->
+	
+  <portal
+    id="imItemMods"
+    style="tblNormal">
+    <table_dynamic
+      component="ItemMod"
+      showtemplate="imAttachments"
+      choosetemplate="SimpleItem"
+	  choosesortset="ItemModCat"
+      alwaysupdate="yes"
+      scrollable="yes"
+      candidatepick="ItemModHelper"
+      candidatefield="imhExpr"
+      addpick="ItemModHelper"
+      headerpick="ItemModHelper">
+      <headertitle><![CDATA[
+	    var max as number
+		var used as number
+		max = field[imhMaxHP].value
+		used = field[imhUsedHP].value
+		
+		@text = "Attachments " 
+		
+		if (used <= max) then
+          @text &= " (" & used & " used of " & max &")"
+        else
+          @text &= "{text clrwarning}(" & used & " used of " & max &"){text clrreset}"
+          endif
+		  
+        ]]></headertitle>
+      <additem><![CDATA[
+        @text = "Select Attachment"
+        ]]></additem>
+      </table_dynamic>
+    </portal>
+
+  <portal
+    id="imMagicMaterial"
+    style="tblNormal">
+    <table_dynamic
+      component="Material"
+      showtemplate="SimpleItem"
+      choosetemplate="SimpleItem"
+      candidatepick="ItemModHelper"
+      candidatefield="imhImpMaterial"
+      addpick="ItemModHelper"
+      headerpick="ItemModHelper">
+      <headertitle><![CDATA[@text = "Implement Material"]]></headertitle>
+      <additem><![CDATA[@text = "Select Material"
+        ]]></additem>
+      </table_dynamic>
+    </portal>	
+ 
+  <portal
+    id="imConstruction"
+    style="tblNormal">
+    <table_dynamic
+      component="Construction"
+      showtemplate="SimpleItem"
+      choosetemplate="SimpleItem"
+      candidatepick="ItemModHelper"
+      candidatefield="imhConstExpr"
+      addpick="ItemModHelper"
+      headerpick="ItemModHelper">
+      <headertitle><![CDATA[@text = "Construction Type"]]></headertitle>
+      <additem><![CDATA[@text = "Select Construction Type"
+        ]]></additem>
+      </table_dynamic>
+    </portal>
+	
+<!--  <template
+    id="imChooserTemp"
+    name="Chooser Template"
+    compset="ItemModHelper"
+    marginhorz="3"
+    marginvert="2">
+
+    <portal
+      id="imConstruction"
+      style="chsNormal"
+      width="110">
+      <chooser_table
+        component="Construction"
+        choosetemplate="SimpleItem"
+        candidatepick="ItemModHelper"
+        candidatefield="imhConstExpr">
+        <chosen><![CDATA[
+          if (@ispick = 0) then
+            @text = "{text clrwarning}Select Construction Type"
+          else
+            @text = "Construction Type: " & field[name].text
+          endif
+          ]]></chosen>
+        <titlebar><![CDATA[
+          @text = "Choose the Construction Type for the Item"
+          ]]></titlebar>
+        </chooser_table>
+      </portal>
+	
+    <portal
+      id="imMagicMaterial"
+      style="chsNormal"
+      width="110">
+      <chooser_table
+        component="Material"
+        choosetemplate="SimpleItem"
+        candidatepick="ItemModHelper"
+        candidatefield="imhImpMaterial">
+        <chosen><![CDATA[
+          if (@ispick = 0) then
+            @text = "{text clrwarning}Select Material"
+          else
+            @text = "Material: " & field[name].text
+          endif
+          ]]></chosen>
+        <titlebar><![CDATA[
+          @text = "Choose the Material for the Item"
+          ]]></titlebar>
+        </chooser_table>
+      </portal>	
+	
+    <position><![CDATA[
+      ~position our tallest portal at the top
+      portal[imConstruction].top = 0
+	  portal[imConstruction].width = width
+	  
+	  portal[imMagicMaterial].top = portal[imConstruction].bottom + 5
+	  portal[imMagicMaterial].width = width
+
+	  height = portal[imMagicMaterial].bottom + 5
+      ]]></position>
+
+    </template> -->
+	
+  <template
+    id="imTitleTemp"
+    name="Title Template"
+    compset="ItemModHelper"
+    marginhorz="3"
+    marginvert="2">
+
+    <portal
+      id="lblItemTitle"
+      style="lblTitle">
+      <label>
+        <labeltext><![CDATA[
+          @text = field[imhItemName].text
+          ]]></labeltext>
+        </label>
+      </portal>
+
+    <portal
+      id="lblCustomName"
+      style="lblNormal">
+      <label>
+        <labeltext><![CDATA[
+          @text = "Custom Name: "
+          ]]></labeltext>
+        </label>
+      </portal>
+	  
+    <portal
+      id="CustomName"
+      style="editNormal">
+      <edit
+        field="imhUserName">
+        </edit>
+      </portal>
+	  
+    <position><![CDATA[
+      ~position our tallest portal at the top
+      portal[lblItemTitle].top = 0
+	  portal[lblItemTitle].width = width
+	  
+	  ~position the custom name portals beneath the title in the upper right
+	  portal[CustomName].width = 200
+      perform portal[CustomName].alignrel[ttob,lblItemTitle,5]
+      perform portal[CustomName].alignedge[right,-5]
+	  
+	  
+      perform portal[lblCustomName].centeron[vert,CustomName]
+      perform portal[lblCustomName].alignrel[rtol,CustomName,-7]
+	  
+	  height = portal[CustomName].bottom + 5
+      ]]></position>
+
+    </template>	
+
+  <template
+    id="imAttachments"
+    name="Attachments"
+    compset="ItemMod"
+    marginhorz="3"
+    marginvert="2">
+
+    <portal
+      id="activate"
+      style="chkNormal"
+      tiptext="Click to activate or deactivate this ability.">
+      <checkbox
+        field="imodActive"
+        dynamicfield="name">
+        </checkbox>
+      </portal>
+	  
+    <portal
+      id="name"
+      style="lblNormal"
+      showinvalid="yes">
+      <label
+        field="name">
+        </label>
+      </portal>
+
+    <portal
+      id="info"
+      style="actInfo">
+      <action
+        action="info">
+        </action>
+      <mouseinfo/>
+      </portal>
+
+    <portal
+      id="delete"
+      style="actDelete"
+      tiptext="Click to delete this item">
+      <action
+        action="delete">
+        </action>
+      </portal>
+
+    <position><![CDATA[
+      ~set up our height based on our tallest portal
+      height = portal[info].height
+
+      ~if we've been assigned a non-default width for use when showing things, adopt
+      ~that width now
+      if (ispick = 0) then
+        var size as number
+        size = tagvalue[SimpleItem.width?]
+        if (size > 0) then
+          width = size
+          endif
+        endif
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~position our tallest portal at the top
+      portal[info].top = 0
+
+      ~center the other portals vertically
+      perform portal[activate].centervert
+      perform portal[delete].centervert
+
+      ~position the delete portal on the far right
+      perform portal[delete].alignedge[right,0]
+
+      ~position the info portal to the left of the delete button
+      perform portal[info].alignrel[rtol,delete,-8]
+
+      ~if we're showing a thing, the info and delete buttons are irrelevant, since
+      ~we should be showing within a chooser, in which case there's nothing to
+      ~delete and we have the description already visible
+      var edge as number
+      if (ispick = 0) then
+        portal[info].visible = 0
+        portal[delete].visible = 0
+        edge = width
+      else
+        edge = portal[info].left - 5
+        endif
+
+      ~position the name on the left and let it use all available space
+      portal[activate].left = 0
+      portal[activate].width = minimum(portal[activate].width,edge)
+      portal[name].left = 0
+      portal[name].width = minimum(portal[activate].width,edge)
+	  
+	  if (tagis[User.Activation] <> 0) then
+	    portal[activate].visible = 1
+		portal[name].visible = 0
+	  else
+	    portal[activate].visible = 0
+		portal[name].visible = 1
+	    endif
+
+      ~center the name if requested or this is a show-only thing
+      if (tagis[SimpleItem.CenterName] + tagis[thing.showonly] <> 0) then
+        perform portal[activate].centerhorz
+        endif
+
+      ~if this is an auto-added pick, change its font to indicate that fact
+      ~if (ispick + !candelete >= 2) then
+      ~  perform portal[activate].setstyle[lblAuto]
+      ~  endif
+      ]]></position>
+
+    </template>
+	
+  <!-- static layout
+        This layout consists of the character's name, race, and status info, which
+        are laid out in a ribbon across the top.
+  -->
+  <layout
+    id="itemmodule">
+    <portalref portal="imItemMods" taborder="10"/>
+    <portalref portal="imMagicMaterial" taborder="0"/> 
+    <portalref portal="imConstruction" taborder="0"/> 
+    <!--<templateref template="imChooserTemp" dynamic="yes" thing="ItemModHelper"/> -->
+    <templateref template="imTitleTemp" dynamic="yes" thing="ItemModHelper"/>
+	<!-- <templateref template="lpPromotion" dynamic="yes" taborder="30"/>  -->
+
+    <!-- This script sizes and positions the layout and its child visual elements. -->
+    <position><![CDATA[
+	
+	  template[imTitleTemp].width = width
+	  portal[imConstruction].width = width
+	  portal[imMagicMaterial].width = width
+	  portal[imItemMods].width = width
+	  
+	  ~ Title template at top
+	  template[imTitleTemp].top = 0
+	  template[imTitleTemp].height = 50
+	  
+	  portal[imConstruction].top = template[imTitleTemp].bottom + 10 
+	  perform portal[imMagicMaterial].alignrel[ttob,imConstruction,10]
+	  perform portal[imItemMods].alignrel[ttob,imMagicMaterial,10]
+
+	  height = portal[imItemMods].bottom
+      ]]></position>
+
+    </layout>
+
+
+  <!-- static form
+        This is the "static" form shown at the top of the main window within Hero
+        Lab.
+
+        NOTE! The unique id of this form is specially recognized by Hero Lab as
+        the form to be used across the top of the main window. A form with this
+        id is required within your data files.
+
+        NOTE! By default, this form is 40 pixels in height, and it must always be
+        set to be at least 40 pixels in height.
+  -->
+  <form
+    id="itemmodgiz"
+    name="Item Mod">
+    <layoutref layout="itemmodule"/>
+    <position><![CDATA[
+      layout[itemmodule].width = 350
+      perform layout[itemmodule].render
+      width = layout[itemmodule].width
+      height = layout[itemmodule].height
+      ]]></position>
+    </form>
+
+  </document>

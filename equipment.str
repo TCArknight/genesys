@@ -1,0 +1,1445 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the definitions of components associated with equipment such as
+      weapons, armor, gear, etc.
+-->
+
+<document signature="Hero Lab Structure">
+
+  <!-- Gear component
+        All gear must derive from this component
+        NOTE! Designate this component as "gear" to enable containment handling.
+  -->
+  <component
+    id="Gear"
+    name="Gear"
+    isgear="yes"
+    autocompset="no"
+    ispublic="no"
+    addbehavior="never">
+
+    <!-- Stack name field - name is prefixed with the quantity if not a value of one,
+          which is important for stackable items that can have varying quantities
+    -->
+    <field
+      id="grStkName"
+      name="(Qty) Name"
+      type="derived"
+      maxfinal="100"
+      nevercache="yes">
+      <!-- Final value for display consists of the name with a prefixed quantity
+            if not one
+      -->
+      <finalize><![CDATA[
+        ~if we have a customized name already, use it; otherwise, use the default name
+        var name as string
+        if (field[livename].isempty = 0) then
+          name = field[livename].text
+        else
+          name = field[name].text
+          endif
+
+        ~if we're not stackable or if our quantity is one, just use the simple name
+        if (stackable = 0) then
+          @text = name
+        elseif (field[stackQty].value = 1) then
+          @text = name
+
+        ~prefix the name with the quantity
+        else
+          @text = "(" & field[stackQty].value & "x) " & name
+          endif
+        ]]></finalize>
+      </field>
+
+    <!-- Gear cost -->
+    <field
+      id="grCost"
+      name="Cost"
+      minvalue="0"
+      defvalue="0"
+      type="derived"
+      maxfinal="10">
+      <!-- If a "lot cost" is specified, calculate the individual cost from it -->
+      <calculate phase="Initialize" priority="5000"><![CDATA[
+        ~if we have a 'lot cost', find the cost for a single item by dividing
+        ~it by the lot size.
+        ~NOTE: The calculate script is only applied to picks - not things - so
+        ~     we must also do this calculation in both the Finalize script and
+        ~     the TransactionSetup script, so they behave properly on things.
+        if (field[grLotCost].value > 0) then
+          @value = field[grLotCost].value / field[lotsize].value
+          endif
+        ]]></calculate>
+      <!-- Final value for display has the dollar sign prepended -->
+      <finalize><![CDATA[
+        ~if this is a thing, we have to determine the value for use below; if we
+        ~have a non-zero lot cost, override our value based on the lot cost, else
+        ~use multiply the unit code by the lot size. See the Calculate script
+        ~comments for more details.
+        if (ispick = 0) then
+          if (field[grLotCost].value > 0) then
+            @value = field[grLotCost].value
+          else
+            @value = field[grCost].value * field[lotsize].value
+            endif
+			
+	      @value += field[grModsCost].value
+          endif
+
+        ~convert the cost to a value for display appropriately
+        if (@value = 0) then
+          @text = chr(150)
+        else
+          var moneyvalue as number
+          var money as string
+          moneyvalue = @value
+          call Money
+          @text = money
+          endif
+        ]]></finalize>
+      </field>
+
+    <!-- Gear lot cost - used when you have a set of items that are priced in
+          the rulebook as $X for Y items. For example, if 30 bullets cost $10,
+          we want 3 bullets to cost $1, but setting grCost to $.33 would yield
+          a cost of $0.99. So we specify the lot cost and everything works.
+    -->
+    <field
+      id="grLotCost"
+      name="Lot Cost"
+      minvalue="0"
+      defvalue="0"
+      type="static">
+      </field>
+	  
+    <field
+      id="grModsCost"
+      name="Modifications Cost"
+      minvalue="0"
+      type="derived">
+      </field>
+	  
+    <!-- Cost Multiplier from Mods, Material, etc. -->
+    <field
+      id="grCostMult"
+      name="Cost Multiplier"
+      type="derived"
+	  defvalue="0">
+      </field>	
+	  
+    <field
+      id="grTotalCost"
+      name="Total Cost"
+      minvalue="0"
+	  maxfinal="10"
+      type="derived">
+	  <finalize><![CDATA[
+        ~convert the cost to a value for display appropriately
+        if (@value = 0) then
+          @text = chr(150)
+        else
+          var moneyvalue as number
+          var money as string
+          moneyvalue = @value
+          call Money
+          @text = money
+          endif
+        ]]></finalize>
+      </field>	
+	  
+    <!-- How common is the item? -->
+    <field
+      id="grRarity"
+      name="Rarity"
+      type="derived"
+      minvalue="0"
+      maxvalue="10">
+      </field>
+	  
+    <!-- Manage an optional user-assigned name for custom equipment -->
+    <field
+      id="grUserName"
+      name="User Name"
+      maxlength="100"
+      type="user">
+      </field>	  
+	  
+    <!-- Number of Hardpoint slots for modifications -->
+    <field
+      id="grHardpoints"
+      name="Hardpoint Slots"
+      type="derived"
+	  defvalue="0">
+      </field>	
+    <field
+      id="grHardpointsOrig"
+      name="Hardpoint Slots Orig"
+      type="derived"
+	  defvalue="0">
+      </field>	  
+    <field
+      id="grHardpointsUsed"
+      name="Hardpoint Slots Used"
+      type="derived"
+	  defvalue="0">
+      </field>		  
+    <field
+      id="grHardpointsUsedO"
+      name="Hardpoint Slots Used Orig."
+      type="derived"
+	  defvalue="0">
+      </field>
+	  
+    <!-- Synthesized notes about the item -->
+    <field
+      id="grNotes"
+      name="Notes"
+      type="derived"
+      maxlength="300">
+      </field>
+	  
+    <field
+      id="grSymDice"
+      name="Symbol/Dice Additions"
+      type="derived"
+      maxlength="300">
+      </field>
+    <field
+      id="grSymDiceColor"
+      name="Symbol/Dice (Color)"
+      type="derived"
+      maxlength="300">
+      </field>
+    <field
+      id="grSymDiceGraphic"
+      name="Symbol/Dice (Graphic)"
+      type="derived"
+      maxlength="300">
+      </field>
+	  
+    <!-- Is the gear equipped? -->
+    <field
+      id="grUnusable"
+      name="Is Unusable?"
+      type="derived"
+      minvalue="0"
+      maxvalue="1">
+      </field>
+	  
+    <!-- fields to keep track of added/removed dice -->
+    <field
+      id="grAddedSetback"
+      name="Added Setbacks"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="grRemovedSetback"
+      name="Removed Setbacks"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="grAddedBoost"
+      name="Added Boosts"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="grRemovedBoost"
+      name="Removed Boosts"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="grAddedAdvantage"
+      name="Added Advantages"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="grRemovedAdvantage"
+      name="Removed Advantages"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="grAddedDiff"
+      name="Increased Difficulty Steps"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="grAddedSuccess"
+      name="Added Successes"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="grAddedFailure"
+      name="Added Failure"
+      type="derived"
+	  defvalue="0">
+      </field>	 
+    <field
+      id="grRemovedSuccess"
+      name="Removed Successes"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="grRemovedFailure"
+      name="Removed Failure"
+      type="derived"
+	  defvalue="0">
+      </field>	  
+	  
+    <!-- Synthesized notes about the weapon -->
+    <field
+      id="grOutDesc"
+      name="Description for Output"
+      type="derived"
+      maxlength="2500">
+      </field>
+	  
+    <!-- Initialize the gear characteristics from our transaction pick (if any) -->
+    <creation><![CDATA[
+      ~if we don't have a transaction pick to initialize from, bail out; this can
+      ~occur if the gear is bootstrapped or auto-added for the actor
+      doneif (hero.istransact = 0)
+
+      ~initialize our fields appropriately from the transaction pick
+      ~.... add any necessary code here ....
+      ]]></creation>
+
+    <!-- Call the appropriate procedures to perform transaction setup, buy, and sell behaviors -->
+    <xactsetup><![CDATA[
+      ~perform standard transaction setup for the gear
+      call XactSetup
+
+      ~initialize any transaction fields appropriately from this piece of gear
+      ~.... add code here ....
+      ]]></xactsetup>
+
+    <xactbuy><![CDATA[
+      call XactBuy
+      ]]></xactbuy>
+
+    <xactsell><![CDATA[
+      call XactSell
+      ]]></xactsell>
+
+    <tag group="ItemModCatAllowed" tag="Gear"/> 	<!-- Mods for Gear (Any) are allowed -->
+	
+    <!-- Accrue the weight of this item into the character, as appropriate -->
+    <eval index="1" phase="Traits" priority="15000" name="Accrue Weight"><![CDATA[
+      ~if this piece of gear is held by something else, ignore it - we'll get it below
+      doneif (isgearheld <> 0)
+
+      ~if this piece of gear is a topmost holder, ignore it - it's not on the character
+      doneif (tagis[thing.holder_top] <> 0)
+
+      ~accrue the net weight of this piece of gear into the character
+	  var gearNet as number
+	  gearNet += field[gearNet].value
+	  
+	  if (tagis[component.Armor] <> 0) then
+	    if (field[grIsEquip].value <> 0) then
+		  gearNet -= minimum(3,field[gearNet].value)
+		  endif
+	    endif
+	  
+      #resspent[resEncumbrance] += gearNet
+      ]]></eval>
+	  
+    <!-- Accrue the weight of this item into the character, as appropriate -->
+    <eval index="2" phase="Traits" priority="15000" name="Apply Damage"><![CDATA[
+      ~if this piece of gear is held by something else, ignore it - we'll get it below
+      doneif (tagis[ItemDamage.?] = 0)
+      
+	  var dmg as string
+	  dmg = tagnames[ItemDamage.?,","]
+	  
+      if (compare(dmg,"Minor") = 0) then
+	    ~ add a setback for all uses
+		field[grAddedSetback].value += 1
+	  elseif (compare(dmg,"Moderate") = 0) then
+		field[grAddedDiff].value += 1
+	  else
+	    ~ mark as inoperable
+		field[grUnusable].value = 1
+	    endif
+      ]]></eval>
+
+    <eval index="3" phase="Final" priority="12000" name="Populate DiceSym Fields"><![CDATA[
+	  var adj as number
+	  var adjTxt as string
+	  var skillText as string
+	  var skillColor as string
+	  var skillGraphic as string
+	  
+	  var adjBoost as number
+      var adjSetback as number
+      var adjSuccess as number
+      var adjFailure as number
+      var adjAdvantage as number
+      var adjDifficulty as number
+	
+      var sdText as string
+	  var sdColor as string
+	  var sdGraphic as string
+        
+	  var temp as number
+	  
+	  
+      ~add any additional bonus/penalty dice
+	  
+
+      adjSuccess = field[grAddedSuccess].value - field[grRemovedSuccess].value
+      adjFailure = field[grAddedFailure].value - field[grRemovedFailure].value
+	  
+      ~ Boosts
+	  adjBoost = field[grAddedBoost].value - field[grRemovedBoost].value
+			
+      ~ Setbacks
+      adjSetback = field[grAddedSetback].value - field[grRemovedSetback].value
+		
+	  ~ Difficulty
+      adjDifficulty = field[grAddedDiff].value
+	  
+	  ~ Advantage
+      adjAdvantage = field[grAddedAdvantage].value - field[grRemovedAdvantage].value
+	  
+	  if (field[grUnusable].value <> 0) then
+	    adjTxt = splice(adjTxt,"Damaged (Unusable)",", ")
+	    endif
+		
+      temp = adjBoost + adjSetback + adjSuccess + adjFailure + adjAdvantage + adjDifficulty
+	  if (temp <> 0) then
+	    call BuildSymDice
+		endif
+		
+      field[grSymDice].text = sdText
+	  field[grSymDiceColor].text = sdColor
+	  field[grSymDiceGraphic].text = sdGraphic
+      ]]></eval>	
+	  
+    <eval index="4" phase="Initialize" name="Set LiveState"><![CDATA[
+      ~ do something to force live state
+      var dummy as string
+	  
+	  dummy = "TRUE"
+
+      ]]></eval>	
+    <eval index="5" phase="Traits" priority="15000" name="Accrue Cost"><![CDATA[
+      ~accrue the net cost of this piece of gear into the character
+	  var costTot as number
+	  var costMult as number
+	  
+	  costTot += field[grCost].value
+	  costMult += field[grCostMult].value
+	  
+	  if (costMult <> 0) then
+	    costTot *= costMult
+	    costTot = round(costTot, 0, 1)
+	    endif
+	  
+	  if (field[grModsCost].value <> 0) then
+	    costTot += field[grCost].value
+	    endif
+	  
+      field[grTotalCost].value += costTot 
+	  
+      ]]></eval>
+	  
+    <eval index="6" phase="Traits" priority="10000" name="Process Item Qualities"><![CDATA[
+      var qualVal as number
+      if (tagis[ItemQuality.Accurate?] <> 0) then
+	    qualVal = tagvalue[ItemQuality.Accurate?]
+		field[grAddedBoost].value += qualVal
+	    endif
+		
+	  if (tagis[ItemQuality.Inaccurate?] <> 0) then
+	    qualVal = tagvalue[ItemQuality.Inaccurate?]
+		field[grAddedSetback].value += qualVal
+	    endif
+
+	  if (tagis[ItemQuality.Reinforced] <> 0) then
+	    if (tagis[component.Armor] <> 0) then
+		  field[grNotes].text = splice(field[grNotes].text,"Immune to Breach and Pierce qualities","; ")
+		else
+		  field[grNotes].text = splice(field[grNotes].text,"Immune to Sunder quality","; ")
+		  endif
+	    endif
+		
+	  if (tagis[ItemQuality.Superior] <> 0) then
+		field[grAddedAdvantage].value += 1
+	    endif
+      ]]></eval>
+    <eval index="7" phase="Render" priority="15000"><![CDATA[
+	  var curDesc as string
+	  var matName as string
+	  var conName as string
+	  curDesc = field[descript].text
+	  
+	  ~ append summary from any modifications, etc
+	  doneif (isgizmo = 0)
+      curDesc &= "{br}{br}"
+	  if (tagis[Construction.?] <> 0) then
+	    curDesc &= "{b}Construction - {/b}"
+        foreach pick in gizmo from Construction
+	      perform eachpick.setfocus
+		  conName = focus.field[name].text
+		  curDesc &= "{b}" & conName
+		  if (focus.tagis[Activated.?] <> 0) then
+		    curDesc &= " (Active)"
+		    endif
+		  curDesc &= ":{/b} " & focus.field[summary].text & "{br}"
+	      nexteach
+		  
+		endif
+		
+	  if (tagis[Material.?] <> 0) then
+	    curDesc &= "{b}Material - {/b}"
+        foreach pick in gizmo from Material
+	      perform eachpick.setfocus
+		  matName = focus.field[name].text
+		  curDesc &= "{b}" & matName
+		  if (focus.tagis[Activated.?] <> 0) then
+		    curDesc &= " (Active)"
+		    endif
+		  curDesc &= ":{/b} " & focus.field[summary].text & "{br}"
+	      nexteach
+		  
+		endif
+		
+	  if (field[grHardpointsUsed].value <> 0) then
+	    curDesc &= "{b}From Attachments: {/b}{br}"
+		foreach pick in gizmo from ItemMod
+		  perform eachpick.setfocus
+		  conName = focus.field[name].text
+		  curDesc &= "{indent 10}{b}" & conName 
+		  if (focus.tagis[Activated.?] <> 0) then
+		    curDesc &= " (Active)"
+		    endif
+		  curDesc &= ":{/b} " & focus.field[summary].text & "{br}"
+		  nexteach
+	    endif
+
+	  field[grOutDesc].text = curDesc
+	  
+	  ~if (empty(matName) = 0) then
+	  ~  field[livename].text = field[name].text & " (" & matName & ")"
+	  ~	endif
+      ]]></eval>
+	  
+    <evalrule index="1" phase="Validate" priority="9000" message="Too many Modifications."><![CDATA[
+      var totaluses as number
+
+      if (field[grHardpointsUsed].value <= field[grHardpoints].value) then
+        @valid = 1
+        endif
+
+      ]]></evalrule>
+    </component>
+
+
+  <!-- Equipment component
+        All general non-combat equipment derives from this component
+  -->
+  <component
+    id="Equipment"
+    name="Equipment"
+    autocompset="no"
+    panellink="gear">
+
+    </component>
+
+
+  <!-- Vehicle component
+        All vehicles derive from this component
+  -->
+  <component
+    id="Vehicle"
+    name="Vehicle"
+    autocompset="no">
+	
+    <!-- Characteristics -->
+    <field
+      id="vehHandling"
+      name="Handling"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="vehMaxSpeed"
+      name="Max Speed"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="vehSil"
+      name="Silhouette"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="vehDefense"
+      name="Defense"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="vehArmor"
+      name="Armor"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="vehHullThreshold"
+      name="Hull Trauma Threshold"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="vehSysThreshold"
+      name="System Strain Threshold"
+      type="derived"
+	  defvalue="0">
+      </field>
+	  
+    </component>
+
+
+  <!-- Equippable component
+        Any gear that can be equipped (e.g. weapons) must derive from this component.
+        A field is managed that tracks whether the gear is actually equipped, and the
+        state can be controlled via a checkbox presented to the user. Equipped gear
+        automatically accrues the number of hands required to ensure that a character
+        doesn't equip more gear than he has hands for.
+  -->
+  <component
+    id="Equippable"
+    name="Equippable"
+    autocompset="no"
+    ispublic="no">
+
+    <!-- Is the gear equipped? -->
+    <field
+      id="grIsEquip"
+      name="Is Equipped?"
+      type="user"
+      minvalue="0"
+      maxvalue="1">
+      </field>
+
+    <!-- If the equipment should be selected by default, select it now -->
+    <creation><![CDATA[
+      ~if this is natural equipment, initialize the equipped state
+      if (tagis[Equipment.Natural] <> 0) then
+        field[grIsEquip].value = 1
+        endif
+
+      ~if this equipment is supposed to start out as equipped, initialize the state
+      if (tagis[Equipment.StartEquip] <> 0) then
+        field[grIsEquip].value = 1
+        endif
+      ]]></creation>
+
+    <!-- If we're equipped, assign ourselves the corresponding tag -->
+    <eval index="1" phase="Initialize" priority="5000" name="Equipped"><![CDATA[
+      if (field[grIsEquip].value <> 0) then
+        perform assign[Equipped.Equipped]
+        endif
+      ]]></eval>
+
+    <!-- If this equipment is a automatically equipped (e.g. a natural attack), we
+          can't be moved and we must force the equipped state
+    -->
+    <eval index="2" phase="Initialize" priority="4000">
+      <before name="Equipped"/><![CDATA[
+      if (tagis[Equipment.AutoEquip] <> 0) then
+        perform assign[Helper.NoMove]
+        ~since the equipped field is a "user" field, we need to tell the compiler
+        ~not to complain before setting the field
+        trustme
+        field[grIsEquip].value = 1
+        endif
+      ]]></eval>
+
+    <!-- If equipped, tell the actor how many hands worth of equipment is equipped -->
+    <eval index="3" phase="Final" priority="5000">
+      <before name="Check Hands"/><![CDATA[
+      ~if not equipped, there's nothing to do
+      doneif (field[grIsEquip].value = 0)
+
+      ~if the equipment does not require hands, there's nothing to do
+      doneif (tagis[Equipment.Hand] = 0)
+
+      ~tell the hero we've got at least one hand used
+      perform hero.assign[Hero.Hand]
+
+      ~if the equipment is two-handed, add another hand
+      if (tagis[Equipment.TwoHand] <> 0) then
+        perform hero.assign[Hero.Hand]
+        endif
+      ]]></eval>
+
+    <!-- If equipped and we're out of hands, mark ourselves as invalid but don't
+        trigger a separate validation error for each weapon -->
+    <evalrule index="1" phase="Validate" priority="10000" message="?" issilent="yes"><![CDATA[
+      ~if the hero isn't over the hands limit, we're valid
+      validif (hero.tagcount[Hero.Hand] <= herofield[acHands].value)
+
+      ~if not equipped, we're valid
+      validif (field[grIsEquip].value = 0)
+
+      ~if the equipment does not require any hands, we're valid
+      validif (tagis[Equipment.Hand] = 0)
+
+      ~mark the tab as invalid
+      linkvalid = 0
+      ]]></evalrule>
+
+    <!-- If equipped and held within a container, we have a conflict -->
+    <evalrule index="2" phase="Validate" priority="10000" message="Gear is equipped while stored in a container"><![CDATA[
+      ~if not both equipped and held within a container, we're valid
+      validif (field[grIsEquip].value + isgearheld < 2)
+
+      ~mark the tab as invalid
+      linkvalid = 0
+      ]]></evalrule>
+
+    </component>
+
+
+  <!-- WeaponBase component
+        All weapons derive from this component. Weapons track a bonus value and damage
+        rating, as well as a strength requirement. The net attack value for the weapon
+        is calculating, incorporating any penalties that may be applied due to special
+        circumstances (e.g. failing to meet the strength requirement).
+  -->
+  <component
+    id="WeaponBase"
+    name="Weapon"
+    autocompset="no"
+    hasshortname="yes"
+    panellink="armory"
+    ispublic="no">
+
+    <!-- Weapon bonus -->
+    <field
+      id="wpBonus"
+      name="Weapon Bonus"
+      type="derived">
+      </field>
+
+    <!-- Damage rating of the weapon -->
+    <field
+      id="wpDamage"
+      name="Damage"
+      type="derived"
+      minvalue="0">
+      </field>
+
+    <!-- Minimum strength required to wield -->
+    <field
+      id="wpStrReq"
+      name="Minimum Strength"
+      type="derived">
+      </field>
+	  
+    <field
+      id="wpAgiReq"
+      name="Minimum Agility"
+      type="derived"
+	  minvalue="0">
+      </field>
+	  
+    <!-- Special details about the weapon -->
+    <field
+      id="wpSpecial"
+      name="Special"
+      type="derived"
+      maxlength="200">
+      </field>
+	  
+    <!-- skill details about the weapon -->
+    <field
+      id="wpSkill"
+      name="Skill"
+      type="derived"
+      maxlength="150">
+      </field>
+    <field
+      id="wpSkillColor"
+      name="Skill"
+      type="derived"
+      maxlength="300">
+      </field>	
+    <field
+      id="wpSkillGraphic"
+      name="Skill"
+      type="derived"
+      maxlength="300">
+      </field>
+	  
+    <field
+      id="wpSkillRanking"
+      name="Skill"
+      type="derived"
+      maxlength="50">
+      </field>
+	  
+    <!-- Synthesized notes about the weapon -->
+    <field
+      id="wpNotes"
+      name="Notes"
+      type="derived"
+      maxlength="250">
+      </field>
+
+    <!-- Weapon penalty -->
+    <field
+      id="wpPenalty"
+      name="Weapon Penalty"
+      type="derived">
+      </field>
+
+    <!-- Net attack roll for weapon -->
+    <field
+      id="wpNetAtk"
+      name="Net Attack"
+      type="derived">
+      </field>
+	  
+    <!-- Damage rating of the weapon -->
+    <field
+      id="wpNetDmg"
+      name="Damage"
+      type="derived"
+      maxlength="20">
+      </field>
+	  
+    <field
+      id="wpCrit"
+      name="Crit Rating"
+      type="derived">
+      </field>	  
+
+    <!-- Synthesized text ranges for the weapon -->
+    <field
+      id="wpRange"
+      name="Range"
+      type="derived"
+      maxlength="15">
+
+      </field>
+    <field
+      id="wpRangeAbbrev"
+      name="Range abbrev"
+      type="derived"
+      maxlength="5">
+
+      </field>	
+	  
+	<!-- Shadow onto the hero when appropriate tag is present -->
+    <shadow target="hero"><![CDATA[
+      Helper.Shadow & !Helper.NoShadow
+      ]]></shadow>
+	  
+    <!-- Weapons require one hand by default (unless natural) -->
+    <tag group="Equipment" tag="Hand"/>    			<!-- Weapons require one hand by default (unless natural) -->
+    <tag group="ItemModCatAllowed" tag="Weapon"/> 	<!-- Mods for any weapon are allowed -->
+
+    <!-- If equipped and the minimum strength isn't satisfied, apply any penalty and
+        mark ourselves as not satisfying the requirement -->
+    <eval index="1" phase="Final" priority="5000"><![CDATA[
+	  ~if we don't have the Unwieldy tag, we're done
+	  doneif (tagis[ItemQuality.Cumber?] = 0)
+	  
+	  var braReq as number
+	  braReq = tagvalue[ItemQuality.Cumber?]
+	  
+      ~if the minimum strength is satisfied, there's nothing to do
+      doneif (braReq <= #attrscore[attrBra])
+
+      ~assign a tag to indicate the requirement isn't met
+      perform assign[Helper.BadStrReq]
+
+      ~apply any penalty required with the specific weapon
+      field[wpPenalty].value = -1
+
+      ~if not equipped, there's nothing more to do
+      doneif (field[grIsEquip].value = 0)
+
+      ~apply any general penalty required (e.g. defense penalties or the like)
+      ~.... add code here ....
+      ]]></eval>
+	  
+    <eval index="2" phase="Final" priority="5000"><![CDATA[
+	  ~if we don't have the Unwieldy tag, we're done
+	  doneif (tagis[ItemQuality.Unwieldy?] = 0)
+	  
+	  var agiReq as number
+	  agiReq = tagvalue[ItemQuality.Unwieldy?]
+	  
+      ~if the minimum strength is satisfied, there's nothing to do
+      doneif (agiReq <= #attrscore[attrAgi])
+
+      ~assign a tag to indicate the requirement isn't met
+      perform assign[Helper.BadAgiReq]
+
+      ~apply any penalty required with the specific weapon
+      field[wpPenalty].value = -1
+
+      ~if not equipped, there's nothing more to do
+      doneif (field[grIsEquip].value = 0)
+
+      ~apply any general penalty required (e.g. defense penalties or the like)
+      ~.... add code here ....
+      ]]></eval>
+	  
+    <eval index="3" phase="Final" priority="15000" name="Build Skill Pool Out" ><![CDATA[
+	  var skill as string
+	  var skillText as string
+	  var skillColor as string
+	  var totdmg as number
+	  
+	  skill = "*"
+	  skillText = skill
+	  totdmg = field[wpDamage].value
+	  
+	  if (tagis[component.WeapMelee] <> 0) then
+	    totdmg += #trait[attrBra]
+		endif
+	  
+      ~if there's no skill tag, there's nothing to do
+	  if (tagis[WeaponSkill.?] <> 0) then
+	    skill = tagids[WeaponSkill.?]
+		foreach pick in hero from Skill where skill
+		  skillText = eachpick.field[sklPool].text
+		  skillColor = eachpick.field[sklPoolColor].text
+		  nexteach
+	    endif
+
+      ~if not equipped, there's nothing more to do
+      field[wpSkill].text = skillText & field[grSymDice].text
+	  field[wpSkillColor].text = skillColor & field[grSymDiceColor].text
+	  
+	  field[wpNetDmg].text = totdmg
+      ]]></eval>
+		  
+    <!-- Assign any derived special notes to the appropriate field -->
+    <eval index="4" phase="Render" priority="1000"><![CDATA[
+      var special as string
+
+      ~report the weapon as two-handed (if any)
+      if (tagis[Equipment.TwoHand] <> 0) then
+        special = splice(special,"Requires two hands",", ")
+        endif
+
+      ~append any special attributes appropriately (if any)
+      var attribs as string
+      attribs = tagnames[ItemQuality.?,", "]
+      special = splice(special,attribs,", ")
+
+      ~append any special details for this weapon
+      special = splice(special,field[wpSpecial].text,", ")
+
+      ~we've synthesized the notes for the weapon
+      field[wpNotes].text = special
+      ]]></eval>
+	  
+    <eval index="5" phase="Traits" priority="500"><![CDATA[
+      ~if there is no Range tag, we're done
+      doneif (tagis[WeaponRange.?] = 0)
+      
+	  field[wpRange].text = tagnames[WeaponRange.?,","]
+	  field[wpRangeAbbrev].text = tagabbrevs[WeaponRange.?,","]
+      ]]></eval>
+	  
+    <!-- Check the strength requirement, which we only treat as a problem for things. -->
+    <prereq message="Strength requirement not met.">
+      <validate><![CDATA[
+        ~if this is a pick, we're valid
+        ~NOTE! We assume that equipping an item without the strength just applies penalties.
+        validif (@ispick <> 0)
+
+	    ~if we don't have the Unwieldy tag, we're valid
+	    validif (tagis[ItemQuality.Cumber?] = 0)
+	  
+	    var braReq as number
+	    braReq = tagvalue[ItemQuality.Cumber?]
+	  
+        ~if the minimum strength is satisfied, there's nothing to do
+        validif (braReq <= #attrscore[attrBra])
+		
+        ]]></validate>
+      </prereq>
+	  
+    <prereq message="Agility requirement not met.">
+      <validate><![CDATA[
+        ~if this is a pick, we're valid
+        ~NOTE! We assume that equipping an item without the strength just applies penalties.
+        validif (@ispick <> 0)
+
+	    ~if we don't have the Unwieldy tag, we're valid
+	    validif (tagis[ItemQuality.Unwieldy?] = 0)
+	  
+	    var agiReq as number
+	    agiReq = tagvalue[ItemQuality.Unwieldy?]
+	  
+        ~if the minimum strength is satisfied, there's nothing to do
+        validif (agiReq <= #attrscore[attrAgi])
+	  
+        ]]></validate>
+      </prereq>
+    </component>
+
+
+  <!-- WeapRange component
+        Ranged weapons derive from this component. They add range distances for three
+        different range classifications. For simplicity, a text-based version of the
+        ranges is automatically generated for easy use in displaying the weapon.
+        Ranged weapons auto-calculate their net attack value based on the Shooting
+        skill.
+  -->
+  <component
+    id="WeapRange"
+    name="Ranged Weapon"
+    autocompset="no">
+
+    <!-- All ranged weapons get the same tag for sorting purposes -->
+    <tag group="Armory" tag="Range"/>
+    <tag group="ItemModCatAllowed" tag="Ranged"/> 	<!-- Mods for any weapon are allowed -->
+
+    <!-- Calculate the net attack roll for the weapon -->
+    <eval index="1" phase="Final" priority="7000" name="Calc wpNetAtk"><![CDATA[
+      field[wpNetAtk].value = field[wpBonus].value + field[wpPenalty].value
+      ]]></eval>
+
+    <!-- Prepend any derived special notes to the appropriate field -->
+    <eval index="2" phase="Render" priority="2000"><![CDATA[
+      var special as string
+
+      ~assign any appropriate special notes to the "special" variable here
+
+      ~prepend any existing special details with the notes for this weapon
+      field[wpNotes].text = splice(special,field[wpNotes].text,", ")
+      ]]></eval>
+
+    </component>
+
+
+  <!-- WeapMelee component
+        Melee weapons derive from this component. Melee weapons auto-calculate their
+        net attack value based on the Melee skill.
+  -->
+  <component
+    id="WeapMelee"
+    name="Melee Weapon"
+    autocompset="no">
+
+    <!-- All melee weapons get the same tag for sorting purposes -->
+    <tag group="Armory" tag="Melee"/>
+    <tag group="ItemModCatAllowed" tag="Melee"/> 	<!-- Mods for any weapon are allowed -->
+
+    <!-- All melee weapons get the appropriate tag -->
+    <eval index="1" phase="Setup" priority="5000"><![CDATA[
+      perform assign[Armory.Melee]
+      ]]></eval>
+
+    <!-- Calculate the net attack roll for the weapon -->
+    <eval index="2" phase="Final" priority="7000" name="Calc wpNetAtk"><![CDATA[
+      field[wpNetAtk].value = field[wpBonus].value + field[wpPenalty].value
+      ~ field[wpNetAtk].value += Skill used for Weapon 
+      ]]></eval>
+
+    <!-- Prepend any derived special notes to the appropriate field -->
+    <eval index="3" phase="Render" priority="2000"><![CDATA[
+      var special as string
+
+      ~assign any appropriate special notes to the "special" variable here
+
+      ~prepend any existing special details with the notes for this weapon
+      field[wpNotes].text = splice(special,field[wpNotes].text,", ")
+      ]]></eval>
+
+    </component>
+
+
+  <!-- Defense component
+        All armor and shields derive from this component. Defensive gear tracks a
+        defense rating and a strength requirement. The defense rating is added to the
+        character's overall Defense trait when the gear is equipped.
+  -->
+  <component
+    id="Defense"
+    name="Defense"
+    autocompset="no"
+    panellink="armory"
+    ispublic="no">
+
+    <!-- Defense adjustment conferred by the equipment -->
+    <field
+      id="defDefense"
+      name="Defense Adjustment"
+      type="derived">
+      </field>
+	  
+    <field
+      id="defDefenseMelee"
+      name="Melee Defense Adjustment"
+      type="derived">
+      </field>
+	  
+    <field
+      id="defDefenseRange"
+      name="Ranged Defense Adjustment"
+      type="derived">
+      </field>
+
+    <field
+      id="defSoak"
+      name="Soak Adjustment"
+      type="derived">
+      </field>
+	  
+    <!-- Minimum strength required to use the equipment -->
+    <field
+      id="defStrReq"
+      name="Minimum Strength"
+      type="static">
+      </field>
+
+    <!-- If equipped and the minimum strength isn't satisfied, apply any penalty and
+        mark ourselves as not satisfying the requirement -->
+    <eval index="1" phase="Final" priority="5000"><![CDATA[
+      ~if the minimum strength is satisfied, there's nothing to do
+      doneif (field[defStrReq].value <= #attrscore[attrBra])
+
+      ~assign a tag to indicate the requirement isn't met
+      perform assign[Helper.BadStrReq]
+
+      ~if not equipped, there's nothing more to do
+      doneif (field[grIsEquip].value = 0)
+
+      ~apply any general penalty required (e.g. defense penalties or the like)
+      ~.... add code here ....
+      ]]></eval>
+
+    <!-- Apply effects of the equipped armor/shield -->
+    <eval index="2" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/>
+      <after name="Equipped"/><![CDATA[
+      ~if this gear is not equipped, skip it
+      doneif (field[grIsEquip].value = 0)
+
+      ~apply the appropriate trait adjustments for the equipment
+      #traitbonus[trDefenseMel] += field[defDefenseMelee].value
+      #traitbonus[trDefenseRng] += field[defDefenseRange].value
+      #traitbonus[trSoak] += field[defSoak].value
+      ]]></eval>
+	  
+    <eval index="3" phase="PreTraits" priority="1000"><![CDATA[
+      field[defDefenseMelee].value += field[defDefense].value
+      field[defDefenseRange].value += field[defDefense].value
+      ]]></eval>
+    <!-- Check the strength requirement, which we only treat as a problem for things. -->
+    <prereq message="Strength requirement not met.">
+      <validate><![CDATA[
+        ~if this is a pick, we're valid
+        ~NOTE! We assume that equipping an item without the strength just applies penalties.
+        validif (@ispick <> 0)
+
+        ~verify whether we meet the strength requirement
+        validif (#attrscore[attrBra] >= altthing.field[defStrReq].value)
+        ]]></validate>
+      </prereq>
+
+    </component>
+
+
+  <!-- Armor component
+        Armor derives from this component. The tracking of multiple pieces of armor
+        on the character is automatically managed.
+  -->
+  <component
+    id="Armor"
+    name="Armor"
+    autocompset="no">
+    <!-- Synthesized notes about the item -->
+    <field
+      id="arNotes"
+      name="Notes"
+      type="derived"
+      maxlength="300">
+      </field>	  
+	  
+    <!-- Special details about the weapon -->
+    <field
+      id="arSpecial"
+      name="Special"
+      type="derived"
+      maxlength="250">
+      </field>
+	  
+    <!-- Each piece of armor needs its own identity tag to detect multiple pieces being equipped -->
+    <identity group="Armor"/>
+
+    <!-- All armor gets the same tag for sorting purposes -->
+    <tag group="Armory" tag="Armor"/>
+    <tag group="ItemModCatAllowed" tag="Armor"/>
+
+    <!-- If we're equipped and not a natural form, track the armor on the actor -->
+    <eval index="1" phase="Setup" priority="5000" name="Equip Armor"><![CDATA[
+      if (field[grIsEquip].value > 0) then
+        if (tagis[Equipment.Natural] = 0) then
+          perform forward[Armor.?]
+          endif
+        endif
+      ]]></eval>
+	  
+    <!-- Assign any derived special notes to the appropriate field -->
+    <eval index="2" phase="Render" priority="1000"><![CDATA[
+      var special as string
+
+      ~append any special attributes appropriately (if any)
+      var attribs as string
+      attribs = tagnames[ItemQuality.?,", "]
+      special = splice(special,attribs,", ")
+
+      ~append any special details for this weapon
+      special = splice(special,field[arSpecial].text,", ")
+
+      ~we've synthesized the notes for the weapon
+      field[arNotes].text = special
+      ]]></eval>
+	  
+    <!-- If multiple pieces of armor are equipped, mark ourselves invalid but don't
+        flag a separate validation error for each piece -->
+    <evalrule index="1" phase="Validate" priority="10000" message="?" issilent="yes"><![CDATA[
+      ~if this gear is not equipped, we're valid
+      validif (field[grIsEquip].value = 0)
+
+      ~if there are NOT multiple pieces of armor equipped, we're valid
+      validif (hero.tagcount[Armor.?] <= 1)
+
+      ~mark the tab as invalid
+      linkvalid = 0
+      ]]></evalrule>
+
+    </component>
+
+
+  <!-- Shield component
+        Shields derive from this component. The tracking of multiple shields on the
+        character is automatically managed.
+  -->
+  <component
+    id="Shield"
+    name="Shield"
+    autocompset="no">
+
+    <!-- Each shield needs its own identity tag to detect multiple shields being equipped -->
+    <identity group="Shield"/>
+
+    <!-- All shields get the same tag for sorting purposes -->
+    <tag group="Armory" tag="Shield"/>
+
+    <!-- Shield require one hand by default -->
+    <tag group="Equipment" tag="Hand"/>
+
+    <!-- If we're equipped, track the shield on the actor -->
+    <eval index="1" phase="Setup" priority="5000" name="Equip Shield"><![CDATA[
+      if (field[grIsEquip].value > 0) then
+        perform forward[Shield.?]
+        endif
+      ]]></eval>
+
+    <!-- If multiple shields are equipped, mark ourselves invalid but don't
+        flag a separate validation error for each piece -->
+    <evalrule index="1" phase="Validate" priority="10000" message="?" issilent="yes"><![CDATA[
+      ~if this gear is not equipped, we're valid
+      validif (field[grIsEquip].value = 0)
+
+      ~if there are NOT multiple shields equipped, we're valid
+      validif (hero.tagcount[Shield.?] <= 1)
+
+      ~mark the tab as invalid
+      linkvalid = 0
+      ]]></evalrule>
+
+    </component>
+
+
+  <!-- Ammunition component
+        Bullets and the like derive from this component. Ammunition blends gear with
+        a tracker that lets the user monitor the consumption of the ammunition.
+  -->
+  <component
+    id="Ammunition"
+    name="Ammunition"
+    autocompset="no">
+
+    <!-- Initialize the user value to the new quantity -->
+    <creation><![CDATA[
+      ~if we don't have a transaction pick to initialize from, use what we know;
+      ~this can occur if the gear is bootstrapped or auto-added for the actor
+      if (hero.istransact = 0) then
+        field[trkUser].value = field[stackQty].value * field[lotsize].value
+
+      ~otherwise, use the contents of the transaction pick to start our value
+      else
+        field[trkUser].value = hero.transact.field[xactQty].value
+        endif
+      ]]></creation>
+
+    <!-- The tracker quantity should reset to the maximum value -->
+    <tag group="Helper" tag="ResetMax"/>
+
+    <!-- Setup our tracker bounds based on the quantity purchased -->
+    <eval index="1" phase="Final" priority="1000"><![CDATA[
+      field[trkMin].value = 0
+      field[trkMax].value = field[stackQty].value
+      ]]></eval>
+
+    <!-- Add the quantities from the other pick into this one -->
+    <merge><![CDATA[
+      field[trkMax].value += altpick.field[trkMax].value
+      field[trkUser].value += altpick.field[trkUser].value
+      ]]></merge>
+
+    <!-- Split the quantities properly across the two picks -->
+    <split><![CDATA[
+      ~save the quantity of ammo that still remains unused
+      var user as number
+      user = field[trkUser].value
+
+      ~update the new "max" values for both picks based on the stack quantity
+      field[trkMax].value = field[stackQty].value
+      altpick.field[trkMax].value -= altpick.field[stackQty].value
+
+      ~the user value for the first pick is the quantity of ammo still unused,
+      ~subject to the maximum size for the pick
+      field[trkUser].value = minimum(user,field[trkMax].value)
+
+      ~subtract the quantity allocated to the first pick from what's now left
+      user -= field[trkUser].value
+
+      ~if we have any unused ammo left to assign to the other pick, assign it
+      if (user <= 0) then
+        altpick.field[trkUser].value = 0
+      else
+        altpick.field[trkUser].value = user
+        endif
+      ]]></split>
+
+    </component>
+
+
+  <!-- Define various component sets associated with the components defined above.
+  -->
+
+  <!-- No compsets are auto-defined for the component -->
+
+  <!-- Ranged - ranged weapons -->
+  <compset
+    id="Ranged"
+    stackable="yes">
+    <compref component="WeaponBase"/>
+    <compref component="WeapRange"/>
+    <compref component="Equippable"/>
+    <compref component="Gear"/>
+    <compref component="Custom"/>
+    </compset>
+
+  <!-- Melee - melee weapons -->
+  <compset
+    id="Melee"
+    stackable="yes">
+    <compref component="WeaponBase"/>
+    <compref component="WeapMelee"/>
+    <compref component="Equippable"/>
+    <compref component="Gear"/>
+    <compref component="Custom"/>
+    </compset>
+
+  <!-- Weapon - all weapons (above) must include these fields -->
+  <compset
+    id="Weapon"
+    stackable="yes">
+    <compref component="WeaponBase"/>
+    <compref component="Equippable"/>
+    <compref component="Gear"/>
+    <compref component="Custom"/>
+    </compset>
+
+  <!-- Armor -->
+  <compset
+    id="Armor"
+    stackable="yes">
+    <compref component="Armor"/>
+    <compref component="Defense"/>
+    <compref component="Equippable"/>
+    <compref component="Gear"/>
+    <compref component="Custom"/>
+    </compset>
+
+  <!-- Shield -->
+  <compset
+    id="Shield"
+    stackable="yes">
+    <compref component="Shield"/>
+    <compref component="Defense"/>
+    <compref component="Equippable"/>
+    <compref component="Gear"/>
+    <compref component="Custom"/>
+    </compset>
+
+  <!-- Defense - all armor and shields (above) must include these fields -->
+  <compset
+    id="Defense"
+    stackable="yes">
+    <compref component="Defense"/>
+    <compref component="Equippable"/>
+    <compref component="Gear"/>
+    </compset>
+
+  <!-- Equipment -->
+  <compset
+    id="Equipment"
+    stackable="yes">
+    <compref component="Equipment"/>
+    <compref component="Equippable"/>
+    <compref component="Gear"/>
+    <compref component="Custom"/>
+    </compset>
+
+  <!-- Ammunition -->
+  <compset
+    id="Ammunition"
+    stackable="yes">
+    <compref component="Equipment"/>
+    <compref component="Gear"/>
+    <compref component="Custom"/>
+    <compref component="Ammunition"/>
+    <compref component="Tracker"/>
+    </compset>
+
+  <!-- Vehicle -->
+  <compset
+    id="Vehicle">
+    <compref component="Vehicle"/>
+    <compref component="Gear"/>
+    </compset>
+	
+  <!-- form="itemmodgiz"> -->
+  <entity
+    id="ItemMods"
+    form="itemmodgiz">
+      <bootstrap thing="ItemModHelper"/>
+    </entity>
+  </document>

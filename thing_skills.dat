@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document signature="Hero Lab Data">
+  <thing id="skAstrocartog" name="Astrocartography" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Ast"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="SkillCat" tag="General"/>
+    <link linkage="attribute" thing="attrInt"/>
+    </thing>
+  <thing id="skAthlet" name="Athletics" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Ath"/>
+    <tag group="SkillCat" tag="General"/>
+    <link linkage="attribute" thing="attrBra"/>
+    </thing>
+  <thing id="skCharm" name="Charm" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Cha"/>
+    <tag group="SkillCat" tag="Social"/>
+    <link linkage="attribute" thing="attrPre"/>
+    </thing>
+  <thing id="skCoerce" name="Coercion" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Coe"/>
+    <tag group="SkillCat" tag="Social"/>
+    <link linkage="attribute" thing="attrWil"/>
+    </thing>
+  <thing id="skCompute" name="Computers" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Com"/>
+    <usesource source="Modern"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="SkillCat" tag="General"/>
+    <link linkage="attribute" thing="attrInt"/>
+    </thing>
+  <thing id="skCool" name="Cool" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Coo"/>
+    <tag group="SkillCat" tag="General"/>
+    <link linkage="attribute" thing="attrPre"/>
+    </thing>
+  <thing id="skCoord" name="Coordination" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Cor"/>
+    <tag group="SkillCat" tag="General"/>
+    <link linkage="attribute" thing="attrAgi"/>
+    </thing>
+  <thing id="skDeception" name="Deception" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Dec"/>
+    <tag group="SkillCat" tag="Social"/>
+    <link linkage="attribute" thing="attrCun"/>
+    </thing>
+  <thing id="skDiscipline" name="Discipline" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Dis"/>
+    <tag group="SkillCat" tag="General"/>
+    <link linkage="attribute" thing="attrWil"/>
+    </thing>
+  <thing id="skLeader" name="Leadership" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Lea"/>
+    <tag group="SkillCat" tag="Social"/>
+    <link linkage="attribute" thing="attrPre"/>
+    </thing>
+  <thing id="skMech" name="Mechanics" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Mec"/>
+    <tag group="SkillCat" tag="General"/>
+    <link linkage="attribute" thing="attrInt"/>
+    </thing>
+  <thing id="skMedic" name="Medicine" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Med"/>
+    <tag group="SkillCat" tag="General"/>
+    <link linkage="attribute" thing="attrInt"/>
+    </thing>
+  <thing id="skNegotia" name="Negotiation" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Neg"/>
+    <tag group="SkillCat" tag="Social"/>
+    <link linkage="attribute" thing="attrPre"/>
+    </thing>
+  <thing id="skPercept" name="Perception" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Per"/>
+    <tag group="SkillCat" tag="General"/>
+    <link linkage="attribute" thing="attrCun"/>
+    </thing>
+  <thing id="skPiloting" name="Piloting" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Pil"/>
+    <usesource source="Modern"/>
+    <usesource source="WeirdWar"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="SkillCat" tag="General"/>
+    <link linkage="attribute" thing="attrAgi"/>
+    </thing>
+  <thing id="skResil" name="Resilience" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Res"/>
+    <tag group="SkillCat" tag="General"/>
+    <link linkage="attribute" thing="attrBra"/>
+    </thing>
+  <thing id="skSkull" name="Skullduggery" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Sku"/>
+    <tag group="SkillCat" tag="General"/>
+    <link linkage="attribute" thing="attrCun"/>
+    </thing>
+  <thing id="skStealth" name="Stealth" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Ste"/>
+    <tag group="SkillCat" tag="General"/>
+    <link linkage="attribute" thing="attrInt"/>
+    </thing>
+  <thing id="skStreet" name="Streetwise" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Str"/>
+    <tag group="SkillCat" tag="General"/>
+    <link linkage="attribute" thing="attrCun"/>
+    </thing>
+  <thing id="skSurviv" name="Survival" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Sur"/>
+    <tag group="SkillCat" tag="General"/>
+    <link linkage="attribute" thing="attrCun"/>
+    </thing>
+  <thing id="skVigil" name="Vigilance" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Vig"/>
+    <tag group="SkillCat" tag="General"/>
+    <link linkage="attribute" thing="attrWil"/>
+    </thing>
+  <thing id="skMelee" name="Melee" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Mel"/>
+    <usesource source="Modern"/>
+    <usesource source="Steampunk"/>
+    <usesource source="WeirdWar"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="SkillCat" tag="Combat"/>
+    <link linkage="attribute" thing="attrBra"/>
+    </thing>
+  <thing id="skBrawl" name="Brawl" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Bra"/>
+    <tag group="SkillCat" tag="Combat"/>
+    <link linkage="attribute" thing="attrBra"/>
+    </thing>
+  <thing id="skRangedLight" name="Ranged (Light)" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="RaL"/>
+    <usesource source="Modern"/>
+    <usesource source="Steampunk"/>
+    <usesource source="WeirdWar"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="SkillCat" tag="Combat"/>
+    <link linkage="attribute" thing="attrAgi"/>
+    </thing>
+  <thing id="skGunnery" name="Gunnery" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Gun"/>
+    <usesource source="Modern"/>
+    <usesource source="Steampunk"/>
+    <usesource source="WeirdWar"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="SkillCat" tag="Combat"/>
+    <link linkage="attribute" thing="attrAgi"/>
+    </thing>
+  <thing id="skRangedHeavy" name="Ranged (Heavy)" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="RaH"/>
+    <usesource source="Modern"/>
+    <usesource source="Steampunk"/>
+    <usesource source="WeirdWar"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="SkillCat" tag="Combat"/>
+    <link linkage="attribute" thing="attrAgi"/>
+    </thing>
+  <thing id="skKnowledge" name="Knowledge" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Kno"/>
+    <tag group="SkillCat" tag="Know"/>
+    <link linkage="attribute" thing="attrInt"/>
+    </thing>
+  <thing id="skLore" name="Lore" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Lor"/>
+    <tag group="SkillCat" tag="Know"/>
+    <link linkage="attribute" thing="attrInt"/>
+    </thing>
+  <thing id="skAlchemy" name="Alchemy" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Alc"/>
+    <usesource source="Fantasy"/>
+    <usesource source="Steampunk"/>
+    <usesource source="WeirdWar"/>
+    <usesource source="UseMagic"/>
+    <tag group="SkillCat" tag="General"/>
+    <link linkage="attribute" thing="attrInt"/>
+    </thing>
+  <thing id="skArcana" name="Arcana" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Arc"/>
+    <usesource source="Fantasy"/>
+    <usesource source="Steampunk"/>
+    <usesource source="WeirdWar"/>
+    <usesource source="UseMagic"/>
+    <tag group="SkillCat" tag="Magic"/>
+    <link linkage="attribute" thing="attrInt"/>
+    </thing>
+  <thing id="skDriving" name="Driving" compset="Skill" uniqueness="unique">
+    <usesource source="Modern"/>
+    <usesource source="Steampunk"/>
+    <usesource source="WeirdWar"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="SkillCat" tag="General"/>
+    <link linkage="attribute" thing="attrAgi"/>
+    </thing>
+  <thing id="skOperating" name="Operating" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Ope"/>
+    <usesource source="Modern"/>
+    <usesource source="Steampunk"/>
+    <usesource source="WeirdWar"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="SkillCat" tag="General"/>
+    <link linkage="attribute" thing="attrInt"/>
+    </thing>
+  <thing id="skRiding" name="Riding" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Rid"/>
+    <usesource source="Fantasy"/>
+    <usesource source="Steampunk"/>
+    <tag group="SkillCat" tag="General"/>
+    <link linkage="attribute" thing="attrAgi"/>
+    </thing>
+  <thing id="skMeleeLight" name="Melee (Light)" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="MeL"/>
+    <usesource source="Fantasy"/>
+    <tag group="SkillCat" tag="Combat"/>
+    <link linkage="attribute" thing="attrBra"/>
+    </thing>
+  <thing id="skMeleeHeavy" name="Melee (Heavy)" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="MeL"/>
+    <usesource source="Fantasy"/>
+    <tag group="SkillCat" tag="Combat"/>
+    <link linkage="attribute" thing="attrBra"/>
+    </thing>
+  <thing id="skRanged" name="Ranged" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Rng"/>
+    <usesource source="Fantasy"/>
+    <tag group="SkillCat" tag="Combat"/>
+    <link linkage="attribute" thing="attrBra"/>
+    </thing>
+  <thing id="skDivine" name="Divine" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Div"/>
+    <usesource source="Steampunk"/>
+    <usesource source="WeirdWar"/>
+    <usesource source="UseMagic"/>
+    <usesource source="Fantasy"/>
+    <tag group="SkillCat" tag="Magic"/>
+    <link linkage="attribute" thing="attrWil"/>
+    </thing>
+  <thing id="skPrimal" name="Primal" description="Description goes here" compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Pri"/>
+    <usesource source="Steampunk"/>
+    <usesource source="WeirdWar"/>
+    <usesource source="UseMagic"/>
+    <usesource source="Fantasy"/>
+    <tag group="SkillCat" tag="Magic"/>
+    <link linkage="attribute" thing="attrCun"/>
+    </thing>
+  </document>

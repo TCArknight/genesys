@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document signature="Hero Lab Data">
+  <thing id="mecFantasySetting" name="Fantasy Setting" description="Group setting tags appropriate for Fantasy" compset="Mechanics">
+    <usesource source="Fantasy"/>
+    <tag group="SettingRule" tag="SplitMelee"/>
+    <tag group="SettingRule" tag="UseMagic"/>
+    <tag group="Hero" tag="UseItemMods"/>
+    </thing>
+  <thing id="mecModern" name="Modern Setting" description="Group setting tags appropriate for Moder-day settings" compset="Mechanics">
+    <usesource source="Modern"/>
+    <tag group="SettingRule" tag="SplitRanged"/>
+    <tag group="Hero" tag="UseItemMods"/>
+    </thing>
+  </document>

@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document signature="Hero Lab Data">
+  <thing id="mecRealmsTerr" name="Realms of Terrinoth" description="Realms of Terrinoth Fantasy setting" compset="Mechanics">
+    <usesource source="RealmsTerrinoth"/>
+    <bootstrap thing="abHeroicAbility"></bootstrap>
+    </thing>
+  <thing id="skKnowAdventure" name="Knowledge (Adventuring)" description="Life as an adventurer offers unique perils and challenges.\nAdventurers tend to run toward the sorts of danger from which common folk flee. Experienced adventurers see a side of the world that most people never do, and they learn a great deal during their journeys and quests. The Knowledge (Adventuring) skill represents this sort of practical experience, as well as discussions in taverns with fellow adventurers about monsters, ruins, and other threats—and how best to overcome them. For many adventurers, it represents a kind of learned instinct; they might not be able to explain exactly why it’s a bad idea to touch the ancient statue, but they know it is." compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Adv"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="SkillCat" tag="Know"/>
+    <link linkage="attribute" thing="attrInt"/>
+    </thing>
+  <thing id="skKnowGeography" name="Knowledge (Geography)" description="Geography is a character’s understanding of the lay of the land and its different cultures, including those cultures’ customs and laws. Geography includes the comprehension of maps and cartography, regional variations in etiquette, and matters of navigation. A character with ranks in Knowledge (Geography) can chart a course over land or sea, describe the locations of major cities and landmarks from memory, avoid unknowingly violating local laws, and warn their allies of the sensitive conversation topics to avoid in a particular town." compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Geo"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="SkillCat" tag="Know"/>
+    <link linkage="attribute" thing="attrInt"/>
+    </thing>
+  <thing id="skKnowForbidden" name="Knowledge (Forbidden)" description="Knowledge (Forbidden) concerns matters of blood magic, necromancy, the Ynfernael, and other proscribed affairs. In addition to topics of an arcane nature, this skill covers any knowledge of subjects outlawed by the ruling classes and spiritual authorities, including particular historical incidents, purged lineages, and unspeakable monsters. A character with the Knowledge (Forbidden) skill may specialize in a particular category or dabble in all these and more, but they must be careful about revealing their knowledge to others." compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="For"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="SkillCat" tag="Know"/>
+    <link linkage="attribute" thing="attrInt"/>
+    </thing>
+  <thing id="skKnowLore" name="Knowledge (Lore)" description="Lore represents a character’s knowledge of magic, legends, religion, and similar matters. It includes both folktales and recent history, as well as matters arcane and obscure that only sages could know. Lore encompasses specialized, scholarly, and esoteric knowledge of the type that most common folk would consider impractical. A character with ranks in Knowledge (Lore) can recall relevant details from ancient legends, recognize rare religious icons, and even identify whether an event is magical or mundane in cause." compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Lor"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="SkillCat" tag="Know"/>
+    <link linkage="attribute" thing="attrInt"/>
+    </thing>
+  <thing id="skRunes" name="Runes" description="The Runes skill represents a character’s understanding of runebound shards and their ability to tap into and control the magic of those stones. While anyone can activate a runebound shard to unleash the specific magical effect that the rune inscribed upon it dictates, a character with the Runes skill can draw out and manipulate that power to achieve greater and more versatile results. Although only a rare few can control raw magic, most individuals have the potential—with extensive study and practice—to harness runebound shards." compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Run"/>
+    <tag group="SkillCat" tag="Magic"/>
+    <link linkage="attribute" thing="attrInt"/>
+    </thing>
+  <thing id="skVerse" name="Verse" description="The Verse skill is a character’s ability to achieve magical effects through poetry, song, or performance. Most users of this skill learn their repertoire and techniques by rote and improvise by instinct. Unlike other magic skills, Verse is defined by its signature methods and practices. It may even draw from the same sources of power as Arcana, Divine, or Primal magic, depending on the storytelling and performing tradition of the character. A character with ranks in Verse can achieve supernatural effects through the seemingly mundane acts of singing, playing music, or other type of performing." compset="Skill" uniqueness="unique">
+    <fieldval field="trtAbbrev" value="Ver"/>
+    <tag group="SkillCat" tag="Magic"/>
+    <link linkage="attribute" thing="attrPre"/>
+    </thing>
+  <thing id="talApothecary1" name="Apothecary" description="When a patient under your character’s care heals wounds from natural rest, they heal additional wounds equal to twice your character’s ranks in Apothecary." compset="Talent" uniqueness="useronce">
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="TalentActive" tag="Passive" name="Passive" abbrev="Passive"/>
+    <tag group="TalentTier" tag="1" name="1" abbrev="1"/>
+    <tag group="Helper" tag="IsRanked" name="IsRanked" abbrev="IsRanked"/>
+    <eval phase="PreTraits" priority="5000">var sumTxt as string
+var cnt as number
+
+cnt = field[trtValue1].value + field[talRanks].value
+cnt *= 2
+
+sumTxt = &quot;When a patient under your character’s care heals wounds from natural rest, they heal up to &quot; &amp; cnt &amp; &quot; additional wounds.&quot;
+
+field[talSummary].text = sumTxt</eval>
+    <eval phase="Render" priority="5000" index="2"><![CDATA[doneif (field[talRanks].value <= 1)
+
+field[spcName].text = field[name].text & " (Rank " & field[talRanks].value & ")"]]></eval>
+    </thing>
+  <thing id="talApothecary2" name="Apothecary" description="When a patient under your character’s care heals wounds from natural rest, they heal additional wounds equal to twice your character’s ranks in Apothecary." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="Hide" tag="Talent" name="Talent" abbrev="Talent"/>
+    <tag group="TalentActive" tag="Passive" name="Passive" abbrev="Passive"/>
+    <tag group="TalentTier" tag="2" name="2" abbrev="2"/>
+    <tag group="Helper" tag="IsRanked" name="IsRanked" abbrev="IsRanked"/>
+    <tag group="Hide" tag="Special" name="Special" abbrev="Special"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talSurgeon1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talApothecary3" name="Apothecary" description="When a patient under your character’s care heals wounds from natural rest, they heal additional wounds equal to twice your character’s ranks in Apothecary." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="Hide" tag="Talent" name="Talent" abbrev="Talent"/>
+    <tag group="TalentActive" tag="Passive" name="Passive" abbrev="Passive"/>
+    <tag group="TalentTier" tag="3"/>
+    <tag group="Helper" tag="IsRanked" name="IsRanked" abbrev="IsRanked"/>
+    <tag group="Hide" tag="Special" name="Special" abbrev="Special"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talSurgeon1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talApothecary4" name="Apothecary" description="When a patient under your character’s care heals wounds from natural rest, they heal additional wounds equal to twice your character’s ranks in Apothecary." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="Hide" tag="Talent" name="Talent" abbrev="Talent"/>
+    <tag group="TalentActive" tag="Passive" name="Passive" abbrev="Passive"/>
+    <tag group="TalentTier" tag="4"/>
+    <tag group="Helper" tag="IsRanked" name="IsRanked" abbrev="IsRanked"/>
+    <tag group="Hide" tag="Special" name="Special" abbrev="Special"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talSurgeon1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talApothecary5" name="Apothecary" description="When a patient under your character’s care heals wounds from natural rest, they heal additional wounds equal to twice your character’s ranks in Apothecary." compset="Talent">
+    <fieldval field="trtValue1" value="2"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="Hide" tag="Talent" name="Talent" abbrev="Talent"/>
+    <tag group="TalentActive" tag="Passive" name="Passive" abbrev="Passive"/>
+    <tag group="TalentTier" tag="5"/>
+    <tag group="Helper" tag="IsRanked" name="IsRanked" abbrev="IsRanked"/>
+    <tag group="Hide" tag="Special" name="Special" abbrev="Special"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talSurgeon1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talBullrush" name="Bullrush" description="When your character makes a Brawl, Melee (Light), or Melee (Heavy) combat check after using a maneuver to engage a target, you may spend [A][A][A] or [T] to use this talent to knock the target prone and move them up to one range band away from your character." compset="Talent">
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentTier" tag="1"/>
+    </thing>
+  <thing id="caMage" name="Mage" description="Mennara is a world shaped by magic. Natural-born sorcerers can tap into the arcane energies of the Verto Magica, while others may be inadvertently launched on a path of magic after discovering a powerful artifact or lost relic. Each land has its own magical traditions, from the court wizardry of Terrinoth to the colleges of sorcery in Al-Kalim. Despite their differences in culture and training, all spellcasters have an understanding of mysteries beyond the ken of other mortals that allows them to dispatch their enemies or manipulate the world around them by sorcerous means.\n\nThe reasons why Mages go adventuring are as varied as the disciplines of magic they practice. The Runemasters of Greyhaven might seek out the sundered shards of the Orb of the Sky, while Elven storm sorceresses defend their forest homelands by hunting down ancient artifacts and Greyhaven-trained battlemages support the Citadel’s armies. Those who bargain with dark powers—including the reviled hexers, necromancers, and warlocks rumored to exchange secrets in Nerekhall—furtively travel the lands in their selfish pursuits or in service to their master’s bidding. Wizards have not only the potential to incinerate monsters with balls of fire, but are also students of knowledge; most Mages are well-read scholars of the world’s secret lore.\n\nThe Mage counts the following skills as career skills: {b}Alchemy{/b}, {b}Arcana{/b}, {b}Cool{/b}, {b}Discipline{/b}, {b}Knowledge (Adventuring){/b}, {b}Knowledge (Forbidden){/b}, {b}Knowledge (Lore){/b}, and {b}Perception{/b}. Before spending experience during character creation, a Mage may choose four of their career skills and gain one rank in each of them." compset="Career" uniqueness="unique">
+    <fieldval field="caSkillChoices" value="4"/>
+    <usesource source="RealmsTerrinoth"/>
+    <eval phase="Initialize" priority="1100">~Assign SkillType.CareerSkill tag to career skills
+perform hero.child[skAlchemy].assign[SkillType.CareerSkill]
+perform hero.child[skArcana].assign[SkillType.CareerSkill]
+perform hero.child[skCool].assign[SkillType.CareerSkill]
+perform hero.child[skDiscipline].assign[SkillType.CareerSkill]
+perform hero.child[skKnowAdventure].assign[SkillType.CareerSkill]
+perform hero.child[skKnowForbidden].assign[SkillType.CareerSkill]
+perform hero.child[skKnowLore].assign[SkillType.CareerSkill]
+perform hero.child[skPercept].assign[SkillType.CareerSkill]
+
+perform hero.child[skAlchemy].assign[SkillType.CareerSelect]
+perform hero.child[skArcana].assign[SkillType.CareerSelect]
+perform hero.child[skCool].assign[SkillType.CareerSelect]
+perform hero.child[skDiscipline].assign[SkillType.CareerSelect]
+perform hero.child[skKnowAdventure].assign[SkillType.CareerSelect]
+perform hero.child[skKnowForbidden].assign[SkillType.CareerSelect]
+perform hero.child[skKnowLore].assign[SkillType.CareerSelect]
+perform hero.child[skPercept].assign[SkillType.CareerSelect]</eval>
+    </thing>
+  <thing id="wpRoTAxe" name="Axe" description="Though originally a simple woodcutter’s tool, in skilled (or desperate) hands, an axe can be a vicious weapon. The curved and heavy blade of the axe-head takes brutal bites out of flesh as well as timber, and many cultures have crafted axes designed specifically for war. The Orcs of the Broken Plains prefer stone axes that land pulverizing blows, for example, while the Dwarves of the Dunwarr Mountains forge double-bladed axes with long beards and a keen bite." compset="Melee" replaces="wpAxe">
+    <fieldval field="wpDamage" value="3"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="gearWeight" value="2"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <fieldval field="grCost" value="150"/>
+    <fieldval field="grRarity" value="1"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="WeaponSkill" tag="skMeleeLight"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemQuality" tag="Vicious1"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpRoTSword" name="Sword" description="For many cultures, the sword is a symbol of both nobility and martial prowess. It cannot be used as a tool like an axe or flail, and it cannot be used to hunt like a bow or spear. A sword is purely a weapon, and those who carry one announce to the world that they are warriors.\n\nSwords vary wildly in design, depending on the culture that produces them. Al-Kalim swordsmiths craft scimitars with thin, curved blades that share some similarities with the delicate sabers of the Latari Elves. Warriors in some of the kingdoms and tribes of Zanaga wield sickle-bladed swords, while Lorimor nobles favor broad-bladed shortswords. Daqan swords tend to be straight bladed and double-edged, and they are almost always well balanced and forged from steel.\n\nSwords have iconic status in the history of Terrinoth and the Daqan Baronies. Legend holds that the first human kingdom owes its founding to the use of good, steel swords, which gave its lands their name—“Terrinoth” means “Land of Steel.”" compset="Melee" replaces="wpSword">
+    <fieldval field="wpDamage" value="3"/>
+    <fieldval field="wpCrit" value="2"/>
+    <fieldval field="gearWeight" value="1"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <fieldval field="grCost" value="200"/>
+    <fieldval field="grRarity" value="2"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="WeaponSkill" tag="skMeleeLight"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemQuality" tag="Defense1"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMeleeLight"/>
+    <tag group="ItemModCatAllowed" tag="WeaponSword"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpRoTGreatsword" name="Greatsword" description="Greatswords are some of the most difficult weapons to wield effectively, and thus one usually sees them in the hands of knights or other highly trained warriors. These lengthy blades are precisely balanced and crafted to be both strong and flexible. Proper greatsword fighting emphasizes precise control of the pommel to send the tip of the blade into an unarmored chink in an opponent’s armor. Without that hand-eye coordination, the wielder is left making clumsy swings that are easily blocked or dodged.\n\nNobles and warriors of the baronies prefer greatswords with straight blades and crossguard hilts. Most greatswords in Terrinoth follow this design, but the Latari Elves often craft greatswords with long hilts and even longer curved blades. These blades are perfect for wide, sweeping cuts and slashes." compset="Melee">
+    <fieldval field="wpDamage" value="4"/>
+    <fieldval field="wpCrit" value="2"/>
+    <fieldval field="gearWeight" value="3"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <fieldval field="grCost" value="300"/>
+    <fieldval field="grRarity" value="4"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="WeaponSkill" tag="skMeleeHeavy"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemQuality" tag="Defense1"/>
+    <tag group="ItemQuality" tag="Pierce1"/>
+    <tag group="ItemQuality" tag="Unwieldy3"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBladed"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMeleeHeavy"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="imodExplosiveMiss" name="Explosive Missile" description="Whether through means of runic inscription on the weapon or by alchemical agents applied to each arrow or bolt, a weapon with this attachment launches projectiles that explode on impact.\n\n{b}Use With:{/b} Any Ranged weapon.\n\n{b}Modifiers:{/b} The weapon gains the Blast 5 item quality.\n\n{b}Hard Points Required:{/b} 1." compset="ItemMod">
+    <fieldval field="imodHPCost" value="1"/>
+    <fieldval field="imodCost" value="1250"/>
+    <fieldval field="imodRarity" value="7"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ItemModCat" tag="WeaponRanged"/>
+    <tag group="ItemModCat" tag="WeaponSig"/>
+    <eval phase="Effects" priority="1000">doneif (parent.isgizmo = 0)
+
+perform parent.assign[ItemQuality.Blast5]</eval>
+    </thing>
+  <thing id="imodRuneBlades" name="Rune of Blades" description="A rune of blades is almost always found with a specially made sword or knife. It is a simple and effective runebound shard that increases the potency of a bladed weapon by magically honing the edge. Like sunburst runes, runes of blades are in high demand among members of the military and can be commandeered from private individuals for war efforts and related campaigns. Some Dragonkin and other intelligent creatures have made use of the runes to retain the sharpness of their claws, though wooden edges and points are not affected by the runes.\n\n{b}Use With:{/b} This attachment can be applied to any bladed weapon.\n\n{b}Modifiers:{/b} When this weapon inflicts a Critical Injury, it inflicts the Bleeding Out Critical Injury instead of one determined through rolling for the result.\n\n{b}Hard Points Required:{/b} 1." compset="ItemMod">
+    <fieldval field="imodHPCost" value="1"/>
+    <fieldval field="imodRarity" value="10"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ItemModCat" tag="WeaponSig"/>
+    <tag group="ItemModCat" tag="WeaponBladed"/>
+    </thing>
+  <thing id="imodRunicFlame" name="Runic Flame" description="The runic flame is designed to be used in conjunction with a close combat weapon. Swords with apertures in the pommel or the guard for such runic attachments are not uncommon in the armories of wealthy members of the military. \n\n{b}Use With:{/b} This attachment can be applied to any melee weapon. \n\n{b}Modifiers:{/b} The weapon gains the Burn 1 item quality. \n\n{b}Hard Points Required:{/b} 1." compset="ItemMod">
+    <fieldval field="imodHPCost" value="1"/>
+    <fieldval field="imodCost" value="2000"/>
+    <fieldval field="imodRarity" value="8"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ItemModCat" tag="WeaponMelee"/>
+    <tag group="ItemModCat" tag="WeaponSig"/>
+    <eval phase="Effects" priority="1000">doneif (parent.isgizmo = 0)
+
+perform parent.assign[ItemQuality.Burn1]</eval>
+    </thing>
+  <thing id="imodRunicFrost" name="Runic Frost" description="This runic inscription coats the weapon with icy chill that saps strength from those it strikes.\n\n{b}Use With:{/b} This attachment can be applied to any melee weapon. \n\n{b}Modifiers:{/b} The weapon gains the Ensnare 1 and Stun 4 item qualities. \n\n{b}Hard Points Required:{/b} 1." compset="ItemMod">
+    <fieldval field="imodHPCost" value="1"/>
+    <fieldval field="imodCost" value="1750"/>
+    <fieldval field="imodRarity" value="8"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ItemModCat" tag="WeaponSig"/>
+    <tag group="ItemModCat" tag="WeaponMelee"/>
+    <eval phase="Effects" priority="1000">doneif (parent.isgizmo = 0)
+
+perform parent.assign[ItemQuality.Ensnare1]
+perform parent.assign[ItemQuality.Stun4]</eval>
+    </thing>
+  <thing id="imodRunicThunder" name="Runic Thunder" description="When its weapon strikes a foe, this rune carving flashes white like a bolt of lightning. The deafening boom of thunder comes a half-second later, staggering the foe with concussive force.\n\n{b}Use With:{/b} This attachment can be applied to any weapon.\n\n{b}Modifiers:{/b} The weapon gains the Concussive 1 item quality.\n\n{b}Hard Points Required:{/b} 2." compset="ItemMod">
+    <fieldval field="imodHPCost" value="2"/>
+    <fieldval field="imodCost" value="2000"/>
+    <fieldval field="imodRarity" value="8"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ItemModCat" tag="Weapon"/>
+    <tag group="ItemModCat" tag="WeaponSig"/>
+    <eval phase="Effects" priority="1000">doneif (parent.isgizmo = 0)
+
+perform parent.assign[ItemQuality.Concussive1]</eval>
+    </thing>
+  <thing id="imodRuneSevering" name="Rune of Severing" description="A sword or knife with this rune inscription unerringly seeks out a foe’s vitals for a killing blow. When an enemy falls gasping to the floor, the rune glows faintly with a deep crimson hue.\n\n{b}Use With:{/b} This attachment can be applied to any bladed melee weapon.\n\n{b}Modifiers:{/b} The weapon gains the Vicious 5 item quality.\n\n{b}Hard Points Required:{/b} 2." compset="ItemMod">
+    <fieldval field="imodHPCost" value="2"/>
+    <fieldval field="imodRarity" value="10"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ItemModCat" tag="WeaponSig"/>
+    <tag group="ItemModCat" tag="WeaponBladed"/>
+    <eval phase="Effects" priority="1000">doneif (parent.isgizmo = 0)
+
+perform parent.assign[ItemQuality.Vicious5]</eval>
+    </thing>
+  <thing id="imodYnfernaelCorr" name="Ynfernael Corruption" description="Pacts with dark powers may confer baleful powers unto otherwise mundane weaponry. Ynfernael daemons can infuse nearly any weapon with a measure of their unnatural strength… for a price. \n\n{b}Use With:{/b} This attachment can be applied to any weapon. \n\n{b}Modifiers:{/b} The weapon increases its base damage by 2; whenever your character suffers strain while wielding or wearing this weapon, they increase the strain suffered by 1. \n\n{b}Hard Points Required:{/b} 1." compset="ItemMod">
+    <fieldval field="imodHPCost" value="1"/>
+    <fieldval field="imodRarity" value="8"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ItemModCat" tag="Weapon"/>
+    <tag group="ItemModCat" tag="WeaponSig"/>
+    <eval phase="Effects" priority="1000"><![CDATA[doneif (parent.isgizmo = 0)
+
+parent.field[wpDamage].value += 2
+
+var spec as string
+spec = parent.field[wpSpecial].text
+spec = splice(spec,"Strain suffered while wielding is increased by 1",", ")
+parent.field[wpSpecial].text = spec]]></eval>
+    </thing>
+  <thing id="armRoTChainmail" name="Chainmail" description="As heavy as it is reliable, chainmail offers protection matched with flexibility. Thousands of small linked rings make up a suit of chainmail, providing a reliable defense against slashing and piercing weapons. Some adventurers wear suits of chainmail passed down from their ancestors; others still use the hauberk they looted from the first tomb they explored. The only drawback is the time it takes to forge and link the numerous rings together adds significantly to the cost.  \n\nChainmail is restrictive and noisy, so your character adds SB to Stealth checks they make while wearing it." compset="Armor">
+    <fieldval field="defSoak" value="2"/>
+    <fieldval field="grCost" value="550"/>
+    <fieldval field="grRarity" value="4"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <fieldval field="gearWeight" value="3"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ItemModCatAllowed" tag="ArmorChain" name="Armor (Chain)" abbrev="Armor (Chain)"/>
+    <tag group="ItemModCatAllowed" tag="ArmorSuit" name="Armor (Suit)" abbrev="Armor (Suit)"/>
+    <eval phase="Effects" priority="1000">doneif (field[grIsEquip].value = 0)
+
+hero.childfound[skStealth].field[sklAddedSetback].value += 1</eval>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="armRoTHeavyRobes" name="Heavy Robes" description="Heavy robes of wool or fur are better at keeping the wearer warm than protecting from a sword or spear. However, loosefitting robes can obscure a person’s shape and make it hard to land a blow, or even tangle an attacker’s weapon in their voluminous folds." compset="Armor">
+    <fieldval field="defDefense" value="1"/>
+    <fieldval field="grCost" value="45"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="RealmsTerrinoth"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="armRoTPlate" name="Plate" description="Few things on the battlefield are more impressive and awe-inspiring than a full suit of plate armor, and few items are a sterner test of the smith’s craft. Forging even a light breastplate takes time and care, and constructing an entire suit of interlocking armor plates can take months of painstaking work. Unsurprisingly, only the finest knights of the baronies wear plate armor, although occasionally a wandering adventurer may discover a set of plate buried in some long-forgotten crypt or dungeon and claim it for their own.\n\nPlate armor is heavy and very noisy. Your character adds [SB][SB] to Stealth checks they make while wearing it." compset="Armor">
+    <fieldval field="defDefense" value="1"/>
+    <fieldval field="defSoak" value="2"/>
+    <fieldval field="grRarity" value="6"/>
+    <fieldval field="grCost" value="1000"/>
+    <fieldval field="gearWeight" value="4"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ItemModCatAllowed" tag="ArmorPlate"/>
+    <tag group="ItemModCatAllowed" tag="ArmorSuit"/>
+    <eval phase="Effects" priority="1000">doneif (field[grIsEquip].value = 0)
+
+hero.childfound[skStealth].field[sklAddedSetback].value += 2</eval>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpRoTCestus" name="Cestus" description="Description goes here" compset="Melee">
+    <fieldval field="wpDamage" value="1"/>
+    <fieldval field="wpCrit" value="4"/>
+    <fieldval field="grRarity" value="1"/>
+    <fieldval field="grCost" value="40"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="WeaponSkill" tag="skBrawl"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemQuality" tag="Disorient3"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpRoTDagger" name="Dagger" description="Description goes here" compset="Melee" replaces="wpKnife">
+    <fieldval field="wpDamage" value="2"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grCost" value="25"/>
+    <fieldval field="gearWeight" value="1"/>
+    <fieldval field="grRarity" value="1"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="WeaponRange" tag="Engaged" name="Engaged" abbrev="Eng"/>
+    <tag group="ItemQuality" tag="Accurate1"/>
+    <tag group="WeaponSkill" tag="skMelee" name="Melee" abbrev="Melee"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBladed"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMeleeLight"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee1H"/>
+    <eval phase="Effects" priority="1000"><![CDATA[if (#issplitmelee[] <> 0) then
+  perform delete[WeaponSkill.?]
+  perform assign[WeaponSkill.skMeleeLight]
+  endif]]></eval>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpRoTFlail" name="Flail" description="Description goes here" compset="Melee">
+    <fieldval field="wpDamage" value="4"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grCost" value="150"/>
+    <fieldval field="grRarity" value="3"/>
+    <fieldval field="gearWeight" value="4"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ItemQuality" tag="Cumber3"/>
+    <tag group="ItemQuality" tag="Unwieldy3"/>
+    <tag group="ItemQuality" tag="Linked1"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBlunt"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMeleeHeavy"/>
+    <tag group="WeaponSkill" tag="skMeleeHeavy"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpRoTGreataxe" name="Greataxe" description="Description goes here" compset="Melee" replaces="wpGreataxe">
+    <fieldval field="wpDamage" value="4"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grCost" value="300"/>
+    <fieldval field="grRarity" value="4"/>
+    <fieldval field="gearWeight" value="4"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="Fantasy" parent="Settings" name="Fantasy"/>
+    <tag group="ItemQuality" tag="Cumber3" name="Cumbersome 3" abbrev="Cumbersome 3"/>
+    <tag group="ItemQuality" tag="Pierce2" name="Pierce 2" abbrev="Pierce 2"/>
+    <tag group="ItemQuality" tag="Vicious1" name="Vicious 1" abbrev="Vicious 1"/>
+    <tag group="WeaponRange" tag="Engaged" name="Engaged" abbrev="Eng"/>
+    <tag group="Equipment" tag="TwoHand" name="Requires two hands" abbrev="Requires two hands"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBladed"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMeleeHeavy"/>
+    <tag group="WeaponSkill" tag="skMeleeHeavy" name="Melee (Heavy)" abbrev="Melee (Heavy)"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpRoTHalberd" name="Halberd" description="Description goes here" compset="Melee">
+    <fieldval field="wpDamage" value="3"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="3"/>
+    <fieldval field="grCost" value="250"/>
+    <fieldval field="gearWeight" value="5"/>
+    <fieldval field="grHardpoints" value="3"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ItemQuality" tag="Pierce3"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBladed"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMeleeHeavy"/>
+    <tag group="WeaponSkill" tag="skMeleeHeavy"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemQuality" tag="Defense1"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpRoTKatar" name="Katar" description="Description goes here" compset="Melee">
+    <fieldval field="wpDamage" value="1"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grCost" value="175"/>
+    <fieldval field="gearWeight" value="1"/>
+    <fieldval field="grRarity" value="4"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="WeaponRange" tag="Engaged" name="Engaged" abbrev="Eng"/>
+    <tag group="ItemQuality" tag="Accurate1"/>
+    <tag group="WeaponSkill" tag="skBrawl" name="Brawl" abbrev="Brawl"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBladed"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMeleeLight"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee1H"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpRoTMace" name="Mace" compset="Melee">
+    <fieldval field="wpDamage" value="3"/>
+    <fieldval field="wpCrit" value="4"/>
+    <fieldval field="grRarity" value="1"/>
+    <fieldval field="grCost" value="75"/>
+    <fieldval field="gearWeight" value="2"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBlunt"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMeleeLight"/>
+    <tag group="WeaponSkill" tag="skMeleeLight"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpRoTMilPick" name="Military Pick" compset="Melee">
+    <fieldval field="wpDamage" value="1"/>
+    <fieldval field="wpCrit" value="2"/>
+    <fieldval field="grRarity" value="2"/>
+    <fieldval field="grCost" value="160"/>
+    <fieldval field="gearWeight" value="3"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="WeaponSkill" tag="skMeleeLight"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMeleeLight"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpRoTPike" name="Pike" description="Description goes here" compset="Melee">
+    <fieldval field="wpDamage" value="4"/>
+    <fieldval field="wpCrit" value="4"/>
+    <fieldval field="grRarity" value="2"/>
+    <fieldval field="grCost" value="100"/>
+    <fieldval field="gearWeight" value="4"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBladed"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMeleeHeavy"/>
+    <tag group="WeaponSkill" tag="skMeleeHeavy"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemQuality" tag="Defense1"/>
+    <tag group="ItemQuality" tag="Prepare1"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpRoTShield" name="Shield" compset="Melee">
+    <fieldval field="wpCrit" value="6"/>
+    <fieldval field="gearWeight" value="1"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <fieldval field="grCost" value="80"/>
+    <fieldval field="grRarity" value="1"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="WeaponSkill" tag="skMeleeLight"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBlunt"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMeleeLight"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee1H"/>
+    <tag group="ItemQuality" tag="Defense1"/>
+    <tag group="ItemQuality" tag="Deflect1"/>
+    <tag group="ItemQuality" tag="Inaccurate1"/>
+    <tag group="ItemQuality" tag="Knockdown"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqElixirStamina" name="Stamina Elixir" compset="Equipment" stacking="merge">
+    <fieldval field="grRarity" value="3"/>
+    <fieldval field="grCost" value="50"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ItemCategory" tag="Potions"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqHdrPotions" name="-- Potions and Elixirs --" compset="Equipment" isshowonly="yes">
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ItemCategory" tag="Potions"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqHdrOther" name="-- Other --" compset="Equipment" isshowonly="yes">
+    <usesource source="RealmsTerrinoth"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqHdrServices" name="-- Services --" compset="Equipment" isshowonly="yes">
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ItemCategory" tag="Services"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqWineBottle" name="Wine (Bottle)" compset="Equipment">
+    <fieldval field="grCost" value="2"/>
+    <fieldval field="grRarity" value="1"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ItemCategory" tag="Services"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqHdrGear" name="-- Gear --" compset="Equipment" isshowonly="yes">
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ItemCategory" tag="Gear"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqTrailRations" name="Trail Rations (1 day)" compset="Equipment">
+    <fieldval field="grCost" value="2"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ItemCategory" tag="Gear"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="abHeroicAbility" name="Heroic Ability" compset="Ability" uniqueness="useronce">
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="Hide" tag="Ability"/>
+    <tag group="Hide" tag="Special"/>
+    </thing>
+  <thing id="haAllTheFacts" name="All The Facts" description="Your character has a knack for knowing vital information when it is needed. They might pick up on significant clues others missed at the scene of a crime, or recall an ancient Elven song that sheds light on a situation. Whether your character remembers important information they already know or discovers something in the moment, their ability to do so is extraordinary. It could be thanks to an eidetic memory, years of study, magic, alchemically enhanced senses, or anything else." compset="HeroicAbility" uniqueness="unique">
+    <usesource source="RealmsTerrinoth"/>
+    </thing>
+  <thing id="haConnected" name="Connected" compset="HeroicAbility" uniqueness="unique">
+    <usesource source="RealmsTerrinoth"/>
+    </thing>
+  <thing id="haForetelling" name="Foretelling" compset="HeroicAbility" uniqueness="unique">
+    <usesource source="RealmsTerrinoth"/>
+    </thing>
+  <thing id="haHardToKill" name="Hard To Kill" compset="HeroicAbility" uniqueness="unique">
+    <usesource source="RealmsTerrinoth"/>
+    </thing>
+  <thing id="haInfluential" name="Influential" compset="HeroicAbility" uniqueness="unique">
+    <usesource source="RealmsTerrinoth"/>
+    </thing>
+  <thing id="haParagon" name="Paragon" compset="HeroicAbility" uniqueness="unique">
+    <usesource source="RealmsTerrinoth"/>
+    </thing>
+  <thing id="haMiraculousRecov" name="Miraculous Recovery" compset="HeroicAbility" uniqueness="unique">
+    <usesource source="RealmsTerrinoth"/>
+    </thing>
+  <thing id="haSixthSense" name="Sixth Sense" compset="HeroicAbility" uniqueness="unique">
+    <usesource source="RealmsTerrinoth"/>
+    </thing>
+  <thing id="haSignatureWpn" name="Signature Weapon" description="Some heroes (and their reputations) are inseparable from their chosen weapon. These weapons are often just as famous as the heroes who wield them. Your character’s signature weapon may be enchanted, or even intelligent. It could instead simply be a well-crafted weapon that your character wields effortlessly. The full capabilities of such a singular weapon, particularly one of magical or unknown provenance, sometimes only become apparent in the crucible of battle, in moments of true hardship and heroism." compset="HeroicAbility" uniqueness="unique">
+    <usesource source="RealmsTerrinoth"/>
+    </thing>
+  <thing id="haUnbowed" name="Unbowed" compset="HeroicAbility" uniqueness="unique">
+    <usesource source="RealmsTerrinoth"/>
+    </thing>
+  <thing id="haUnleash" name="Unleash" compset="HeroicAbility" uniqueness="unique">
+    <usesource source="RealmsTerrinoth"/>
+    </thing>
+  <thing id="wpBrawlWeapon" name="Brawl Weapon" description="Description goes here" compset="Melee">
+    <fieldval field="wpDamage" value="2"/>
+    <fieldval field="wpCrit" value="4"/>
+    <fieldval field="grRarity" value="1"/>
+    <fieldval field="gearWeight" value="1"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="Hide" tag="Equipment"/>
+    <tag group="User" tag="SignatureWeapon"/>
+    <tag group="WeaponSkill" tag="skBrawl"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBrawl"/>
+    <tag group="ItemQuality" tag="Disorient3"/>
+    <tag group="ItemQuality" tag="Superior"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpMelee1H" name="Melee Weapon (One-Handed)" description="Description goes here" compset="Melee">
+    <fieldval field="wpDamage" value="3"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="10"/>
+    <fieldval field="gearWeight" value="1"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="Hide" tag="Equipment"/>
+    <tag group="User" tag="SignatureWeapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBrawl"/>
+    <tag group="ItemQuality" tag="Superior"/>
+    <tag group="WeaponSkill" tag="skMeleeLight"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBladed"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpMelee2H" name="Melee Weapon (Two-Handed)" description="Description goes here" compset="Melee">
+    <fieldval field="wpDamage" value="5"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="10"/>
+    <fieldval field="gearWeight" value="3"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="Hide" tag="Equipment"/>
+    <tag group="User" tag="SignatureWeapon"/>
+    <tag group="ItemQuality" tag="Superior"/>
+    <tag group="WeaponSkill" tag="skMeleeHeavy"/>
+    <tag group="ItemModCatAllowed" tag="WeaponSig"/>
+    <tag group="ItemQuality" tag="Knockdown"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpRangedWpn" name="Ranged Weapon" compset="Ranged">
+    <fieldval field="wpDamage" value="8"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="10"/>
+    <fieldval field="gearWeight" value="2"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="Hide" tag="Equipment"/>
+    <tag group="WeaponRange" tag="Long"/>
+    <tag group="ItemQuality" tag="Superior"/>
+    <tag group="WeaponSkill" tag="skRanged"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <tag group="ItemModCatAllowed" tag="WeaponSig"/>
+    <tag group="User" tag="SignatureWeapon"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpMagicStaff" name="Magic Staff" description="Most of the mages in Terrinoth prefer the trusty and reliable staff over other options. Whether carved from wood, forged from iron, or even wrought from bone, a staff signifies travel and distance. This link helps wizards increase the range at which they can cast spells. A staff also doubles as a handy walking stick for many an elderly mage on the road.\n\nWhen your character casts a spell while using a magic staff, the first Range effect added to the spell does not increase the spell’s difficulty. In addition, Attack spells cast by your character increase their base damage by four." compset="Melee" summary="When casting a spell while using a magic staff, the first Range effect added to the spell does not increase the spell’s difficulty. Also, Attack spells increase base damage by four.">
+    <fieldval field="wpDamage" value="5"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="10"/>
+    <fieldval field="gearWeight" value="3"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <fieldval field="grCost" value="400"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="Hide" tag="Equipment"/>
+    <tag group="User" tag="SignatureWeapon"/>
+    <tag group="ItemQuality" tag="Superior"/>
+    <tag group="WeaponSkill" tag="skMeleeHeavy"/>
+    <tag group="ItemModCatAllowed" tag="WeaponSig"/>
+    <tag group="ItemQuality" tag="Knockdown"/>
+    <tag group="Magic" tag="Magic"/>
+    <tag group="Magic" tag="Implement"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="matOak" name="Oak" description="Oak is a plentiful wood that many practitioners of magic have found to channel arcane energies effectively. A few Greyhaven scholars theorize that oak’s durability and age resonates with the Turning, but most just feel that it makes sense to craft an implement from wood that’s tough.\n\nOak implements do not have any additional effects." compset="Material">
+    <fieldval field="matPriceMod" value="1"/>
+    <usesource source="RealmsTerrinoth"/>
+    </thing>
+  <thing id="matYew" name="Yew" description="Students of spiritspeakers and old magical traditions associate the yew with the natural cycle of renewal and rebirth. The Latari Elves who guard the borders of the Aymhelin prize it for this natural resonance, and sometimes even bind tomes between thinly laminated sheets of yew.\n\nWhen your character successfully casts an Augment, Barrier, or Heal spell using this implement, they heal 1 strain." compset="Material" summary="When your character successfully casts an Augment, Barrier, or Heal spell using this implement, they heal 1 strain.">
+    <fieldval field="matPriceMod" value="1.5"/>
+    <fieldval field="matRarityMod" value="1"/>
+    <usesource source="RealmsTerrinoth"/>
+    </thing>
+  <thing id="ctAncientArmor" name="Ancient" description="Ancient weapons and armor back date to the time of the Penacor Kings, when magic was more potent and widespread in the world. Ancient weaponry and armor is remarkably tough, resistant to corrosion, and able to hold a sharp edge despite heavy use.\n\nIncrease the armor’s soak and defense by 1. The armor gains the Reinforced item quality. Reduce the armor’s hard\npoints by 1 (to a minimum of 0)." compset="Construction">
+    <fieldval field="ctPriceMod" value="20"/>
+    <fieldval field="ctRarityMod" value="10"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ConType" tag="Armor"/>
+    <eval phase="Effects" priority="1000">doneif (parent.isgizmo = 0)
+
+parent.field[defSoak].value += 1
+parent.field[defDefense].value += 1
+perform parent.assign[ItemQuality.Reinforced]
+
+var HP as number
+HP = parent.field[grHardpoints].value
+HP -= 1
+parent.field[grHardpoints].value = maximum(0,HP)</eval>
+    </thing>
+  <thing id="ctDwarvenArmor" name="Dwarven" description="Dwarven smiths are masters of metallurgy. The alloys they\nconcoct and from which they forge armor and weapons are\nsuperior to those made from simple steel. In truth, the peerless blacksmithery of the Dwarves is due to skill rather than magic, although the results seem miraculous to lesser smiths. \n\nIncrease the armor’s encumbrance value by 1 and add 1 hard point." compset="Construction" summary="Increase the armor’s encumbrance value by 1 and add 1 hard point.">
+    <fieldval field="ctPriceMod" value="2"/>
+    <fieldval field="ctRarityMod" value="2"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ConType" tag="Armor"/>
+    <eval phase="Effects" priority="1000">doneif (parent.isgizmo = 0)
+
+parent.field[gearWeight].value += 1
+parent.field[grHardpoints].value += 1</eval>
+    </thing>
+  <thing id="ctElvenArmor" name="Elven" description="Elven craft weaves wood harvested from the Deepwoods of\nthe Aymhelin with iridescent moonstone and inlays of gleaming silver. The resulting items are as beautiful as they are light and durable, and blades crafted from moonstone are said to be as sharp as starlight on the coldest winter nights.\n\nReduce the armor’s encumbrance value by 2, to a minimum of 0. In addition, your character removes [SB] from Stealth checks they make." compset="Construction" summary="Armor’s encumbrance value is reduced by 2. In addition, your character removes [SB] from Stealth checks they make.">
+    <fieldval field="ctPriceMod" value="2"/>
+    <fieldval field="ctRarityMod" value="3"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ConType" tag="Armor"/>
+    <eval phase="Effects" priority="1000"><![CDATA[doneif (parent.isgizmo = 0)
+
+var Enc as number
+Enc = parent.field[gearWeight].value
+Enc -= 2
+parent.field[gearWeight].value = maximum(0,Enc)
+
+if (parent.field[grIsEquip].value <> 0) then
+  hero.childfound[skStealth].field[sklRemovedSetback].value += 1
+  endif]]></eval>
+    </thing>
+  <thing id="ctElvenWpn" name="Elven" description="Elven craft weaves wood harvested from the Deepwoods of\nthe Aymhelin with iridescent moonstone and inlays of gleaming silver. The resulting items are as beautiful as they are light and durable, and blades crafted from moonstone are said to be as sharp as starlight on the coldest winter nights.\n\nReduce the weapon’s damage by 1 and Critical rating by 1, to a minimum of 1." compset="Construction" summary="Reduce the weapon’s damage by 1 and Critical rating by 1.">
+    <fieldval field="ctPriceMod" value="2"/>
+    <fieldval field="ctRarityMod" value="3"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ConType" tag="Weapon"/>
+    <eval phase="Effects" priority="1000">doneif (parent.isgizmo = 0)
+
+parent.field[wpDamage].value -= 1
+parent.field[wpCrit].value -= 1</eval>
+    </thing>
+  <thing id="talRunicLore" name="Runic Lore" description="Knowledge (Lore) and Runes are now career skills for your\ncharacter." compset="Talent" summary="Knowledge (Lore) and Runes are now career skills for you.">
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="TalentTier" tag="2"/>
+    <eval phase="Initialize" priority="1000">perform hero.childfound[skKnowLore].assign[SkillType.CareerSkill]
+perform hero.childfound[skRunes].assign[SkillType.CareerSkill]</eval>
+    </thing>
+  <thing id="ctAncientWpn" name="Ancient" description="Ancient weapons and armor back date to the time of the Penacor Kings, when magic was more potent and widespread in the world. Ancient weaponry and armor is remarkably tough, resistant to corrosion, and able to hold a sharp edge despite heavy use.\n\nIncrease the weapon’s damage by 1 and reduce its Critical rating by 1. The weapon gains the Reinforced item quality. Reduce the weapon’s hard points by 1 (to a minimum\nof 0)." compset="Construction" summary="Weapon gains Reinforced quality. Increase weapon damage by 1 and decrease Crit rating by 1.">
+    <fieldval field="ctPriceMod" value="20"/>
+    <fieldval field="ctRarityMod" value="10"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ConType" tag="Weapon"/>
+    <eval phase="Effects" priority="1000">doneif (parent.isgizmo = 0)
+
+parent.field[wpDamage].value += 1
+parent.field[wpCrit].value -= 1
+perform parent.assign[ItemQuality.Reinforced]
+
+var HP as number
+HP = parent.field[grHardpoints].value
+HP -= 1
+parent.field[grHardpoints].value = maximum(0,HP)</eval>
+    </thing>
+  <thing id="ctDwarvenWpn" name="Dwarven" description="Dwarven smiths are masters of metallurgy. The alloys they\nconcoct and from which they forge armor and weapons are\nsuperior to those made from simple steel. In truth, the peerless blacksmithery of the Dwarves is due to skill rather than magic, although the results seem miraculous to lesser smiths. \n\nIncrease the weapon’s damage by 1 and encumbrance value by 1." compset="Construction" summary="Increase the weapon’s damage by 1 and encumbrance value by 1.">
+    <fieldval field="ctPriceMod" value="2"/>
+    <fieldval field="ctRarityMod" value="2"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ConType" tag="Armor"/>
+    <eval phase="Effects" priority="1000">doneif (parent.isgizmo = 0)
+
+parent.field[wpDamage].value += 1
+parent.field[gearWeight].value += 1</eval>
+    </thing>
+  <thing id="ctIronArmor" name="Iron" description="Iron is not as strong or workable as steel, but the smelting of that alloy is beyond many smiths. Further, when both iron and steel items are available, steel fetches a higher price. Many adventurers, militia members, and soldiers in the service of lesser nobles must make do with iron weapons and armor. Iron weapons are rumored to have special effects on certain otherwordly foes, such as the Dimora and the Fae.\n\nIncrease the armor’s encumbrance value by 2. In addition, your character adds [SB] to Athletics, Coordination, Riding, and Stealth checks they make while wearing this armor." compset="Construction" summary="Increase the armor’s encumbrance value by 2. In addition, your character adds [SB] to Athletics, Coordination, Riding, and Stealth checks they make while wearing this armor.">
+    <fieldval field="ctPriceMod" value=".5"/>
+    <fieldval field="ctRarityMod" value="-1"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ConType" tag="Armor"/>
+    <eval phase="Effects" priority="1000"><![CDATA[doneif (parent.isgizmo = 0)
+
+var Enc as number
+Enc = parent.field[gearWeight].value
+Enc += 2
+parent.field[gearWeight].value = maximum(0,Enc)
+
+if (parent.field[grIsEquip].value <> 0) then
+  hero.childfound[skAthlet].field[sklAddedSetback].value += 1
+  hero.childfound[skCoord].field[sklAddedSetback].value += 1
+  hero.childfound[skStealth].field[sklAddedSetback].value += 1
+  endif]]></eval>
+    </thing>
+  <thing id="ctIronWpn" name="Iron" description="Iron is not as strong or workable as steel, but the smelting of that alloy is beyond many smiths. Further, when both iron and steel items are available, steel fetches a higher price. Many adventurers, militia members, and soldiers in the service of lesser nobles must make do with iron weapons and armor. Iron weapons are rumored to have special effects on certain otherwordly foes, such as the Dimora and the Fae.\n\nIncrease the weapon’s Critical rating by 1." compset="Construction" summary="Increase the weapon’s Critical rating by 1.">
+    <fieldval field="ctPriceMod" value=".5"/>
+    <fieldval field="ctRarityMod" value="-1"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ConType" tag="Weapon"/>
+    <eval phase="Effects" priority="1000">doneif (parent.isgizmo = 0)
+
+parent.field[wpCrit].value += 1</eval>
+    </thing>
+  <thing id="ctSteelWpn" name="Steel" description="Steel is preferred by smiths across Terrinoth, and those warriors and nobles who can afford to do so invariably equip themselves and their retainers with steel arms and armor. The standard weapon and armor profiles in this chapter represent steel items, and steel craftsmanship has no additional effect." compset="Construction" summary="No Changes">
+    <fieldval field="ctPriceMod" value=".5"/>
+    <fieldval field="ctRarityMod" value="-1"/>
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ConType" tag="Weapon"/>
+    </thing>
+  <thing id="ctSteelArmor" name="Steel" description="Steel is preferred by smiths across Terrinoth, and those warriors and nobles who can afford to do so invariably equip themselves and their retainers with steel arms and armor. The standard weapon and armor profiles in this chapter represent steel items, and steel craftsmanship has no additional effect." compset="Construction" summary="No Changes">
+    <usesource source="RealmsTerrinoth"/>
+    <tag group="ConType" tag="Armor"/>
+    </thing>
+  <preclude id="armChainmail" source="RealmsTerrinoth"/>
+  <preclude id="caWizard" source="RealmsTerrinoth"/>
+  <preclude id="skKnowledge" source="RealmsTerrinoth"/>
+  <preclude id="skLore" source="RealmsTerrinoth"/>
+  <preclude id="armHeavyRobes" source="RealmsTerrinoth"/>
+  </document>

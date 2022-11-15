@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document signature="Hero Lab Data">
+  <thing id="armNatural" name="Natural Armor" description="Description goes here" compset="Armor" uniqueness="unique" holdable="no">
+    <fieldval field="defDefense" value="1"/>
+    <tag group="Equipment" tag="Natural"/>
+    <tag group="Equipment" tag="AutoEquip"/>
+    </thing>
+  <thing id="armHeavyJacket" name="Heavy Jacket" description="Description goes here" compset="Armor">
+    <fieldval field="grCost" value="50"/>
+    <fieldval field="gearWeight" value="1"/>
+    <fieldval field="defSoak" value="1"/>
+    <fieldval field="grRarity" value="1"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpUnarmed" name="Unarmed Strike" description="Description goes here" compset="Melee" uniqueness="unique" holdable="no">
+    <fieldval field="shortname" value="Unarmed"/>
+    <fieldval field="wpCrit" value="4"/>
+    <tag group="Equipment" tag="Natural"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="WeaponSkill" tag="skBrawl"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpKnife" name="Knife" description="Description goes here" compset="Melee">
+    <fieldval field="grCost" value="25"/>
+    <fieldval field="gearWeight" value="1"/>
+    <fieldval field="wpDamage" value="1"/>
+    <fieldval field="wpCrit" value="3"/>
+    <tag group="WeaponSkill" tag="skMelee"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <eval phase="Effects" priority="1000"><![CDATA[if (#issplitmelee[] <> 0) then
+  perform delete[WeaponSkill.?]
+  perform assign[WeaponSkill.skMeleeLight]
+  endif]]></eval>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpBow" name="Bow" description="Description goes here" compset="Ranged">
+    <fieldval field="wpDamage" value="7"/>
+    <fieldval field="grCost" value="275"/>
+    <fieldval field="gearWeight" value="2"/>
+    <fieldval field="grRarity" value="2"/>
+    <fieldval field="wpCrit" value="3"/>
+    <usesource source="Fantasy"/>
+    <tag group="WeaponSkill" tag="skRanged"/>
+    <tag group="ItemQuality" tag="Unwieldy2"/>
+    <tag group="WeaponRange" tag="Medium"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpSword" name="Sword" compset="Melee">
+    <fieldval field="wpDamage" value="3"/>
+    <fieldval field="wpCrit" value="2"/>
+    <fieldval field="grCost" value="200"/>
+    <fieldval field="gearWeight" value="1"/>
+    <fieldval field="grRarity" value="2"/>
+    <usesource source="Fantasy"/>
+    <tag group="WeaponSkill" tag="skMeleeLight"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemQuality" tag="Defense1"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpAxe" name="Axe" compset="Melee">
+    <fieldval field="wpDamage" value="3"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grCost" value="150"/>
+    <fieldval field="gearWeight" value="2"/>
+    <fieldval field="grRarity" value="1"/>
+    <usesource source="Fantasy"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="WeaponSkill" tag="skMeleeLight"/>
+    <tag group="ItemQuality" tag="Vicious1"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpGreataxe" name="Greataxe" compset="Melee">
+    <fieldval field="wpDamage" value="4"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grCost" value="300"/>
+    <fieldval field="gearWeight" value="4"/>
+    <fieldval field="grRarity" value="4"/>
+    <usesource source="Fantasy"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemQuality" tag="Vicious1"/>
+    <tag group="WeaponSkill" tag="skMeleeHeavy"/>
+    <tag group="ItemQuality" tag="Cumber3"/>
+    <tag group="ItemQuality" tag="Pierce2"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpCrossbow" name="Crossbow" description="Description goes here" compset="Ranged">
+    <fieldval field="wpDamage" value="7"/>
+    <fieldval field="grCost" value="600"/>
+    <fieldval field="gearWeight" value="3"/>
+    <fieldval field="grRarity" value="4"/>
+    <fieldval field="wpCrit" value="2"/>
+    <usesource source="Fantasy"/>
+    <tag group="WeaponSkill" tag="skRanged"/>
+    <tag group="WeaponRange" tag="Medium"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="ItemQuality" tag="Pierce2"/>
+    <tag group="ItemQuality" tag="Prepare1"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpLongbow" name="Longbow" description="Description goes here" compset="Ranged">
+    <fieldval field="wpDamage" value="8"/>
+    <fieldval field="grCost" value="450"/>
+    <fieldval field="gearWeight" value="3"/>
+    <fieldval field="grRarity" value="4"/>
+    <fieldval field="wpCrit" value="3"/>
+    <usesource source="Fantasy"/>
+    <tag group="WeaponSkill" tag="skRanged"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="WeaponRange" tag="Long"/>
+    <tag group="ItemQuality" tag="Unwieldy3"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpRevolver" name="Revolver" compset="Ranged">
+    <fieldval field="wpDamage" value="6"/>
+    <fieldval field="wpCrit" value="4"/>
+    <fieldval field="gearWeight" value="2"/>
+    <fieldval field="grCost" value="350"/>
+    <fieldval field="grRarity" value="4"/>
+    <tag group="WeaponSkill" tag="skRanged"/>
+    <tag group="WeaponRange" tag="Medium"/>
+    <tag group="ItemQuality" tag="Accurate1"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="armHeavyRobes" name="Heavy Robes" description="Swirling robes in the midst of combat can entangle an attacker’s weapon and make it hard for an attacker to pinpoint your vital areas. To represent this, robes don’t provide any soak but do add defense." compset="Armor">
+    <fieldval field="defDefense" value="1"/>
+    <fieldval field="grCost" value="45"/>
+    <fieldval field="gearWeight" value="1"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="Fantasy"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="armChainmail" name="Chainmail" description="Chainmail is good at absorbing a hit and dispersing the force over a broader area. We’ve represented such armor with a solid soak value, but no defense. \n\nMail armor is somewhat noisy, so your character adds [SB] to Stealth checks they make while wearing it." compset="Armor">
+    <fieldval field="defSoak" value="2"/>
+    <fieldval field="grRarity" value="4"/>
+    <fieldval field="grCost" value="550"/>
+    <fieldval field="gearWeight" value="3"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="Fantasy"/>
+    <tag group="ItemModCatAllowed" tag="ArmorChain"/>
+    <tag group="ItemModCatAllowed" tag="ArmorSuit"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="armLeather" name="Leather" description="Leather armor, whether soft or boiled and hardened, might absorb some of the impact from a blow, but it won’t turn a blade entirely. That’s why we’ve given it a low soak value, but no defense." compset="Armor">
+    <fieldval field="defSoak" value="1"/>
+    <fieldval field="grRarity" value="3"/>
+    <fieldval field="grCost" value="50"/>
+    <fieldval field="gearWeight" value="2"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="Fantasy"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpAssaultRifle" name="Assault Rifle" description="While clattering, hard-hitting assault rifles are ostensibly military weapons, they can and often do fall into the hands of gangs, crime syndicates, and insurgents. The assault rifle presented here is a basic AR- or AK-pattern rifle like those carried throughout the world. The Autofire quality is the primary thing that separates these weapons from other types of rifles, although they can be fired on semiautomatic as well (your character may choose whether or not to use Auto-fire). Assault rifles do roughly the same damage as other “long guns.”\n\nMany militaries make carbine versions of their assault rifles, such as the U.S. military’s Colt M4. They’re more compact than full-sized rifles and a bit easier to wield." compset="Ranged">
+    <fieldval field="wpDamage" value="8"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="gearWeight" value="4"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <fieldval field="grCost" value="1000"/>
+    <fieldval field="grRarity" value="7"/>
+    <usesource source="Modern"/>
+    <tag group="WeaponSkill" tag="skRangedHeavy"/>
+    <tag group="WeaponRange" tag="Long"/>
+    <tag group="ItemQuality" tag="Autofire"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged2H"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRifle"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  </document>

@@ -1,0 +1,976 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the definitions of components associated with traits such as
+      attributes, skills, special abilities, etc.
+-->
+
+<document signature="Hero Lab Structure">
+
+  <!-- Trait component
+        All traits derive from this component and share these mechanisms in common
+  -->
+  <component
+    id="Trait"
+    name="Trait"
+    autocompset="no"
+    hasshortname="yes"
+    ispublic="no">
+
+    <!-- Abbreviation for use in places like the TacCon -->
+    <field
+      id="trtAbbrev"
+      name="Abbreviation"
+      type="static"
+      maxlength="5">
+      </field>
+
+    <field
+      id="trtSummary"
+      name="Trait Summary"
+      type="derived"
+      maxlength="300">
+      </field>
+	  
+    <!-- Minimum user-assigned value for the trait -->
+    <field
+      id="trtMinimum"
+      name="Minimum Value"
+      type="derived">
+      </field>
+
+    <!-- Maximum user-assigned value for the trait -->
+    <field
+      id="trtMaximum"
+      name="Maximum Value"
+      type="derived"
+      defvalue="6">
+      </field>
+
+    <!-- User value assigned for the trait -->
+    <field
+      id="trtUser"
+      name="User Value"
+      type="user"
+      usedelta="yes"
+      maxfinal="50">
+      <!-- Bound the user value to the limits established for the trait -->
+      <bound phase="Traits" priority="1000" name="Bound trtUser">
+        <before name="Calc trtFinal"/><![CDATA[
+        @minimum = field[trtMinimum].value
+        @maximum = field[trtMaximum].value
+        ]]></bound>
+      <!-- Final value for display is the fully adjusted net value that incorporates
+            all adjustments from other sources
+      -->
+      <finalize><![CDATA[
+        ~if we're in creation mode and not autonomous, we can't be modified
+        if (hero.tagis[mode.creation] + !autonomous >= 2) then
+          @text = "{bmp forbidden_up}"
+        else
+          @text = field[trtFinal].value
+          endif
+        ]]></finalize>
+      </field>
+	  
+	<!-- Bonuses applied to the trait from Archetype or Career skill selections -->
+    <field
+      id="trtACFreeRank"
+      name="Free Ranks from Arch/Career"
+      type="derived">
+      </field>
+	  
+    <!-- Bonuses applied to the trait (e.g. from other abilities) -->
+    <field
+      id="trtBonus"
+      name="Bonus Value"
+      type="derived">
+      </field>
+
+    <!-- XP Spent on the trait -->
+    <field
+      id="trtRankForXP"
+      name="Rank for XP Cost"
+      type="derived">
+      </field>
+	  
+    <!-- XP Spent on the trait -->
+    <field
+      id="trtXP"
+      name="XP Spent on Trait"
+      type="derived">
+      </field>
+      
+    <!-- In-play bonuses applied to the trait -->
+    <field
+      id="trtInPlay"
+      name="In-Play Bonus"
+      type="derived">
+      </field>
+
+    <!-- Final value for the trait -->
+    <field
+      id="trtFinal"
+      name="Final Value"
+      type="derived">
+      <!-- Calculate the final value from the three distinct pieces -->
+      <calculate phase="Traits" priority="10000" name="Calc trtFinal"><![CDATA[
+        ~Note! If you change this calculation, you may need to change the similar
+        ~       calculation in the "Derived" component.
+        @value = field[trtUser].value + field[trtBonus].value + field[trtACFreeRank].value + field[trtInPlay].value
+
+        ]]></calculate>
+      </field>
+	  
+    <!-- Field for holding values applied to the trait (e.g. from other abilities) -->
+    <field
+      id="trtValue1"
+      name="Value 1"
+      type="derived">
+      </field>
+    <field
+      id="trtValue2"
+      name="Value 2"
+      type="derived">
+      </field>
+
+    <field
+      id="trtOutDisplayName"
+      name="Output Display Name"
+      type="derived"
+	  maxlength="50">
+      </field>
+
+    <field
+      id="trtOutDisplayName2"
+      name="Output Display Name 2"
+      type="derived"
+	  maxlength="50">
+      </field>
+	  
+    <field
+      id="trtOutDisplayFinal"
+      name="Output Display Final"
+      type="derived"
+	  maxfinal="50">
+      <!-- Calculate the final value from the three distinct pieces -->
+      <calculate phase="Traits" priority="10100" name="Calc trtOutDisplayFinal"><![CDATA[
+        ~Note! If you change this calculation, you may need to change the similar
+        ~       calculation in the "Derived" component.
+        @value = field[trtFinal].value
+        ]]></calculate>
+      <finalize><![CDATA[
+        @text = field[trtFinal].value & " / __ "
+        ]]></finalize>	  
+      </field>
+	  
+    <!-- Set the delta for the user value to be the current bonuses
+        NOTE! This is necessary so incrementers have proper values when edited by the user.  -->
+    <eval index="1" phase="Render" priority="5000"><![CDATA[
+      field[trtUser].delta = field[trtBonus].value + field[trtInPlay].value + field[trtACFreeRank].value
+      ]]></eval>
+
+    <!-- If the trait is at its minimum/maximum, assign a tag to preclude further advancements -->
+    <eval index="2" phase="Final" priority="5000"><![CDATA[
+      ~base our test on the adjusted trait value, sans any in-play adjustments
+      var trait as number
+	  var minVal as number
+	  var maxVal as number
+	  
+      trait = field[trtUser].value + field[trtBonus].value 
+	  minVal = field[trtMinimum].value
+	  maxVal = field[trtMaximum].value - field[trtACFreeRank].value
+	  
+      if (trait <= minVal) then
+        perform assign[Helper.Minimum]
+      elseif (trait >= maxVal) then
+        if (tagis[Helper.Maximum] = 0) then
+          perform assign[Helper.Maximum]
+          endif
+        endif
+      ]]></eval>
+
+    </component>
+
+
+  <!-- Attribute component
+        Each attribute possessed by the actor derives from this component
+  -->
+  <component
+    id="Attribute"
+    name="Attribute"
+    autocompset="no">
+    
+    <!-- Attributes have a minimum trait value of 1 -->
+    <eval index="1" phase="Initialize" priority="1000"><![CDATA[
+      field[trtMinimum].value = 1
+      ]]></eval>
+      
+    <!-- Attributes have a maximum trait value of 6 -->
+    <eval index="2" phase="Initialize" priority="3000"><![CDATA[
+      field[trtMaximum].value = 6
+      ]]></eval>
+
+    <!-- Each attribute point above one that is allocated by the user costs 10 XP -->
+    <eval index="3" phase="Traits" priority="12000"><![CDATA[
+	  var compType as string
+	  var rankVal as number
+	  var minVal as number
+	  var XPVal as number
+	  
+	  compType = "Attribute"
+	  rankVal = field[trtUser].value
+	  minVal = field[trtMinimum].value
+	  
+      call CalcXPForTrait
+  
+      ]]></eval>
+
+    </component>
+
+
+  <!-- Skill component
+        Each skill derives from this component
+  -->
+  <component
+    id="Skill"
+    name="Skill"
+    autocompset="no">
+                 
+    <field
+      id="sklArchetypeBon"
+      name="Bonus from Archetype"
+      type="user">
+      </field>
+
+    <field
+      id="sklCareerBon"
+      name="Bonus from Career"
+      type="user">
+      </field> 
+
+    <!-- fields to keep track of added/removed dice -->
+
+    <field
+      id="sklAddedSetback"
+      name="Added Setbacks"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="sklRemovedSetback"
+      name="Removed Setbacks"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="sklAddedBoost"
+      name="Added Setbacks"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="sklRemovedBoost"
+      name="Removed Setbacks"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="sklAddedAdvantage"
+      name="Added Advantages"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="sklRemovedAdvantage"
+      name="Removed Advantages"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="sklAddedDiff"
+      name="Increased Difficulty Steps"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="sklAddedSuccess"
+      name="Added Successes"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="sklAddedFailure"
+      name="Added Failure"
+      type="derived"
+	  defvalue="0">
+      </field>	  
+    <field
+      id="sklRemovedSuccess"
+      name="Removed Success"
+      type="derived"
+	  defvalue="0">
+      </field>
+    <field
+      id="sklRemovedFailure"
+      name="Removed Failure"
+      type="derived"
+	  defvalue="0">
+      </field>	
+	  	  
+    <!-- Net final roll that includes the value of the linked attribute -->
+    <field
+      id="sklRoll"
+      name="Net Skill Roll"
+      type="derived">
+      <calculate phase="Final" priority="5000"><![CDATA[
+        ~only access the linkage if the skill is directly on the hero; if not, it is
+        ~likely within an advancement gizmo and no linkage will exist there
+        ~
+        ~Skill total is 2 digits, number of prof dice, and remaining ability dice
+        var prof as number
+        var abil as number
+        
+        if (container.ishero <> 0) then
+          @value = field[trtFinal].value + linkage[attribute].field[trtFinal].value
+          endif
+        ]]></calculate>
+      </field>
+      
+    <!-- Skill pool determines Proficiency dice and Ability dice -->
+    <field
+      id="sklPool"
+      name="Skill Pool"
+      type="derived"
+      maxlength="50">
+      </field>
+    <field
+      id="sklPoolColor"
+      name="Skill Pool (Color)"
+      type="derived"
+      maxlength="150">
+      </field>
+    <field
+      id="sklPoolGraphic"
+      name="Skill Pool (Graphic)"
+      type="derived"
+      maxlength="500">
+      </field>
+	  
+    <!-- Each skill is associated with a specific attribute that must be identified -->
+    <linkage linkage="attribute" optional="no"/>
+
+    <!-- Each skill needs its own identity tag so existing skills can be identified during advancement -->
+    <identity group="Skill"/>
+	<identity group="WeaponSkill"/>
+
+    <!-- Every skill is shown on the "Rolls" mouse-over on the Dashboard/TacCon -->
+    <tag group="DashTacCon" tag="Rolls"/>
+
+    <!-- Track the skill on the actor -->
+    <eval index="1" phase="Setup" priority="5000"><![CDATA[
+      perform forward[Skill.?]
+      ]]></eval>
+
+    <!-- Track the skill on the actor -->
+    <eval index="2" phase="Initialize" priority="1000"><![CDATA[
+      perform assign[StartMax.2]
+      ]]></eval>
+      
+    <!-- add 1 to bonus if is chosen as bonus from career -->
+	<eval index="3" phase="Setup" priority="400"><![CDATA[
+	  if (field[sklArchetypeBon].value <> 0) then 
+        perform assign[SkillChosen.Archetype]
+	    endif
+		
+	  if (field[sklCareerBon].value <> 0) then 
+        perform assign[SkillChosen.Career]
+		field[trtACFreeRank].value += 1
+	    endif
+		
+      hero.child[resCareerChoice].field[resSpent].value += tagis[SkillChosen.Career]
+      ~ hero.child[resArchetypChoice].field[resSpent].value += tagis[SkillChosen.Archetype]
+	  
+	  field[trtRankForXP].value += field[trtACFreeRank].value + field[trtUser].value
+      ]]></eval>
+      
+    <!-- If the trait is at its minimum/maximum, assign a tag to preclude further advancements -->
+    <eval index="5" phase="Traits" priority="900"><![CDATA[
+      ~base our test on the adjusted trait value, sans any in-play adjustments
+      var Max as number 
+      
+      Max = tagvalue[StartMax.?]
+      
+      field[trtMaximum].value = Max - field[trtBonus].value - field[trtACFreeRank].value
+      
+      ]]></eval>
+    
+    <!-- Each skill rank that is allocated by the user costs 5* rank in XP --> 
+    <eval index="6" phase="Traits" priority="12000"><![CDATA[
+	  var compType as string
+	  var rankVal as number
+	  var minVal as number
+	  var XPVal as number
+	  var freeRank as number
+	  
+	  compType = "Skill"
+	  rankVal = field[trtUser].value
+	  freeRank = field[trtACFreeRank].value
+	  minVal = field[trtMinimum].value
+	  
+	  if (rankVal + freeRank <> 0) then
+        call CalcXPForTrait
+		endif
+	  
+      ]]></eval>
+	  
+    <eval index="7" phase="Final" priority="1000"><![CDATA[
+      ~base our test on the adjusted trait value, sans any in-play adjustments
+      var adjTotal as number 
+      
+      adjTotal += field[sklAddedBoost].value - field[sklRemovedBoost].value
+	  if (adjTotal <> 0) then
+	    perform assign[Helper.ShowSkill]
+		endif
+		
+      adjTotal += field[sklAddedSetback].value - field[sklRemovedSetback].value 
+      if (adjTotal <> 0) then
+	    perform assign[Helper.ShowSkill]
+		endif
+      
+      ]]></eval> 
+	  
+    <eval index="8" phase="Final" priority="500"><![CDATA[
+      ~only access the linkage if the skill is directly on the hero; if not, it is
+      ~likely within an advancement gizmo and no linkage will exist there
+      ~
+      ~Skill total is 2 digits, number of prof dice, and remaining ability dice
+      var prof as number
+      var abil as number
+	  
+      var adj as number
+	  var skillText as string
+	  var skillColor as string
+	  var skillGraphic as string
+	  
+	  var adjBoost as number
+      var adjSetback as number
+      var adjSuccess as number
+      var adjFailure as number
+      var adjAdvantage as number
+      var adjDifficulty as number
+	
+      var sdText as string
+	  var sdColor as string
+	  var sdGraphic as string
+        
+	  var temp as number
+	  
+      doneif (container.ishero = 0) 
+	  
+      prof = minimum(field[trtFinal].value,linkage[attribute].field[trtFinal].value)
+      abil = maximum(field[trtFinal].value,linkage[attribute].field[trtFinal].value) - prof
+      skillText = ""
+          
+      while (prof > 0)
+        skillText &= "Y"
+		skillColor &= "{text ffff00}Y{text ffffff}"
+		skillGraphic &= "{bmp die_prof}"
+        prof -= 1
+        loop
+      while (abil > 0)
+        skillText &= "G"
+        skillColor &= "{text 00ff00}G{text ffffff}"
+	    skillGraphic &= "{bmp die_ability}"
+        abil -= 1
+        loop
+          
+      ~add any additional bonus/penalty dice
+      ~ Boosts
+	  adjBoost = field[sklAddedBoost].value - field[sklRemovedBoost].value
+      adjSetback = field[sklAddedSetback].value - field[sklRemovedSetback].value
+      adjSuccess = field[sklAddedSuccess].value - field[sklRemovedSuccess].value
+      adjAdvantage = field[sklAddedAdvantage].value - field[sklRemovedAdvantage].value
+      adjFailure = field[sklAddedFailure].value - field[sklRemovedFailure].value
+      adjDifficulty = field[sklAddedDiff].value
+	  
+	  temp = adjBoost + adjSetback + adjSuccess + adjFailure + adjAdvantage
+	  if (temp <> 0) then
+	    call BuildSymDice
+		endif
+	  
+	  skillText &= sdText
+	  skillColor &= sdColor
+	  skillGraphic &= sdGraphic
+	  
+	  field[sklPool].text = skillText
+	  field[sklPoolColor].text = skillColor
+	  field[sklPoolGraphic].text = skillGraphic
+
+      ]]></eval>      
+    </component>
+
+
+  <!-- Ability component
+        Each special ability derives from this component
+  -->
+  <component
+    id="Ability"
+    name="Ability"
+    autocompset="no"
+    panellink="abilities">
+
+    <!-- Activation state of ability - we're not activated by default -->
+    <field
+      id="abilActive"
+      name="Is Activated?"
+      type="user"
+      minvalue="0"
+      maxvalue="1">
+      </field>
+
+    <!-- Each ability needs its own identity tag to detect cascading dependencies via prereqs -->
+    <identity group="Ability"/>
+
+    <!-- Setup an identity tag group to track all activated abilities and adjustments -->
+    <identity group="Activated"/>
+
+    <!-- All abilities get the same tag for sorting purposes -->
+    <tag group="SpecialTab" tag="Ability"/>
+
+    <!-- Each ability that is added by the user costs 1 slot -->
+    <eval index="1" phase="Setup" priority="5000"><![CDATA[
+      ~we must ignore bootstrapped abilities from races and abilities added via advances
+      if (isuser + origin.ishero >= 2) then
+        hero.child[resAbility].field[resSpent].value += 1
+        endif
+      ]]></eval>
+
+    <!-- Track the ability on the actor -->
+    <eval index="2" phase="Setup" priority="5000"><![CDATA[
+      perform forward[Ability.?]
+      ]]></eval>
+
+    <!-- If the ability is activated, designate it appropriately -->
+    <eval index="3" phase="Setup" priority="100"><![CDATA[
+      ~if we're not able to be activated, we don't qualify
+      doneif (tagis[User.Activation] = 0)
+
+      ~if we've been activated by the user, mark ourselves as activated; in addition,
+      ~forward our identity tag to our parent actor; this allows the actor to track
+      ~when abilities are activated and reflect the state to the user
+      if (field[abilActive].value <> 0) then
+        perform assign[Helper.Activated]
+        perform forward[Activated.?]
+        endif
+      ]]></eval>
+
+    <!-- Verify abilities that are only available at creation -->
+    <prereq message="Only available during character creation.">
+      <validate><![CDATA[
+        ~we only report this as a failure things (once added, we assume the user knows best)
+        validif (@ispick <> 0)
+
+        ~if we are not designated as creation only, we're valid
+        validif (altthing.tagis[User.CreateOnly] = 0)
+
+        ~if the mode is creation, we're valid
+        validif (state.iscreate <> 0)
+        ]]></validate>
+      </prereq>
+
+    </component>
+
+  <!-- Ability component
+        Each special ability derives from this component
+  -->
+  <component
+    id="Talent"
+    name="Talent"
+    autocompset="no">
+	
+    <!-- Maximum user-assigned value for the trait -->
+    <field
+      id="talRanks"
+      name="Ranks"
+      type="derived"
+      defvalue="1">
+      </field>
+	  
+    <field
+      id="talSummary"
+      name="Ranks Selected"
+      type="derived"
+      maxlength="300">
+      </field>
+	  
+    <!-- Activation state of ability - we're not activated by default -->
+    <field
+      id="talSelect"
+      name="Is Selected?"
+      type="user"
+      minvalue="0"
+      maxvalue="1">
+      </field>
+      
+    <identity group="Talent"/>
+    <identity group="HasTalent"/>
+	
+    <!-- All abilities get the same tag for sorting purposes -->
+    <tag group="SpecialTab" tag="Talent"/>
+	
+    <!-- Track the ability on the actor -->
+    <eval index="1" phase="Setup" priority="5000"><![CDATA[
+      perform forward[Talent.?]
+      perform forward[TalentSelected.?]
+      ]]></eval>
+	  
+    <!-- Each talent costs  --> 
+    <eval index="2" phase="Traits" priority="12000"><![CDATA[
+	  var rankVal as number
+	  var XPVal as number
+	  
+	  rankVal = tagvalue[TalentSelected.?]
+	  XPVal = 5 * rankVal
+
+	  hero.child[resXP].field[resSpent].value += XPVal
+	  
+      ]]></eval> 
+    <!-- Track the ability on the actor -->
+    <eval index="3" phase="Render" priority="5000"><![CDATA[
+	  doneif (field[talSummary].isempty = 0)
+	  
+      field[talSummary].text = field[summary].text
+      ]]></eval>	  
+    </component>
+ 
+
+  <!-- Derived component
+        Each derived trait (calculated from other traits) is based upon this component
+  -->
+  <component
+    id="Derived"
+    name="Derived Trait"
+    autocompset="no">
+
+    <!-- Derived traits are based on other traits. The "calculate" script on the
+        "trtFinal" field value will work great for most traits, but NOT for derived
+        traits. Consequently, derived traits need to re-calculate the field value AFTER
+        the traits derived from are properly calculated. So the individual calculation
+        scripts for each derived trait must occur AFTER the initial "trtFinal"
+        calculation and BEFORE this derived calculation. We can also omit any "user"
+        value from the calculation since derived traits have no user-defined facet.
+        -->
+    <eval index="1" phase="Traits" priority="15000" name="Derived trtFinal"><![CDATA[
+      field[trtFinal].value = field[trtBonus].value + field[trtInPlay].value
+      ]]></eval>
+
+    </component>
+
+
+  <!-- Archetype component
+        Each race derives from this component
+  -->
+  <component
+    id="Archetype"
+    name="Archetype"
+    autocompset="no">
+
+    <!-- Starting Attribute Scores -->
+    <field
+      id="arBra"
+      name="Starting Brawn"
+      type="derived"
+      minvalue="0"
+      maxvalue="6">
+      </field>
+    <field
+      id="arAgi"
+      name="Starting Agility"
+      type="derived"
+      minvalue="0"
+      maxvalue="6">
+      </field>
+    <field
+      id="arInt"
+      name="Starting Intellect"
+      type="derived"
+      minvalue="0"
+      maxvalue="6">
+      </field>
+    <field
+      id="arCun"
+      name="Starting Cunning"
+      type="derived"
+      minvalue="0"
+      maxvalue="6">
+      </field>
+    <field
+      id="arWil"
+      name="Starting Willpower"
+      type="derived"
+      minvalue="0"
+      maxvalue="6">
+      </field>
+    <field
+      id="arPre"
+      name="Starting Presence"
+      type="derived"
+      minvalue="0"
+      maxvalue="6">
+      </field>
+	  
+    <!-- Activation state of ability - we're not activated by default -->
+    <field
+      id="arXP"
+      name="Starting XP"
+      type="derived"
+      minvalue="0"
+      maxvalue="250">
+      </field>
+    <field
+      id="arWound"
+      name="Starting Wound Threshold"
+      type="derived"
+      minvalue="0"
+      maxvalue="30">
+      </field>
+    <field
+      id="arStrain"
+      name="Starting Strain Threshold"
+      type="derived"
+      minvalue="0"
+      maxvalue="30">
+      </field>
+      
+    <!-- Each race needs its own identity tag to configure the hero appropriately -->
+    <identity group="Archetype"/>
+
+    <!-- Set initial field values for hero -->
+    <eval index="1" phase="Initialize" priority="1500"><![CDATA[
+      #attrmin[attrBra] = field[arBra].value
+      #attrmin[attrAgi] = field[arAgi].value
+      #attrmin[attrInt] = field[arInt].value
+      #attrmin[attrCun] = field[arCun].value
+      #attrmin[attrWil] = field[arWil].value
+      #attrmin[attrPre] = field[arPre].value
+	  
+	  #traitbonus[trWoundThreshold] += field[arWound].value
+	  #traitbonus[trStrainThreshold] += field[arWound].value
+      ]]></eval>
+	  
+    <!-- Track the race on the actor by assigning the appropriate tag -->
+    <eval index="2" phase="Setup" priority="500"><![CDATA[
+      perform forward[Archetype.?]
+      ]]></eval>
+
+    </component>
+
+  <!-- Career component
+        Each Career derives from this component
+  -->
+  <component
+    id="Career"
+    name="Career"
+    autocompset="no">
+    
+    <field
+      id="caSkillChoices"
+      name="Career Skill choices"
+      type="derived"
+      defvalue="0">
+      </field>
+      
+    <!-- Each race needs its own identity tag to configure the hero appropriately -->
+    <identity group="Career"/>
+    <identity group="CarSpec"/>
+
+    <!-- Track the Career on the actor by assigning the appropriate tag -->
+    <eval index="1" phase="Setup" priority="100"><![CDATA[
+      perform forward[Career.?]
+      ]]></eval>
+
+    <eval index="2" phase="Setup" priority="500"><![CDATA[
+      herofield[acCarChs].value += field[caSkillChoices].value
+      ]]></eval>
+      
+    </component>
+
+  <!-- SpecTree component
+        Each Specialization derives from this component
+  -->
+  <component
+    id="SpecTree"
+    name="Specialization"
+    autocompset="no"
+    addbehavior="never">
+    
+    <field
+      id="sklSpecChs"
+      name="Spec. Skill choices"
+      type="derived"
+      defvalue="0">
+      </field>
+      
+    <field
+      id="sptName"
+      name="Spec Tree Name"
+      type="user">
+      </field>
+
+    <field
+      id="stLinkMat"
+      name="Link Visibility"
+      type="derived"
+      style="matrix"
+      arrayrows="8"
+      matrixcolumns="4"
+      defvalue="0">
+      </field>
+            
+    <identity group="SpecTree"/>
+
+    <!-- Track the Career on the actor by assigning the appropriate tag -->
+    <eval index="1" phase="Setup" priority="100"><![CDATA[
+      perform forward[SpecTree.?]
+      perform forward[CarSpec.?]
+      ]]></eval>
+
+    <eval index="2" phase="Setup" priority="500"><![CDATA[
+      if (tagis[Career.InitSpec] <> 0) then
+        herofield[acSpecChs].value += field[sklSpecChs].value
+      endif
+      ]]></eval>
+            
+    </component>
+
+  <!-- Tree Helper component
+        Each AoE Gizmo derives from this component
+  -->
+  
+  <component
+    id="TreeHelp"
+    name="Specialization Tree Helper">
+
+    <!-- Selection Tag Expressions -->
+    <field
+      id="TreeExpr"
+      name="Tree Tag Expression"
+      type="derived"
+      maxlength="500">
+      </field>
+
+    </component>  
+
+  <component
+    id="HeroicAbility"
+    name="Heroic Ability"
+    autocompset="no">
+
+    <identity group="HeroicAbility"/>   
+	
+    <!-- Track the ability on the actor -->
+    <eval index="1" phase="Setup" priority="5000"><![CDATA[
+      perform forward[HeroicAbility.?]
+	  
+	  ~we must ignore bootstrapped abilities from races and abilities added via advances
+      if (isuser + origin.ishero >= 2) then
+        hero.child[resHeroicAbility].field[resSpent].value += 1
+        endif
+      ]]></eval>
+	  
+    <eval index="2" phase="Render" priority="5000"><![CDATA[
+      doneif (tagis[Hide.Special] <> 0)
+	  
+      field[spcName].text = "Heroic Ability: " & field[name].text
+      ]]></eval>	  
+    </component> 
+    
+  <!-- Define various component sets associated with the components defined above.
+  -->
+
+  <!-- No compsets are auto-defined for the component -->
+
+  <!-- Attribute - all attributes derive from this compset -->
+  <compset
+    id="Attribute"
+    forceunique="yes">
+    <compref component="Attribute"/>
+    <compref component="Trait"/>
+    <compref component="CanAdvance"/>
+    </compset>
+
+  <!-- Skill - all skills derive from this compset -->
+  <compset
+    id="Skill"
+    forceunique="yes">
+    <compref component="Skill"/>
+    <compref component="Trait"/>
+    <compref component="Domain"/>
+    <compref component="CanAdvance"/>
+    </compset>
+
+  <!-- Ability - all abilities derive from this compset -->
+  <compset
+    id="Ability">
+    <compref component="Ability"/>
+    <compref component="Trait"/>
+    <compref component="SpecialTab"/>
+    <compref component="CanAdvance"/>
+    <compref component="UserSelect"/>
+    </compset>
+
+  <!-- Trait - all derived traits are based on this compset -->
+  <compset
+    id="Trait">
+    <compref component="Derived"/>
+    <compref component="Trait"/>
+    </compset>
+
+  <!-- Trait - all derived traits are based on this compset -->
+  <compset
+    id="Talent">
+    <compref component="Talent"/>
+    <compref component="SpecialTab"/>
+    <compref component="UserSelect"/>
+    <compref component="Trait"/>
+    </compset>
+    
+  <!-- Archetype - all races derive from this compset -->
+  <compset
+    id="Archetype"
+    forceunique="yes">
+    <compref component="Archetype"/>
+    <compref component="UserSelect"/>
+    </compset>
+    
+  <!-- Career - all careers derive from this compset -->
+  <compset
+    id="Career"
+    forceunique="yes">
+    <compref component="Career"/>
+    </compset>
+  
+  <!-- SpecTree - all specializations derive from this compset -->
+  <compset
+    id="SpecTree"
+    forceunique="yes">
+    <compref component="SpecTree"/>
+    </compset>
+
+  <compset
+    id="HeroicAbility"
+    forceunique="yes">
+    <compref component="HeroicAbility"/>
+    <compref component="Ability"/>
+    <compref component="SpecialTab"/>
+    <compref component="UserSelect"/>
+    </compset>
+	
+  <!-- An entity for the Specalization Tree 
+  <entity
+    id="entTree"
+    form="frmTree">
+    <bootstrap thing="TreeHelp"/>
+    </entity>-->
+ 
+  </document>

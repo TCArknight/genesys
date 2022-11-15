@@ -1,0 +1,843 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the definition of the "Abilities" tab panel. This tab is where
+      the user selects the special abilities for the character.
+
+      All public visual elements used with this tab panel start with the prefix "ab"
+      to associate them with the tab.
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- SpecTree name portal -->
+  <portal
+    id="stSpecName"
+    style="lblTitle">
+    <label>
+      <labeltext><![CDATA[
+       @text = agent.field[name].text
+        ]]></labeltext>
+      </label>
+    </portal>
+
+  <portal
+    id="stRow1Col1"
+    style="tblOuter">
+    <table_fixed
+      component="Talent"
+      showtemplate="stTalent"
+      scrollable="no"
+      alwaysupdate="yes"
+      agentlist="SpecTree">
+      <list>SpecRow.1 &amp; SpecCol.1</list>
+      </table_fixed>
+    </portal>
+    
+  <portal
+    id="stRow1Col2"
+    style="tblOuter">
+    <table_fixed
+      component="Talent"
+      showtemplate="stTalent"
+      scrollable="no"
+      alwaysupdate="yes"
+      agentlist="SpecTree">
+      <list>SpecRow.1 &amp; SpecCol.2</list>
+      </table_fixed>
+    </portal>
+
+  <portal
+    id="stRow1Col3"
+    style="tblOuter">
+    <table_fixed
+      component="Talent"
+      showtemplate="stTalent"
+      scrollable="no"
+      alwaysupdate="yes"
+      agentlist="SpecTree">
+      <list>SpecRow.1 &amp; SpecCol.3</list>
+      </table_fixed>
+    </portal>
+    
+  <portal
+    id="stRow1Col4"
+    style="tblOuter">
+    <table_fixed
+      component="Talent"
+      showtemplate="stTalent"
+      scrollable="no"
+      alwaysupdate="yes"
+      agentlist="SpecTree">
+      <list>SpecRow.1 &amp; SpecCol.4</list>
+      </table_fixed>
+    </portal>
+
+  <portal
+    id="stRow2Col1"
+    style="tblOuter">
+    <table_fixed
+      component="Talent"
+      showtemplate="stTalent"
+      scrollable="no"
+      alwaysupdate="yes"
+      agentlist="SpecTree">
+      <list>SpecRow.2 &amp; SpecCol.1</list>
+      </table_fixed>
+    </portal>
+    
+  <portal
+    id="stRow2Col2"
+    style="tblOuter">
+    <table_fixed
+      component="Talent"
+      showtemplate="stTalent"
+      scrollable="no"
+      alwaysupdate="yes"
+      agentlist="SpecTree">
+      <list>SpecRow.2 &amp; SpecCol.2</list>
+      </table_fixed>
+    </portal>
+
+  <portal
+    id="stRow2Col3"
+    style="tblOuter">
+    <table_fixed
+      component="Talent"
+      showtemplate="stTalent"
+      scrollable="no"
+      alwaysupdate="yes"
+      agentlist="SpecTree">
+      <list>SpecRow.2 &amp; SpecCol.3</list>
+      </table_fixed>
+    </portal>
+    
+  <portal
+    id="stRow2Col4"
+    style="tblOuter">
+    <table_fixed
+      component="Talent"
+      showtemplate="stTalent"
+      scrollable="no"
+      alwaysupdate="yes"
+      agentlist="SpecTree">
+      <list>SpecRow.2 &amp; SpecCol.4</list>
+      </table_fixed>
+    </portal>
+
+  <portal
+    id="stRow3Col1"
+    style="tblOuter">
+    <table_fixed
+      component="Talent"
+      showtemplate="stTalent"
+      scrollable="no"
+      alwaysupdate="yes"
+      agentlist="SpecTree">
+      <list>SpecRow.3 &amp; SpecCol.1</list>
+      </table_fixed>
+    </portal>
+    
+  <portal
+    id="stRow3Col2"
+    style="tblOuter">
+    <table_fixed
+      component="Talent"
+      showtemplate="stTalent"
+      scrollable="no"
+      alwaysupdate="yes"
+      agentlist="SpecTree">
+      <list>SpecRow.3 &amp; SpecCol.2</list>
+      </table_fixed>
+    </portal>
+
+  <portal
+    id="stRow3Col3"
+    style="tblOuter">
+    <table_fixed
+      component="Talent"
+      showtemplate="stTalent"
+      scrollable="no"
+      alwaysupdate="yes"
+      agentlist="SpecTree">
+      <list>SpecRow.3 &amp; SpecCol.3</list>
+      </table_fixed>
+    </portal>
+    
+  <portal
+    id="stRow3Col4"
+    style="tblOuter">
+    <table_fixed
+      component="Talent"
+      showtemplate="stTalent"
+      scrollable="no"
+      alwaysupdate="yes"
+      agentlist="SpecTree">
+      <list>SpecRow.3 &amp; SpecCol.4</list>
+      </table_fixed>
+    </portal>
+
+  <portal
+    id="stRow4Col1"
+    style="tblOuter">
+    <table_fixed
+      component="Talent"
+      showtemplate="stTalent"
+      scrollable="no"
+      alwaysupdate="yes"
+      agentlist="SpecTree">
+      <list>SpecRow.4 &amp; SpecCol.1</list>
+      </table_fixed>
+    </portal>
+    
+  <portal
+    id="stRow4Col2"
+    style="tblOuter">
+    <table_fixed
+      component="Talent"
+      showtemplate="stTalent"
+      scrollable="no"
+      alwaysupdate="yes"
+      agentlist="SpecTree">
+      <list>SpecRow.4 &amp; SpecCol.2</list>
+      </table_fixed>
+    </portal>
+
+  <portal
+    id="stRow4Col3"
+    style="tblOuter">
+    <table_fixed
+      component="Talent"
+      showtemplate="stTalent"
+      scrollable="no"
+      alwaysupdate="yes"
+      agentlist="SpecTree">
+      <list>SpecRow.4 &amp; SpecCol.3</list>
+      </table_fixed>
+    </portal>
+    
+  <portal
+    id="stRow4Col4"
+    style="tblOuter">
+    <table_fixed
+      component="Talent"
+      showtemplate="stTalent"
+      scrollable="no"
+      alwaysupdate="yes"
+      agentlist="SpecTree">
+      <list>SpecRow.4 &amp; SpecCol.4</list>
+      </table_fixed>
+    </portal>
+
+  <portal
+    id="stRow5Col1"
+    style="tblOuter">
+    <table_fixed
+      component="Talent"
+      showtemplate="stTalent"
+      scrollable="no"
+      alwaysupdate="yes"
+      agentlist="SpecTree">
+      <list>SpecRow.5 &amp; SpecCol.1</list>
+      </table_fixed>
+    </portal>
+    
+  <portal
+    id="stRow5Col2"
+    style="tblOuter">
+    <table_fixed
+      component="Talent"
+      showtemplate="stTalent"
+      scrollable="no"
+      alwaysupdate="yes"
+      agentlist="SpecTree">
+      <list>SpecRow.5 &amp; SpecCol.2</list>
+      </table_fixed>
+    </portal>
+
+  <portal
+    id="stRow5Col3"
+    style="tblOuter">
+    <table_fixed
+      component="Talent"
+      showtemplate="stTalent"
+      scrollable="no"
+      alwaysupdate="yes"
+      agentlist="SpecTree">
+      <list>SpecRow.5 &amp; SpecCol.3</list>
+      </table_fixed>
+    </portal>
+    
+  <portal
+    id="stRow5Col4"
+    style="tblOuter">
+    <table_fixed
+      component="Talent"
+      showtemplate="stTalent"
+      scrollable="no"
+      alwaysupdate="yes"
+      agentlist="SpecTree">
+      <list>SpecRow.5 &amp; SpecCol.4</list>
+      </table_fixed>
+    </portal>
+
+  <portal 
+    id="Horiz1" 
+    style="horzLnk">
+    <separator isvertical="no"/>
+    </portal>
+
+  <portal 
+    id="Horiz2" 
+    style="horzLnk">
+    <separator isvertical="no"/>
+    </portal>
+      
+  <portal 
+    id="Horiz3" 
+    style="horzLnk">
+    <separator isvertical="no"/>
+    </portal>
+
+  <portal 
+    id="Horiz4" 
+    style="horzLnk">
+    <separator isvertical="no"/>
+    </portal>
+
+  <portal 
+    id="Horiz5" 
+    style="horzLnk">
+    <separator isvertical="no"/>
+    </portal>
+      
+  <portal 
+    id="Horiz6" 
+    style="horzLnk">
+    <separator isvertical="no"/>
+    </portal>
+    
+
+  <portal 
+    id="Horiz7" 
+    style="horzLnk">
+    <separator isvertical="no"/>
+    </portal>
+
+  <portal 
+    id="Horiz8" 
+    style="horzLnk">
+    <separator isvertical="no"/>
+    </portal>
+      
+  <portal 
+    id="Horiz9" 
+    style="horzLnk">
+    <separator isvertical="no"/>
+    </portal>    
+    
+  <portal 
+    id="Horiz10" 
+    style="horzLnk">
+    <separator isvertical="no"/>
+    </portal>
+
+  <portal 
+    id="Horiz11" 
+    style="horzLnk">
+    <separator isvertical="no"/>
+    </portal>
+      
+  <portal 
+    id="Horiz12" 
+    style="horzLnk">
+    <separator isvertical="no"/>
+    </portal>        
+
+  <portal 
+    id="Vert1" 
+    style="vertLnk">
+    <separator isvertical="yes"/>
+    </portal>
+
+  <portal 
+    id="Vert2" 
+    style="vertLnk">
+    <separator isvertical="yes"/>
+    </portal>
+      
+  <portal 
+    id="Vert3" 
+    style="vertLnk">
+    <separator isvertical="yes"/>
+    </portal>
+      
+  <portal 
+    id="Vert4" 
+    style="vertLnk">
+    <separator isvertical="yes"/>
+    </portal>
+
+  <portal 
+    id="Vert5" 
+    style="vertLnk">
+    <separator isvertical="yes"/>
+    </portal>
+
+  <portal 
+    id="Vert6" 
+    style="vertLnk">
+    <separator isvertical="yes"/>
+    </portal>
+      
+  <portal 
+    id="Vert7" 
+    style="vertLnk">
+    <separator isvertical="yes"/>
+    </portal>
+      
+  <portal 
+    id="Vert8" 
+    style="vertLnk">
+    <separator isvertical="yes"/>
+    </portal>
+                          
+  <portal 
+    id="Vert9" 
+    style="vertLnk">
+    <separator isvertical="yes"/>
+    </portal>
+
+  <portal 
+    id="Vert10" 
+    style="vertLnk">
+    <separator isvertical="yes"/>
+    </portal>
+      
+  <portal 
+    id="Vert11" 
+    style="vertLnk">
+    <separator isvertical="yes"/>
+    </portal>
+      
+  <portal 
+    id="Vert12" 
+    style="vertLnk">
+    <separator isvertical="yes"/>
+    </portal>
+                          
+  <portal 
+    id="Vert13" 
+    style="vertLnk">
+    <separator isvertical="yes"/>
+    </portal>
+
+  <portal 
+    id="Vert14" 
+    style="vertLnk">
+    <separator isvertical="yes"/>
+    </portal>
+      
+  <portal 
+    id="Vert15" 
+    style="vertLnk">
+    <separator isvertical="yes"/>
+    </portal>
+      
+  <portal 
+    id="Vert16" 
+    style="vertLnk">
+    <separator isvertical="yes"/>
+    </portal>
+                          
+  <template
+    id="stTalent"
+    name="Talent Pick"
+    compset="Talent">
+
+    <portal
+      id="name"
+      style="lblTitle"
+      showinvalid="yes">
+      <label
+        field="name">
+        </label>
+      </portal>
+
+    <portal
+      id="info"
+      style="actInfo">
+      <action
+        action="info">
+        </action>
+      <mouseinfo/>
+      </portal>
+
+    <position><![CDATA[
+      ~set up our height based on our tallest portal
+      height = portal[info].height + portal[name].height + 10
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~position our tallest portal at the top
+      portal[name].top = 0
+      
+      ~center the other portals horizontally
+      perform portal[info].centerhorz
+
+      ~position the delete portal on the far right
+      portal[info].top = portal[name].bottom + 5
+      ~perform portal[info].alignedge[left,0]
+
+      ~position the name on the left and let it use all available space
+      portal[name].left = 0
+      portal[name].width = width
+
+      ]]></position>
+
+    </template>
+            
+  <layout
+    id="treetab">
+    <portalref portal="stSpecName" taborder="10"/>
+    <portalref portal="stRow1Col1" taborder="20"/>
+    <portalref portal="stRow1Col2" taborder="21"/>
+    <portalref portal="stRow1Col3" taborder="22"/>
+    <portalref portal="stRow1Col4" taborder="23"/>
+    <portalref portal="stRow2Col1" taborder="24"/>
+    <portalref portal="stRow2Col2" taborder="25"/>
+    <portalref portal="stRow2Col3" taborder="26"/>
+    <portalref portal="stRow2Col4" taborder="27"/>
+    <portalref portal="stRow3Col1" taborder="28"/>
+    <portalref portal="stRow3Col2" taborder="29"/>
+    <portalref portal="stRow3Col3" taborder="30"/>
+    <portalref portal="stRow3Col4" taborder="31"/>
+    <portalref portal="stRow4Col1" taborder="32"/>
+    <portalref portal="stRow4Col2" taborder="33"/>
+    <portalref portal="stRow4Col3" taborder="34"/>
+    <portalref portal="stRow4Col4" taborder="35"/>
+    <portalref portal="stRow5Col1" taborder="36"/>
+    <portalref portal="stRow5Col2" taborder="37"/>
+    <portalref portal="stRow5Col3" taborder="38"/>
+    <portalref portal="stRow5Col4" taborder="39"/>
+    <portalref portal="Horiz1" taborder="40"/>
+    <portalref portal="Horiz2" taborder="40"/>
+    <portalref portal="Horiz3" taborder="40"/>
+    <portalref portal="Horiz4" taborder="40"/>
+    <portalref portal="Horiz5" taborder="40"/>
+    <portalref portal="Horiz6" taborder="40"/>
+    <portalref portal="Horiz7" taborder="40"/>
+    <portalref portal="Horiz8" taborder="40"/>
+    <portalref portal="Horiz9" taborder="40"/>
+    <portalref portal="Horiz10" taborder="40"/>
+    <portalref portal="Horiz11" taborder="40"/>
+    <portalref portal="Horiz12" taborder="40"/>
+    <portalref portal="Vert1" taborder="40"/>
+    <portalref portal="Vert2" taborder="40"/>
+    <portalref portal="Vert3" taborder="40"/>
+    <portalref portal="Vert4" taborder="40"/>
+    <portalref portal="Vert5" taborder="40"/>
+    <portalref portal="Vert6" taborder="40"/>
+    <portalref portal="Vert7" taborder="40"/>
+    <portalref portal="Vert8" taborder="40"/>
+    <portalref portal="Vert9" taborder="40"/>
+    <portalref portal="Vert10" taborder="40"/>
+    <portalref portal="Vert11" taborder="40"/>
+    <portalref portal="Vert12" taborder="40"/>
+    <portalref portal="Vert13" taborder="40"/>
+    <portalref portal="Vert14" taborder="40"/>
+    <portalref portal="Vert15" taborder="40"/>
+    <portalref portal="Vert16" taborder="40"/>
+
+    <position><![CDATA[
+      ~position and size the table to span the full layout; 
+      ~it will only use the vertical space that it actually needs
+      perform portal[stSpecName].autoplace
+      
+      ~position rows
+      portal[stRow1Col1].left = 0
+      portal[stRow1Col1].top = portal[stSpecName].bottom + 10
+      portal[stRow1Col1].width = 100
+      ~portal[stRow1Col1].height = 40
+
+      portal[stRow1Col2].left = portal[stRow1Col1].right + 30
+      portal[stRow1Col2].top = portal[stRow1Col1].top
+      portal[stRow1Col2].width = portal[stRow1Col1].width
+      portal[stRow1Col2].height = portal[stRow1Col1].height
+
+      portal[stRow1Col3].left = portal[stRow1Col2].right + 30
+      portal[stRow1Col3].top = portal[stRow1Col1].top
+      portal[stRow1Col3].width = portal[stRow1Col1].width
+      portal[stRow1Col3].height = portal[stRow1Col1].height
+
+      portal[stRow1Col4].left = portal[stRow1Col3].right + 30
+      portal[stRow1Col4].top = portal[stRow1Col1].top
+      portal[stRow1Col4].width = portal[stRow1Col1].width
+      portal[stRow1Col4].height = portal[stRow1Col1].height
+
+      portal[Vert1].left = portal[stRow1Col1].left + 50
+      portal[Vert1].top = portal[stRow1Col1].bottom 
+      portal[Vert1].height = 50
+
+      portal[Vert2].left = portal[stRow1Col2].left + 50
+      portal[Vert2].top = portal[stRow1Col2].bottom 
+      portal[Vert2].height = 50
+
+      portal[Vert3].left = portal[stRow1Col3].left + 50
+      portal[Vert3].top = portal[stRow1Col3].bottom 
+      portal[Vert3].height = 50
+
+      portal[Vert4].left = portal[stRow1Col4].left + 50
+      portal[Vert4].top = portal[stRow1Col4].bottom 
+      portal[Vert4].height = 50
+      
+      portal[stRow2Col1].left = 0
+      portal[stRow2Col1].top = portal[stRow1Col1].bottom + 50
+      portal[stRow2Col1].width = 100
+      portal[stRow2Col1].height = 20
+
+      portal[Horiz1].left = portal[stRow2Col1].right
+      portal[Horiz1].top = portal[stRow2Col1].top + 25
+      portal[Horiz1].width = 30
+      portal[Horiz1].height = 10
+      
+      portal[stRow2Col2].left = portal[stRow2Col1].right + 30
+      portal[stRow2Col2].top = portal[stRow2Col1].top
+      portal[stRow2Col2].width = portal[stRow2Col1].width
+      portal[stRow2Col2].height = portal[stRow2Col1].height
+
+      portal[Horiz2].left = portal[stRow2Col2].right
+      portal[Horiz2].top = portal[Horiz1].top
+      portal[Horiz2].width = portal[Horiz1].width
+      portal[Horiz2].height = portal[Horiz1].height
+
+      portal[stRow2Col3].left = portal[stRow2Col2].right + 30
+      portal[stRow2Col3].top = portal[stRow2Col1].top
+      portal[stRow2Col3].width = portal[stRow2Col1].width
+      portal[stRow2Col3].height = portal[stRow2Col1].height
+
+      portal[Horiz3].left = portal[stRow2Col3].right
+      portal[Horiz3].top = portal[Horiz1].top
+      portal[Horiz3].width = portal[Horiz1].width
+      portal[Horiz3].height = portal[Horiz1].height
+      
+      portal[stRow2Col4].left = portal[stRow2Col3].right + 30
+      portal[stRow2Col4].top = portal[stRow2Col1].top
+      portal[stRow2Col4].width = portal[stRow2Col1].width
+      portal[stRow2Col4].height = portal[stRow2Col1].height
+
+      portal[Vert5].left = portal[stRow2Col1].left + 50
+      portal[Vert5].top = portal[stRow2Col1].bottom 
+      portal[Vert5].height = 50
+
+      portal[Vert6].left = portal[stRow2Col2].left + 50
+      portal[Vert6].top = portal[stRow2Col2].bottom 
+      portal[Vert6].height = 50
+
+      portal[Vert7].left = portal[stRow2Col3].left + 50
+      portal[Vert7].top = portal[stRow2Col3].bottom 
+      portal[Vert7].height = 50
+
+      portal[Vert8].left = portal[stRow2Col4].left + 50
+      portal[Vert8].top = portal[stRow2Col4].bottom 
+      portal[Vert8].height = 50
+      
+      portal[stRow3Col1].left = 0
+      portal[stRow3Col1].top = portal[stRow2Col1].bottom + 50
+      portal[stRow3Col1].width = 100
+      portal[stRow3Col1].height = 20
+
+      portal[Horiz4].left = portal[stRow3Col1].right
+      portal[Horiz4].top = portal[stRow3Col1].top + 25
+      portal[Horiz4].width = 30
+      portal[Horiz4].height = 10
+      
+      portal[stRow3Col2].left = portal[stRow3Col1].right + 30
+      portal[stRow3Col2].top = portal[stRow3Col1].top
+      portal[stRow3Col2].width = portal[stRow3Col1].width
+      portal[stRow3Col2].height = portal[stRow3Col1].height
+      
+      portal[Horiz5].left = portal[stRow3Col2].right
+      portal[Horiz5].top = portal[stRow3Col2].top + 25
+      portal[Horiz5].width = 30
+      portal[Horiz5].height = 10
+      
+      portal[stRow3Col3].left = portal[stRow3Col2].right + 30
+      portal[stRow3Col3].top = portal[stRow3Col1].top
+      portal[stRow3Col3].width = portal[stRow3Col1].width
+      portal[stRow3Col3].height = portal[stRow3Col1].height
+
+      portal[Horiz6].left = portal[stRow3Col3].right
+      portal[Horiz6].top = portal[stRow3Col3].top + 25
+      portal[Horiz6].width = 30
+      portal[Horiz6].height = 10
+
+      portal[stRow3Col4].left = portal[stRow3Col3].right + 30
+      portal[stRow3Col4].top = portal[stRow3Col1].top
+      portal[stRow3Col4].width = portal[stRow3Col1].width
+      portal[stRow3Col4].height = portal[stRow3Col1].height
+
+      portal[Vert9].left = portal[stRow3Col1].left + 50
+      portal[Vert9].top = portal[stRow3Col1].bottom 
+      portal[Vert9].height = 50
+
+      portal[Vert10].left = portal[stRow3Col2].left + 50
+      portal[Vert10].top = portal[stRow3Col2].bottom 
+      portal[Vert10].height = 50
+
+      portal[Vert11].left = portal[stRow3Col3].left + 50
+      portal[Vert11].top = portal[stRow3Col3].bottom 
+      portal[Vert11].height = 50
+
+      portal[Vert12].left = portal[stRow3Col4].left + 50
+      portal[Vert12].top = portal[stRow3Col4].bottom 
+      portal[Vert12].height = 50
+      
+      portal[stRow4Col1].left = 0
+      portal[stRow4Col1].top = portal[stRow3Col1].bottom + 50
+      portal[stRow4Col1].width = 100
+      portal[stRow4Col1].height = 20
+
+      portal[Horiz7].left = portal[stRow4Col1].right
+      portal[Horiz7].top = portal[stRow4Col1].top + 25
+      portal[Horiz7].width = 30
+      portal[Horiz7].height = 10
+      
+      portal[stRow4Col2].left = portal[stRow4Col1].right + 30
+      portal[stRow4Col2].top = portal[stRow4Col1].top
+      portal[stRow4Col2].width = portal[stRow4Col1].width
+      portal[stRow4Col2].height = portal[stRow4Col1].height
+
+      portal[Horiz8].left = portal[stRow4Col2].right
+      portal[Horiz8].top = portal[stRow4Col2].top + 25
+      portal[Horiz8].width = 30
+      portal[Horiz8].height = 10
+
+      portal[stRow4Col3].left = portal[stRow4Col2].right + 30
+      portal[stRow4Col3].top = portal[stRow4Col1].top
+      portal[stRow4Col3].width = portal[stRow4Col1].width
+      portal[stRow4Col3].height = portal[stRow4Col1].height
+
+      portal[Horiz9].left = portal[stRow4Col3].right
+      portal[Horiz9].top = portal[stRow4Col3].top + 25
+      portal[Horiz9].width = 30
+      portal[Horiz9].height = 10
+
+      portal[stRow4Col4].left = portal[stRow4Col3].right + 30
+      portal[stRow4Col4].top = portal[stRow4Col1].top
+      portal[stRow4Col4].width = portal[stRow4Col1].width
+      portal[stRow4Col4].height = portal[stRow4Col1].height
+
+      portal[Vert13].left = portal[stRow4Col1].left + 50
+      portal[Vert13].top = portal[stRow4Col1].bottom 
+      portal[Vert13].height = 50
+
+      portal[Vert14].left = portal[stRow4Col2].left + 50
+      portal[Vert14].top = portal[stRow4Col2].bottom 
+      portal[Vert14].height = 50
+
+      portal[Vert15].left = portal[stRow4Col3].left + 50
+      portal[Vert15].top = portal[stRow4Col3].bottom 
+      portal[Vert15].height = 50
+
+      portal[Vert16].left = portal[stRow4Col4].left + 50
+      portal[Vert16].top = portal[stRow4Col4].bottom 
+      portal[Vert16].height = 50
+
+      portal[stRow5Col1].left = 0
+      portal[stRow5Col1].top = portal[stRow4Col1].bottom + 50
+      portal[stRow5Col1].width = 100
+      portal[stRow5Col1].height = 20
+
+      portal[Horiz10].left = portal[stRow5Col1].right
+      portal[Horiz10].top = portal[stRow5Col1].top + 25
+      portal[Horiz10].width = 30
+      portal[Horiz10].height = 10
+      
+      portal[stRow5Col2].left = portal[stRow5Col1].right + 30
+      portal[stRow5Col2].top = portal[stRow5Col1].top
+      portal[stRow5Col2].width = portal[stRow5Col1].width
+      portal[stRow5Col2].height = portal[stRow5Col1].height
+
+      portal[Horiz11].left = portal[stRow5Col2].right
+      portal[Horiz11].top = portal[stRow5Col2].top + 25
+      portal[Horiz11].width = 30
+      portal[Horiz11].height = 10
+
+      portal[stRow5Col3].left = portal[stRow5Col2].right + 30
+      portal[stRow5Col3].top = portal[stRow5Col1].top
+      portal[stRow5Col3].width = portal[stRow5Col1].width
+      portal[stRow5Col3].height = portal[stRow5Col1].height
+
+      portal[Horiz12].left = portal[stRow5Col3].right
+      portal[Horiz12].top = portal[stRow5Col3].top + 25
+      portal[Horiz12].width = 30
+      portal[Horiz12].height = 10
+
+      portal[stRow5Col4].left = portal[stRow5Col3].right + 30
+      portal[stRow5Col4].top = portal[stRow5Col1].top
+      portal[stRow5Col4].width = portal[stRow5Col1].width
+      portal[stRow5Col4].height = portal[stRow5Col1].height
+      
+      ~determine link visibility
+      portal[Vert1].visible = agent.field[stLinkMat].matrixvalue[0,0]
+      portal[Vert2].visible = agent.field[stLinkMat].matrixvalue[0,1]
+      portal[Vert3].visible = agent.field[stLinkMat].matrixvalue[0,2]
+      portal[Vert4].visible = agent.field[stLinkMat].matrixvalue[0,3]
+      
+      portal[Horiz1].visible = agent.field[stLinkMat].matrixvalue[1,0]
+      portal[Horiz2].visible = agent.field[stLinkMat].matrixvalue[1,1]
+      portal[Horiz3].visible = agent.field[stLinkMat].matrixvalue[1,2]
+      
+      portal[Vert5].visible = agent.field[stLinkMat].matrixvalue[2,0]
+      portal[Vert6].visible = agent.field[stLinkMat].matrixvalue[2,1]
+      portal[Vert7].visible = agent.field[stLinkMat].matrixvalue[2,2]
+      portal[Vert8].visible = agent.field[stLinkMat].matrixvalue[2,3]
+      
+      portal[Horiz4].visible = agent.field[stLinkMat].matrixvalue[3,0]
+      portal[Horiz5].visible = agent.field[stLinkMat].matrixvalue[3,1]
+      portal[Horiz6].visible = agent.field[stLinkMat].matrixvalue[3,2]
+      
+      portal[Vert9].visible = agent.field[stLinkMat].matrixvalue[4,0]
+      portal[Vert10].visible = agent.field[stLinkMat].matrixvalue[4,1]
+      portal[Vert11].visible = agent.field[stLinkMat].matrixvalue[4,2]
+      portal[Vert12].visible = agent.field[stLinkMat].matrixvalue[4,3]
+      
+      portal[Horiz7].visible = agent.field[stLinkMat].matrixvalue[5,0]
+      portal[Horiz8].visible = agent.field[stLinkMat].matrixvalue[5,1]
+      portal[Horiz9].visible = agent.field[stLinkMat].matrixvalue[5,2]
+      
+      portal[Vert13].visible = agent.field[stLinkMat].matrixvalue[6,0]
+      portal[Vert14].visible = agent.field[stLinkMat].matrixvalue[6,1]
+      portal[Vert15].visible = agent.field[stLinkMat].matrixvalue[6,2]
+      portal[Vert16].visible = agent.field[stLinkMat].matrixvalue[6,3]
+      
+      portal[Horiz10].visible = agent.field[stLinkMat].matrixvalue[7,0]
+      portal[Horiz11].visible = agent.field[stLinkMat].matrixvalue[7,1]
+      portal[Horiz12].visible = agent.field[stLinkMat].matrixvalue[7,2]
+      
+      
+      ]]></position>
+
+    </layout>
+
+  <panel
+    id="spectree"
+    name="Specialization"
+    marginhorz="5"
+    marginvert="5"
+    order="150"
+    agentcompset="SpecTree"
+    agentlive="SpecTree"
+    agentname="name">
+    <live>!HideTab.spectree</live>
+    <layoutref layout="treetab"/>
+    <position><![CDATA[
+      ~get the height used by the layout and use it, as that means we scroll
+      ~if necessary
+      perform layout[treetab].render
+      height = layout[treetab].height
+      ]]></position>
+    </panel>
+    
+  </document>

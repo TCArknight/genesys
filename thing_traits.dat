@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of derived traits for the game system. Derived
+      traits are calculated via scripts and based on the attributes from which they
+      are derived.
+
+      Since derived traits are based upon other traits, we have a "chicken-and-egg"
+      situation with respect to script evaluation timing. The "Trait" component
+      auto-calculates the final value for the traits derived FROM, while the "Derived"
+      component provides a second calculation after that to incorporate the results of
+      the special calculation for each derived trait. Each derived trait must then
+      calculate the new derived value between those two times, which is what we
+      accomplish below within the eval script for each derived trait. The script is
+      timed to occur at Traits/4000 to splice it between the two other scripts that
+      mentioned above and performed by the component.
+
+      We calculate the derived value as a "bonus" for the trait, allowing it to be
+      added in appropriately by the component script. Trait bonuses can arise from
+      multiple sources, so we need to ADD our calculated amount instead of setting the
+      amount.
+
+      All trait values are rounded down, so we apply the proper rounding as needed.
+      Rounding must be performed BEFORE we add the adjustment.
+
+      Appropriate tags are assigned to each derived trait to control where the trait
+      is displayed to the user and the order in which the traits are displayed.
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Soak Trait -->
+  <thing
+    id="trSoak"
+    name="Soak"
+    compset="Trait"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Soa"/>
+    <tag group="explicit" tag="1"/>
+    <tag group="User" tag="Resistance"/>
+    <tag group="DashTacCon" tag="Traits"/>
+    <tag group="User" tag="OutputDefLine"/>
+
+    <!-- Calculate the Soak trait as appropriate -->
+    <eval value="1" phase="PreTraits" priority="1000"><![CDATA[
+      field[trtBonus].value = 0
+      ]]></eval>
+    </thing>    
+	
+  <!-- Wound Threshold Trait -->
+  <thing
+    id="trWoundThreshold"
+    name="Wound Threshold"
+    compset="Trait"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="WT"/>
+    <fieldval field="trtOutDisplayName" value="Wounds"/>
+    <fieldval field="trtOutDisplayName2" value="Threshold / Current"/>
+    <tag group="explicit" tag="2"/>
+    <tag group="User" tag="Power"/>
+    <tag group="User" tag="OutputDefLine"/>
+
+    <!-- Calculate the Health trait as appropriate -->
+    <eval value="1" phase="Traits" priority="12000"><![CDATA[
+      field[trtBonus].value += #attrscore[attrBra]
+      ]]></eval>
+    </thing>
+ 
+   <!-- Strain Threshold Trait -->
+  <thing
+    id="trStrainThreshold"
+    name="Strain Threshold"
+    compset="Trait"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="ST"/>
+    <fieldval field="trtOutDisplayName" value="Strain"/>
+    <fieldval field="trtOutDisplayName2" value="Threshold / Current"/>
+    <tag group="explicit" tag="3"/>
+    <tag group="User" tag="Power"/>
+    <tag group="User" tag="OutputDefLine"/>
+
+    <!-- Calculate the Health trait as appropriate -->
+    <eval value="1" phase="Traits" priority="12000"><![CDATA[
+      field[trtBonus].value += #attrscore[attrWil]
+      ]]></eval>
+    </thing>
+ 	
+  <!-- Melee Defense Trait -->
+  <thing
+    id="trDefenseMel"
+    name="Defense (Melee)"
+    compset="Trait"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Def"/>
+    <tag group="explicit" tag="4"/>
+    <tag group="User" tag="Combat"/>
+    <tag group="DashTacCon" tag="Combat"/>
+    <tag group="User" tag="OutputDefLine"/>
+
+    <!-- Calcualte the Defense trait as appropriate -->
+    <eval value="1" phase="PreTraits" priority="1000"><![CDATA[
+      field[trtBonus].value = 0
+      ]]></eval>
+    </thing>
+	
+  <!-- Ranged Defense Trait -->
+  <thing
+    id="trDefenseRng"
+    name="Defense (Ranged)"
+    compset="Trait"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Def"/>
+    <tag group="explicit" tag="5"/>
+    <tag group="User" tag="Combat"/>
+    <tag group="DashTacCon" tag="Combat"/>
+    <tag group="User" tag="OutputDefLine"/>
+
+    <!-- Calcualte the Defense trait as appropriate -->
+    <eval value="1" phase="PreTraits" priority="1000"><![CDATA[
+      field[trtBonus].value = 0
+      ]]></eval>
+    </thing>
+ 
+
+  </document>

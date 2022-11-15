@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document signature="Hero Lab Data">
+  <thing id="talBoughtInfo" name="Bought Info" compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="1"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Action"/>
+    </thing>
+  <thing id="talGrit1" name="Grit" description="Each rank of Grit increases your character’s strain threshold by one." compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="1"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <eval phase="PreTraits" priority="5000">#traitbonus[trStrainThreshold] += 1</eval>
+    </thing>
+  <thing id="talToughened1" name="Toughened" description="Each rank of Toughened increases your character’s wound threshold by two." compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="1"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <eval phase="PreTraits" priority="5000">#traitbonus[trWoundThreshold] += 2</eval>
+    </thing>
+  <thing id="talBasicMilTrain" name="Basic Military Training" description="Athletics, Ranged (Heavy), and Resilience are now career skills for your character." compset="Talent" uniqueness="useronce">
+    <usesource source="WeirdWar"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="TalentTier" tag="2"/>
+    <eval phase="Setup"><![CDATA[perform hero.child[skAthlet].assign[SkillType.CareerSkill]
+
+#makecareerskill[skResil]
+
+if (#issplitranged[] <> 0) then
+  #makecareerskill[skRangedHeavy]
+else
+  #makecareerskill[skRanged]
+  endif]]></eval>
+    </thing>
+  <thing id="talGrit2" name="Grit" description="Each rank of Grit increases your character’s strain threshold by one." compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="2"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <eval phase="PreTraits" priority="5000">#traitbonus[trStrainThreshold] += 1</eval>
+    </thing>
+  <thing id="talGrit3" name="Grit" description="Each rank of Grit increases your character’s strain threshold by one." compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="3"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <eval phase="PreTraits" priority="5000">#traitbonus[trStrainThreshold] += 1</eval>
+    </thing>
+  <thing id="talGrit4" name="Grit" description="Each rank of Grit increases your character’s strain threshold by one." compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="4"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <eval phase="PreTraits" priority="5000">#traitbonus[trStrainThreshold] += 1</eval>
+    </thing>
+  <thing id="talGrit5" name="Grit" description="Each rank of Grit increases your character’s strain threshold by one." compset="Talent">
+    <tag group="TalentTier" tag="5"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <eval phase="PreTraits" priority="5000">#traitbonus[trStrainThreshold] += 1</eval>
+    </thing>
+  <thing id="talToughened4" name="Toughened" description="Each rank of Toughened increases your character’s wound threshold by two." compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="4"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <eval phase="PreTraits" priority="5000">#traitbonus[trWoundThreshold] += 2</eval>
+    </thing>
+  <thing id="talToughened5" name="Toughened" description="Each rank of Toughened increases your character’s wound threshold by two." compset="Talent">
+    <tag group="TalentTier" tag="5"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <eval phase="PreTraits" priority="5000">#traitbonus[trWoundThreshold] += 2</eval>
+    </thing>
+  <thing id="talToughened3" name="Toughened" description="Each rank of Toughened increases your character’s wound threshold by two." compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="3"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <eval phase="PreTraits" priority="5000">#traitbonus[trWoundThreshold] += 2</eval>
+    </thing>
+  <thing id="talToughened2" name="Toughened" description="Each rank of Toughened increases your character’s wound threshold by two." compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="2"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <eval phase="PreTraits" priority="5000">#traitbonus[trWoundThreshold] += 2</eval>
+    </thing>
+  <thing id="talBerserk" name="Berserk" compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Maneuver"/>
+    </thing>
+  <thing id="talCoordAssault" name="Coordinated Assault" compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Maneuver"/>
+    </thing>
+  <thing id="talParry1" name="Parry" description="When your character suffers a hit from a melee combat check, after damage is calculated but before soak is applied (so immediately after Step 3 of Perform a Combat check, page 102), your character may suffer 3 strain to use this talent to reduce the damage of the hit by two plus their ranks in Parry. This talent can only be used once per hit, and your character needs to be wielding a Melee weapon." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentTier" tag="1"/>
+    <eval phase="Render" priority="5000" index="2"><![CDATA[doneif (field[talRanks].value <= 1)
+
+field[spcName].text = field[name].text & " (Rank " & field[talRanks].value & ")"]]></eval>
+    <eval phase="PreTraits" priority="5000"><![CDATA[var sumTxt as string
+var cnt as number
+
+cnt = field[trtValue1].value + field[talRanks].value
+
+sumTxt = "When hit in combat, may suffer 3 Strain to reduce the damage by " & cnt & "."
+
+field[talSummary].text = sumTxt]]></eval>
+    </thing>
+  <thing id="talParry2" name="Parry" description="When your character suffers a hit from a melee combat\ncheck, after damage is calculated but before soak\nis applied (so immediately after Step 3 of Perform a\nCombat check, page 102), your character may suffer\n3 strain to use this talent to reduce the damage of the\nhit by two plus their ranks in Parry. This talent can only\nbe used once per hit, and your character needs to be\nwielding a Melee weapon." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="2"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talParry1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talCleverRetort" name="Clever Retort" compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="1"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    </thing>
+  <thing id="talDefSysOps" name="Defensive SysOps" compset="Talent" uniqueness="useronce">
+    <usesource source="Modern"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="TalentTier" tag="1"/>
+    </thing>
+  <thing id="talDespRecovery" name="Desperate Recovery" compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="1"/>
+    <tag group="TalentActive" tag="Passive"/>
+    </thing>
+  <thing id="talDuelist" name="Duelist" description="Your character adds [B] to their melee combat checks while engaged with a single opponent. Your character adds [SB] to their melee combat checks while engaged with three or more opponents.\n\nYou should use this talent in all settings." compset="Talent" summary="[B] to Melee Combat checks vs. 1 opponent, [SB] while engaged with 3+ opponents." uniqueness="useronce">
+    <tag group="TalentTier" tag="1"/>
+    <tag group="TalentActive" tag="Passive"/>
+    </thing>
+  <thing id="talDurable1" name="Durable" compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="10"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentTier" tag="1"/>
+    <eval phase="Render" priority="5000"><![CDATA[doneif (field[talRanks].value <= 1)
+
+field[spcName].text = field[name].text & " (Rank " & field[talRanks].value & ")"]]></eval>
+    <eval phase="PreTraits" priority="5000" index="2"><![CDATA[var sumTxt as string
+var cnt as number
+
+cnt = field[trtValue1].value * field[talRanks].value
+
+sumTxt = "Your character reduces any Critical Injury result they suffer by "
+sumTxt &= cnt
+sumTxt &= ", to a minimum of 01."
+
+
+
+field[talSummary].text = sumTxt]]></eval>
+    </thing>
+  <thing id="talDurable2" name="Durable" compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="10"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentTier" tag="2"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <eval phase="PreTraits" priority="1000" index="2">hero.childfound[talDurable1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talDurable3" name="Durable" compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="10"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentTier" tag="3"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <eval phase="PreTraits" priority="1000" index="2">hero.childfound[talDurable1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talDurable4" name="Durable" compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="10"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentTier" tag="4"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <eval phase="PreTraits" priority="1000" index="2">hero.childfound[talDurable1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talDurable5" name="Durable" compset="Talent">
+    <fieldval field="trtValue1" value="10"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentTier" tag="4"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <eval phase="PreTraits" priority="1000" index="2">hero.childfound[talDurable1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talParry3" name="Parry" description="When your character suffers a hit from a melee combat\ncheck, after damage is calculated but before soak\nis applied (so immediately after Step 3 of Perform a\nCombat check, page 102), your character may suffer\n3 strain to use this talent to reduce the damage of the\nhit by two plus their ranks in Parry. This talent can only\nbe used once per hit, and your character needs to be\nwielding a Melee weapon." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="3"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talParry1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talParry4" name="Parry" description="When your character suffers a hit from a melee combat\ncheck, after damage is calculated but before soak\nis applied (so immediately after Step 3 of Perform a\nCombat check, page 102), your character may suffer\n3 strain to use this talent to reduce the damage of the\nhit by two plus their ranks in Parry. This talent can only\nbe used once per hit, and your character needs to be\nwielding a Melee weapon." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="4"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talParry1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talParry5" name="Parry" description="When your character suffers a hit from a melee combat\ncheck, after damage is calculated but before soak\nis applied (so immediately after Step 3 of Perform a\nCombat check, page 102), your character may suffer\n3 strain to use this talent to reduce the damage of the\nhit by two plus their ranks in Parry. This talent can only\nbe used once per hit, and your character needs to be\nwielding a Melee weapon." compset="Talent">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="5"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talParry1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talForager" name="Forager" description="Your character removes up to [SB][SB] from any skill checks they make to find food, water, or shelter. Checks to forage or search the area that your character makes take half the time they would normally." compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="1"/>
+    <tag group="TalentActive" tag="Passive"/>
+    </thing>
+  <thing id="talHamstringShot" name="Hamstring Shot" description="Once per round, your character may use this talent to perform a ranged combat check against one non-vehicle target within range of the weapon used. If the check is successful, halve the damage inflicted by the attack (before reducing damage by the target’s soak). The target\nis immobilized until the end of its next turn." compset="Talent">
+    <tag group="TalentTier" tag="1"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Action"/>
+    </thing>
+  <thing id="talJumpUp" name="Jump Up" description="Once per round during your character’s turn, your character may use this talent to stand from a prone or seated position as an incidental." compset="Talent">
+    <tag group="TalentTier" tag="1"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    </thing>
+  <thing id="talKnackForIt1" name="Knack For It" description="When you purchase this talent for your character, select one skill. Your character removes [SB][SB] from any\nchecks they make using this skill.\n\nEach additional time you purchase this talent for\nyour character, select two additional skills. Your character\nalso removes [SB][SB] from any checks they make using these skills. You cannot select combat or magic skills when choosing skills for this talent." compset="Talent" uniqueness="useronce">
+    <fieldval field="usrLabel1" value="Skill"/>
+    <fieldval field="usrCandid1" value="component.Skill &amp; !(SkillCat.Combat|SkillCat.Magic)"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="TalentTier" tag="1"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <eval phase="Effects" priority="1000">doneif (field[usrChosen1].ischosen = 0)
+
+field[usrChosen1].chosen.field[sklRemovedSetback].value += 2</eval>
+    </thing>
+  <thing id="talKnackForIt2" name="Knack For It" description="When you purchase this talent for your character, select one skill. Your character removes [SB][SB] from any\nchecks they make using this skill.\n\nEach additional time you purchase this talent for\nyour character, select two additional skills. Your character\nalso removes [SB][SB] from any checks they make using these skills. You cannot select combat or magic skills when choosing skills for this talent." compset="Talent" uniqueness="useronce">
+    <fieldval field="usrLabel1" value="Skill"/>
+    <fieldval field="usrCandid1" value="component.Skill &amp; !(SkillCat.Combat|SkillCat.Magic)"/>
+    <fieldval field="usrCandid2" value="component.Skill &amp; !(SkillCat.Combat|SkillCat.Magic)"/>
+    <fieldval field="usrLabel2" value="Skill"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Hero"/>
+    <tag group="TalentTier" tag="2"/>
+    <eval phase="PreTraits" priority="1000"><![CDATA[hero.childfound[talKnackForIt1].field[talRanks].value += 1
+
+if (field[usrChosen1].ischosen <> 0) then
+  field[usrChosen1].chosen.field[sklRemovedSetback].value += 2
+  endif
+if (field[usrChosen2].ischosen <> 0) then
+  field[usrChosen2].chosen.field[sklRemovedSetback].value += 2
+  endif]]></eval>
+    <pickreq thing="talKnackForIt1"/>
+    </thing>
+  <thing id="talKnackForIt3" name="Knack For It" description="When you purchase this talent for your character, select one skill. Your character removes [SB][SB] from any\nchecks they make using this skill.\n\nEach additional time you purchase this talent for\nyour character, select two additional skills. Your character\nalso removes [SB][SB] from any checks they make using these skills. You cannot select combat or magic skills when choosing skills for this talent." compset="Talent" uniqueness="useronce">
+    <fieldval field="usrLabel1" value="Skill"/>
+    <fieldval field="usrCandid1" value="component.Skill &amp; !(SkillCat.Combat|SkillCat.Magic)"/>
+    <fieldval field="usrCandid2" value="component.Skill &amp; !(SkillCat.Combat|SkillCat.Magic)"/>
+    <fieldval field="usrLabel2" value="Skill"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Hero"/>
+    <tag group="TalentTier" tag="3"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talKnackForIt1].field[talRanks].value += 1
+
+if (field[usrChosen1].ischosen = 0) then
+  field[usrChosen1].chosen.field[sklRemovedSetback].value += 2
+  endif
+if (field[usrChosen2].ischosen = 0) then
+  field[usrChosen2].chosen.field[sklRemovedSetback].value += 2
+  endif</eval>
+    <pickreq thing="talKnackForIt1"/>
+    </thing>
+  <thing id="talKnackForIt4" name="Knack For It" description="When you purchase this talent for your character, select one skill. Your character removes [SB][SB] from any\nchecks they make using this skill.\n\nEach additional time you purchase this talent for\nyour character, select two additional skills. Your character\nalso removes [SB][SB] from any checks they make using these skills. You cannot select combat or magic skills when choosing skills for this talent." compset="Talent" uniqueness="useronce">
+    <fieldval field="usrLabel1" value="Skill"/>
+    <fieldval field="usrCandid1" value="component.Skill &amp; !(SkillCat.Combat|SkillCat.Magic)"/>
+    <fieldval field="usrCandid2" value="component.Skill &amp; !(SkillCat.Combat|SkillCat.Magic)"/>
+    <fieldval field="usrLabel2" value="Skill"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Hero"/>
+    <tag group="TalentTier" tag="4"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talKnackForIt1].field[talRanks].value += 1
+
+if (field[usrChosen1].ischosen = 0) then
+  field[usrChosen1].chosen.field[sklRemovedSetback].value += 2
+  endif
+if (field[usrChosen2].ischosen = 0) then
+  field[usrChosen2].chosen.field[sklRemovedSetback].value += 2
+  endif</eval>
+    <pickreq thing="talKnackForIt1"/>
+    </thing>
+  <thing id="talKnackForIt5" name="Knack For It" description="When you purchase this talent for your character, select one skill. Your character removes [SB][SB] from any\nchecks they make using this skill.\n\nEach additional time you purchase this talent for\nyour character, select two additional skills. Your character\nalso removes [SB][SB] from any checks they make using these skills. You cannot select combat or magic skills when choosing skills for this talent." compset="Talent">
+    <fieldval field="usrLabel1" value="Skill"/>
+    <fieldval field="usrCandid1" value="component.Skill &amp; !(SkillCat.Combat|SkillCat.Magic)"/>
+    <fieldval field="usrCandid2" value="component.Skill &amp; !(SkillCat.Combat|SkillCat.Magic)"/>
+    <fieldval field="usrLabel2" value="Skill"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Hero"/>
+    <tag group="TalentTier" tag="5"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talKnackForIt1].field[talRanks].value += 1
+
+if (field[usrChosen1].ischosen = 0) then
+  field[usrChosen1].chosen.field[sklRemovedSetback].value += 2
+  endif
+if (field[usrChosen2].ischosen = 0) then
+  field[usrChosen2].chosen.field[sklRemovedSetback].value += 2
+  endif</eval>
+    <pickreq thing="talKnackForIt1"/>
+    </thing>
+  <thing id="talKnowSomebody1" name="Know Somebody" description="Once per session, when attempting to purchase a legally available item, your character may use this talent to reduce its rarity by one per rank of Know Somebody." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentTier" tag="1"/>
+    <eval phase="Render" priority="5000" index="2"><![CDATA[doneif (field[talRanks].value <= 1)
+
+field[spcName].text = field[name].text & " (Rank " & field[talRanks].value & ")"]]></eval>
+    <eval phase="PreTraits" priority="5000"><![CDATA[var sumTxt as string
+var cnt as number
+
+cnt = field[trtValue1].value + field[talRanks].value
+
+sumTxt = "Once per session, when attempting to purchase a legally available item, you may use this talent to reduce its rarity by " & cnt & "."
+
+field[talSummary].text = sumTxt]]></eval>
+    </thing>
+  <thing id="talKnowSomebody2" name="Know Somebody" description="Once per session, when attempting to purchase a legally available item, your character may use this talent to reduce its rarity by one per rank of Know Somebody." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="2"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talKnowSomebody1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talKnowSomebody3" name="Know Somebody" description="Once per session, when attempting to purchase a legally available item, your character may use this talent to reduce its rarity by one per rank of Know Somebody." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="3"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talKnowSomebody1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talKnowSomebody4" name="Know Somebody" description="Once per session, when attempting to purchase a legally available item, your character may use this talent to reduce its rarity by one per rank of Know Somebody." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="4"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talKnowSomebody1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talKnowSomebody5" name="Know Somebody" description="Once per session, when attempting to purchase a legally available item, your character may use this talent to reduce its rarity by one per rank of Know Somebody." compset="Talent">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="5"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talKnowSomebody1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talLetsRide" name="Let&apos;s Ride" description="Description goes here." compset="Talent">
+    <tag group="TalentTier" tag="1"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    </thing>
+  <thing id="talOneWithNature" name="One With Nature" description="Description goes here." compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="1"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    </thing>
+  <thing id="talProperUpbring1" name="Proper Upbringing" description="When your character makes a social skill check in polite company (as determined by your GM), they may suffer a number of strain to use this talent to add an equal number of [ADV] to the check. The number may not exceed your character’s ranks in Proper Upbringing." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentTier" tag="1"/>
+    <eval phase="Render" priority="5000" index="2"><![CDATA[doneif (field[talRanks].value <= 1)
+
+field[spcName].text = field[name].text & " (Rank " & field[talRanks].value & ")"]]></eval>
+    <eval phase="PreTraits" priority="5000"><![CDATA[var sumTxt as string
+var cnt as number
+
+cnt = field[trtValue1].value + field[talRanks].value
+
+sumTxt = "When making a social skill check in polite company, may suffer up to "
+sumTxt &= cnt & " strain to add an equal number of [ADV] to the check."
+
+field[talSummary].text = sumTxt]]></eval>
+    </thing>
+  <thing id="talProperUpbring2" name="Proper Upbringing" description="When your character makes a social skill check in polite company (as determined by your GM), they may suffer a number of strain to use this talent to add an equal number of [ADV] to the check. The number may not exceed your character’s ranks in Proper Upbringing." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="2"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talProperUpbring1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talProperUpbring3" name="Proper Upbringing" description="When your character makes a social skill check in polite company (as determined by your GM), they may suffer a number of strain to use this talent to add an equal number of [ADV] to the check. The number may not exceed your character’s ranks in Proper Upbringing." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="3"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talProperUpbring1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talProperUpbring4" name="Proper Upbringing" description="When your character makes a social skill check in polite company (as determined by your GM), they may suffer a number of strain to use this talent to add an equal number of [ADV] to the check. The number may not exceed your character’s ranks in Proper Upbringing." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="4"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talProperUpbring1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talProperUpbring5" name="Proper Upbringing" description="When your character makes a social skill check in polite company (as determined by your GM), they may suffer a number of strain to use this talent to add an equal number of [ADV] to the check. The number may not exceed your character’s ranks in Proper Upbringing." compset="Talent">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="5"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talProperUpbring1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talQuickDraw" name="Quick Draw" description="Once per round on your character’s turn, they may use this talent to draw or holster an easily accessible weapon or item as an incidental. Quick Draw also reduces a weapon’s Prepare rating by one, to a minimum of one." compset="Talent">
+    <tag group="TalentTier" tag="1"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    </thing>
+  <thing id="talQuickStrike1" name="Quick Strike" description="Your character adds [B] for each rank of Quick Strike to\nany combat checks they make against any targets that\nhave not yet taken their turn in the current encounter." compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="1"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <eval phase="PreTraits" priority="5000"><![CDATA[var sumTxt as string
+var cnt as number
+
+cnt = field[trtValue1].value + field[talRanks].value
+
+sumTxt &= "Add " 
+while (cnt > 0)
+  sumTxt &= "[B]"
+  cnt -= 1
+  loop
+
+sumTxt &= " to combat checks against targets that have not yet taken their turn in the current encounter."
+
+field[talSummary].text = sumTxt]]></eval>
+    <eval phase="Render" priority="5000" index="2"><![CDATA[doneif (field[talRanks].value <= 1)
+
+field[spcName].text = field[name].text & " (Rank " & field[talRanks].value & ")"]]></eval>
+    </thing>
+  <thing id="talQuickStrike2" name="Quick Strike" description="Your character adds [B] for each rank of Quick Strike to\nany combat checks they make against any targets that\nhave not yet taken their turn in the current encounter." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="2"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talQuickStrike1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talQuickStrike3" name="Quick Strike" description="Your character adds [B] for each rank of Quick Strike to\nany combat checks they make against any targets that\nhave not yet taken their turn in the current encounter." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="3"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talQuickStrike1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talQuickStrike4" name="Quick Strike" description="Your character adds [B] for each rank of Quick Strike to\nany combat checks they make against any targets that\nhave not yet taken their turn in the current encounter." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="4"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talQuickStrike1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talQuickStrike5" name="Quick Strike" description="Your character adds [B] for each rank of Quick Strike to\nany combat checks they make against any targets that\nhave not yet taken their turn in the current encounter." compset="Talent">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="5"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talQuickStrike1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talRapidReaction1" name="Rapid Reaction" description="Your character may suffer a number of strain to use this talent to add an equal number of [Suc] to a Vigilance or Cool check they make to determine Initiative order. The number may not exceed your character’s ranks in Rapid Reaction." compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="1"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <eval phase="PreTraits" priority="5000"><![CDATA[var sumTxt as string
+var cnt as number
+
+cnt = field[trtValue1].value + field[talRanks].value
+
+sumTxt = "You may suffer up to "
+sumTxt &= cnt & " strain to add an equal number of [SUC] to a Vigilance or Cool check they make to determine Initiative order."
+
+field[talSummary].text = sumTxt]]></eval>
+    <eval phase="Render" priority="5000" index="2"><![CDATA[doneif (field[talRanks].value <= 1)
+
+field[spcName].text = field[name].text & " (Rank " & field[talRanks].value & ")"]]></eval>
+    </thing>
+  <thing id="talRapidReaction2" name="Rapid Reaction" description="Your character may suffer a number of strain to use this talent to add an equal number of [Suc] to a Vigilance or Cool check they make to determine Initiative order. The number may not exceed your character’s ranks in Rapid Reaction." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="2"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talRapidReaction1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talRapidReaction3" name="Rapid Reaction" description="Your character may suffer a number of strain to use this talent to add an equal number of [Suc] to a Vigilance or Cool check they make to determine Initiative order. The number may not exceed your character’s ranks in Rapid Reaction." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="3"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talRapidReaction1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talRapidReaction4" name="Rapid Reaction" description="Your character may suffer a number of strain to use this talent to add an equal number of [Suc] to a Vigilance or Cool check they make to determine Initiative order. The number may not exceed your character’s ranks in Rapid Reaction." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="4"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talRapidReaction1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talRapidReaction5" name="Rapid Reaction" description="Your character may suffer a number of strain to use this talent to add an equal number of [Suc] to a Vigilance or Cool check they make to determine Initiative order. The number may not exceed your character’s ranks in Rapid Reaction." compset="Talent">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="5"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talRapidReaction1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talSecondWind1" name="Second Wind" description="Once per encounter, your character may use this talent\nto heal an amount of strain equal to their ranks in Second Wind." compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="1"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <eval phase="Render" priority="5000" index="2"><![CDATA[doneif (field[talRanks].value <= 1)
+
+field[spcName].text = field[name].text & " (Rank " & field[talRanks].value & ")"]]></eval>
+    <eval phase="PreTraits" priority="5000"><![CDATA[var sumTxt as string
+var cnt as number
+
+cnt = field[trtValue1].value + field[talRanks].value
+
+sumTxt = "Once per encounter, you  may heal up to " & cnt & " strain."
+
+field[talSummary].text = sumTxt]]></eval>
+    </thing>
+  <thing id="talSecondWind2" name="Second Wind" description="Once per encounter, your character may use this talent\nto heal an amount of strain equal to their ranks in Second Wind." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="2"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talSecondWind1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talSecondWind3" name="Second Wind" description="Once per encounter, your character may use this talent\nto heal an amount of strain equal to their ranks in Second Wind." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="3"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talSecondWind1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talSecondWind4" name="Second Wind" description="Once per encounter, your character may use this talent\nto heal an amount of strain equal to their ranks in Second Wind." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="4"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talSecondWind1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talSecondWind5" name="Second Wind" description="Once per encounter, your character may use this talent\nto heal an amount of strain equal to their ranks in Second Wind." compset="Talent">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="5"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talSecondWind1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talSurgeon1" name="Surgeon" description="When your character makes a Medicine check to heal wounds, the target heals one additional wound per rank of Surgeon." compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="1"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <eval phase="Render" priority="5000" index="2"><![CDATA[doneif (field[talRanks].value <= 1)
+
+field[spcName].text = field[name].text & " (Rank " & field[talRanks].value & ")"]]></eval>
+    <eval phase="PreTraits" priority="5000"><![CDATA[var sumTxt as string
+var cnt as number
+
+cnt = field[trtValue1].value + field[talRanks].value
+
+sumTxt = "When your character makes a Medicine check to heal wounds, the target heals up to " & cnt & " wounds."
+
+field[talSummary].text = sumTxt]]></eval>
+    </thing>
+  <thing id="talSurgeon2" name="Surgeon" description="When your character makes a Medicine check to heal wounds, the target heals one additional wound per rank of Surgeon." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="2"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talSurgeon1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talSurgeon3" name="Surgeon" description="When your character makes a Medicine check to heal wounds, the target heals one additional wound per rank of Surgeon." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="3"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talSurgeon1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talSurgeon4" name="Surgeon" description="When your character makes a Medicine check to heal wounds, the target heals one additional wound per rank of Surgeon." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="4"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talSurgeon1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talSurgeon5" name="Surgeon" description="When your character makes a Medicine check to heal wounds, the target heals one additional wound per rank of Surgeon." compset="Talent">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="5"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talSurgeon1].field[talRanks].value += 1</eval>
+    </thing>
+  <thing id="talSwift" name="Swift" description="Your character does not suffer the penalties for moving through difficult terrain (they move through difficult terrain at normal speed without spending additional maneuvers)." compset="Talent" summary="Move through difficult terrain at normal speed without spending additional maneuvers.">
+    <tag group="TalentTier" tag="1"/>
+    <tag group="TalentActive" tag="Passive"/>
+    </thing>
+  <thing id="talUnremarkable" name="Unremarkable" description="Other characters add [FAIL] to any checks made to find or\nidentify your character in a crowd." compset="Talent">
+    <tag group="TalentTier" tag="1"/>
+    <tag group="TalentActive" tag="Passive"/>
+    </thing>
+  <thing id="talCounteroffer" name="Counteroffer" compset="Talent">
+    <tag group="TalentTier" tag="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Action"/>
+    </thing>
+  <thing id="talDaringAviator2" name="Daring Aviator" description="Before your character makes a Driving or Piloting check, they may add a number of [T] to the results to use this talent to add an equal number of [S]. The number may not exceed your character’s ranks in Daring Aviator.\n\nYou should use this talent in the {b}steampunk{/b}, {b}weird war{/b}{i}, {b}{/i}modern day{/b}, {b}science fiction{/b}, and {b}space opera{/b} settings." compset="Talent" uniqueness="useronce">
+    <usesource source="Modern"/>
+    <usesource source="Steampunk"/>
+    <usesource source="WeirdWar"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentTier" tag="1"/>
+    <tag group="TalentActive" tag="Active"/>
+    <eval phase="Render" priority="5000"><![CDATA[doneif (field[talRanks].value <= 1)
+
+field[spcName].text = field[name].text & " (Rank " & field[talRanks].value & ")"]]></eval>
+    <eval phase="PreTraits" priority="5000" index="2"><![CDATA[var sumTxt as string
+var cnt as number
+
+cnt = field[trtValue1].value + field[talRanks].value
+
+sumTxt = "Before Driving/Piloting check, may add up to " & cnt & " [T] to add equal number of [S]."
+
+field[talSummary].text = sumTxt]]></eval>
+    </thing>
+  <thing id="talDaringAviator3" name="Daring Aviator" compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <usesource source="Modern"/>
+    <usesource source="Steampunk"/>
+    <usesource source="WeirdWar"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="3"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talDaringAviator2].field[talRanks].value += 1</eval>
+    </thing>
+  </document>

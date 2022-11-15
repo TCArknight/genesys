@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of miscellaneous things that are required for
+      the game system. Miscellaneous things include the mechanisms for managing applied
+      damage, user images, and personal info for each actor. It also includes things
+      used to track resource pools, such as those used for managing the available
+      attribute points, skill points, etc.
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Damage transaction handler for use when applying damage on the In-Play tab -->
+  <thing
+    id="mscDamage"
+    name="Damage"
+    compset="Damage">
+
+    <!-- Automatically add the damage transaction to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+    </thing>
+
+
+  <!-- Personal information details used on the Personal tab -->
+  <thing
+    id="mscPerson"
+    name="Personal"
+    compset="Personal">
+    </thing>
+
+
+  <!-- Basic user-added image that is managed through the gallery on Personal tab -->
+  <thing
+    id="mscUserImg"
+    name="User Image"
+    compset="UserImage">
+    </thing>
+
+  <!-- Ability slot resource to track the pool of ability slots being spent -->
+  <thing
+    id="resAbility"
+    name="Ability Slots"
+    compset="Resource">
+    <fieldval field="resObject" value="Ability"/>
+
+    <!-- Automatically add the resource to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Use the starting ability slots as our initial maximum -->
+    <eval index="1" phase="Setup" priority="1000"><![CDATA[
+      field[resMax].value = herofield[acStartAbi].value
+      ]]></eval>
+    </thing>
+	
+  <thing
+    id="resHeroicAbility"
+    name="Heroic Ability Slots"
+    compset="Resource">
+    <fieldval field="resObject" value="Ability"/>
+
+    <!-- Automatically add the resource to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Use the starting ability slots as our initial maximum -->
+    <eval index="1" phase="Setup" priority="1000"><![CDATA[
+      field[resMax].value = 1
+      ]]></eval>
+    </thing>
+
+  <thing
+    id="resHeroicUpgrades"
+    name="Heroic Ability Upgrades"
+    compset="Resource">
+    <fieldval field="resObject" value="Ability"/>
+
+    <!-- Automatically add the resource to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Use the starting ability slots as our initial maximum -->
+    <eval index="1" phase="Setup" priority="1000"><![CDATA[
+      field[resMax].value = 0
+      ]]></eval>
+    </thing>	
+  <!-- Ability slot resource to track the pool of ability slots being spent -->
+  <thing
+    id="resCareerChoice"
+    name="Career Skill Choices"
+    compset="Resource">
+    <fieldval field="resObject" value="Ability"/>
+
+    <!-- Automatically add the resource to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Use the starting ability slots as our initial maximum -->
+    <eval index="1" phase="Setup" priority="1000"><![CDATA[
+      field[resMax].value = herofield[acCarChs].value
+      ]]></eval>
+    </thing>
+
+  <!-- Ability slot resource to track the pool of ability slots being spent
+  <thing
+    id="resArchetypChoice"
+    name="Archetype Skill Choices"
+    compset="Resource">
+    <fieldval field="resObject" value="Ability"/>  -->
+
+    <!-- Automatically add the resource to every actor 
+    <tag group="Helper" tag="Bootstrap"/>  -->
+
+    <!-- Use the starting ability slots as our initial maximum 
+    <eval index="1" phase="Setup" priority="1000"><![CDATA[
+      field[resMax].value = herofield[acSpecChs].value
+      ]]></eval>
+    </thing>  -->
+    
+  <!-- Experience points resource to track the pool of XP accrued and spent -->
+  <thing
+    id="resXP"
+    name="Experience Points"
+    compset="Resource">
+
+    <!-- Automatically add the resource to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Do NOT require this resource to be fully utilized -->
+    <tag group="Helper" tag="NoMinimum"/>
+
+    <!-- Use the starting XP plus the XP from the race plus the accrued XP as our maximum -->
+    <eval index="1" phase="Setup" priority="1000" name="Calc XP Max"><![CDATA[
+      var RaceXP as number
+      
+      RaceXP = 0
+      foreach pick in hero from Archetype
+        RaceXP += eachpick.field[arXP].value
+        nexteach
+        
+      field[resMax].value = herofield[acStartXP].value + RaceXP + hero.usagepool[TotalXP].value
+      ]]></eval>
+    </thing>
+
+  <!-- Advance resource to track the number of advances accrued/spent -->
+  <thing
+    id="resEncumbrance"
+    name="Encumbrance"
+    compset="Resource"
+    panellink="advances">
+
+    <!-- Automatically add the resource to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- We don't have to max out our Encumbrance, so tag it appropriately -->
+    <tag group="Helper" tag="NoMinimum"/>
+	
+    <!-- Base our maximum on the accrued XP -->
+    <eval index="1" phase="Traits" priority="12000"><![CDATA[
+      field[resMax].value += herofield[acEncumbrance].value
+      ]]></eval>
+
+    </thing>
+
+  <!-- Advance resource to track the number of advances accrued/spent -->
+  <thing
+    id="resAdvance"
+    name="Advances"
+    compset="Resource"
+    panellink="advances">
+    <fieldval field="resObject" value="Advance"/>
+
+    <!-- Automatically add the resource to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Base our maximum on the accrued XP -->
+    <eval index="1" phase="Setup" priority="2000">
+      <after name="Calc XP Max"/><![CDATA[
+      field[resMax].value = #resmax[resXP] 
+      ]]></eval>
+
+    </thing>
+
+
+  <!-- Power points tracker so the user can manage the expenditure of power points -->
+  <thing
+    id="trkPower"
+    name="Power Points"
+    compset="Tracker">
+
+    <!-- Automatically add the tracker to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Resetting the tracker sets the value to the maximum -->
+    <tag group="Helper" tag="ResetMax"/>
+
+    <!-- Use the starting power points as our initial maximum -->
+    <eval index="1" phase="Final" priority="1000"><![CDATA[
+      field[trkMin].value = 0
+      ~field[trkMax].value = #trait[trPowerPts]
+      ]]></eval>
+    </thing>
+
+
+  <!-- Types of characters you might want to build -->
+  <thing
+    id="typHero"
+    name="Type: Hero (PC)"
+    compset="CharType">
+    </thing>
+  <thing
+    id="typNPC"
+    name="Type: Non-Player Character"
+    compset="CharType">
+    </thing>
+
+
+  <!-- NPC Info to display on the NPC info tab - the final "Additional
+      Information" pick can be added multiple times and customised by the user. -->
+  <thing
+    id="npcDesc"
+    name="Description"
+    compset="NPCInfo"
+    uniqueness="unique">
+    <tag group="explicit" tag="5"/>
+    </thing>
+  <thing
+    id="npcGoals"
+    name="Motivations &amp; Goals"
+    compset="NPCInfo"
+    uniqueness="unique">
+    <tag group="explicit" tag="10"/>
+    </thing>
+  <thing
+    id="npcSchemes"
+    name="Schemes, Plots &amp; Adventure Hooks"
+    compset="NPCInfo"
+    uniqueness="unique">
+    <tag group="explicit" tag="15"/>
+    </thing>
+  <thing
+    id="npcTacBef"
+    name="Tactics - Before Combat"
+    compset="NPCInfo"
+    uniqueness="unique">
+    <tag group="explicit" tag="20"/>
+    </thing>
+  <thing
+    id="npcTacDur"
+    name="Tactics - During Combat"
+    compset="NPCInfo"
+    uniqueness="unique">
+    <tag group="explicit" tag="25"/>
+    </thing>
+  <thing
+    id="npcMorale"
+    name="Tactics - Morale"
+    compset="NPCInfo"
+    uniqueness="unique">
+    <tag group="explicit" tag="30"/>
+    </thing>
+  <thing
+    id="npcEnviron"
+    name="Ecology - Environment"
+    compset="NPCInfo"
+    uniqueness="unique">
+    <tag group="explicit" tag="35"/>
+    </thing>
+  <thing
+    id="npcOrganiz"
+    name="Ecology - Organization"
+    compset="NPCInfo"
+    uniqueness="unique">
+    <tag group="explicit" tag="40"/>
+    </thing>
+  <thing
+    id="npcTreas"
+    name="Ecology - Treasure"
+    compset="NPCInfo"
+    uniqueness="unique">
+    <tag group="explicit" tag="45"/>
+    </thing>
+  <thing
+    id="npcOther"
+    name="Additional Information"
+    compset="NPCInfo">
+    <tag group="Helper" tag="CustomItem"/>
+    <tag group="explicit" tag="50"/>
+    </thing>
+
+  <!-- AoE Helper -->
+  <thing
+    id="TreeHelp"
+    name="Tree Helper"
+    compset="TreeHelp"
+    description="Description goes here">
+    </thing>
+
+  <thing
+    id="ItemModHelper"
+    name="Item Mod helper fields"
+    compset="ItemModHelper">	
+    <fieldval field="imhExpr" value="component.ItemMod"/>  
+	<tag group="ItemMod" tag="ItemModHelper"/>
+	      
+    <eval index="1" phase="Effects" priority="2100"><![CDATA[
+	  var expr as string
+	  var skill as string
+	  
+	  expr =  parent.tagids[ItemModCatAllowed.?,"|"]
+	  expr = replace(expr,"ItemModCatAllowed.","ItemModCat.",0)
+	  ~ notify "Mod Cats Allowed: " & expr
+	  
+	  ~if (parent.tagis[component.WeaponBase] <> 0) then
+	  ~  skill = parent.tagids[WeaponSkill.?,"|"]
+	  ~  skill = replace(skill,"WeaponSkill.sk","ItemModCat.",0)
+		
+	  ~  expr = splice(expr,"ItemModCat.Weapon","|")
+	  ~  expr = splice(expr,skill,"|")
+		
+	  ~  endif
+      
+	  field[imhExpr].text = expr
+	  
+      ]]></eval>	
+      
+    <eval index="2" phase="Final" priority="5000"><![CDATA[	
+	  field[imhMaxHP].value = parent.field[grHardpoints].value
+	  field[imhUsedHP].value = parent.field[grHardpointsUsed].value
+      ]]></eval>
+    </thing>	
+    
+    </document>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the definition of the "Skills" tab panel. This tab is where
+      the user selects and adjusts the skills for the character.
+
+      All public visual elements used with this tab panel start with the prefix "sk"
+      to associate them with the tab.
+-->
+
+<document signature="Hero Lab Data">
+	
+  <portal
+    id="haSigWeapon"
+    style="tblNormal">
+    <table_dynamic
+      component="WeaponBase"
+      showtemplate="SimpleItem"
+      choosetemplate="SimpleItem"
+      showfixedlast="yes"
+	  alwaysupdate="yes"
+	  showfrozenfixed="yes">
+      <list><![CDATA[ItemQuality.SignatureWpn
+	    ]]></list>
+      <candidate><![CDATA[component.WeaponBase & User.SignatureWeapon
+	    ]]></candidate>
+      <autotag group="ItemQuality" tag="SignatureWpn"/>
+      <titlebar><![CDATA[
+        @text = "Add a Signature Weapon"
+        ]]></titlebar>
+      <description/>
+      <headertitle><![CDATA[
+        @text = "Weapon Selected"
+        ]]></headertitle>
+      <additem><![CDATA[
+        @text &= "Add New Signature Weapon"
+        ]]></additem>
+      </table_dynamic>
+    </portal>
+	
+  <template
+    id="haHeroicAbility"
+    name="Heroic Ability Template"
+    compset="Archetype"
+    marginhorz="3"
+    marginvert="2">
+
+    <portal
+      id="haTitle"
+      style="lblTitle">
+      <label>
+        <labeltext><![CDATA[
+          @text = "Description"
+          ]]></labeltext>
+        </label>
+      </portal>
+      
+    <portal
+      id="haAbilDesc"
+      style="lblBorderLeft">
+      <label
+        field="descript"
+        ismultiline="yes"
+		scrollable="yes">
+        </label>
+      </portal>
+                
+    <position><![CDATA[
+      ~set up our dimensions, with a width that we dictate; our width can vary
+     
+      portal[haTitle].height = 20
+
+      ~position the description on the left and let it use all available space
+      portal[haTitle].top = 0
+      portal[haTitle].left = 0
+      portal[haTitle].width = width
+      
+      portal[haAbilDesc].top = portal[haTitle].bottom + 5
+      portal[haAbilDesc].left = 0
+      portal[haAbilDesc].width = width
+      portal[haAbilDesc].height = 250
+
+      ]]></position>
+
+    </template>
+
+
+  <!-- species layout
+        This layout orchestrates the display of the visual elements that comprise
+        the Skills tab. This amounts to a title at the top and a dynamic table below
+        where the user can add and adjust the skills he wants.
+
+        The logic for this layout is similar to (albeit much simpler than) the
+        logic for the Basics tab. So please refer to the Basics tab for more details.
+  -->
+  <layout
+    id="heroicability">
+	<portalref portal="haSigWeapon" />
+    <templateref template="haHeroicAbility" useagent="yes"/>
+	
+    <!-- This script sizes and positions the layout and its child visual elements. -->
+    <position><![CDATA[
+
+      ~both tables span the full width
+      ~template[haHeroicAbility].width = width
+	  ~template[haHeroicAbility].height = height/4
+      ~template[haHeroicAbility].visible = 1
+	  
+	  ~portal[haSigWeapon].top = template[haHeroicAbility].bottom
+      ~portal[haSigWeapon].width = width/2
+
+      perform portal[haSigWeapon].autoplace[10]
+      perform template[haHeroicAbility].autoplace
+      
+	  
+      ]]></position>
+
+    </layout>
+
+  <!-- archetype panel -->
+  <panel
+    id="heroicability"
+    name="Heroic Ability"
+    marginhorz="5"
+    marginvert="5"
+    order="122"
+    agentcompset="HeroicAbility"
+    agentlive="HeroicAbility"
+    agentname="name"
+    >
+    <live>HeroicAbility.Selected</live>
+    <layoutref layout="heroicability"/>
+    <position><![CDATA[
+      ]]></position>
+    </panel>
+
+
+  </document>

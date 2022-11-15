@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the definition of the "Skills" tab panel. This tab is where
+      the user selects and adjusts the skills for the character.
+
+      All public visual elements used with this tab panel start with the prefix "sk"
+      to associate them with the tab.
+-->
+
+<document signature="Hero Lab Data">
+	  
+
+  <portal
+    id="caCareerSkills"
+    style="tblInvis">
+    <table_fixed
+      component="Skill"
+      showtemplate="caChooseSkill"
+      scrollable="no"
+      alwaysupdate="yes"
+	  columns="2">
+      <list>SkillType.CareerSelect</list>
+      <headertitle><![CDATA[
+        ~set the color based on whether the proper number of slots are allocated
+        if (hero.child[resCareerChoice].field[resLeft].value = 0) then
+          @text = "{text clrgrey}"
+        elseif (hero.child[resCareerChoice].field[resLeft].value > 0) then
+          @text = "{text clrwarning}"
+          endif
+        
+        @text = "Free Career Ranks: " & hero.child[resCareerChoice].field[resSummary].text
+        ]]></headertitle>
+      </table_fixed>
+    </portal>
+  <template
+    id="caCareerTemp"
+    name="Career Template"
+    compset="Career"
+    marginhorz="3"
+    marginvert="2">
+
+    <portal
+      id="caCareerTitle"
+      style="lblTitle">
+      <label>
+        <labeltext><![CDATA[
+          @text = "Description"
+          ]]></labeltext>
+        </label>
+      </portal>
+      
+    <portal
+      id="caCareerDesc"
+      style="lblBorderLeft">
+      <label
+        field="descript"
+        ismultiline="yes"
+		scrollable="yes">
+        </label>
+      </portal>
+                
+    <position><![CDATA[
+      ~set up our dimensions, with a width that we dictate; our width can vary
+     
+      portal[caCareerTitle].height = 20
+
+      ~position the description on the left and let it use all available space
+      portal[caCareerTitle].top = 0
+      portal[caCareerTitle].left = 0
+      portal[caCareerTitle].width = width
+      
+      portal[caCareerDesc].top = portal[caCareerTitle].bottom + 5
+      portal[caCareerDesc].left = 0
+      portal[caCareerDesc].width = width
+      portal[caCareerDesc].height = height - portal[caCareerDesc].top
+
+      ]]></position>
+
+    </template>	
+  <template
+    id="caChooseSkill"
+    name="Skill Choice Pick"
+    compset="Skill"
+    marginhorz="3"
+    marginvert="2">
+
+    <portal
+      id="name"
+      style="lblNormal"
+      showinvalid="yes">
+      <label
+        field="name">
+        </label>
+      </portal>
+
+    <portal
+      id="select"
+      style="chkNormal"
+      showinvalid="yes">
+      <checkbox
+        field="sklCareerBon">
+        </checkbox>
+      <mouseinfo/>
+      </portal>
+
+    <position><![CDATA[
+      ~set up our height based on our tallest portal
+      height = portal[name].height
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~position our tallest portal at the top
+      portal[name].top = 0
+
+      ~center the other portals vertically
+      perform portal[select].centervert
+
+      ~position the checkbox portal on the far left
+      perform portal[select].alignedge[left,0]
+
+      ~position the name on the left and let it use all available space
+      portal[name].left = portal[select].right + 5
+      portal[name].width = width - (portal[select].right - 5)
+
+      ]]></position>
+
+    </template>
+	
+  <!-- species layout
+        This layout orchestrates the display of the visual elements that comprise
+        the Skills tab. This amounts to a title at the top and a dynamic table below
+        where the user can add and adjust the skills he wants.
+
+        The logic for this layout is similar to (albeit much simpler than) the
+        logic for the Basics tab. So please refer to the Basics tab for more details.
+  -->
+  <layout
+    id="career">
+    <portalref portal="caCareerSkills" taborder="10"/>
+    <templateref template="caCareerTemp" useagent="yes"/>
+	
+    <!-- This script sizes and positions the layout and its child visual elements. -->
+    <position><![CDATA[
+
+      ~both tables span the full width
+      template[caCareerTemp].width = width
+	  template[caCareerTemp].height = height/3
+      template[caCareerTemp].visible = 1
+
+      portal[caCareerSkills].top = template[caCareerTemp].bottom + 30
+      portal[caCareerSkills].width = width
+	  portal[caCareerSkills].height = height/3
+      portal[caCareerSkills].visible = 1
+	  
+      ]]></position>
+
+    </layout>
+
+  <!-- archetype panel -->
+  <panel
+    id="career"
+    name="Career"
+    marginhorz="5"
+    marginvert="5"
+    order="10"
+    agentcompset="Career"
+    agentlive="Career"
+    agentname="name"
+    >
+    <live>!HideTab.career</live>
+    <layoutref layout="career"/>
+    <position><![CDATA[
+      ]]></position>
+    </panel>
+
+
+  </document>

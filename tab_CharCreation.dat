@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains the definition of the "talents" tab panel. This tab is where
+      the user selects the special talents for the character.
+
+      All public visual elements used with this tab panel start with the prefix "ab"
+      to associate them with the tab.
+-->
+
+<document signature="Hero Lab Data">
+
+  <portal 
+    id="hdrArchetype" 
+    style="lblTitle">
+    <label>
+      <labeltext>
+        @text = "Archetype/Species"
+        </labeltext>
+      </label>
+    </portal>
+ 
+  <portal 
+    id="hdrCareer" 
+    style="lblTitle">
+    <label>
+      <labeltext>
+        @text = "Career"
+        </labeltext>
+      </label>
+    </portal>
+	
+  <portal
+    id="ccArchetype"
+    style="chsNormal"
+    width="110">
+    <chooser_table
+      component="Archetype"
+      choosetemplate="LargeItem">
+    <chosen><![CDATA[
+        if (@ispick = 0) then
+          @text = "{text clrwarning}Select Archetype/Species"
+        else
+          @text = field[name].text
+          endif
+        ]]></chosen>
+      <titlebar><![CDATA[
+        @text = "Choose the Archetype/Species for your character"
+        ]]></titlebar>
+      </chooser_table>
+    </portal>
+	
+  <portal
+    id="ccCareer"
+    style="chsNormal"
+    width="110">
+    <chooser_table
+      component="Career"
+      choosetemplate="LargeItem">
+    <chosen><![CDATA[
+        if (@ispick = 0) then
+          @text = "{text clrwarning}Select Career"
+        else
+          @text = field[name].text
+          endif
+        ]]></chosen>
+      <titlebar><![CDATA[
+        @text = "Choose the Career for your character"
+        ]]></titlebar>
+      </chooser_table>
+    </portal>
+<!-- 	
+  <portal
+    id="ccArchetype"
+    style="tblNormal"
+    width="110">
+	<table_dynamic
+      component="Species"
+	  showtemplate="SimpleItem"
+      choosetemplate="SimpleItem"
+	  choosesortset="SpecSort">
+      <titlebar><![CDATA[
+        @text = "Choose the Species for your character"
+        ]]></titlebar>
+	  <additem><![CDATA[
+        ~if we're in advancement mode, we've been frozen, so display accordingly
+        if (state.iscreate = 0) then
+          @text = "{text clrgrey}Add Talents Via Advances Tab"
+          done
+          endif
+
+        ~set the color based on whether the proper number of slots are allocated
+        if (field[resLeft].value = 0) then
+          @text = "{text clrgrey}"
+        elseif (field[resLeft].value < 0) then
+          @text = "{text clrwarning}"
+          endif
+        @text &= "Add New Talent"
+        ]]></additem>
+	  </table_dynamic>
+    </portal>
+	
+  <portal 
+    id="hdrEnviron" 
+    style="lblTitle">
+    <label>
+      <labeltext>
+        @text = "Step 2: Environment"
+        </labeltext>
+      </label>
+    </portal>
+           
+  <portal
+    id="hoEnviron"
+    style="chsNormal"
+    width="150">
+    <chooser_table
+      component="Environ"
+      choosetemplate="SimpleItem">
+      <chosen><![CDATA[
+        if (@ispick = 0) then
+          @text = "{text clrwarning}Select Environment"
+        else
+          @text = "Environment: " & field[name].text
+          endif
+        ]]></chosen>
+      <titlebar><![CDATA[
+        @text = "Choose the Environment for your character"
+        ]]></titlebar>
+      </chooser_table>
+    </portal>
+	
+  <portal 
+    id="hdrUpbring" 
+    style="lblTitle">
+    <label>
+      <labeltext>
+        @text = "Step 3: Upbringing"
+        </labeltext>
+      </label>
+    </portal>
+           
+  <portal
+    id="hoUpbring"
+    style="chsNormal"
+    width="150">
+    <chooser_table
+      component="Upbringing"
+      choosetemplate="SimpleItem">
+      <chosen><![CDATA[
+        if (@ispick = 0) then
+          @text = "{text clrwarning}Select Upbringing"
+        else
+          @text = "Upbringing: " & field[name].text
+          endif
+        ]]></chosen>
+      <titlebar><![CDATA[
+        @text = "Choose the Upbringing for your character"
+        ]]></titlebar>
+      </chooser_table>
+    </portal>
+	
+  <portal 
+    id="hdrAcad" 
+    style="lblTitle">
+    <label>
+      <labeltext>
+        @text = "Step 4: Starfleet Academy"
+        </labeltext>
+      </label>
+    </portal>
+           
+  <portal
+    id="hoAcad"
+    style="chsNormal"
+    width="150">
+    <chooser_table
+      component="Academy"
+      choosetemplate="SimpleItem">
+      <chosen><![CDATA[
+        if (@ispick = 0) then
+          @text = "{text clrwarning}Select Starfleet Academy Track"
+        else
+          @text = "Academy Track: " & field[name].text
+          endif
+        ]]></chosen>
+      <titlebar><![CDATA[
+        @text = "Choose the Academy Track for your character"
+        ]]></titlebar>
+      </chooser_table>
+    </portal>
+	
+  <portal 
+    id="hdrCareer" 
+    style="lblTitle">
+    <label>
+      <labeltext>
+        @text = "Step 5 &amp; 6: Career &amp; Events"
+        </labeltext>
+      </label>
+    </portal>
+	
+  <portal
+    id="hoCareer"
+    style="chsNormal"
+    width="150">
+    <chooser_table
+      component="Career"
+      choosetemplate="SimpleItem">
+      <chosen><![CDATA[
+        if (@ispick = 0) then
+          @text = "{text clrwarning}Select Career Experience"
+        else
+          @text = "Career: " & field[name].text
+          endif
+        ]]></chosen>
+      <titlebar><![CDATA[
+        @text = "Choose the Academy Track for your character"
+        ]]></titlebar>
+      </chooser_table>
+    </portal>
+	
+  <portal 
+    id="hdrFinish" 
+    style="lblTitle">
+    <label>
+      <labeltext>
+        @text = "Step 7: Finishing Touches"
+        </labeltext>
+      </label>
+    </portal>
+	
+  <template
+    id="hoPick"
+    name="Species Pick"
+    compset="Species"
+    marginhorz="3"
+    marginvert="2">
+
+    <portal
+      id="name"
+      style="lblNormal"
+      showinvalid="yes">
+      <label
+        field="name">
+        </label>
+      </portal>
+
+    <portal
+      id="info"
+      style="actInfo">
+      <action
+        action="info">
+        </action>
+      <mouseinfo/>
+      </portal>
+
+    <portal
+      id="delete"
+      style="actDelete"
+      tiptext="Click to delete this item">
+      <action
+        action="delete">
+        </action>
+      </portal>
+
+    <position><![CDATA[
+      ~set up our height based on our tallest portal
+      height = portal[info].height
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~position our tallest portal at the top
+      portal[info].top = 0
+
+      ~center the other portals vertically
+      perform portal[name].centervert
+      perform portal[delete].centervert
+
+      ~position the delete portal on the far right
+      perform portal[delete].alignedge[right,0]
+
+      ~position the info portal to the left of the delete button
+      perform portal[info].alignrel[rtol,delete,-8]
+
+      ~position the name on the left and let it use all available space
+      portal[name].left = 0
+      portal[name].width = minimum(portal[name].width,portal[info].left - 5)
+
+      ~if the Talent is auto-added, change its font to indicate that fact
+      if (candelete = 0) then
+        perform portal[name].setstyle[lblAuto]
+        endif
+      ]]></position>
+
+    </template>
+-->	
+	
+  <portal
+    id="hoHoriz1"
+    style="sepHorz">
+    <separator
+      isvertical="no">
+      </separator>
+    </portal>
+
+
+  <layout
+    id="charcreate">
+    <portalref portal="hdrArchetype" />
+    <portalref portal="hdrCareer" />
+    <portalref portal="ccArchetype" taborder="10"/>
+    <portalref portal="ccCareer" taborder="20"/>
+    <portalref portal="hoHoriz1" />
+
+    <!-- This script sizes and positions the layout and its child visual elements. 
+	    <portalref portal="ccArchetype" taborder="10"/>
+ -->
+    <position><![CDATA[
+      ~freeze our table in advancement mode to disable adding new choices
+      ~Note: All freezing must be done *before* any positioning is performed.
+      if (state.iscreate = 0) then
+        portal[ccArchetype].freeze = 1
+        portal[ccCareer].freeze = 1
+        endif
+		
+      ~position and size the table to span the full layout; it will only use the
+      ~vertical space that it actually needs
+      portal[hdrArchetype].top = 0
+      portal[hdrArchetype].height = 20
+      portal[hdrArchetype].width = width
+      
+      portal[ccArchetype].top = portal[hdrArchetype].bottom + 5
+      portal[ccArchetype].height = 20
+      portal[ccArchetype].width = width
+	  
+	  portal[hdrCareer].top = portal[ccArchetype].bottom + 10
+      portal[hdrCareer].height = 20
+      portal[hdrCareer].width = width
+      
+      portal[ccCareer].top = portal[hdrCareer].bottom + 5
+      portal[ccCareer].height = 20
+      portal[ccCareer].width = width
+	  
+      ]]></position>
+
+    </layout>
+
+  <panel
+    id="charcreate"
+    name="Creation"
+    marginhorz="5"
+    marginvert="5"
+    order="5">
+    <layoutref layout="charcreate"/>
+    <position><![CDATA[
+      ]]></position>
+    </panel>
+	
+  </document>

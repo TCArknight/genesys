@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document signature="Hero Lab Data">
+  <thing id="imodWpnBalHilt" name="Balanced Hilt" description="This attachment represents modifying a melee weapon’s balance (particularly around the hilt or haft) to make it easier to control. This kind of attachment makes sense for any setting (even futuristic combat knives can benefit from being finely weighted or balanced).\n\n{b}Use With:{/b} This attachment can be applied to any weapons that use the Melee (Light) skill and to one-handed weapons that use the Melee skill. \n\n{b}Modifiers:{/b} The weapon gains the Accurate 1 quality, or increases any existing Accurate quality by 1. (If the weapon has the Inaccurate quality, it reduces that quality’s\nrating by 1 to a minimum of 0, instead.)\n\n{b}Hard Points Required:{/b} 1." compset="ItemMod" summary="Weapon gains Accurate 1 (or +1 to existing Accurate) quality" maxlimit="1">
+    <fieldval field="imodHPCost" value="1"/>
+    <fieldval field="imodCost" value="1000"/>
+    <fieldval field="imodRarity" value="6"/>
+    <tag group="ItemModCat" tag="WeaponMeleeLight"/>
+    <tag group="ItemModCat" tag="WeaponMelee1H"/>
+    <tag group="ItemModCat" tag="WeaponSig"/>
+    <eval phase="Effects" priority="1000"><![CDATA[~ Accurate 1
+doneif (parent.isgizmo = 0)
+
+var accval as number
+var inaccval as number
+
+var tagstr as string
+
+accval = parent.tagvalue[ItemQuality.Accurate?]
+inaccval = parent.tagvalue[ItemQuality.Inaccurate?]
+
+if (inaccval <> 0) then
+  inaccval -= 1
+  perform parent.delete[ItemQuality.Inaccurate?]
+  if (inaccval <> 0) then
+    tagstr = "ItemQuality.Inaccurate" & inaccval
+    perform parent.delete[ItemQuality.Inccurate?]
+    perform parent.assignstr[tagstr]   
+    endif
+elseif (accval <> 0) then
+  accval += 1
+  tagstr = "ItemQuality.Accurate" & accval
+  perform parent.delete[ItemQuality.Accurate?]
+  perform parent.assignstr[tagstr]
+else
+  perform parent.assign[ItemQuality.Accurate1]
+  endif]]></eval>
+    </thing>
+  <thing id="imodWpnDuelGrd" name="Duelist Cross Guard" description="This attachment represents modifying the cross guard of a sword to better catch and lock the blade of an opponent. This kind of attachment makes sense for the {b}fantasy{/b} setting, but could make sense for any setting\nwhere dueling with swords is common.\n\n{b}Use With:{/b} This attachment can be applied to any sword, whether one-handed or two-handed.\n\n{b}Modifiers:{/b} When an opponent resolves a melee combat check against the wielder, if the check generated at least one uncanceled [T], the wielder may suffer 1 strain as an out-of-turn incidental to add [T][T] to the results.\n\n{b}Hard Points Required:{/b} 1." compset="ItemMod" summary="If 1 [T] on check against wielder, suffer 1 Strain to add [T][T].">
+    <fieldval field="imodHPCost" value="1"/>
+    <fieldval field="imodCost" value="800"/>
+    <fieldval field="imodRarity" value="5"/>
+    <tag group="ItemModCat" tag="WeaponSword"/>
+    <tag group="ItemModCat" tag="WeaponSig"/>
+    </thing>
+  <thing id="imodBipodMount" name="Bipod Mount" description="A bipod (a folding, two-legged stand) can be attached to the barrel of a firearm. The legs stabilize the firearm and take up some of its weight. This kind of attachment makes sense for the {b}weird war{/b}, {b}modern day{/b}, {b}science fiction{/b}, and {b}space opera{/b} settings.{br}{br}{b}Use With:{/b} This attachment can be applied to any{br}Ranged (Heavy) or Gunnery weapon.{br}{br}{b}Modifiers:{/b} If the user spends one preparation maneuver to deploy the bipod, the weapon’s Cumbersome or Unwieldy qualities are reduced by 2, to a minimum of 0, and the weapon’s encumbrance is reduced by 2, to a minimum of 0, while the user fires from a crouched or prone position (or can brace the bipod against something solid).{br}{br}{b}Hard Points Required:{/b} 1." compset="ItemMod" summary="When deployed and able to brace, lowers Cumbersome/Unwieldy qualities and encumbrance by 2.">
+    <fieldval field="imodHPCost" value="1"/>
+    <fieldval field="imodCost" value="250"/>
+    <fieldval field="imodRarity" value="2"/>
+    <usesource source="WeirdWar"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <usesource source="Modern"/>
+    <tag group="ItemModCat" tag="WeaponGunnery"/>
+    <tag group="ItemModCat" tag="WeaponRangedHeavy"/>
+    <tag group="ItemModCat" tag="WeaponSig"/>
+    <tag group="User" tag="Activation"/>
+    <eval phase="Effects" priority="1000"><![CDATA[doneif (parent.isgizmo = 0)
+
+doneif (field[imodActive].value = 0)
+
+~ encumbrance decreased
+var enc as number
+enc = parent.field[gearWeight].value
+enc -= 2
+parent.field[gearWeight].value = enc 
+
+~ Cumbersome 2 / +2
+var cumbval as number
+var tagstr as string
+
+cumbval = parent.tagvalue[ItemQuality.Cumber?]
+
+if (cumbval <> 0) then
+  cumbval += 2
+  tagstr = "ItemQuality.Cumber" & cumbval 
+  perform parent.delete[ItemQuality.Cumber?]
+  perform parent.assignstr[tagstr]
+else
+  perform parent.assign[ItemQuality.Cumber2]
+  endif
+
+~ Unwieldy 2 / +2
+var unwval as number
+var tagstr as string
+
+unwval = parent.tagvalue[ItemQuality.Unwieldy?]
+
+if (unwval <> 0) then
+  unwval += 2
+  tagstr = "ItemQuality.Unwieldy" & unwval 
+  perform parent.delete[ItemQuality.Unwieldy?]
+  perform parent.assignstr[tagstr]
+else
+  perform parent.assign[ItemQuality.Unwieldy2]
+  endif]]></eval>
+    </thing>
+  <thing id="imodExtendBarrel" name="Extended Barrel" description="This attachment extends the barrel (or makes similar modifications) to make the weapon fire farther. This kind of attachment makes sense for the {b}weird war{/b}, {b}modern day{/b}, {b}science fiction{/b}, and {b}space opera{/b} settings.\n\n{b}Use With:{/b} This attachment can be applied to any Ranged (Light), Ranged (Heavy), or Gunnery weapons (you may exclude weapons such as grenades, or weapons that fire self-propelled ammo such as missile launchers).\n\n{b}Modifiers:{/b} The weapon’s range increases by one range band, to a maximum of extreme range. The weapon gains the Cumbersome 2 quality, or increases its existing Cumbersome quality by 2.\n\n{b}Hard Points Required:{/b} 2." compset="ItemMod">
+    <fieldval field="imodHPCost" value="2"/>
+    <fieldval field="imodCost" value="1000"/>
+    <fieldval field="imodRarity" value="4"/>
+    <usesource source="WeirdWar"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <usesource source="Modern"/>
+    <tag group="ItemModCat" tag="WeaponRangedHeavy"/>
+    <tag group="ItemModCat" tag="WeaponRangedLight"/>
+    <tag group="ItemModCat" tag="WeaponGunnery"/>
+    <tag group="ItemModCat" tag="WeaponSig"/>
+    <eval phase="Effects" priority="1000"><![CDATA[doneif (parent.isgizmo = 0)
+var tagstr as string
+
+~ range increased
+var rng as string
+rng = parent.tagnames[WeaponRange.?,"/"]
+if (compare(rng,"Close") = 0) then
+  rng = "Short"
+elseif (compare(rng,"Short") = 0) then
+  rng = "Medium"
+elseif (compare(rng,"Medium") = 0) then
+  rng = "Long"
+elseif (compare(rng,"Long") = 0) then
+  rng = "Extreme"
+  endif
+
+tagstr = "WeaponRange." & rng
+perform parent.delete[WeaponRange.?]
+perform parent.assignstr[tagstr]
+
+~ Cumbersome 2 / +2
+var cumbval as number
+
+
+cumbval = parent.tagvalue[ItemQuality.Cumber?]
+
+if (cumbval <> 0) then
+  cumbval += 2
+  tagstr = "ItemQuality.Cumber" & cumbval 
+  perform parent.delete[ItemQuality.Cumber?]
+  perform parent.assignstr[tagstr]
+else
+  perform parent.assign[ItemQuality.Cumber2]
+  endif]]></eval>
+    </thing>
+  <thing id="imodHairTrigger" name="Hair Trigger" description="A “hair trigger” represents a modification that allows the user to fire a weapon very quickly, although this can be at the expense of accuracy. This kind of attachment makes sense for the {b}weird war{/b}, {b}modern day{/b}, {b}science fiction{/b}, and {b}space opera{/b} settings. \n\n{b}Use With:{/b} This attachment can be applied to any pistol. \n\n{b}Modifiers:{/b} When the user makes the first combat check with this weapon in an encounter, add [S][T] to the results. \n\n{b}Hard Points Required:{/b} 1." compset="ItemMod" summary="When the user makes the first combat check with this weapon in an encounter, add [S][T] to the results.">
+    <fieldval field="imodCost" value="150"/>
+    <fieldval field="imodHPCost" value="1"/>
+    <fieldval field="imodRarity" value="3"/>
+    <usesource source="WeirdWar"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <usesource source="Modern"/>
+    <tag group="ItemModCat" tag="WeaponPistol"/>
+    <tag group="ItemModCat" tag="WeaponSig"/>
+    </thing>
+  <thing id="imodRazorEdge" name="Razor Edge" description="This attachment represents sharpening a blade to a razor edge, then reinforcing or treating that edge so that it can withstand repeated blows. This kind of attachment makes sense for any setting. \n\n{b}Use With:{/b} This attachment can be applied to any close combat weapon that has a blade. \n\n{b}Modifiers:{/b} The weapon gains the Pierce 2 quality, or increases any existing Pierce quality by 1. The weapon also decreases its Crit rating by 1, to a minimum of 1. \n\n{b}Hard Points Required:{/b} 1." compset="ItemMod" uniqueness="useronce">
+    <fieldval field="imodCost" value="1250"/>
+    <fieldval field="imodHPCost" value="1"/>
+    <fieldval field="imodRarity" value="6"/>
+    <tag group="ItemModCat" tag="WeaponBladed"/>
+    <tag group="ItemModCat" tag="WeaponSig"/>
+    <eval phase="Effects" priority="1000"><![CDATA[doneif (parent.isgizmo = 0)
+
+
+~ crit rating reduced
+
+var currcrit as number
+
+currcrit = parent.field[wpCrit].value
+
+if (currcrit >= 2) then
+
+  currcrit -= 1
+
+  parent.field[wpCrit].value = currcrit
+
+  endif
+
+var pierceval as number
+var tagstr as string
+
+pierceval = parent.tagvalue[ItemQuality.Pierce?]
+
+if (pierceval <> 0) then
+  pierceval += 1
+  tagstr = "ItemQuality.Pierce" & pierceval 
+  perform parent.delete[ItemQuality.Pierce?]
+  perform parent.assignstr[tagstr]
+else
+  perform parent.assign[ItemQuality.Pierce2]
+  endif]]></eval>
+    </thing>
+  <thing id="imodRecurveLimbs" name="Recurve Limbs" description="Making the limbs of a bow or crossbow curve away from the wielder increases the penetrating power of the bow’s shots, even if it also makes the bow larger and more difficult to wield. This kind of attachment makes sense for {b}fantasy{/b} settings.\n\n{b}Use With:{/b} This attachment can be applied to any bow or crossbow.\n\n{b}Modifiers:{/b} The weapon gains the Pierce 2 quality, or increases any existing Pierce quality by 1. The weapon also gains the Unwieldy 2 quality, or increases any existing Unwieldy quality by 1.\n\n{b}Hard Points Required:{/b} 1." compset="ItemMod">
+    <fieldval field="imodHPCost" value="1"/>
+    <fieldval field="imodCost" value="300"/>
+    <fieldval field="imodRarity" value="4"/>
+    <usesource source="Fantasy"/>
+    <tag group="ItemModCat" tag="WeaponCrossbow"/>
+    <tag group="ItemModCat" tag="WeaponBow"/>
+    <tag group="ItemModCat" tag="WeaponSig"/>
+    <eval phase="Effects" priority="1000"><![CDATA[doneif (parent.isgizmo = 0)
+
+var pierceval as number
+var tagstr as string
+
+pierceval = parent.tagvalue[ItemQuality.Pierce?]
+
+if (pierceval <> 0) then
+  pierceval += 1
+  tagstr = "ItemQuality.Pierce" & pierceval 
+  perform parent.delete[ItemQuality.Pierce?]
+  perform parent.assignstr[tagstr]
+else
+  perform parent.assign[ItemQuality.Pierce2]
+  endif
+~ Unwieldy 2 / +1
+var unwval as number
+var tagstr as string
+
+unwval = parent.tagvalue[ItemQuality.Unwieldy?]
+
+if (unwval <> 0) then
+  unwval += 1
+  tagstr = "ItemQuality.Unwieldy" & unwval 
+  perform parent.delete[ItemQuality.Unwieldy?]
+  perform parent.assignstr[tagstr]
+else
+  perform parent.assign[ItemQuality.Unwieldy2]
+  endif]]></eval>
+    </thing>
+  <thing id="imodSerratedEdge" name="Serrated Edge" description="Adding jagged sawteeth to a bladed weapon means the wounds it makes are particularly brutal and damaging. This kind of attachment makes sense for any setting.\n\n{b}Use With:{/b} This attachment can be applied to any close combat weapon that has a blade.\n\n{b}Modifiers:{/b} The weapon gains the Vicious 1 quality, or increases any existing Vicious quality by 1.\n\n{b}Hard Points Required:{/b} 1." compset="ItemMod">
+    <fieldval field="imodHPCost" value="1"/>
+    <fieldval field="imodCost" value="75"/>
+    <fieldval field="imodRarity" value="2"/>
+    <tag group="ItemModCat" tag="WeaponBladed"/>
+    <tag group="ItemModCat" tag="WeaponSig"/>
+    <eval phase="Effects" priority="1000"><![CDATA[doneif (parent.isgizmo = 0)
+
+var viciousval as number
+var tagstr as string
+
+viciousval = parent.tagvalue[ItemQuality.Vicious?]
+
+if (viciousval <> 0) then
+  viciousval += 1
+  tagstr = "ItemQuality.Vicious" & viciousval 
+  perform parent.delete[ItemQuality.Vicious?]
+  perform parent.assignstr[tagstr]
+else
+  perform parent.assign[ItemQuality.Vicious1]
+  endif]]></eval>
+    </thing>
+  <thing id="imodSuperiorWpn" name="Superior" description="This simply represents the weapon being modified by a master craftsman to be better than other examples of its type. This kind of attachment makes sense for any setting. \n\n{b}Use With:{/b} This attachment can be applied to any weapon. \n\n{b}Modifiers:{/b} The weapon gains the Superior quality. \n\n{b}Hard Points Required:{/b} 1." compset="ItemMod" summary="Weapon gains the Superior quality.">
+    <fieldval field="imodCost" value="750"/>
+    <fieldval field="imodRarity" value="7"/>
+    <tag group="ItemModCat" tag="Weapon"/>
+    <tag group="ItemModCat" tag="WeaponSig"/>
+    <eval phase="Effects" priority="1000">doneif (parent.isgizmo = 0)
+
+perform parent.assign[ItemQuality.Superior]</eval>
+    </thing>
+  <thing id="imodTelescopicS" name="Telescopic Sight" description="A telescopic sight magnifies a target, allowing the user to shoot targets that they could normally barely be able to see (futuristic versions may use special enhanced optics, rather than simple lenses). This kind of attachment makes sense for the {b}weird war{/b}, {b}modern day{/b}, {b}science fiction{/b}, and {b}space opera{/b} settings.\n\n{b}Use With:{/b} This attachment can be applied to any ranged weapon that could logically benefit from the addition of a telescopic sight.\n\n{b}Modifiers:{/b} The user reduces the difficulty of ranged combat checks made with this weapon at long and extreme range by 1.\n\n{b}Hard Points Required:{/b} 1." compset="ItemMod" summary="The user reduces the difficulty of ranged combat checks made with this weapon at long and extreme range by 1.">
+    <fieldval field="imodCost" value="200"/>
+    <fieldval field="imodHPCost" value="1"/>
+    <fieldval field="imodRarity" value="3"/>
+    <tag group="ItemModCat" tag="WeaponSig"/>
+    <eval phase="Effects" priority="1000">~ if gizmo</eval>
+    </thing>
+  <thing id="imodTripodMount" name="Tripod Mount" description="Like a bipod, the tripod mount is a set of three folding legs that deploy from the center of the weapon to provide a stable stand to fire from. This kind of attachment makes sense for the {b}weird war{/b}, {b}modern day{/b}, {b}science fiction{/b}, and {b}space opera{/b} settings.\n\n{b}Use With:{/b} This attachment can be applied to any Ranged (Heavy) or Gunnery weapon with an encumbrance of 4 or more.\n\n{b}Modifiers:{/b} If the user spends two preparation maneuvers to deploy the tripod, the weapon’s Cumbersome or Unwieldy qualities are reduced by 3, to a minimum of 0, and the weapon’s encumbrance is reduced by 4, to a minimum of 0. The weapon may not be moved (except to pivot on the tripod mount) once it has been set up. The user must spend two preparation maneuvers to take the tripod down.\n\n{b}Hard Points Required:{/b} 2." compset="ItemMod" summary="When deployed in fixed position, lowers Cumbersome/Unwieldy qualities and encumbrance by 2.">
+    <fieldval field="imodHPCost" value="1"/>
+    <fieldval field="imodCost" value="400"/>
+    <fieldval field="imodRarity" value="3"/>
+    <usesource source="Modern"/>
+    <usesource source="WeirdWar"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="ItemModCat" tag="WeaponGunnery"/>
+    <tag group="ItemModCat" tag="WeaponRangedHeavy"/>
+    <tag group="ItemModCat" tag="WeaponSig"/>
+    <eval phase="Effects" priority="1000"><![CDATA[doneif (parent.isgizmo = 0)
+
+doneif (field[imodActive].value = 0)
+
+~ encumbrance decreased
+var enc as number
+enc = parent.field[gearWeight].value
+enc -= 4
+parent.field[gearWeight].value = enc 
+
+~ Cumbersome 3 / +3
+var cumbval as number
+var tagstr as string
+
+cumbval = parent.tagvalue[ItemQuality.Cumber?]
+
+if (cumbval <> 0) then
+  cumbval -= 3
+  tagstr = "ItemQuality.Cumber" & cumbval 
+  perform parent.delete[ItemQuality.Cumber?]
+  perform parent.assignstr[tagstr]
+else
+  perform parent.assign[ItemQuality.Cumber2]
+  endif
+
+~ Unwieldy 3 / +3
+var unwval as number
+var tagstr as string
+
+unwval = parent.tagvalue[ItemQuality.Unwieldy?]
+
+if (unwval <> 0) then
+  unwval -= 3
+  tagstr = "ItemQuality.Unwieldy" & unwval 
+  perform parent.delete[ItemQuality.Unwieldy?]
+  perform parent.assignstr[tagstr]
+else
+  perform parent.assign[ItemQuality.Unwieldy1]
+  endif]]></eval>
+    </thing>
+  <thing id="imodUnderFlamethr" name="Under-Barrel Flamethrower" description="Modern firearms sometimes have secondary weapons attached under the barrel, allowing the wielder to effectively carry two weapons in one. This kind of attachment makes sense for the {b}modern day{/b}, {b}science fiction{/b}, and {b}space opera{/b} settings.\n\n{b}Use With:{/b} This attachment can be applied to any rifle-sized Ranged (Heavy) weapons.\n\n{b}Modifiers:{/b} When installed, the user chooses one of the following secondary weapons. The weapon can then fire using the associated secondary profile.\n\nThe weapon gains the Cumbersome 2 quality, or increases its existing Cumbersome quality by 1. The weapon also gains the Unwieldy 2 quality, or increases its existing Unwieldy quality by 1. Finally, the weapon increases its encumbrance by 2.\n\n{b}Hard Points Required:{/b} 2." compset="ItemMod">
+    <fieldval field="imodRarity" value="6"/>
+    <fieldval field="imodCost" value="3000"/>
+    <fieldval field="imodHPCost" value="2"/>
+    <usesource source="Modern"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="ItemModCat" tag="WeaponRifle"/>
+    <tag group="ItemModCat" tag="WeaponSig"/>
+    <bootstrap thing="wpUBFlamethrower">
+      <autotag group="Helper" tag="Shadow"/>
+      </bootstrap>
+    <eval phase="Effects" priority="1000"><![CDATA[doneif (parent.isgizmo = 0)
+
+~ encumbrance increased
+var enc as number
+enc = parent.field[gearWeight].value
+enc += 2
+parent.field[gearWeight].value = enc 
+
+~ Cumbersome 2 / +1
+var cumbval as number
+var tagstr as string
+
+cumbval = parent.tagvalue[ItemQuality.Cumber?]
+
+if (cumbval <> 0) then
+  cumbval += 1
+  tagstr = "ItemQuality.Cumber" & cumbval 
+  perform parent.delete[ItemQuality.Cumber?]
+  perform parent.assignstr[tagstr]
+else
+  perform parent.assign[ItemQuality.Cumber2]
+  endif
+
+~ Unwieldy 2 / +1
+var unwval as number
+var tagstr as string
+
+unwval = parent.tagvalue[ItemQuality.Unwieldy?]
+
+if (unwval <> 0) then
+  unwval += 1
+  tagstr = "ItemQuality.Unwieldy" & unwval 
+  perform parent.delete[ItemQuality.Unwieldy?]
+  perform parent.assignstr[tagstr]
+else
+  perform parent.assign[ItemQuality.Unwieldy2]
+  endif]]></eval>
+    </thing>
+  <thing id="imodUnderGL" name="Under-Barrel Grenade Launcher" description="Modern firearms sometimes have secondary weapons attached under the barrel, allowing the wielder to effectively carry two weapons in one. This kind of attachment makes sense for the {b}modern day{/b}, {b}science fiction{/b}, and {b}space opera{/b} settings.\n\n{b}Use With:{/b} This attachment can be applied to any rifle-sized Ranged (Heavy) weapons.\n\n{b}Modifiers:{/b} When installed, the user chooses one of the following secondary weapons. The weapon can then fire using the associated secondary profile.\n\nThe weapon gains the Cumbersome 2 quality, or increases its existing Cumbersome quality by 1. The weapon also gains the Unwieldy 2 quality, or increases its existing Unwieldy quality by 1. Finally, the weapon increases its encumbrance by 2.\n\n{b}Hard Points Required:{/b} 2." compset="ItemMod">
+    <fieldval field="imodRarity" value="5"/>
+    <fieldval field="imodCost" value="1500"/>
+    <fieldval field="imodHPCost" value="2"/>
+    <usesource source="Modern"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="ItemModCat" tag="WeaponRifle"/>
+    <tag group="ItemModCat" tag="WeaponSig"/>
+    <bootstrap thing="wpUBGL">
+      <autotag group="Helper" tag="Shadow"/>
+      </bootstrap>
+    <eval phase="Effects" priority="1000"><![CDATA[doneif (parent.isgizmo = 0)
+
+~ encumbrance increased
+var enc as number
+enc = parent.field[gearWeight].value
+enc += 2
+parent.field[gearWeight].value = enc 
+
+~ Cumbersome 2 / +1
+var cumbval as number
+var tagstr as string
+
+cumbval = parent.tagvalue[ItemQuality.Cumber?]
+
+if (cumbval <> 0) then
+  cumbval += 1
+  tagstr = "ItemQuality.Cumber" & cumbval 
+  perform parent.delete[ItemQuality.Cumber?]
+  perform parent.assignstr[tagstr]
+else
+  perform parent.assign[ItemQuality.Cumber2]
+  endif
+
+~ Unwieldy 2 / +1
+var unwval as number
+var tagstr as string
+
+unwval = parent.tagvalue[ItemQuality.Unwieldy?]
+
+if (unwval <> 0) then
+  unwval += 1
+  tagstr = "ItemQuality.Unwieldy" & unwval 
+  perform parent.delete[ItemQuality.Unwieldy?]
+  perform parent.assignstr[tagstr]
+else
+  perform parent.assign[ItemQuality.Unwieldy2]
+  endif]]></eval>
+    </thing>
+  <thing id="imodUnderShotgun" name="Under-Barrel Shotgun" description="Modern firearms sometimes have secondary weapons attached under the barrel, allowing the wielder to effectively carry two weapons in one. This kind of attachment makes sense for the {b}modern day{/b}, {b}science fiction{/b}, and {b}space opera{/b} settings.\n\n{b}Use With:{/b} This attachment can be applied to any rifle-sized Ranged (Heavy) weapons.\n\n{b}Modifiers:{/b} When installed, the user chooses one of the following secondary weapons. The weapon can then fire using the associated secondary profile.\n\nThe weapon gains the Cumbersome 2 quality, or increases its existing Cumbersome quality by 1. The weapon also gains the Unwieldy 2 quality, or increases its existing Unwieldy quality by 1. Finally, the weapon increases its encumbrance by 2.\n\n{b}Hard Points Required:{/b} 2." compset="ItemMod">
+    <fieldval field="imodRarity" value="4"/>
+    <fieldval field="imodCost" value="1000"/>
+    <fieldval field="imodHPCost" value="2"/>
+    <usesource source="Modern"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="ItemModCat" tag="WeaponRifle"/>
+    <tag group="ItemModCat" tag="WeaponSig"/>
+    <bootstrap thing="wpUBShotgun">
+      <autotag group="Helper" tag="Shadow"/>
+      </bootstrap>
+    <eval phase="Effects" priority="1000"><![CDATA[doneif (parent.isgizmo = 0)
+
+~ encumbrance increased
+var enc as number
+enc = parent.field[gearWeight].value
+enc += 2
+parent.field[gearWeight].value = enc 
+
+~ Cumbersome 2 / +1
+var cumbval as number
+var tagstr as string
+
+cumbval = parent.tagvalue[ItemQuality.Cumber?]
+
+if (cumbval <> 0) then
+  cumbval += 1
+  tagstr = "ItemQuality.Cumber" & cumbval 
+  perform parent.delete[ItemQuality.Cumber?]
+  perform parent.assignstr[tagstr]
+else
+  perform parent.assign[ItemQuality.Cumber2]
+  endif
+
+~ Unwieldy 2 / +1
+var unwval as number
+var tagstr as string
+
+unwval = parent.tagvalue[ItemQuality.Unwieldy?]
+
+if (unwval <> 0) then
+  unwval += 1
+  tagstr = "ItemQuality.Unwieldy" & unwval 
+  perform parent.delete[ItemQuality.Unwieldy?]
+  perform parent.assignstr[tagstr]
+else
+  perform parent.assign[ItemQuality.Unwieldy2]
+  endif]]></eval>
+    </thing>
+  <thing id="imodWeaponSling" name="Weapon Sling" description="A sling helps a user carry a particularly heavy weapon by taking up part of the weight. This kind of attachment makes sense for any setting.\n\n{b}Use With:{/b} This attachment can be applied to any Ranged (Heavy) weapon or ranged weapons that require two hands to wield.\n\n{b}Modifiers:{/b} The weapon decreases its encumbrance by 2. \n\n{b}Hard Points Required:{/b} 1." compset="ItemMod" summary="Decreases Encumbrance of weapon by 2">
+    <fieldval field="imodHPCost" value="1"/>
+    <fieldval field="imodCost" value="25"/>
+    <fieldval field="imodRarity" value="1"/>
+    <tag group="ItemModCat" tag="WeaponRangedHeavy"/>
+    <tag group="ItemModCat" tag="WeaponSig"/>
+    <eval phase="Effects" priority="1000"><![CDATA[doneif (parent.isgizmo = 0)
+
+~ encumbrance rating reduced
+var enc as number
+enc = parent.field[gearWeight].value
+if (enc >= 0) then
+  enc -= 2
+  parent.field[gearWeight].value = enc 
+  endif]]></eval>
+    </thing>
+  <thing id="imodWeightedHead" name="Weighted Head" description="Adding extra weight to the head of a blunt weapon lets the wielder strike with greater impact and do more damage. This kind of attachment makes sense in any setting.\n\n{b}Use With:{/b} This attachment can be applied to any close combat weapon that deals bludgeoning or crushing damage (not one with a cutting edge).\n\n{b}Modifiers:{/b} The weapon increases its damage by 2. The weapon gains the Cumbersome 2 quality, or increases its existing Cumbersome quality by 1.\n\n{b}Hard Points Required:{/b} 1." compset="ItemMod">
+    <fieldval field="imodHPCost" value="1"/>
+    <fieldval field="imodCost" value="250"/>
+    <fieldval field="imodRarity" value="2"/>
+    <tag group="ItemModCat" tag="WeaponBlunt"/>
+    <tag group="ItemModCat" tag="WeaponSig"/>
+    <eval phase="Effects" priority="1000"><![CDATA[doneif (parent.isgizmo = 0)
+
+~ crit rating reduced
+var currdmg as number
+currdmg = parent.field[wpDamage].value
+if (currdmg >= 0) then
+  currdmg += 2
+  parent.field[wpDamage].value = currdmg
+  endif
+
+var cumbval as number
+var tagstr as string
+
+cumbval = parent.tagvalue[ItemQuality.Cumber?]
+
+if (cumbval <> 0) then
+  cumbval += 1
+  tagstr = "ItemQuality.Cumber" & cumbval 
+  perform parent.delete[ItemQuality.Cumber?]
+  perform parent.assignstr[tagstr]
+else
+  perform parent.assign[ItemQuality.Cumber2]
+  endif]]></eval>
+    </thing>
+  <thing id="wpUBFlamethrower" name="Flamethrower" compset="Ranged">
+    <fieldval field="wpDamage" value="10"/>
+    <fieldval field="wpCrit" value="2"/>
+    <usesource source="Modern"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="ItemQuality" tag="Burn4"/>
+    <tag group="ItemQuality" tag="LimitedAmmo2"/>
+    <tag group="WeaponSkill" tag="skRangedHeavy"/>
+    <tag group="ItemQuality" tag="Blast6"/>
+    <tag group="WeaponRange" tag="Short"/>
+    <tag group="Hide" tag="Equipment"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpUBGL" name="Grenade Launcher" compset="Ranged">
+    <fieldval field="wpDamage" value="8"/>
+    <fieldval field="wpCrit" value="4"/>
+    <usesource source="Modern"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="ItemQuality" tag="Blast6"/>
+    <tag group="ItemQuality" tag="LimitedAmmo1"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="WeaponSkill" tag="skRangedHeavy"/>
+    <tag group="WeaponRange" tag="Medium"/>
+    <tag group="Hide" tag="Equipment"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpUBShotgun" name="Shotgun" compset="Ranged">
+    <fieldval field="wpDamage" value="8"/>
+    <fieldval field="wpCrit" value="3"/>
+    <tag group="WeaponSkill" tag="skRangedHeavy"/>
+    <tag group="WeaponRange" tag="Short"/>
+    <tag group="ItemQuality" tag="Blast5"/>
+    <tag group="ItemQuality" tag="Knockdown"/>
+    <tag group="Hide" tag="Equipment"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="imodDeflectPlate" name="Deflective Plating" description="This attachment applies angled plates or mildly reflective surfaces to help deflect incoming ranged attacks. This kind of attachment makes sense in {b}fantasy{/b}, {b}science fiction{/b}, and {b}space opera{/b} settings (in the past, armor might be designed to deflect arrows or throwing knives, while in the future, it could reflect lasers or energy blasts). \n\n{b}Use With:{/b} This attachment can be applied to any armor. \n\n{b}Modifiers:{/b} Wearer increases their ranged defense by 1. \n\n{b}Hard Points Required:{/b} 1." compset="ItemMod" summary="Wearer increases their ranged defense by 1.">
+    <fieldval field="imodCost" value="450"/>
+    <fieldval field="imodRarity" value="4"/>
+    <fieldval field="imodHPCost" value="1"/>
+    <tag group="ItemModCat" tag="Armor"/>
+    <eval phase="Effects" priority="1000">doneif (parent.isgizmo = 0)
+
+parent.field[defDefenseRange].value += 1</eval>
+    </thing>
+  <thing id="imodEnhLiftServos" name="Enhanced Lifting Servos" description="Futuristic servos (or other, similar devices) can be worked into suits of hard carapace armor to make them powered and let the user lift and carry far more than they could normally. This kind of attachment makes sense in {b}science fiction{/b} and {b}space opera{/b} settings.\n\n{b}Use With:{/b} This attachment can be applied to any armor composed of a hardened carapace.\n\n{b}Modifiers:{/b} When wearing this armor, the user increases their encumbrance threshold by 5. The user reduces the rating of the Cumbersome quality of any carried weapons by 1, to a minimum of 1.\n\n{b}Hard Points Required:{/b} 2." compset="ItemMod">
+    <fieldval field="imodCost" value="1500"/>
+    <fieldval field="imodRarity" value="5"/>
+    <fieldval field="imodHPCost" value="2"/>
+    <eval phase="Effects" priority="1000">doneif (parent.isgizmo = 0)
+
+~ encumbrance threshold 
+#resmax[resEncumbrance] += 5</eval>
+    <eval phase="Effects" priority="1100" index="2"><![CDATA[doneif (parent.isgizmo = 0)
+
+~ Cumbersome -1 for all weapons with the quality
+var cumbval as number
+var tagstr as string
+
+foreach pick in hero from WeaponBase where "ItemQuality.Cumber?"
+  cumbval = eachpick.tagvalue[ItemQuality.Cumber?]
+  cumbval -= 1
+  if (cumbval <= 1) then
+    cumbval = 1
+    endif
+  tagstr = "ItemQuality.Cumber" & cumbval 
+  perform parent.delete[ItemQuality.Cumber?]
+  perform parent.assignstr[tagstr]
+  nexteach]]></eval>
+    </thing>
+  <thing id="imodIntimVisage" name="Intimidating Visage" description="Warriors from many cultures paint their armor or add imposing face masks to intimidate opponents. This kind of attachment makes sense in all settings. \n\n{b}Use With:{/b} This attachment can be applied to any armor. \n\n{b}Modifiers:{/b} When wearing this armor, the user adds [S] to Coercion checks they make, and automatic [F] to Charm checks they make. \n\n{b}Hard Points Required:{/b} 0." compset="ItemMod">
+    <fieldval field="imodCost" value="125"/>
+    <fieldval field="imodRarity" value="3"/>
+    <tag group="ItemModCat" tag="Armor"/>
+    <eval phase="Effects" priority="1000">doneif (parent.isgizmo = 0)
+
+doneif (parent.field[grIsEquip].value = 0)
+
+hero.childfound[skCoerce].field[sklAddedSuccess].value += 1
+hero.childfound[skCharm].field[sklAddedFailure].value += 1</eval>
+    </thing>
+  <thing id="imodRareMetals" name="Rare Metals" description="Many fantasy settings feature rare, nearly magical metals that can be used to create superior armor. This kind of attachment makes sense in {b}fantasy{/b} settings. \n\n{b}Use With:{/b} This attachment can be applied to chain or plate armor. \n\n{b}Modifiers:{/b} The armor reduces its encumbrance by 2, and it adds one fewer [SB] to Stealth checks. \n\n{b}Hard Points:{/b} 2." compset="ItemMod">
+    <fieldval field="imodCost" value="1000"/>
+    <fieldval field="imodRarity" value="8"/>
+    <fieldval field="imodHPCost" value="2"/>
+    <usesource source="Fantasy"/>
+    <tag group="ItemModCat" tag="ArmorChain"/>
+    <tag group="ItemModCat" tag="ArmorPlate"/>
+    <eval phase="Effects" priority="1000"><![CDATA[doneif (parent.isgizmo = 0)
+
+~ encumbrance decreased
+var enc as number
+enc = parent.field[gearWeight].value
+enc -= 2
+if (enc <= 0) then
+  enc = 0
+  endif
+parent.field[gearWeight].value = enc
+
+doneif (parent.field[grIsEquip].value = 0)
+hero.childfound[skStealth].field[sklRemovedSetback].value += 1]]></eval>
+    </thing>
+  <thing id="imodReinforcedPla" name="Reinforced Plating" description="This attachment represents adding extra layers of armor or using stronger materials to reinforce the armor. This kind of attachment makes sense in any setting. \n\n{b}Use With:{/b} This attachment can be applied to any armor that uses hardened plates for protection. \n\n{b}Modifiers:{/b} The armor gains the Reinforced quality. The armor also increases its encumbrance by 1. \n\n{b}Hard Points Required:{/b} 2." compset="ItemMod" summary="Armor gains the Reinforced quality. The armor also increases its encumbrance by 1.">
+    <fieldval field="imodCost" value="8000"/>
+    <fieldval field="imodRarity" value="7"/>
+    <fieldval field="imodHPCost" value="2"/>
+    <tag group="ItemModCat" tag="Armor"/>
+    <eval phase="Effects" priority="1000">doneif (parent.isgizmo = 0)
+
+~ encumbrance increased
+var enc as number
+enc = parent.field[gearWeight].value
+enc += 1
+parent.field[gearWeight].value = enc
+
+perform parent.assign[ItemQuality.Reinforced]</eval>
+    </thing>
+  <thing id="imodVacuumSeal" name="Vacuum Sealed" description="This attachment equips the armor with breathing gear and seals it against vacuum. This kind of attachment makes sense in the {b}science fiction{/b} and {b}space opera{/b} settings. \n\n{b}Use With:{/b} This attachment can be applied to any armor. \n\n{b}Modifiers:{/b} While wearing this armor, the user may ignore the effects of vacuum or poisonous atmospheric environments for up to one hour. \n\n{b}Hard Points Required:{/b} 1." compset="ItemMod">
+    <fieldval field="imodCost" value="600"/>
+    <fieldval field="imodRarity" value="4"/>
+    <fieldval field="imodHPCost" value="1"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <eval phase="Effects" priority="1000"><![CDATA[doneif (parent.isgizmo = 0)
+
+doneif (parent.field[grIsEquip].value = 0)
+
+parent.field[grNotes].text = splice(parent.field[grNotes].text,"Ignore the effects of vacuum or poisonous atmospheric environments for up to one hour. ","; ")]]></eval>
+    </thing>
+  </document>

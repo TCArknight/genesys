@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document signature="Hero Lab Data">
+  <thing id="arcHumanAverage" name="Human (Average)" description="The average human archetype is our baseline for character creation, and portrays the most customizable example of a person. You should choose this archetype if you prefer to play “generalist” characters, who are never going to be terrible at anything. You should also choose this archetype if you have a very specific type of character in mind, since this archetype has the most customization options of the four choices.\n\nThe characteristics all start at 2, meaning your character is going to have a hard time increasing any one characteristic to a 4 or 5, but also that your character isn’t going to have any characteristic they are truly lacking in. Likewise, the strain and wound thresholds start at the average 10. Your character starts with more ranks in skills than anyone else, again playing to the idea of being a generalist. Your archetype ability is also a generalist ability.\n\nEffectively, your group gains a Story Point to spend whenever it needs it. And finally, your character starts with the most experience of any of the four archetypes. Just remember, character creation is your only chance to spend XP on characteristics (otherwise, to increase a characteristic you need to purchase the Dedication talent; see page 81). We recommend you spend most of these XP on improving your characteristics, while saving at most 25–35 experience for talents and skills." compset="Archetype" summary="Generalist Human" uniqueness="unique">
+    <fieldval field="arXP" value="110"/>
+    <fieldval field="arBra" value="2"/>
+    <fieldval field="arAgi" value="2"/>
+    <fieldval field="arInt" value="2"/>
+    <fieldval field="arCun" value="2"/>
+    <fieldval field="arWil" value="2"/>
+    <fieldval field="arPre" value="2"/>
+    <fieldval field="arWound" value="10"/>
+    <fieldval field="arStrain" value="10"/>
+    <fieldval field="usrLabel1" value="Starting Skill 1"/>
+    <fieldval field="usrLabel2" value="Starting Skill 2"/>
+    <fieldval field="usrCandid1" value="component.Skill &amp; !SkillType.CareerSkill &amp; !SkillChosen.Archetype"/>
+    <fieldval field="usrCandid2" value="component.Skill &amp; !SkillType.CareerSkill &amp; !SkillChosen.Archetype"/>
+    <tag group="ChooseSrc2" tag="Hero"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="User" tag="NoAutoName"/>
+    <bootstrap thing="abReadyAnything"></bootstrap>
+    <eval phase="Setup"><![CDATA[trustme
+
+if (field[usrChosen1].ischosen <> 0) then
+  field[usrChosen1].chosen.field[trtACFreeRank].value += 1
+  field[usrChosen1].chosen.field[sklArchetypeBon].value += 1
+  endif
+
+if (field[usrChosen2].ischosen <> 0) then
+  field[usrChosen2].chosen.field[sklArchetypeBon].value += 1
+  field[usrChosen2].chosen.field[trtACFreeRank].value += 1
+  endif]]></eval>
+    </thing>
+  <thing id="abReadyAnything" name="Ready for Anything" description="Once per session as an out-of-turn incidental, you may move one Story Point from the Game Master’s pool to the players’ pool." compset="Ability">
+    <tag group="Hide" tag="Ability"/>
+    </thing>
+  <thing id="arcHumanLabor" name="Human (Laborer)" description="The laborer archetype represents a character who has a background in some form of manual labor, and who is generally strong and tough. You should choose this archetype if you’re planning on making a character who focuses on fighting, especially fighting in melee combat. You should also choose this archetype if your character has a background of manual labor and hard work.\n\nThis archetype starts with the Brawn characteristic at 3 and the Willpower characteristic at 1. You’re starting with a character who has better than average Brawn (which makes it easier to improve Brawn further), with the trade-off that your character has a worse than average Willpower. You’ll have to either spend valuable experience points buying that back to 2, or be satisfied with this drawback. Likewise, your character’s wound threshold is higher than average, but your strain threshold is lower than average.\n\nFinally, this archetype gets a special ability that lets you turn a single Critical Injury result that your character suffers into the mildest Critical possible. Not only does this protect your character from some debilitating Crit results, but since the only way to permanently die in our game is through some Critical effects, this can even save your character from certain death." compset="Archetype" uniqueness="unique">
+    <fieldval field="arBra" value="3"/>
+    <fieldval field="arAgi" value="2"/>
+    <fieldval field="arInt" value="2"/>
+    <fieldval field="arCun" value="2"/>
+    <fieldval field="arWil" value="1"/>
+    <fieldval field="arPre" value="2"/>
+    <fieldval field="arWound" value="12"/>
+    <fieldval field="arStrain" value="8"/>
+    <fieldval field="arXP" value="100"/>
+    <bootstrap thing="abToughAsNails"></bootstrap>
+    <eval phase="Setup">~ A laborer starts with one rank in Athletics during character creation.
+hero.child[skAthlet].field[trtACFreeRank].value += 1</eval>
+    </thing>
+  <thing id="abToughAsNails" name="Tough As Nails" description="Once per session, your character may spend a Story Point as an out-of-turn incidental immediately after suffering a Critical Injury and determining the result. If they do so, they count the result rolled as “01.”" compset="Ability">
+    <tag group="Hide" tag="Ability"/>
+    </thing>
+  <thing id="abBrilliant" name="Brilliant!" description="Once per session, your character may spend a Story Point as an incidental. If they do so, during the next check they make during that turn, you count their ranks in the skill being used as equal to their Intellect." compset="Ability">
+    <tag group="Hide" tag="Ability"/>
+    </thing>
+  <thing id="abForcefulPerson" name="Forceful Personality" description="Once per session, your character may spend a Story Point as an incidental. If they do so, during the next skill check they make during that turn, your character doubles the strain they inflict or the strain they heal (you choose before making the check)." compset="Ability">
+    <tag group="Hide" tag="Ability"/>
+    </thing>
+  <thing id="arcHumanIntellect" name="Human (Intellectual)" compset="Archetype" uniqueness="unique">
+    <fieldval field="arBra" value="2"/>
+    <fieldval field="arCun" value="2"/>
+    <fieldval field="arPre" value="2"/>
+    <fieldval field="arWound" value="8"/>
+    <fieldval field="arStrain" value="12"/>
+    <fieldval field="arXP" value="100"/>
+    <fieldval field="arAgi" value="1"/>
+    <fieldval field="arInt" value="3"/>
+    <fieldval field="arWil" value="2"/>
+    <bootstrap thing="abBrilliant"></bootstrap>
+    <eval phase="Setup">~ Starts with one rank in Knowledge during character creation.
+hero.child[skKnowledge].field[trtACFreeRank].value += 1</eval>
+    </thing>
+  <thing id="arcHumanAristo" name="Human (Aristocrat)" compset="Archetype" uniqueness="unique">
+    <fieldval field="arBra" value="1"/>
+    <fieldval field="arCun" value="2"/>
+    <fieldval field="arPre" value="3"/>
+    <fieldval field="arWound" value="10"/>
+    <fieldval field="arStrain" value="10"/>
+    <fieldval field="arXP" value="100"/>
+    <fieldval field="arAgi" value="2"/>
+    <fieldval field="arInt" value="2"/>
+    <fieldval field="arWil" value="2"/>
+    <bootstrap thing="abForcefulPerson"></bootstrap>
+    <eval phase="Setup">~ Starts with one rank in Cool during character creation.
+hero.child[skCool].field[trtACFreeRank].value += 1</eval>
+    </thing>
+  <thing id="abNimble" name="Nimble" description="Elf characters have a melee and ranged defense of 1." compset="Ability">
+    <tag group="Hide" tag="Ability"/>
+    <eval phase="PreTraits" priority="5000">~ +1 Melee and Ranged defense
+#traitbonus[trDefenseMel] += 1
+#traitbonus[trDefenseRng] += 1</eval>
+    </thing>
+  <thing id="arcElf" name="Elf" description="Whether tall or short, with pointy or really pointy ears, most elves are known for their grace, longevity, and connection to the natural world. This profile is based on that common conception of an elf, with high Agility (and an innate defense) but a lower wound threshold." compset="Archetype" uniqueness="unique">
+    <fieldval field="arBra" value="2"/>
+    <fieldval field="arAgi" value="3"/>
+    <fieldval field="arInt" value="2"/>
+    <fieldval field="arCun" value="2"/>
+    <fieldval field="arWil" value="1"/>
+    <fieldval field="arPre" value="2"/>
+    <fieldval field="arWound" value="9"/>
+    <fieldval field="arStrain" value="10"/>
+    <fieldval field="arXP" value="90"/>
+    <usesource source="Fantasy"/>
+    <bootstrap thing="abNimble"></bootstrap>
+    <eval phase="Setup">~ Starts with one rank in Perception during character creation.
+hero.child[skPercept].field[trtACFreeRank].value += 1</eval>
+    </thing>
+  <thing id="arcDwarf" name="Dwarf" description="The archetypal fantasy dwarf is tough, dour, eager to fight, and almost as eager to down inordinate quantities of ale. This profile presents just such a dwarf, with high wound and strain thresholds and, with a rank in Resilience, an ability to drink more than their share." compset="Archetype" uniqueness="unique">
+    <fieldval field="arBra" value="2"/>
+    <fieldval field="arAgi" value="1"/>
+    <fieldval field="arInt" value="2"/>
+    <fieldval field="arCun" value="2"/>
+    <fieldval field="arWil" value="3"/>
+    <fieldval field="arPre" value="2"/>
+    <fieldval field="arWound" value="11"/>
+    <fieldval field="arStrain" value="10"/>
+    <fieldval field="arXP" value="90"/>
+    <usesource source="Fantasy"/>
+    <bootstrap thing="abToughAsNails"></bootstrap>
+    <bootstrap thing="abDarkVision"></bootstrap>
+    <eval phase="Setup">~ Starts with one rank in Resilience during character creation.
+hero.child[skResil].field[trtACFreeRank].value += 1</eval>
+    </thing>
+  <thing id="abDarkVision" name="Dark Vision" description="When making skill checks, dwarves remove up to [SB][SB] imposed due to darkness." compset="Ability">
+    <tag group="Hide" tag="Ability"/>
+    </thing>
+  <thing id="arcOrc" name="Orc" description="In many fantasy worlds, orcs are inherently evil or violent.\nBut PCs are known for defying expectation, and this profile could also easily represent a half-orc who lives among civilized society. Your setting may also have orcs who are not evil or violent by default, making this a reasonable character choice. As you might expect, this orc is strong and tough, but not the friendliest character." compset="Archetype" uniqueness="unique">
+    <fieldval field="arBra" value="3"/>
+    <fieldval field="arAgi" value="2"/>
+    <fieldval field="arInt" value="2"/>
+    <fieldval field="arCun" value="2"/>
+    <fieldval field="arWil" value="2"/>
+    <fieldval field="arPre" value="1"/>
+    <fieldval field="arWound" value="12"/>
+    <fieldval field="arStrain" value="8"/>
+    <fieldval field="arXP" value="100"/>
+    <usesource source="Fantasy"/>
+    <bootstrap thing="abBattleRage"></bootstrap>
+    <eval phase="Setup">~ Starts with one rank in Coercion during character creation.
+hero.child[skCoerce].field[trtACFreeRank].value += 1</eval>
+    </thing>
+  <thing id="abBattleRage" name="Battle Rage" description="When making a melee attack, an orc can choose to add [SB] to the check to add +2 to the damage dealt by one hit of that attack." compset="Ability">
+    <tag group="Hide" tag="Ability"/>
+    </thing>
+  </document>
