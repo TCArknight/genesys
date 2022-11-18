@@ -160,14 +160,12 @@
     <portalref portal="smAbility"/>
     <portalref portal="smTalent1"/>
     <portalref portal="smTalent2"/>
-    <portalref portal="smSkill"/>
 
     <position><![CDATA[
       ~position and size the tables to span the full layout
       perform portal[smAbility].autoplace
       perform portal[smTalent1].autoplace[10]
       perform portal[smTalent2].autoplace[10]
-      perform portal[smSkill].autoplace[20]
       ]]></position>
 
     </layout>
