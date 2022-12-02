@@ -635,12 +635,20 @@
 	  hero.child[resXP].field[resSpent].value += XPVal
 	  
       ]]></eval> 
+	  
     <!-- Track the ability on the actor -->
     <eval index="3" phase="Render" priority="5000"><![CDATA[
 	  doneif (field[talSummary].isempty = 0)
 	  
       field[talSummary].text = field[summary].text
-      ]]></eval>	  
+      ]]></eval>
+	  
+    <eval index="4" phase="Render" priority="5001" name="spcName for rank"><![CDATA[
+	  doneif (field[talRanks].value <= 1)
+
+      field[spcName].text = field[name].text & " (Rank " & field[talRanks].value & ")"
+      ]]></eval>
+	  
     </component>
  
 
