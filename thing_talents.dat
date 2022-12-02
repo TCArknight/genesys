@@ -267,7 +267,7 @@ field[talSummary].text = sumTxt]]></eval>
     <tag group="TalentActive" tag="Active"/>
     <tag group="TalentAction" tag="Action"/>
     </thing>
-  <thing id="talJumpUp" name="Jump Up" description="Once per round during your character’s turn, your character may use this talent to stand from a prone or seated position as an incidental." compset="Talent">
+  <thing id="talJumpUp" name="Jump Up" description="Once per round during your character’s turn, your character may use this talent to stand from a prone or seated position as an incidental." compset="Talent" uniqueness="useronce">
     <tag group="TalentTier" tag="1"/>
     <tag group="TalentActive" tag="Active"/>
     <tag group="TalentAction" tag="Incidental"/>
@@ -907,7 +907,7 @@ field[talSummary].text = sumTxt]]></eval>
     <tag group="TalentActive" tag="Active"/>
     <tag group="TalentAction" tag="Incidental"/>
     </thing>
-  <thing id="talInspiringRhet" name="Inspiring Rhetoric" description="Your character may use this talent to make an {b}Average {/b}[D][D]{b}) Leadership check{/b}. For each [S] the check generates, one ally within short range heals one strain. For each [A], one ally benefiting from Inspiring Rhetoric heals one additional strain.\n\nYou should use this talent in all settings." compset="Talent" summary="Make an {b}Average {/b}[D][D]{b}) Leadership check{/b}. For each [S] the check generates, one ally within short range heals one strain. For each [A], one ally heals one additional strain.">
+  <thing id="talInspiringRheto" name="Inspiring Rhetoric" description="Your character may use this talent to make an {b}Average {/b}[D][D]{b}) Leadership check{/b}. For each [S] the check generates, one ally within short range heals one strain. For each [A], one ally benefiting from Inspiring Rhetoric heals one additional strain." compset="Talent" summary="Make an {b}Average {/b}[D][D]{b}) Leadership check{/b}. For each [S], one ally within short range heals one strain. For each [A], one ally  heals one additional strain.">
     <tag group="TalentTier" tag="2"/>
     <tag group="TalentActive" tag="Active"/>
     <tag group="TalentAction" tag="Action"/>
@@ -1036,5 +1036,232 @@ field[talSummary].text = sumTxt]]></eval>
     <tag group="TalentAction" tag="Maneuver"/>
     <eval phase="PreTraits" priority="1000">hero.childfound[talSideStep2].field[talRanks].value += 1</eval>
     <pickreq thing="talSideStep4"/>
+    </thing>
+  <thing id="talAnimalComp3" name="Animal Companion" description="Your character creates a bond with a single animal approved by your GM. This animal must be silhouette 0 (no larger than a mid-sized dog). The bond persists as long as your character chooses, although at your GM’s discretion, the bond may also be broken due to abusive treatment or other extenuating circumstances.\n\nAs long as the bond persists, the animal follows your character, and you dictate the animal’s overall behavior (although, since the animal is only bonded with the character, not dominated, it may still perform inconvenient actions such as scratching furniture, consuming rations, and marking territory). Once per round in structured encounters, your character may spend one maneuver to direct their animal in performing one action and one maneuver during your character’s turn. The animal must be within hearing and visual range of your character (generally medium range) to do this. Otherwise, the animal does not contribute to the encounter. The specifics of its behavior are up to you and your GM.\n\nFor every additional rank of Animal Companion your character has, increase the allowed silhouette of the companion by one (this may mean your character gets a new companion, or their companion grows in size).\n\nThis talent can also change in flavor depending on the nature of your game setting. While an animal companion may make sense in many settings, in a futuristic setting it may make more sense for the “animal” to be a robot or drone, for example." compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="3"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <eval phase="PreTraits" priority="5000"><![CDATA[var sumTxt as string
+var cnt as number
+
+cnt = field[trtValue1].value + field[talRanks].value - 1
+sumTxt = "You have a bond with an animal (or animals) no larger than silhouette " & cnt & "."
+
+field[talSummary].text = sumTxt]]></eval>
+    </thing>
+  <thing id="talAnimalComp4" name="Animal Companion" description="Your character creates a bond with a single animal approved by your GM. This animal must be silhouette 0 (no larger than a mid-sized dog). The bond persists as long as your character chooses, although at your GM’s discretion, the bond may also be broken due to abusive treatment or other extenuating circumstances.\n\nAs long as the bond persists, the animal follows your character, and you dictate the animal’s overall behavior (although, since the animal is only bonded with the character, not dominated, it may still perform inconvenient actions such as scratching furniture, consuming rations, and marking territory). Once per round in structured encounters, your character may spend one maneuver to direct their animal in performing one action and one maneuver during your character’s turn. The animal must be within hearing and visual range of your character (generally medium range) to do this. Otherwise, the animal does not contribute to the encounter. The specifics of its behavior are up to you and your GM.\n\nFor every additional rank of Animal Companion your character has, increase the allowed silhouette of the companion by one (this may mean your character gets a new companion, or their companion grows in size).\n\nThis talent can also change in flavor depending on the nature of your game setting. While an animal companion may make sense in many settings, in a futuristic setting it may make more sense for the “animal” to be a robot or drone, for example." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="4"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talAnimalComp3].field[talRanks].value += 1</eval>
+    <pickreq thing="talAnimalComp3"/>
+    </thing>
+  <thing id="talAnimalComp5" name="Animal Companion" description="Your character creates a bond with a single animal approved by your GM. This animal must be silhouette 0 (no larger than a mid-sized dog). The bond persists as long as your character chooses, although at your GM’s discretion, the bond may also be broken due to abusive treatment or other extenuating circumstances.\n\nAs long as the bond persists, the animal follows your character, and you dictate the animal’s overall behavior (although, since the animal is only bonded with the character, not dominated, it may still perform inconvenient actions such as scratching furniture, consuming rations, and marking territory). Once per round in structured encounters, your character may spend one maneuver to direct their animal in performing one action and one maneuver during your character’s turn. The animal must be within hearing and visual range of your character (generally medium range) to do this. Otherwise, the animal does not contribute to the encounter. The specifics of its behavior are up to you and your GM.\n\nFor every additional rank of Animal Companion your character has, increase the allowed silhouette of the companion by one (this may mean your character gets a new companion, or their companion grows in size).\n\nThis talent can also change in flavor depending on the nature of your game setting. While an animal companion may make sense in many settings, in a futuristic setting it may make more sense for the “animal” to be a robot or drone, for example." compset="Talent">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="5"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talAnimalComp3].field[talRanks].value += 1</eval>
+    <pickreq thing="talAnimalComp4"/>
+    </thing>
+  <thing id="talBarrelRoll" name="Barrel Roll" description="Your character can only use this talent while piloting a starfighter or airplane of Silhouette 3 or less. When your vehicle suffers a hit from a ranged combat check, after damage is calculated but before armor is applied, your character may have their vehicle suffer 3 system strain to use this talent. Then, reduce the damage suffered by a number equal to their ranks in Piloting." compset="Talent">
+    <usesource source="Modern"/>
+    <usesource source="Steampunk"/>
+    <usesource source="WeirdWar"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <tag group="TalentTier" tag="3"/>
+    </thing>
+  <thing id="talDistinctStyle" name="Distinctive Style" description="When making a Computers check to hack a system or break into a secured network, before rolling, your character may use this talent to add [S][S][T][T] to the results.\n\nIf you are using the optional hacking rules on page 232 and your check generates [T][T], your GM should spend it on the {b}I Know You!{/b} option in {b}Table I.2-22{/b} on page 234." compset="Talent" summary="When making a Computers check to hack a system or break into a secured network, before rolling, your character may use this talent to add [S][S][T][T] to the results.">
+    <usesource source="Modern"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="TalentTier" tag="3"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    </thing>
+  <thing id="talDodge3" name="Dodge" description="When your character is targeted by a combat check (ranged or melee), they may suffer a number of strain no greater than their ranks in Dodge to use this talent. Then, upgrade the difficulty of the combat check targeting your character a number of times equal to the strain suffered." compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="3"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <eval phase="PreTraits" priority="5000"><![CDATA[var sumTxt as string
+var cnt as number
+
+cnt = field[trtValue1].value + field[talRanks].value
+sumTxt = "Once per round you may suffer up to " & cnt 
+
+sumTxt &= " Strain. Until the end of your next turn upgrade difficulty of combat checks against you by a like amount."
+
+field[talSummary].text = sumTxt]]></eval>
+    </thing>
+  <thing id="talDodge4" name="Dodge" description="When your character is targeted by a combat check (ranged or melee), they may suffer a number of strain no greater than their ranks in Dodge to use this talent. Then, upgrade the difficulty of the combat check targeting your character a number of times equal to the strain suffered." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="4"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talDodge3].field[talRanks].value += 1</eval>
+    <pickreq thing="talDodge3"/>
+    </thing>
+  <thing id="talDodge5" name="Dodge" description="When your character is targeted by a combat check (ranged or melee), they may suffer a number of strain no greater than their ranks in Dodge to use this talent. Then, upgrade the difficulty of the combat check targeting your character a number of times equal to the strain suffered." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="5"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talDodge3].field[talRanks].value += 1</eval>
+    <pickreq thing="talDodge4"/>
+    </thing>
+  <thing id="talEagleEyes" name="Eagle Eyes" description="Once per encounter before making a ranged combat check, you may use this talent to increase your weapon’s range by one range band (to a maximum of extreme range). This lasts for the duration of the combat check." compset="Talent">
+    <tag group="TalentTier" tag="3"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    </thing>
+  <thing id="talFieldCommander" name="Field Commander" description="Your character may use this talent to make an {b}Average {/b}[D][D]{b}) Leadership check{/b}. If successful, a number of allies equal to your character’s Presence may  immediately suffer 1 strain to perform one maneuver (out of turn). If there are any questions as to which allies take their maneuvers first, your character is the final arbiter." compset="Talent" summary="Make an {b}Average {/b}[D][D]{b}) Leadership check{/b}. If successful, a number of allies equal to your character’s Presence may  immediately suffer 1 strain to perform one maneuver (out of turn).">
+    <tag group="TalentTier" tag="3"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Action"/>
+    </thing>
+  <thing id="talForgotCount" name="Forgot To Count?" description="When an opponent makes a ranged combat check, you can spend [T][T] from that check to use this talent to cause their weapon to run out of ammo, as long as the weapon can normally run out of ammunition." compset="Talent">
+    <usesource source="Modern"/>
+    <usesource source="Steampunk"/>
+    <usesource source="WeirdWar"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <tag group="TalentTier" tag="3"/>
+    </thing>
+  <thing id="talFullThrottle" name="Full Throttle" description="While driving or flying, your character may use this talent to make a {b}Hard ({/b}[D][D][D]{b}) Piloting{/b} or {b}Driving check{/b}. If successful, the top speed of the vehicle increases by one (to a maximum of 5) for a number of rounds equal to your character’s Cunning.\n\nThe specifics of this talent require the optional vehicle rules, on page 220. If your game does not use these rules, this talent simply makes the vehicle go much faster than normal, with the specifics up to your GM." compset="Talent">
+    <usesource source="Modern"/>
+    <usesource source="Steampunk"/>
+    <usesource source="WeirdWar"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="TalentAction" tag="Action"/>
+    <tag group="TalentTier" tag="3"/>
+    <tag group="TalentActive" tag="Active"/>
+    </thing>
+  <thing id="talGrenadier" name="Grenadier" description="When your character makes a ranged combat check with a weapon that has the Blast item quality, you may spend one Story Point to use this talent to trigger the weapon’s Blast quality, instead of spending [A] (even if the attack misses). In addition, your character treats grenades as having a range of medium." compset="Talent" summary="When using a weapon with the Blast quality, you can spend a Story Point to trigger the Blast instead of an [A]. Grenades have a range of Medium for you." uniqueness="useronce">
+    <usesource source="Modern"/>
+    <usesource source="Steampunk"/>
+    <usesource source="WeirdWar"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentTier" tag="3"/>
+    <tag group="TalentActive" tag="Active"/>
+    </thing>
+  <thing id="talInspRhetImp" name="Inspiring Rhetoric (Improved)" description="Allies affected by your character’s Inspiring Rhetoric add [B] to all skill checks they make for a number of rounds equal to your character’s ranks in Leadership." compset="Talent">
+    <tag group="TalentTier" tag="3"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <pickreq thing="talInspiringRheto"/>
+    </thing>
+  <thing id="talPainkillSpec3" name="Painkiller Specialization" description="When your character uses painkillers (or their equivalent, depending on the setting), the target heals one additional wound per rank of Painkiller Specialization. The sixth painkiller and beyond each day still has no effect." compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="3"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <eval phase="PreTraits" priority="5000"><![CDATA[var sumTxt as string
+var cnt as number
+var i as number
+
+cnt = field[trtValue1].value + field[talRanks].value
+sumTxt = "When you use painkillers the target heals " & cnt & " additional wound(s). The sixth painkiller and beyond each day still has no effect."
+
+field[talSummary].text = sumTxt]]></eval>
+    </thing>
+  <thing id="talPainkillSpec4" name="Painkiller Specialization" description="When your character uses painkillers (or their equivalent, depending on the setting), the target heals one additional wound per rank of Painkiller Specialization. The sixth painkiller and beyond each day still has no effect." compset="Talent" uniqueness="useronce">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="4"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talPainkillSpec3].field[talRanks].value += 1</eval>
+    <pickreq thing="talPainkillSpec3"/>
+    </thing>
+  <thing id="talPainkillSpec5" name="Painkiller Specialization" description="When your character uses painkillers (or their equivalent, depending on the setting), the target heals one additional wound per rank of Painkiller Specialization. The sixth painkiller and beyond each day still has no effect." compset="Talent">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="4"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talPainkillSpec3].field[talRanks].value += 1</eval>
+    <pickreq thing="talPainkillSpec4"/>
+    </thing>
+  <thing id="talScathingTirImp" name="Scathing Tirade (Improved)" description="Enemies affected by your character’s Scathing Tirade add [SB] to all skill checks they make for a number of rounds equal to your character’s ranks in Coercion." compset="Talent">
+    <tag group="TalentTier" tag="3"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <pickreq thing="talScathingTirade"/>
+    </thing>
+  <thing id="talHeroicWill" name="Heroic Will" description="When you purchase this talent for your character, choose two characteristics. You may spend a Story Point to use this talent to have your character ignore the effects of all Critical Injuries on any skill checks using those two characteristics until the end of the current encounter." compset="Talent">
+    <fieldval field="usrLabel1" value="Attribute"/>
+    <fieldval field="usrLabel2" value="Attribute"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrCandid2" value="component.Attribute"/>
+    <tag group="TalentTier" tag="3"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="ChooseSrc2" tag="Hero"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <eval phase="PreTraits" priority="5000"><![CDATA[
+	doneif (field[usrChosen1].ischosen = 0)
+	doneif (field[usrChosen2].ischosen = 0)
+
+var sumTxt as string
+
+sumTxt = "You may spend a Story Point to ignore the effects of Critical Injuries on any skill checks involving " & field[usrChosen1].chosen.field[name].text & " or " & field[usrChosen2].chosen.field[name].text & " until the end of the current encounter."
+
+field[talSummary].text = sumTxt]]></eval>
+    </thing>
+  <thing id="talNatural" name="Natural" description="When your character purchases this talent, choose two skills. Once per session, your character may use this talent to reroll one skill check that uses one of those two skills." compset="Talent">
+    <fieldval field="usrLabel1" value="Skill"/>
+    <fieldval field="usrLabel2" value="Skill"/>
+    <fieldval field="usrCandid1" value="component.Skill"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentTier" tag="3"/>
+    <eval phase="PreTraits" priority="5000"><![CDATA[doneif (field[usrChosen1].ischosen = 0)
+doneif (field[usrChosen1].ischosen = 0)
+
+var sumTxt as string
+
+sumTxt = "Once per session you may reroll one skill check that uses " & field[usrChosen1].chosen.field[name].text & " or " & field[usrChosen2].chosen.field[name].text & "."
+
+field[talSummary].text = sumTxt]]></eval>
+    </thing>
+  <thing id="talRapidArchery" name="Rapid Archery" description="While your character is armed with a bow (or similar weapon, at your GM’s discretion) they may suffer 2 strain to use this talent. During the next ranged combat check your character makes this turn, the bow gains the Linked quality with a value equal to their ranks in the Ranged skill." compset="Talent" summary="When armed with a bow or similar weapon, may suffer 2 Strain to give your weapon the Linked X quality where X is your ranks of the Ranged skill.">
+    <usesource source="Fantasy"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Maneuver"/>
+    <tag group="TalentTier" tag="3"/>
+    </thing>
+  <thing id="talParryImp" name="Parry (Improved)" description="When your character suffers a hit from a melee combat check and uses Parry to reduce the damage from that hit, after the attack is resolved, you may spend [DE] or [T][T][T] from the attacker’s check to use this talent. Then, your character automatically hits the attacker once with a Brawl or Melee weapon your character is wielding. The hit deals the weapon’s base damage, plus any damage from applicable talents or abilities. Your character can’t use this talent if the original attack incapacitates them." compset="Talent">
+    <tag group="TalentTier" tag="3"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    <pickreq thing="talParry1"/>
     </thing>
   </document>

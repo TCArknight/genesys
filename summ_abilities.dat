@@ -55,6 +55,45 @@
       ]]></headertitle>
       </table_fixed>
     </portal>	
+  <portal
+    id="smTalent3"
+    style="tblInvisSm">
+    <table_fixed
+      component="Talent"
+      showtemplate="smAbility"
+      scrollable="no">
+      <list>TalentSelected.3</list>
+      <headertitle><![CDATA[
+      @text = #summtitle_decoration[] & " Talents (Tier 3)" & #summtitle_decoration[]
+      ]]></headertitle>
+      </table_fixed>
+    </portal>	
+  <portal
+    id="smTalent4"
+    style="tblInvisSm">
+    <table_fixed
+      component="Talent"
+      showtemplate="smAbility"
+      scrollable="no">
+      <list>TalentSelected.4</list>
+      <headertitle><![CDATA[
+      @text = #summtitle_decoration[] & " Talents (Tier 4)" & #summtitle_decoration[]
+      ]]></headertitle>
+      </table_fixed>
+    </portal>
+  <portal
+    id="smTalent5"
+    style="tblInvisSm">
+    <table_fixed
+      component="Talent"
+      showtemplate="smAbility"
+      scrollable="no">
+      <list>TalentSelected.5</list>
+      <headertitle><![CDATA[
+      @text = #summtitle_decoration[] & " Talents (Tier 5)" & #summtitle_decoration[]
+      ]]></headertitle>
+      </table_fixed>
+    </portal>		
 	
   <!-- smSkill portal
         Table of skills, using the "smTrait" template defined in "summ_basics.dat".
@@ -160,12 +199,19 @@
     <portalref portal="smAbility"/>
     <portalref portal="smTalent1"/>
     <portalref portal="smTalent2"/>
+    <portalref portal="smTalent3"/>
+    <portalref portal="smTalent4"/>
+    <portalref portal="smTalent5"/>
 
     <position><![CDATA[
       ~position and size the tables to span the full layout
       perform portal[smAbility].autoplace
       perform portal[smTalent1].autoplace[10]
       perform portal[smTalent2].autoplace[10]
+      perform portal[smTalent3].autoplace[10]
+      perform portal[smTalent4].autoplace[10]
+      perform portal[smTalent5].autoplace[10]
+	  
       ]]></position>
 
     </layout>

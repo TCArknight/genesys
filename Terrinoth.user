@@ -6,35 +6,41 @@
     </thing>
   <thing id="skKnowAdventure" name="Knowledge (Adventuring)" description="Life as an adventurer offers unique perils and challenges.\nAdventurers tend to run toward the sorts of danger from which common folk flee. Experienced adventurers see a side of the world that most people never do, and they learn a great deal during their journeys and quests. The Knowledge (Adventuring) skill represents this sort of practical experience, as well as discussions in taverns with fellow adventurers about monsters, ruins, and other threats—and how best to overcome them. For many adventurers, it represents a kind of learned instinct; they might not be able to explain exactly why it’s a bad idea to touch the ancient statue, but they know it is." compset="Skill" uniqueness="unique">
     <fieldval field="trtAbbrev" value="Adv"/>
+    <fieldval field="shortname" value="Adventuring"/>
     <usesource source="RealmsTerrinoth"/>
     <tag group="SkillCat" tag="Know"/>
     <link linkage="attribute" thing="attrInt"/>
     </thing>
   <thing id="skKnowGeography" name="Knowledge (Geography)" description="Geography is a character’s understanding of the lay of the land and its different cultures, including those cultures’ customs and laws. Geography includes the comprehension of maps and cartography, regional variations in etiquette, and matters of navigation. A character with ranks in Knowledge (Geography) can chart a course over land or sea, describe the locations of major cities and landmarks from memory, avoid unknowingly violating local laws, and warn their allies of the sensitive conversation topics to avoid in a particular town." compset="Skill" uniqueness="unique">
     <fieldval field="trtAbbrev" value="Geo"/>
+    <fieldval field="shortname" value="Geography"/>
     <usesource source="RealmsTerrinoth"/>
     <tag group="SkillCat" tag="Know"/>
     <link linkage="attribute" thing="attrInt"/>
     </thing>
   <thing id="skKnowForbidden" name="Knowledge (Forbidden)" description="Knowledge (Forbidden) concerns matters of blood magic, necromancy, the Ynfernael, and other proscribed affairs. In addition to topics of an arcane nature, this skill covers any knowledge of subjects outlawed by the ruling classes and spiritual authorities, including particular historical incidents, purged lineages, and unspeakable monsters. A character with the Knowledge (Forbidden) skill may specialize in a particular category or dabble in all these and more, but they must be careful about revealing their knowledge to others." compset="Skill" uniqueness="unique">
     <fieldval field="trtAbbrev" value="For"/>
+    <fieldval field="shortname" value="Forbidden"/>
     <usesource source="RealmsTerrinoth"/>
     <tag group="SkillCat" tag="Know"/>
     <link linkage="attribute" thing="attrInt"/>
     </thing>
   <thing id="skKnowLore" name="Knowledge (Lore)" description="Lore represents a character’s knowledge of magic, legends, religion, and similar matters. It includes both folktales and recent history, as well as matters arcane and obscure that only sages could know. Lore encompasses specialized, scholarly, and esoteric knowledge of the type that most common folk would consider impractical. A character with ranks in Knowledge (Lore) can recall relevant details from ancient legends, recognize rare religious icons, and even identify whether an event is magical or mundane in cause." compset="Skill" uniqueness="unique">
     <fieldval field="trtAbbrev" value="Lor"/>
+    <fieldval field="shortname" value="Lore"/>
     <usesource source="RealmsTerrinoth"/>
     <tag group="SkillCat" tag="Know"/>
     <link linkage="attribute" thing="attrInt"/>
     </thing>
   <thing id="skRunes" name="Runes" description="The Runes skill represents a character’s understanding of runebound shards and their ability to tap into and control the magic of those stones. While anyone can activate a runebound shard to unleash the specific magical effect that the rune inscribed upon it dictates, a character with the Runes skill can draw out and manipulate that power to achieve greater and more versatile results. Although only a rare few can control raw magic, most individuals have the potential—with extensive study and practice—to harness runebound shards." compset="Skill" uniqueness="unique">
     <fieldval field="trtAbbrev" value="Run"/>
+    <usesource source="RealmsTerrinoth"/>
     <tag group="SkillCat" tag="Magic"/>
     <link linkage="attribute" thing="attrInt"/>
     </thing>
   <thing id="skVerse" name="Verse" description="The Verse skill is a character’s ability to achieve magical effects through poetry, song, or performance. Most users of this skill learn their repertoire and techniques by rote and improvise by instinct. Unlike other magic skills, Verse is defined by its signature methods and practices. It may even draw from the same sources of power as Arcana, Divine, or Primal magic, depending on the storytelling and performing tradition of the character. A character with ranks in Verse can achieve supernatural effects through the seemingly mundane acts of singing, playing music, or other type of performing." compset="Skill" uniqueness="unique">
     <fieldval field="trtAbbrev" value="Ver"/>
+    <usesource source="RealmsTerrinoth"/>
     <tag group="SkillCat" tag="Magic"/>
     <link linkage="attribute" thing="attrPre"/>
     </thing>
