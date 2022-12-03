@@ -1116,7 +1116,7 @@ field[talSummary].text = sumTxt]]></eval>
     <eval phase="PreTraits" priority="1000">hero.childfound[talDodge3].field[talRanks].value += 1</eval>
     <pickreq thing="talDodge3"/>
     </thing>
-  <thing id="talDodge5" name="Dodge" description="When your character is targeted by a combat check (ranged or melee), they may suffer a number of strain no greater than their ranks in Dodge to use this talent. Then, upgrade the difficulty of the combat check targeting your character a number of times equal to the strain suffered." compset="Talent" uniqueness="useronce">
+  <thing id="talDodge5" name="Dodge" description="When your character is targeted by a combat check (ranged or melee), they may suffer a number of strain no greater than their ranks in Dodge to use this talent. Then, upgrade the difficulty of the combat check targeting your character a number of times equal to the strain suffered." compset="Talent">
     <fieldval field="trtValue1" value="2"/>
     <tag group="TalentActive" tag="Active"/>
     <tag group="Helper" tag="IsRanked"/>
@@ -1263,5 +1263,85 @@ field[talSummary].text = sumTxt]]></eval>
     <tag group="TalentAction" tag="Incidental"/>
     <tag group="TalentAction" tag="OutOfTurn"/>
     <pickreq thing="talParry1"/>
+    </thing>
+  <thing id="talCantWeTalk" name="Can&apos;t We Talk About This?" description="Your character can use this talent to make an {b}opposed Charm{/b} or {b}Deception versus Discipline check{/b} targeting a single non-nemesis adversary within medium range. If the check succeeds, the target cannot attack your character (or perform hostile actions against your character) until the end of their next turn. You may spend [A][A] to increase the length of the effect by one additional turn, and spend [TR] to extend the benefits to all of their identified allies within short range. \n\nThe effect ends immediately if your character or a known ally attacks the target. In addition, your GM may rule that some targets are immune to this ability. An automated sentry turret, for example, has no interest in resolving a conflict through talking, nor would someone consumed by rage and the desire for revenge against your character." compset="Talent" summary="Mmake an {b}opposed Charm{/b} or {b}Deception versus Discipline check{/b} targeting a single non-nemesis adversary within medium range. If success, the target cannot attack your character until the end of their next turn.">
+    <tag group="TalentTier" tag="4"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Action"/>
+    </thing>
+  <thing id="talDeadeye" name="Deadeye" description="After your character inflicts a Critical Injury with a ranged weapon and rolls the result, your character may suffer 2 strain to use this talent. Then, you may select any Critical Injury of the same severity to apply to the target instead." compset="Talent">
+    <tag group="TalentTier" tag="4"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    </thing>
+  <thing id="talDefensive4" name="Defensive" description="Each rank of Defensive increases your character’s melee defense and ranged defense by one." compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="4"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <eval phase="PreTraits" priority="5000"><![CDATA[var sumTxt as string
+var cnt as number
+
+cnt = field[trtValue1].value + field[talRanks].value
+sumTxt = "+" & cnt & " to Melee and Ranged Defense."
+
+field[talSummary].text = sumTxt
+
+#traitbonus[trDefenseMel] += 1
+#traitbonus[trDefenseRng] += 1]]></eval>
+    </thing>
+  <thing id="talDefensive5" name="Defensive" description="When your character is targeted by a combat check (ranged or melee), they may suffer a number of strain no greater than their ranks in Dodge to use this talent. Then, upgrade the difficulty of the combat check targeting your character a number of times equal to the strain suffered." compset="Talent">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="5"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talDefensive4].field[talRanks].value += 1
+#traitbonus[trDefenseMel] += 1
+#traitbonus[trDefenseRng] += 1</eval>
+    <pickreq thing="talDefensive4"/>
+    </thing>
+  <thing id="talDefDriving4" name="Defensive Driving" description="Increase the defense of any vehicle your character pilots by one per rank of Defensive Driving. The specifics of this talent require the optional vehicle rules, on page 220. \n\nIf your game does not use these rules, this talent adds [SB] per rank to combat checks targeting your character’s vehicle or your character while piloting it." compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="4"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <eval phase="PreTraits" priority="5000"><![CDATA[var sumTxt as string
+var cnt as number
+var i as number
+
+cnt = field[trtValue1].value + field[talRanks].value
+sumTxt = "+" & cnt & " to Defense of any vehicle you're driving. If not using optional vehicle rules then add "
+
+for i = 1 to cnt
+  sumTxt &= "[SB]"
+  next
+sumTxt &= " to combat checks targeting your vehicle."
+
+field[talSummary].text = sumTxt]]></eval>
+    </thing>
+  <thing id="talDefDriving5" name="Defensive Driving" description="Increase the defense of any vehicle your character pilots by one per rank of Defensive Driving. The specifics of this talent require the optional vehicle rules, on page 220. \n\nIf your game does not use these rules, this talent adds [SB] per rank to combat checks targeting your character’s vehicle or your character while piloting it." compset="Talent">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="5"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talDefDriving4].field[talRanks].value += 1</eval>
+    <pickreq thing="talDefDriving4"/>
+    </thing>
+  <thing id="talEnduring4" name="Enduring" description="Each rank of Enduring increases your character’s soak value by one." compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="4"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <eval phase="PreTraits" priority="5000"><![CDATA[var sumTxt as string
+var cnt as number
+
+cnt = field[trtValue1].value + field[talRanks].value
+sumTxt = "+" & cnt & " to Melee and Ranged Defense."
+
+field[talSummary].text = sumTxt
+
+#traitbonus[trDefenseMel] += 1
+#traitbonus[trDefenseRng] += 1]]></eval>
     </thing>
   </document>
