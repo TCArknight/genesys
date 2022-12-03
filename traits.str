@@ -800,7 +800,19 @@
     <eval index="2" phase="Setup" priority="500"><![CDATA[
       herofield[acCarChs].value += field[caSkillChoices].value
       ]]></eval>
-      
+
+    <!-- Calculate the net attack roll for the weapon -->
+    <eval index="3" phase="Initialize" priority="1100" name="Set Career Skill Selection"><![CDATA[
+	  var skilllist as string
+	
+      doneif (tagis[Skill.?] = 0)
+	
+	  skilllist = tagids[Skill.?,"|"]
+	  foreach pick in hero from Skill where skilllist
+	    perform eachpick.assign[SkillType.CareerSkill]
+	    perform eachpick.assign[SkillType.CareerSelect]
+	    nexteach
+      ]]></eval>      
     </component>
 
   <!-- SpecTree component

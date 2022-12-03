@@ -17,6 +17,8 @@
   <group
     id="SettingRule"
     dynamic="yes">
+    <value id="Hacking"/>   	<!-- Use optional Hacking rules --> 
+    <value id="Vehicles"/>   	<!-- Use optional Vehicle rules --> 
     <value id="SplitMelee"/>   	<!-- Use Light/Heavy versions of the Melee Skill --> 
     <value id="SplitRanged"/>   <!-- Use Light/Heavy versions of the Ranged Skill --> 
     <value id="UseMagic"/>		<!-- Use Magic-related processes --> 

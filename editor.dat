@@ -289,6 +289,13 @@
       helptext="Number of skills with free ranks for career.">
       <it_field field="caSkillChoices"/>
       </inputthing> 
+
+    <inputthing
+      name="Skills"
+      helptext="Specify which skills to choose from as career skills.">
+      <it_taglist group="Skill" tag="?"/>
+      </inputthing>
+	  
     <inputthing>
       <it_groupref id="SourceInfo"/>
       </inputthing>
