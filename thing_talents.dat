@@ -1337,11 +1337,50 @@ field[talSummary].text = sumTxt]]></eval>
 var cnt as number
 
 cnt = field[trtValue1].value + field[talRanks].value
-sumTxt = "+" & cnt & " to Melee and Ranged Defense."
+sumTxt = "+" & cnt & " to Soak value."
 
 field[talSummary].text = sumTxt
 
-#traitbonus[trDefenseMel] += 1
-#traitbonus[trDefenseRng] += 1]]></eval>
+#traitbonus[trSoak] += 1]]></eval>
+    </thing>
+  <thing id="talEnduring5" name="Enduring" description="Each rank of Enduring increases your character’s soak value by one." compset="Talent">
+    <fieldval field="trtValue1" value="2"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="Hide" tag="Talent"/>
+    <tag group="Hide" tag="Special"/>
+    <tag group="TalentTier" tag="5"/>
+    <eval phase="PreTraits" priority="1000">hero.childfound[talEnduring4].field[talRanks].value += 1
+
+#traitbonus[trSoak] += 1</eval>
+    <pickreq thing="talEnduring4"/>
+    </thing>
+  <thing id="talHowConvenient" name="How Convenient!" description="Once per session, your character may use this talent to make a {b}Hard ({/b}[DI][DI][DI]{b}) Mechanics check{/b}. If successful, one device involved in the current encounter (subject to your GM’s approval) spontaneously fails. This can be because of your character’s actions, or it can simply be incredibly convenient timing!" compset="Talent">
+    <tag group="TalentTier" tag="4"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Action"/>
+    </thing>
+  <thing id="talInspRhetSup" name="Inspiring Rhetoric (Supreme)" description="Your character may choose to suffer 1 strain to use the Inspiring Rhetoric talent as a maneuver, instead of as an action." compset="Talent">
+    <tag group="TalentTier" tag="4"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <pickreq thing="talInspiringRheto"/>
+    </thing>
+  <thing id="talMadInventor" name="Mad Inventor" description="Once per session, your character may use this talent to make a Mechanics check to attempt to cobble together the functional equivalent of any item using spare parts or salvage. The difficulty of the check is based on the item’s rarity; see {b}Table I.4–1: Mad Inventor Item Rarity{/b}. \n\nYour GM will modify the check based on the circumstances and might decide that some items simply can’t be created with what’s available (if you are being held in a prison cell, for instance). Your GM may spend [D] on the check to indicate the item ends up being dangerous to the user and anyone around them in some way. For instance, a pistol might explode instead of running out of ammo, or a breathing mask might make the user light-headed." compset="Talent" summary="Once per session, your character may use this talent to make a Mechanics check to attempt to cobble together the functional equivalent of any item using spare parts or salvage. The difficulty of the check is based on the item’s rarity.">
+    <tag group="TalentTier" tag="4"/>
+    <tag group="TalentActive" tag="Passive"/>
+    </thing>
+  <thing id="talOvercharge" name="Overcharge" description="Once per encounter, your character may use this talent to make a {b}Hard ({/b}[DI][DI][DI]{b}) Mechanics check{/b} and choose one of their cybernetic implants that grants them one of the following: +1 to a characteristic rating, +1 rank to a skill, +1 rank of a ranked talent. If your character succeeds, until the end of the encounter, the chosen cybernetic instead provides +2 to the affected characteristic rating (to a maximum of 7), skill (to a maximum of 5), or ranked talent.\n\nYour GM may spend [D] or [T][T][T] from the check to have the overcharged cybernetic short out at the end of the encounter; it provides no benefit until your character spends several hours making an {b}Average ({/b}[DI][DI]{b}) Mechanics check{/b} to repair it." compset="Talent">
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="TalentAction" tag="Action"/>
+    <tag group="TalentTier" tag="4"/>
+    <tag group="TalentActive" tag="Active"/>
+    </thing>
+  <thing id="talScathingTirSup" name="Scathing Tirade (Supreme)" description="Your character may choose to suffer 1 strain to use the Scathing Tirade talent as a maneuver, instead of as an action." compset="Talent">
+    <tag group="TalentTier" tag="5"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <pickreq thing="talScathingTirade"/>
     </thing>
   </document>
