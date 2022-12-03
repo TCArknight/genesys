@@ -130,9 +130,11 @@
     <fieldval field="gearWeight" value="1"/>
     <fieldval field="grHardpoints" value="1"/>
     <usesource source="Fantasy"/>
+    <tag group="ItemModCatAllowed" tag="Armor"/>
     <child entity="ItemMods"></child>
     </thing>
   <thing id="armChainmail" name="Chainmail" description="Chainmail is good at absorbing a hit and dispersing the force over a broader area. We’ve represented such armor with a solid soak value, but no defense. \n\nMail armor is somewhat noisy, so your character adds [SB] to Stealth checks they make while wearing it." compset="Armor">
+    <fieldval field="arStealthPen" value="1"/>
     <fieldval field="defSoak" value="2"/>
     <fieldval field="grRarity" value="4"/>
     <fieldval field="grCost" value="550"/>
@@ -167,6 +169,128 @@
     <tag group="ItemModCatAllowed" tag="WeaponRanged2H"/>
     <tag group="ItemModCatAllowed" tag="WeaponRifle"/>
     <tag group="Equipment" tag="TwoHand"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpGreatsword" name="Greatsword" compset="Melee">
+    <fieldval field="wpDamage" value="4"/>
+    <fieldval field="wpCrit" value="2"/>
+    <fieldval field="grRarity" value="4"/>
+    <fieldval field="grCost" value="300"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <fieldval field="gearWeight" value="3"/>
+    <usesource source="Fantasy"/>
+    <tag group="WeaponSkill" tag="skMeleeHeavy"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBladed"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMeleeHeavy"/>
+    <tag group="ItemModCatAllowed" tag="WeaponSword"/>
+    <tag group="ItemQuality" tag="Defense1"/>
+    <tag group="ItemQuality" tag="Pierce1"/>
+    <tag group="ItemQuality" tag="Unwieldy3"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpHalberd" name="Halberd" compset="Melee">
+    <fieldval field="wpDamage" value="3"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="3"/>
+    <fieldval field="grCost" value="250"/>
+    <fieldval field="gearWeight" value="5"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="Fantasy"/>
+    <tag group="WeaponSkill" tag="skMeleeHeavy"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemQuality" tag="Defense1"/>
+    <tag group="ItemQuality" tag="Pierce3"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBladed"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMeleeHeavy"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpLightSpear" name="Light Spear" description="Although a simple weapon, a spear is easy to wield and allows the user to keep some distance from an opponent." compset="Melee">
+    <fieldval field="wpDamage" value="2"/>
+    <fieldval field="wpCrit" value="4"/>
+    <fieldval field="grRarity" value="1"/>
+    <fieldval field="grCost" value="90"/>
+    <fieldval field="gearWeight" value="2"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="Fantasy"/>
+    <tag group="WeaponSkill" tag="skMeleeLight"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemQuality" tag="Accurate1"/>
+    <tag group="ItemQuality" tag="Defense1"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBladed"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMeleeLight"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee1H"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpMace" name="Mace" compset="Melee">
+    <fieldval field="wpDamage" value="3"/>
+    <fieldval field="wpCrit" value="4"/>
+    <fieldval field="grRarity" value="1"/>
+    <fieldval field="grCost" value="75"/>
+    <fieldval field="gearWeight" value="2"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="Fantasy"/>
+    <tag group="WeaponSkill" tag="skMeleeLight"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBlunt"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMeleeLight"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee1H"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpShield" name="Shield" description="Whether crafted from wood, steel, or hide, shields are common among warriors of all cultures and skill levels for a simple reason: they keep you alive. The utility of a shield for blocking and parrying blows cannot be overstated, and thus shields are a staple of most ancient cultures." compset="Melee">
+    <fieldval field="wpCrit" value="6"/>
+    <fieldval field="grRarity" value="1"/>
+    <fieldval field="grCost" value="80"/>
+    <fieldval field="gearWeight" value="2"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="Fantasy"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemQuality" tag="Defense1"/>
+    <tag group="ItemQuality" tag="Deflect1"/>
+    <tag group="ItemQuality" tag="Inaccurate1"/>
+    <tag group="ItemQuality" tag="Knockdown"/>
+    <tag group="WeaponSkill" tag="skMeleeLight"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBlunt"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMeleeLight"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee1H"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="armPlateArmor" name="Plate Armor" description="Plate armor absorbs a considerable amount of damage, and the angled plates can turn aside blows entirely. Hence, the armor both has a high soak value and provides some defense.\n\nPlate armor is heavy and very noisy. so your character adds [SB][SB] to Stealth checks they make while wearing it." compset="Armor">
+    <fieldval field="arStealthPen" value="2"/>
+    <fieldval field="defSoak" value="2"/>
+    <fieldval field="grRarity" value="6"/>
+    <fieldval field="grCost" value="1250"/>
+    <fieldval field="gearWeight" value="4"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <fieldval field="defDefense" value="1"/>
+    <usesource source="Fantasy"/>
+    <tag group="ItemModCatAllowed" tag="Armor"/>
+    <tag group="ItemModCatAllowed" tag="ArmorPlate"/>
+    <tag group="ItemModCatAllowed" tag="ArmorSuit"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="armPlateArmorMag" name="Magic Plate Armor" description="The addition of shielding enchantments worked directly into a suit of plate armor provides a supernatural level of protection, hence the high defense and soak. It also is lighter and less restrictive than other types of armor, so it has none of regular plate’s penalties." compset="Armor">
+    <fieldval field="defSoak" value="2"/>
+    <fieldval field="grRarity" value="8"/>
+    <fieldval field="grCost" value="2400"/>
+    <fieldval field="gearWeight" value="3"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <fieldval field="defDefense" value="2"/>
+    <usesource source="Fantasy"/>
+    <tag group="ItemModCatAllowed" tag="Armor"/>
+    <tag group="ItemModCatAllowed" tag="ArmorPlate"/>
+    <tag group="ItemModCatAllowed" tag="ArmorSuit"/>
     <child entity="ItemMods"></child>
     </thing>
   </document>

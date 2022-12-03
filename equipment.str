@@ -1170,6 +1170,31 @@
     id="Armor"
     name="Armor"
     autocompset="no">
+	
+    <!-- Penalty to Athletics when wearing armor -->
+    <field
+      id="arAthleticsPen"
+      name="Athletics Penalty"
+      type="derived"
+      defvalue="0">
+      </field>
+	
+    <!-- Penalty to Athletics when wearing armor -->
+    <field
+      id="arCoordPen"
+      name="Coordination Penalty"
+      type="derived"
+      defvalue="0">
+      </field>
+	
+    <!-- Penalty to Stealth when wearing armor -->
+    <field
+      id="arStealthPen"
+      name="Stealth Penalty"
+      type="derived"
+      defvalue="0">
+      </field>
+	  
     <!-- Synthesized notes about the item -->
     <field
       id="arNotes"
@@ -1217,6 +1242,14 @@
       ~we've synthesized the notes for the weapon
       field[arNotes].text = special
       ]]></eval>
+	  
+    <eval index="2" phase="Setup" priority="5000" name="Armor Stealth Penalty"><![CDATA[
+      doneif (field[grIsEquip].value = 0)
+
+      hero.childfound[skAthlet].field[sklAddedSetback].value += field[arAthleticsPen].value
+      hero.childfound[skCoord].field[sklAddedSetback].value += field[arCoordPen].value
+      hero.childfound[skStealth].field[sklAddedSetback].value += field[arStealthPen].value
+      ]]></eval>	  
 	  
     <!-- If multiple pieces of armor are equipped, mark ourselves invalid but don't
         flag a separate validation error for each piece -->

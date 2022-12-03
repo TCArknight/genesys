@@ -115,16 +115,6 @@
       <it_taglist group="WeaponRange" tag="?"/>
       </inputthing>
     <inputthing
-      name="Minimum Strength"
-      helptext="Specify the minimum Strength required to use the weapon without penalty.">
-      <it_field field="wpStrReq"/>
-      </inputthing>
-    <inputthing
-      name="Minimum Agility"
-      helptext="Specify the minimum Agility required to use the weapon without penalty.">
-      <it_field field="wpAgiReq"/>
-      </inputthing>
-    <inputthing
       name="Item Qualities"
       helptext="Specify any item qualities of the weapon.">
       <it_taglist group="ItemQuality" tag="?"/>
@@ -167,11 +157,6 @@
       name="Soak Rating"
       helptext="Specify the Soak rating of the armor against attacks.">
       <it_field field="defSoak"/>
-      </inputthing>
-    <inputthing
-      name="Minimum Strength"
-      helptext="Specify the minimum Strength required to use the armor successfully.">
-      <it_field field="defStrReq"/>
       </inputthing>
 
     </inputthinggroup>	
@@ -483,6 +468,21 @@
       </inputthing>
     <inputthing>
       <it_groupref id="BaseDefense"/>
+      </inputthing>
+    <inputthing
+      name="Athletics Penalty Threshold"
+      helptext="# of Setbacks to Athletics when equipped.">
+      <it_field field="arAthleticsPen"/>
+      </inputthing>
+    <inputthing
+      name="Coordination Penalty Threshold"
+      helptext="# of Setbacks to Coordination when equipped.">
+      <it_field field="arCoordPen"/>
+      </inputthing>
+    <inputthing
+      name="Stealth Penalty Threshold"
+      helptext="# of Setbacks to Stealth when equipped.">
+      <it_field field="arStealthPen"/>
       </inputthing>
     <inputthing>
       <it_groupref id="BaseGear"/>

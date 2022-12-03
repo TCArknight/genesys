@@ -71,4 +71,42 @@ field[gearNet].value = field[gearWeight].value</gear>
     <fieldval field="gearWeight" value="1"/>
     <child entity="ItemMods"></child>
     </thing>
+  <thing id="eqFineCloak" name="Fine Cloak" description="A fine silk or embroidered wool cloak not only protects the wearer from the elements, it also elevates their stature in the eyes of others. \n\nWhen wearing a fine cloak, your character removes [SB] from any Charm, Deception, or Leadership checks they make. When worn, a fine cloak’s encumbrance is 0." compset="Equipment" summary="When wearing a fine cloak, your character removes [SB] from any Charm, Deception, or Leadership checks they make.">
+    <fieldval field="gearWeight" value="1"/>
+    <fieldval field="grCost" value="90"/>
+    <fieldval field="grRarity" value="4"/>
+    <usesource source="Fantasy"/>
+    <eval phase="Setup" priority="5000">doneif (field[grIsEquip].value = 0)
+
+field[gearWeight].value = 0</eval>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqHerbHealing" name="Herbs of Healing" description="Herbs or poultices with ill-defined but powerful healing effects are a staple of many settings. These are often slightly magical in nature.\n\nWhen making a Medicine check, your character may use herbs of healing to add automatic [S][A] to the results. Herbs of healing are consumed when used." compset="Equipment" summary="When making a Medicine check, your character may use herbs of healing to add automatic [S][A] to the results. Herbs of healing are consumed when used.">
+    <fieldval field="grRarity" value="6"/>
+    <fieldval field="grCost" value="50"/>
+    <usesource source="Fantasy"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqThievesTools" name="Thieve&apos;s Tools" description="This is a collection of lockpicks, files, wires, and oil contained in a small leather pouch, used for quietly opening locks. Needless to say, adventurers find these useful.\n\nThieves’ tools allow your character to attempt to open any mechanical locks or latches, even complicated ones. In addition, when making a Skulduggery check to open a lock or latch, your character adds automatic [A] to the results." compset="Equipment" summary="Thieves’ tools allow your character to attempt to open any mechanical locks or latches, even complicated ones. In addition, when making a Skulduggery check to open a lock or latch, your character adds automatic [A] to the results.">
+    <fieldval field="grRarity" value="6"/>
+    <fieldval field="grCost" value="50"/>
+    <usesource source="Fantasy"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqTorch" name="Torch" description="Torches are wooden sticks with oil-soaked cloths wrapped around one end. When lit, they burn for a long time and help illuminate your surroundings.\n\nA lit torch provides light and removes [SB] added to checks due to darkness. (If it becomes important to determine how far the light reaches, a torch can provide light out to short range.)" compset="Equipment">
+    <fieldval field="grCost" value="1"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="Fantasy"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqWinterClothing" name="Winter Clothing" description="Made of thick wool and furs, winter clothing consists of heavy coats, leggings, sturdy boots, and thick cloaks, keeping adventurers warm in the coldest environments.  \n\nWhen wearing winter clothing, your character removes [SB][SB] from any Survival or Resilience checks they make due to cold weather. When worn, winter clothing’s encumbrance is 1." compset="Equipment" summary="When wearing winter clothing, your character removes [SB][SB] from any Survival or Resilience checks they make due to cold weather.">
+    <fieldval field="grCost" value="100"/>
+    <fieldval field="gearWeight" value="4"/>
+    <fieldval field="grRarity" value="3"/>
+    <usesource source="Fantasy"/>
+    <eval phase="Setup" priority="5000">doneif (field[grIsEquip].value = 0)
+
+field[gearWeight].value = 1</eval>
+    <child entity="ItemMods"></child>
+    </thing>
   </document>

@@ -58,9 +58,6 @@ cnt *= 2
 sumTxt = &quot;When a patient under your character’s care heals wounds from natural rest, they heal up to &quot; &amp; cnt &amp; &quot; additional wounds.&quot;
 
 field[talSummary].text = sumTxt</eval>
-    <eval phase="Render" priority="5000" index="2"><![CDATA[doneif (field[talRanks].value <= 1)
-
-field[spcName].text = field[name].text & " (Rank " & field[talRanks].value & ")"]]></eval>
     </thing>
   <thing id="talApothecary2" name="Apothecary" description="When a patient under your character’s care heals wounds from natural rest, they heal additional wounds equal to twice your character’s ranks in Apothecary." compset="Talent" uniqueness="useronce">
     <fieldval field="trtValue1" value="2"/>
@@ -254,6 +251,7 @@ spec = splice(spec,"Strain suffered while wielding is increased by 1",", ")
 parent.field[wpSpecial].text = spec]]></eval>
     </thing>
   <thing id="armRoTChainmail" name="Chainmail" description="As heavy as it is reliable, chainmail offers protection matched with flexibility. Thousands of small linked rings make up a suit of chainmail, providing a reliable defense against slashing and piercing weapons. Some adventurers wear suits of chainmail passed down from their ancestors; others still use the hauberk they looted from the first tomb they explored. The only drawback is the time it takes to forge and link the numerous rings together adds significantly to the cost.  \n\nChainmail is restrictive and noisy, so your character adds SB to Stealth checks they make while wearing it." compset="Armor">
+    <fieldval field="arStealthPen" value="1"/>
     <fieldval field="defSoak" value="2"/>
     <fieldval field="grCost" value="550"/>
     <fieldval field="grRarity" value="4"/>
@@ -262,9 +260,6 @@ parent.field[wpSpecial].text = spec]]></eval>
     <usesource source="RealmsTerrinoth"/>
     <tag group="ItemModCatAllowed" tag="ArmorChain" name="Armor (Chain)" abbrev="Armor (Chain)"/>
     <tag group="ItemModCatAllowed" tag="ArmorSuit" name="Armor (Suit)" abbrev="Armor (Suit)"/>
-    <eval phase="Effects" priority="1000">doneif (field[grIsEquip].value = 0)
-
-hero.childfound[skStealth].field[sklAddedSetback].value += 1</eval>
     <child entity="ItemMods"></child>
     </thing>
   <thing id="armRoTHeavyRobes" name="Heavy Robes" description="Heavy robes of wool or fur are better at keeping the wearer warm than protecting from a sword or spear. However, loosefitting robes can obscure a person’s shape and make it hard to land a blow, or even tangle an attacker’s weapon in their voluminous folds." compset="Armor">
@@ -276,6 +271,7 @@ hero.childfound[skStealth].field[sklAddedSetback].value += 1</eval>
     <child entity="ItemMods"></child>
     </thing>
   <thing id="armRoTPlate" name="Plate" description="Few things on the battlefield are more impressive and awe-inspiring than a full suit of plate armor, and few items are a sterner test of the smith’s craft. Forging even a light breastplate takes time and care, and constructing an entire suit of interlocking armor plates can take months of painstaking work. Unsurprisingly, only the finest knights of the baronies wear plate armor, although occasionally a wandering adventurer may discover a set of plate buried in some long-forgotten crypt or dungeon and claim it for their own.\n\nPlate armor is heavy and very noisy. Your character adds [SB][SB] to Stealth checks they make while wearing it." compset="Armor">
+    <fieldval field="arStealthPen" value="2"/>
     <fieldval field="defDefense" value="1"/>
     <fieldval field="defSoak" value="2"/>
     <fieldval field="grRarity" value="6"/>
@@ -285,9 +281,6 @@ hero.childfound[skStealth].field[sklAddedSetback].value += 1</eval>
     <usesource source="RealmsTerrinoth"/>
     <tag group="ItemModCatAllowed" tag="ArmorPlate"/>
     <tag group="ItemModCatAllowed" tag="ArmorSuit"/>
-    <eval phase="Effects" priority="1000">doneif (field[grIsEquip].value = 0)
-
-hero.childfound[skStealth].field[sklAddedSetback].value += 2</eval>
     <child entity="ItemMods"></child>
     </thing>
   <thing id="wpRoTCestus" name="Cestus" description="Description goes here" compset="Melee">
@@ -718,9 +711,11 @@ Enc += 2
 parent.field[gearWeight].value = maximum(0,Enc)
 
 if (parent.field[grIsEquip].value <> 0) then
-  hero.childfound[skAthlet].field[sklAddedSetback].value += 1
-  hero.childfound[skCoord].field[sklAddedSetback].value += 1
-  hero.childfound[skStealth].field[sklAddedSetback].value += 1
+  if (parent.tagis[component.Armor] <> 0) then
+    parent.field[arAthleticsPen].value += 1
+    parent.field[arCoordPen].value += 1
+    parent.field[arStealthPen].value += 1
+    endif
   endif]]></eval>
     </thing>
   <thing id="ctIronWpn" name="Iron" description="Iron is not as strong or workable as steel, but the smelting of that alloy is beyond many smiths. Further, when both iron and steel items are available, steel fetches a higher price. Many adventurers, militia members, and soldiers in the service of lesser nobles must make do with iron weapons and armor. Iron weapons are rumored to have special effects on certain otherwordly foes, such as the Dimora and the Fae.\n\nIncrease the weapon’s Critical rating by 1." compset="Construction" summary="Increase the weapon’s Critical rating by 1.">
