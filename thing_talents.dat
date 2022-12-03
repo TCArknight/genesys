@@ -1370,7 +1370,7 @@ field[talSummary].text = sumTxt
     <tag group="TalentTier" tag="4"/>
     <tag group="TalentActive" tag="Passive"/>
     </thing>
-  <thing id="talOvercharge" name="Overcharge" description="Once per encounter, your character may use this talent to make a {b}Hard ({/b}[DI][DI][DI]{b}) Mechanics check{/b} and choose one of their cybernetic implants that grants them one of the following: +1 to a characteristic rating, +1 rank to a skill, +1 rank of a ranked talent. If your character succeeds, until the end of the encounter, the chosen cybernetic instead provides +2 to the affected characteristic rating (to a maximum of 7), skill (to a maximum of 5), or ranked talent.\n\nYour GM may spend [D] or [T][T][T] from the check to have the overcharged cybernetic short out at the end of the encounter; it provides no benefit until your character spends several hours making an {b}Average ({/b}[DI][DI]{b}) Mechanics check{/b} to repair it." compset="Talent">
+  <thing id="talOvercharge" name="Overcharge" description="Once per encounter, your character may use this talent to make a {b}Hard ({/b}[DI][DI][DI]{b}) Mechanics check{/b} and choose one of their cybernetic implants that grants them one of the following: +1 to a characteristic rating, +1 rank to a skill, +1 rank of a ranked talent. If your character succeeds, until the end of the encounter, the chosen cybernetic instead provides +2 to the affected characteristic rating (to a maximum of 7), skill (to a maximum of 5), or ranked talent.\n\nYour GM may spend [D] or [T][T][T] from the check to have the overcharged cybernetic short out at the end of the encounter; it provides no benefit until your character spends several hours making an {b}Average ({/b}[DI][DI]{b}) Mechanics check{/b} to repair it." compset="Talent" uniqueness="useronce">
     <usesource source="SciFi"/>
     <usesource source="SpaceOpera"/>
     <tag group="TalentAction" tag="Action"/>
@@ -1382,5 +1382,42 @@ field[talSummary].text = sumTxt
     <tag group="TalentActive" tag="Active"/>
     <tag group="TalentAction" tag="Incidental"/>
     <pickreq thing="talScathingTirade"/>
+    </thing>
+  <thing id="talDedication" name="Dedication" description="Each rank of Dedication increases one of your character’s\ncharacteristics by one. This talent cannot increase a characteristic above 5. You cannot increase the same characteristic with Dedication twice." compset="Talent">
+    <fieldval field="usrLabel1" value="Attribute"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <tag group="Helper" tag="IsRanked"/>
+    <tag group="TalentTier" tag="5"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <eval phase="PreTraits" priority="5000">doneif (field[usrChosen1].ischosen = 0)
+
+field[usrChosen1].chosen.field[trtBonus].value += 1</eval>
+    </thing>
+  <thing id="talIndomitable" name="Indomitable" description="Once per encounter, when your character would be incapacitated due to exceeding their wound or strain threshold, you may spend a Story Point to use this talent. Then, your character is not incapacitated until the end of their next turn. If your character reduces their strain or wounds to below their threshold before the end of their next turn, they are not incapacitated." compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="5"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentAction" tag="OutOfTurn"/>
+    </thing>
+  <thing id="talMaster" name="Master" description="When you purchase this talent for your character, choose one skill. Once per round, your character may suffer 2 strain to use this talent to reduce the difficulty of the next check they make using that skill by two, to a minimum of {b}Easy ({/b}[DI]{b}){/b}." compset="Talent">
+    <fieldval field="usrLabel1" value="Skill"/>
+    <fieldval field="usrCandid1" value="component.Skill"/>
+    <tag group="TalentAction" tag="Incidental"/>
+    <tag group="TalentTier" tag="5"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="TalentActive" tag="Active"/>
+    </thing>
+  <thing id="talOverchargeImp" name="Overcharge (Improved)" description="When using the Overcharge talent, your character may spend [A][A] or [TR] from the Mechanics check to immediately take one additional action. This talent can only be used once per check." compset="Talent" uniqueness="useronce">
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="TalentTier" tag="5"/>
+    <tag group="TalentActive" tag="Passive"/>
+    <pickreq thing="talOvercharge"/>
+    </thing>
+  <thing id="talRuinousRepart" name="Ruinous Repartee" description="Once per encounter, your character may use this talent to make an {b}opposed Charm{/b} or {b}Coercion versus Discipline check{/b} targeting one character within medium range (or within earshot). If successful, the target suffers strain equal to twice your character’s Presence, plus one additional strain per [S]. Your character heals strain equal to the strain inflicted.\n\nIf incapacitated due to this talent, the target could flee the scene in shame, collapse in a dejected heap, or throw themself at your character in fury, depending on your GM and the nature of your character’s witty barbs." compset="Talent" uniqueness="useronce">
+    <tag group="TalentTier" tag="5"/>
+    <tag group="TalentActive" tag="Active"/>
+    <tag group="TalentAction" tag="Action"/>
     </thing>
   </document>
