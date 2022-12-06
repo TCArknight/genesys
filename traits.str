@@ -188,7 +188,16 @@
           endif
         endif
       ]]></eval>
-
+	  
+    <eval index="3" phase="PreTraits" priority="5000"><![CDATA[
+      field[trtBonus].value += tagis[Helper.CyberIncreased?]
+	  
+	  if (tagis[Helper.CyberIncreased2] <> 0) then
+        field[trtBonus].value += 1
+	    endif
+	  
+      ]]></eval>
+	  
     </component>
 
 

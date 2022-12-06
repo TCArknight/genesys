@@ -8,6 +8,7 @@
 -->
 
 <document signature="Hero Lab Data">
+
   <!-- Edit Groups -->
   <inputthinggroup
     id="SourceInfo">
@@ -61,6 +62,11 @@
   <inputthinggroup
     id="BaseGear">
     <inputthing
+      name="Hide from User?"
+      helptext="Specify whether this piece of gear is hidden from direct user selection (e.g. Flight is only conferred by the Avian race).">
+      <it_tagcheck group="Hide" tag="Equipment"/>
+      </inputthing>
+    <inputthing
       name="Rarity"
       helptext="Specify how common the item is (from 1-10) with a lower score being more common.">
       <it_field field="grRarity"/>
@@ -95,11 +101,6 @@
       <it_taglist group="ItemModCatAllowed" tag="Weapon?"/>
       </inputthing>
     <inputthing
-      name="Weapon Bonus"
-      helptext="Specify the attack bonus of the weapon.">
-      <it_field field="wpBonus"/>
-      </inputthing>
-    <inputthing
       name="Weapon Damage"
       helptext="Specify the damage rating of the weapon.">
       <it_field field="wpDamage"/>
@@ -123,11 +124,6 @@
       name="Special Behaviors"
       helptext="Specify any special behaviors for the weapon of which the user should be reminded.">
       <it_field field="wpSpecial"/>
-      </inputthing>
-    <inputthing
-      name="Hide from user?"
-      helptext="Specify whether this weapon is shown when choosing weapons.">
-      <it_tagcheck group="Hide" tag="Equipment"/>
       </inputthing>
     <inputthing
       name="Natural Attack?"
@@ -358,6 +354,12 @@
       name="Starting XP">
       <it_field field="arXP"/>
       </inputthing>	
+   <inputthing
+        name="Archetype Abilities"
+        helptext="Select any abilities provided by the Archetype.">
+        <it_bootcustom compset="Ability">
+          </it_bootcustom>
+        </inputthing>
 	  
     <inputthing>
       <it_groupref id="ChooseGrp1"/>
@@ -691,6 +693,42 @@
       name="Weapon Effect?"
       helptext="Specify what effect this is mod adds to a weapon.">
       <it_taglist group="Weapon" tag="?"/>
+      </inputthing>
+	  
+    </editthing>
+	
+  <!-- Cybernetics editthing -->
+  <editthing
+    compset="Cybernetics"
+    name="Cybernetics"
+    prefix="cyb"
+    description="Abilities defined as Cybernetics."
+    summary="Defines cybernetics that can be selected through the gear tab.">
+
+    <inputthing
+      name="Container Behavior"
+      helptext="Specify whether this piece of equipment can contain other equipment. If this equipment can contain other equipment AND be contained within other equipment, select 'Holder'. If the equipment can only contain other equipment, select 'Top Holder'. If the equipment can only be contained by other equipment, do not select anything.">
+      <it_tagpick group="thing" tag="holder?" />
+      </inputthing>
+
+    <inputthing
+      name="Strain Cost">
+      <it_field field="cyStrainCost"/>
+      </inputthing>
+    <inputthing
+      name="Focus Required?"
+      helptext="Specify whether this gear requires the user to specify a focus (e.g. Language).">
+      <it_tagcheck group="User" tag="NeedDomain"/>
+      </inputthing>
+    <inputthing>
+      <it_groupref id="BaseGear"/>
+      </inputthing>
+	  
+    <inputthing>
+      <it_groupref id="ChooseGrp1"/>
+      </inputthing>
+    <inputthing>
+      <it_groupref id="SourceInfo"/>
       </inputthing>
 	  
     </editthing>

@@ -37,7 +37,8 @@
       choosesortset="ItemCategory"
       buytemplate="BuyCash"
       selltemplate="SellCash">
-      <list>component.Equipment</list>
+      <list><![CDATA[component.Equipment & !component.Cybernetics]]></list>
+      <candidate inheritlist="yes">!Hide.Equipment</candidate>
       <titlebar><![CDATA[
         @text = "Select Gear to Purchase from the List Below"
         ]]></titlebar>
@@ -50,6 +51,31 @@
       </table_dynamic>
     </portal>
 
+  <portal
+    id="grCyber"
+    style="tblNormal">
+    <table_dynamic
+      component="Cybernetics"
+      showtemplate="grGrPick"
+      choosetemplate="grGrThing"
+      choosesortset="ItemCategory"
+      buytemplate="BuyCash"
+      selltemplate="SellCash">
+      <list>component.Equipment</list>
+      <candidate inheritlist="yes"><![CDATA[
+	    component.Cybernetics & !Hide.Equipment
+	    ]]></candidate>
+      <titlebar><![CDATA[
+        @text = "Select Cybernetics to Purchase from the List Below"
+        ]]></titlebar>
+      <headertitle><![CDATA[
+        @text = "Cybernetics"
+        ]]></headertitle>
+      <additem><![CDATA[
+        @text = "Add New Cybernetics"
+        ]]></additem>
+      </table_dynamic>
+    </portal>
 
   <!-- grGrThing template
         Derived from the SimpleItem template, this includes the purchase cost and
@@ -171,6 +197,26 @@
       </portal>
 
     <portal
+      id="menu1"
+      style="menuNormal">
+      <menu_things
+        field="usrChosen1"
+        component="none"
+        maxvisible="10"
+        usepicksfield="usrSource1"
+        candidatefield="usrCandid1">
+        </menu_things>
+      </portal>
+	  
+    <portal
+      id="domain"
+      style="editNormal">
+      <edit
+        field="domDomain">
+        </edit>
+      </portal>
+	  
+    <portal
       id="info"
       style="actInfo">
       <action
@@ -207,6 +253,8 @@
       perform portal[delete].centervert
       perform portal[container].centervert
       perform portal[heldby].centervert
+      perform portal[domain].centervert
+      perform portal[menu1].centervert
 
       ~position the delete portal on the far right
       perform portal[delete].alignedge[right,0]
@@ -216,7 +264,20 @@
 
       ~position the gear portal to the left of the info button
       perform portal[gearmanage].alignrel[rtol,info,-8]
-
+	  
+      ~position the gear portal to the left of the info button
+      perform portal[domain].alignrel[rtol,gearmanage,-8]
+      portal[domain].visible = tagis[User.NeedDomain]
+	  
+	  ~position the gear portal to the left of the info button
+      perform portal[menu1].alignrel[rtol,gearmanage,-48]
+	  if (field[usrCandid1].isempty = 0)  then
+        portal[menu1].width = 100
+        portal[menu1].visible = 1
+	  else
+        portal[menu1].visible = 0
+	    endif
+	  
       ~calculate the space to reserve for the various indicators
       var reserve as number
       if (portal[heldby].visible <> 0) then
@@ -232,6 +293,12 @@
       ~position the name on the left and let it use all available space
       var limit as number
       limit = portal[gearmanage].left - 8 - reserve
+	  if (portal[domain].visible <> 0) then
+	    limit = portal[domain].left - 8 - reserve
+	    endif
+   	  if (portal[menu1].visible <> 0) then
+	    limit = portal[menu1].left - 8 - reserve
+	    endif
       portal[name].left = 0
       portal[name].width = minimum(portal[name].width,limit)
 
@@ -261,9 +328,9 @@
 
       ~if the gear can't be deleted (i.e. it's been auto-added instead of user-added,
       ~set the style to indicate that behavior to the user
-      ~if (candelete = 0) then
-      ~  perform portal[name].setstyle[lblAuto]
-      ~  endif
+      if (candelete = 0) then
+        perform portal[name].setstyle[chkAuto]
+        endif
       ]]></position>
 
     </template>
@@ -280,11 +347,18 @@
   <layout
     id="gear">
     <portalref portal="grGear" taborder="10"/>
+    <portalref portal="grCyber" taborder="20"/>
 
     <!-- This script sizes and positions the layout and its child visual elements. -->
     <position><![CDATA[
       ~position and size the table to span the full layout
       perform portal[grGear].autoplace
+	  
+	  if (hero.tagis[SettingRule.Cybernetics] <> 0) then
+        perform portal[grCyber].autoplace[10]
+	  else
+	    portal[grCyber].visible = 0
+		endif
       ]]></position>
 
     </layout>

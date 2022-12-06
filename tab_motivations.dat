@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains the definition of the "Abilities" tab panel. This tab is where
+      the user selects the special talents for the character.
+
+      All public visual elements used with this tab panel start with the prefix "ab"
+      to associate them with the tab.
+-->
+
+<document signature="Hero Lab Data">
+
+  <portal 
+    id="hdrMotivations" 
+    style="lblTitle">
+    <label>
+      <labeltext>
+        @text = "Motivations"
+        </labeltext>
+      </label>
+    </portal>
+	
+  <!-- motMotivations template
+        This template displays all the optional fields for the character, such as 
+		...
+
+  -->
+  <template
+    id="motMotivations"
+    name="Motivations"
+    compset="Personal">
+
+    <portal
+      id="lblDesire"
+      style="lblNormal">
+      <label
+        text="Desire:">
+        </label>
+      </portal>
+
+    <portal
+      id="desire"
+      style="editNormal">
+      <edit
+        field="perDesire"
+        ismultiline="yes">
+        </edit>
+      </portal>	
+
+    <portal
+      id="lblFear"
+      style="lblNormal">
+      <label
+        text="Fear:">
+        </label>
+      </portal>
+
+    <portal
+      id="fear"
+      style="editNormal">
+      <edit
+        field="perFear"
+        ismultiline="yes">
+        </edit>
+      </portal>	
+
+    <portal
+      id="lblStrength"
+      style="lblNormal">
+      <label
+        text="Strength:">
+        </label>
+      </portal>
+
+    <portal
+      id="strength"
+      style="editNormal">
+      <edit
+        field="perStrength"
+        ismultiline="yes">
+        </edit>
+      </portal>	
+
+    <portal
+      id="lblFlaw"
+      style="lblNormal">
+      <label
+        text="Desire:">
+        </label>
+      </portal>
+
+    <portal
+      id="flaw"
+      style="editNormal">
+      <edit
+        field="perFlaw"
+        ismultiline="yes">
+        </edit>
+      </portal>	
+	  
+    <position><![CDATA[
+      ~set all label width to the longest
+	  var lblwidth as number
+	  var editleft as number
+	  var nexttop as number
+	  	  
+	  lblwidth = portal[lblStrength].width
+	  portal[lblDesire].width = lblwidth
+	  portal[lblFear].width = lblwidth
+	  portal[lblFlaw].width = lblwidth
+	  
+	  editleft = lblwidth + 5
+	  
+	  nexttop = 0
+
+      ~position the motivations
+      portal[lblDesire].left = 0
+      portal[lblDesire].top = nexttop
+      portal[desire].left = editleft
+      portal[desire].top = nexttop
+      portal[desire].width = width - editleft
+      portal[desire].height = 100
+	  
+	  nexttop = portal[desire].bottom + 5
+	  
+      portal[lblFear].left = 0
+      portal[lblFear].top = nexttop
+      portal[fear].left = editleft
+      portal[fear].top = nexttop
+      portal[fear].width = width - editleft
+      portal[fear].height = 100
+	  
+	  nexttop = portal[fear].bottom + 5
+	  
+      portal[lblStrength].left = 0
+      portal[lblStrength].top = nexttop
+      portal[strength].left = editleft
+      portal[strength].top = nexttop
+      portal[strength].width = width - editleft
+      portal[strength].height = 100
+	  
+	  nexttop = portal[strength].bottom + 5
+	  
+      portal[lblFlaw].left = 0
+      portal[lblFlaw].top = nexttop
+      portal[flaw].left = editleft
+      portal[flaw].top = nexttop
+      portal[flaw].width = width - editleft
+      portal[flaw].height = 100
+	  
+	  nexttop = portal[flaw].bottom + 5
+		
+	  height = nexttop
+		
+      ]]></position>
+
+    </template>
+
+  <!-- talents layout
+        This layout orchestrates the display of the visual elements that comprise
+        the Abilities tab. This amounts to a title at the top and a dynamic table
+        below where the user can add the special talents he wants.
+
+        The logic for this layout is similar to (albeit much simpler than) the
+        logic for the Basics tab. So please refer to the Basics tab for more details.
+  -->
+  <layout
+    id="motivations">
+	<portalref portal="hdrMotivations" />
+    <templateref template="motMotivations" thing="mscPerson" taborder="10"/>
+
+    <!-- This script sizes and positions the layout and its child visual elements. -->
+    <position><![CDATA[
+	
+      ~position and size the table to span the full layout; it will only use the
+      ~vertical space that it actually needs
+	  perform portal[hdrMotivations].autoplace[0]
+	  perform template[motMotivations].autoplace[5]
+
+      ]]></position>
+
+    </layout>
+
+
+  <!-- relationships panel
+        This is the "Talents" panel shown within Hero Lab. Since we want this
+        panel to appear after Basics and within the traits grouping, we nation it
+        an "order" of 120.
+
+        The logic for this panel is similar to the logic for the Basics panel, so
+        please refer to the Basics panel for more details.
+  -->
+  <panel
+    id="motivations"
+    name="Motivations"
+    marginhorz="5"
+    marginvert="5"
+    order="311">
+    <layoutref layout="motivations"/>
+    <position><![CDATA[
+      ]]></position>
+    </panel>
+  </document>

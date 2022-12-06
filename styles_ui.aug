@@ -2577,7 +2577,15 @@
 
 
 <!-- ##### Styles - Checkboxes ##### -->
-
+  <!-- style used on the standard checkbox -->
+  <style
+    id="chkAuto">
+    <style_checkbox
+      textcolorid="clrauto"
+      font="fntcheck">
+      </style_checkbox>
+    </style>
+	
   <!-- style used on the standard checkbox -->
   <style
     id="chkNormal">

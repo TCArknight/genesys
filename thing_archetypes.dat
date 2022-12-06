@@ -142,4 +142,260 @@ hero.child[skCoerce].field[trtACFreeRank].value += 1</eval>
   <thing id="abBattleRage" name="Battle Rage" description="When making a melee attack, an orc can choose to add [SB] to the check to add +2 to the damage dealt by one hit of that attack." compset="Ability">
     <tag group="Hide" tag="Ability"/>
     </thing>
+  <thing id="abBeastWithin" name="The Beast Within" description="Mongrels generally look just like any other human. However, when your character is incapacitated due to exceeding their strain threshold while in human form, they undergo the following change as an out-of-turn incidental. They heal all strain; increase their Brawn and Agility by one, to a maximum of 5; and reduce their Intellect and Willpower by one to a minimum of 1. They deal +1 damage when making unarmed attacks, and their unarmed attacks have a Crit rating of 3. In addition, their jaws elongate into muzzles, their hair thickens and they grow more all over their bodies, and their eyes become those of a hunting cat or wolf. Your GM should ensure that NPCs react appropriately to this (at the very least, upgrading the difficulty of all social skill checks twice). Your character reverts to human form after eight hours, or if they are incapacitated (by exceeding either their wound threshold or their strain threshold)." compset="Ability" summary="When incapacitated due to exceeding your strain threshold, you take on the form of a beast.">
+    <usesource source="Steampunk"/>
+    <tag group="User" tag="Activation"/>
+    </thing>
+  <thing id="abHumanSpirit" name="The Human Spirit" description="Once per session, your character may make a {b}Hard ({/b}[DI][DI][DI]{b}) Discipline check {/b}as an out-of-turn incidental. If they succeed, they may either trigger The Beast Within or avoid triggering it when they exceed their strain threshold." compset="Ability">
+    <usesource source="Steampunk"/>
+    </thing>
+  <thing id="abReanimated" name="Reanimated" description="As reanimated corpses, revenants have several quirks, some beneficial and some detrimental. Your character does not recover wounds through natural rest, but they add [B][B] to any Medicine checks to heal them (they don’t flinch). Your character also cannot be affected by poisons (although they must be wary of insects and carrion feeders trying to make a meal from or to nest on their bodies). As with mongrels, your GM should ensure that NPCs react appropriately if they are aware of your character’s condition (at the very least, upgrading the difficulty of your character’s social skill checks twice). Also, perfume is a good idea. Lots of perfume." compset="Ability" summary="You do not recover wounds through natural rest, but add [B][B] to efforts to heal you. You also cannot be affected by poisons."></thing>
+  <thing id="abDeadNerves" name="Dead Nerves" description="Your character removes [SB][SB] added to any checks they make due to fatigue or injuries (including Critical Injuries)." compset="Ability"></thing>
+  <thing id="arcMongrel" name="Mongrel" description="The so-called mongrels are products of science run amok. In Sovereigns of Steam these poor creations were once human, but they had the misfortune of becoming the experimental fodder of some mad reject from the Royal Society. This depraved scientist used them to test a certain alchemical elixir that unlocks their inner bestial nature, turning them into a monstrous hybrid of human and animal. After a time, the elixir can wear off, returning these poor individuals to their human form. However, the dark secret is that once the elixir enters the blood, it works irrevocable changes on the imbiber’s biology. Thus, the change can return at any time.\n\nIn our setting, unscrupulous smugglers have been returning this elixir to major cities for various reasons. So, while your character could have been the unfortunate results of a forbidden experiment, they also could have been exposed to the elixir in their daily life. Of course, once they drank it, their life changed forever!\n\nNeedless to say, so-called mongrels are shunned in all levels of society, and they are actively hunted by various agencies of the Empire. Many flee to the Colonies to escape persecution and arrest." compset="Archetype" uniqueness="unique">
+    <fieldval field="arBra" value="2"/>
+    <fieldval field="arAgi" value="2"/>
+    <fieldval field="arInt" value="2"/>
+    <fieldval field="arCun" value="2"/>
+    <fieldval field="arWil" value="2"/>
+    <fieldval field="arPre" value="2"/>
+    <fieldval field="arWound" value="10"/>
+    <fieldval field="arStrain" value="8"/>
+    <fieldval field="arXP" value="100"/>
+    <usesource source="Steampunk"/>
+    <bootstrap thing="abBeastWithin"></bootstrap>
+    <bootstrap thing="abHumanSpirit"></bootstrap>
+    <eval phase="Setup">~ Starts with one rank in Knowledge during character creation.
+hero.child[skDiscipline].field[trtACFreeRank].value += 1</eval>
+    </thing>
+  <thing id="arcRevenant" name="Revenant" description="Revenants are human corpses brought back to a semblance of life through strange and horrible medical techniques, a galvanic volt providing the final spark to induce animation. Like mongrels, this is a very popular type of character for steampunk settings.\n\nA revenant may be created at the behest of a wealthy grieving family willing to pay anything to bring back a loved one. Alternatively, revenants may be created by mad galvanists seeking to unlock the secrets of eternal life. In either case, revenants have no memory of their former lives, even should they retain their original brain. Most who would pay to resurrect a loved one have no idea of this sad fact until the deed is done. Still, there are rumors of the occasional revenant eventually recovering piecemeal memories of their former life.\n\nRevenants are universally feared and reviled in regular society. A revenant who cannot pass as a normal human is likely to earn a bullet from the Imperial Inspectors, so most stay in the underworld or, like mongrels, flee to the Colonies to start a new life." compset="Archetype" uniqueness="unique">
+    <fieldval field="arBra" value="3"/>
+    <fieldval field="arAgi" value="2"/>
+    <fieldval field="arInt" value="2"/>
+    <fieldval field="arCun" value="2"/>
+    <fieldval field="arWil" value="2"/>
+    <fieldval field="arPre" value="1"/>
+    <fieldval field="arWound" value="11"/>
+    <fieldval field="arStrain" value="9"/>
+    <fieldval field="arXP" value="100"/>
+    <usesource source="Steampunk"/>
+    <bootstrap thing="abReanimated"></bootstrap>
+    <bootstrap thing="abDeadNerves"></bootstrap>
+    <eval phase="Setup">~ Starts with one rank in Knowledge during character creation.
+hero.child[skCoerce].field[trtACFreeRank].value += 1</eval>
+    </thing>
+  <thing id="arcWerewolf" name="Werewolf" compset="Archetype" uniqueness="unique">
+    <fieldval field="arBra" value="2"/>
+    <fieldval field="arAgi" value="2"/>
+    <fieldval field="arInt" value="2"/>
+    <fieldval field="arCun" value="2"/>
+    <fieldval field="arWil" value="2"/>
+    <fieldval field="arPre" value="2"/>
+    <fieldval field="arWound" value="10"/>
+    <fieldval field="arStrain" value="8"/>
+    <fieldval field="arXP" value="100"/>
+    <usesource source="WeirdWar"/>
+    <bootstrap thing="abHumanSpirit"></bootstrap>
+    <bootstrap thing="abBeastWithin"></bootstrap>
+    <eval phase="Setup">~ Starts with one rank in Knowledge during character creation.
+hero.child[skDiscipline].field[trtACFreeRank].value += 1</eval>
+    </thing>
+  <thing id="arcResSoldier" name="Resurrected Soldier" compset="Archetype" uniqueness="unique">
+    <fieldval field="arBra" value="3"/>
+    <fieldval field="arAgi" value="2"/>
+    <fieldval field="arInt" value="2"/>
+    <fieldval field="arCun" value="2"/>
+    <fieldval field="arWil" value="2"/>
+    <fieldval field="arPre" value="1"/>
+    <fieldval field="arWound" value="11"/>
+    <fieldval field="arStrain" value="9"/>
+    <fieldval field="arXP" value="100"/>
+    <usesource source="WeirdWar"/>
+    <bootstrap thing="abDeadNerves"></bootstrap>
+    <bootstrap thing="abReanimated"></bootstrap>
+    <eval phase="Setup">~ Starts with one rank in Knowledge during character creation.
+hero.child[skCoerce].field[trtACFreeRank].value += 1</eval>
+    </thing>
+  <thing id="abBioroid" name="Bioroid" description="Bioroids do not need to eat, sleep, or breathe, and are unaffected by toxins and poisons. Bioroids do not reduce their strain threshold when they receive cybernetics (in the case of bioroids, the cybernetics can represent upgraded mechanical components instead of true cybernetics)." compset="Ability">
+    <usesource source="SciFi"/>
+    <eval phase="Setup">perform hero.assign[Hero.NoCyberStrain]</eval>
+    </thing>
+  <thing id="abInorganic" name="Inorganic" description="Since bioroids are inorganic, they do not gain the benefits of healing wounds with painkillers or a Medicine check. Bioroids can heal wounds and strain naturally by resting, as their systems attempt self-repairs. Bioroids can also be “healed” by using the Mechanics skill instead of the Medicine skill, but otherwise following the guidelines detailed on page 116." compset="Ability">
+    <usesource source="SciFi"/>
+    </thing>
+  <thing id="abClone" name="Clone" description="You may select two skills when creating a clone character. Your clone character starts play with two ranks in each of these skills. You still can’t train their skills above rank 2 during character creation." compset="Ability">
+    <usesource source="SciFi"/>
+    </thing>
+  <thing id="abFaceInTheCrowd" name="A Face In The Crowd" description="Characters add [SB] to any checks they make to pick a clone out in a crowd. Clones also add [SB] to social skill checks they make when interacting with people who don’t know the specific clone." compset="Ability">
+    <usesource source="SciFi"/>
+    </thing>
+  <thing id="arcBioroid" name="Bioroid" description="This profile works for just about any humanoid robot with human-level intelligence and a certain degree of free will. Because robots are built to meet certain specifications, we gave the bioroid low starting characteristics but a lot of experience. That way, you can customize your characteristics and skills to represent any of the different “models” of bioroid." compset="Archetype" uniqueness="unique">
+    <fieldval field="arBra" value="3"/>
+    <fieldval field="arAgi" value="1"/>
+    <fieldval field="arInt" value="1"/>
+    <fieldval field="arCun" value="1"/>
+    <fieldval field="arWil" value="1"/>
+    <fieldval field="arPre" value="1"/>
+    <fieldval field="arWound" value="11"/>
+    <fieldval field="arStrain" value="8"/>
+    <fieldval field="arXP" value="155"/>
+    <usesource source="SciFi"/>
+    <bootstrap thing="abBioroid"></bootstrap>
+    <bootstrap thing="abInorganic"></bootstrap>
+    </thing>
+  <thing id="arcClone" name="Clone" description="This profile is of a human clone. We assume this is a corporation-produced clone that has been tailored for a certain job (otherwise, if this were an unmodified clone, you could simply use the average human profile on page 36). Like bioroids, clones have customization options to represent their “designed” nature, but in their case, we did this by giving a clone focused skill options, but less experience. The “A Face in the Crowd” rule represents a clone blending into an urban setting (after all, they look exactly like a bunch of other clones), but may have to deal with anti-clone bias." compset="Archetype" uniqueness="unique">
+    <fieldval field="arBra" value="2"/>
+    <fieldval field="arAgi" value="2"/>
+    <fieldval field="arInt" value="2"/>
+    <fieldval field="arCun" value="2"/>
+    <fieldval field="arWil" value="2"/>
+    <fieldval field="arPre" value="2"/>
+    <fieldval field="arWound" value="11"/>
+    <fieldval field="arStrain" value="10"/>
+    <fieldval field="arXP" value="80"/>
+    <fieldval field="usrLabel1" value="Skill"/>
+    <fieldval field="usrLabel2" value="Skill"/>
+    <fieldval field="usrCandid1" value="component.Skill"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <usesource source="SciFi"/>
+    <tag group="ChooseSrc2" tag="Hero"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="User" tag="NoAutoName"/>
+    <bootstrap thing="abClone"></bootstrap>
+    <bootstrap thing="abFaceInTheCrowd"></bootstrap>
+    <eval phase="Setup"><![CDATA[trustme
+
+if (field[usrChosen1].ischosen <> 0) then
+  field[usrChosen1].chosen.field[trtACFreeRank].value += 2
+  field[usrChosen1].chosen.field[sklArchetypeBon].value += 2
+  endif
+
+if (field[usrChosen2].ischosen <> 0) then
+  field[usrChosen2].chosen.field[sklArchetypeBon].value += 2
+  field[usrChosen2].chosen.field[trtACFreeRank].value += 2
+  endif]]></eval>
+    </thing>
+  <thing id="abNaturalWeapons" name="Natural Weapons" description="An animalistic alien adds +2 damage to any Brawl combat checks they make. Their Brawl combat checks also gain the Vicious 1 quality or increase an existing Vicious quality by one." compset="Ability">
+    <usesource source="SpaceOpera"/>
+    <eval phase="Effects" priority="1000"><![CDATA[var tagVal as number
+var tag as string
+
+foreach pick in hero from WeapMelee where "WeaponSkill.skBrawl"
+  eachpick.field[wpDamage].value += 2
+  tagVal = eachpick.tagvalue[ItemQuality.Vicious?]
+  if (tagVal <> 0) then
+    tagVal += 1
+    tag = "ItemQuality.Vicious" & tagVal
+    perform eachpick.delete[ItemQuality.Vicious?]
+    perform eachpick.assignstr[tag]
+  else
+    perform eachpick.assign[ItemQuality.Vicious1]
+    endif
+
+  nexteach]]></eval>
+    </thing>
+  <thing id="abAnimalAlien" name="Animalistic Alien" description="An animalistic alien starts with one rank in Athletics, Coordination, or Resilience during character creation. You still can’t train their skills above rank 2 during character creation." compset="Ability">
+    <fieldval field="usrLabel1" value="Skill"/>
+    <fieldval field="usrCandid1" value="thingid.skAthlet | thingid.skCoord | thingid.skResil"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <eval phase="Effects" priority="1000"><![CDATA[trustme
+
+if (field[usrChosen1].ischosen <> 0) then
+  field[usrChosen1].chosen.field[trtACFreeRank].value += 1
+  field[usrChosen1].chosen.field[sklArchetypeBon].value += 1
+  endif]]></eval>
+    </thing>
+  <thing id="arcAnimalAlien" name="Animalistic Alien" description="Space opera settings often have alien species that are derivative of some terrestrial species. Fiction abounds with catlike aliens, turtle-like aliens, reptilian aliens, and so forth. Traditionally, these species are stronger, faster, or tougher than humans, and they share some traits with the nonsapient Terran species they mimic. Our animalistic alien species is stronger and faster than most average humans, but trades this for fewer starting XP. The physical appearance of this species is, of course, up to you." compset="Archetype" uniqueness="unique">
+    <fieldval field="arBra" value="3"/>
+    <fieldval field="arAgi" value="3"/>
+    <fieldval field="arInt" value="2"/>
+    <fieldval field="arCun" value="2"/>
+    <fieldval field="arWil" value="1"/>
+    <fieldval field="arPre" value="2"/>
+    <fieldval field="arWound" value="10"/>
+    <fieldval field="arStrain" value="8"/>
+    <fieldval field="arXP" value="70"/>
+    <usesource source="SpaceOpera"/>
+    <bootstrap thing="abAnimalAlien"></bootstrap>
+    <bootstrap thing="abNaturalWeapons"></bootstrap>
+    </thing>
+  <thing id="abMindReader" name="Mind Reader" description="As an action, a psionic may make an {b}opposed Discipline versus Discipline check{/b} targeting one living creature within medium range. If the check succeeds, the psionic knows the target’s current thoughts and emotional state. [A][A][A] or [TR] may be spent to discover other thoughts or memories, at your GM’s discretion." compset="Ability">
+    <usesource source="SpaceOpera"/>
+    </thing>
+  <thing id="abMindShaper" name="Mind Shaper" description="As an action, a psionic may make an {b}opposed Discipline versus Vigilance check{/b} targeting one living creature within medium range. If the check succeeds, the psionic may cause the target to adopt an emotional state of the psionic’s choice for the next minute (or one round of structured time). [A] or [TR] may be spent to increase the duration by one round (and may be spent multiple times). However, if the check fails or generates [T][T][T] or [D], the target realizes their emotions are being manipulated." compset="Ability">
+    <usesource source="SpaceOpera"/>
+    </thing>
+  <thing id="abMindBreaker" name="Mind Breaker" description="As an action, a psionic may make an {b}opposed Discipline versus Resilience check {/b}targeting one living creature within medium range. If the check succeeds, the psionic causes the target to suffer 1 strain, plus 1 additional strain per [S][S] generated on the check. [A][A][A] or [TR] may be spent to cause the target to suffer 1 wound as well." compset="Ability">
+    <usesource source="SpaceOpera"/>
+    </thing>
+  <thing id="arcPsionic" name="Psionic" description="Psionic or psychic aliens are a perennial favorite in science fiction. We made our psionic alien with a formidable Willpower and Intellect, with the tradeoff of being extremely physically weak. However, what your character gets in return are three unique abilities allowing them to read minds, manipulate emotions, and even harm opponents with a thought. What a psionic alien looks like is up to you. Traditionally, they tend to be physically frail—withered bodies with oversized heads, or spindly creatures with fragile limbs and etherial grace." compset="Archetype" uniqueness="unique">
+    <fieldval field="arBra" value="2"/>
+    <fieldval field="arAgi" value="2"/>
+    <fieldval field="arInt" value="2"/>
+    <fieldval field="arCun" value="2"/>
+    <fieldval field="arWil" value="3"/>
+    <fieldval field="arPre" value="1"/>
+    <fieldval field="arWound" value="7"/>
+    <fieldval field="arStrain" value="11"/>
+    <fieldval field="arXP" value="70"/>
+    <bootstrap thing="abMindBreaker"></bootstrap>
+    <bootstrap thing="abMindReader"></bootstrap>
+    <bootstrap thing="abMindShaper"></bootstrap>
+    </thing>
+  <thing id="abCareerSkills6" name="Career Skills" description="After selecting their career, your robot character may train one rank in six of the eight career skills (instead of the usual four)." compset="Ability">
+    <usesource source="SpaceOpera"/>
+    <eval phase="Setup">foreach pick in hero from Career
+  eachpick.field[caSkillChoices].value += 2
+  nexteach</eval>
+    </thing>
+  <thing id="abRobot" name="Robot" description="Robots do not need to eat, sleep, or breathe, and are unaffected by toxins and poisons. If you are using the cybernetics rules from the science fiction setting, robots do not reduce their strain threshold when they receive cybernetics (the cybernetics can represent upgraded mechanical components instead of true cybernetics)." compset="Ability">
+    <usesource source="SpaceOpera"/>
+    <eval phase="Setup">perform hero.assign[Hero.NoCyberStrain]</eval>
+    </thing>
+  <thing id="abNetworkIntel" name="Networked Intelligence" description="A robot adds automatic [S] to its Intellect- and Willpower-based checks for each other friendly character of the same species within medium range—to a maximum of [S][S][S]." compset="Ability">
+    <usesource source="SpaceOpera"/>
+    </thing>
+  <thing id="abInorganicRobot" name="Inorganic" description="Since robots are inorganic, they do not gain the benefits of recovering wounds with painkillers or a Medicine check. Robots can recover wounds and strain naturally by resting, as their systems attempt self-repairs. Robots can also be “healed” by using the Mechanics skill instead of the Medicine skill, but otherwise following the guidelines detailed on page 116. A robot also increases its soak by one." compset="Ability">
+    <usesource source="SpaceOpera"/>
+    <eval phase="PreTraits" priority="5000">#traitbonus[trSoak] += 1</eval>
+    </thing>
+  <thing id="arcRobot" name="Robot" description="Robots in a space opera can be found in all shapes and sizes. It could be roughly humanoid but built from nearly impervious alloys; a giant, crab-like tank; or a featureless, hovering sphere. Due to the diversity of options for a robot character, we took an approach similar to that for the bioroid on page 174, starting with low characteristics but a lot of XP." compset="Archetype" uniqueness="unique">
+    <fieldval field="arBra" value="1"/>
+    <fieldval field="arAgi" value="1"/>
+    <fieldval field="arInt" value="1"/>
+    <fieldval field="arCun" value="1"/>
+    <fieldval field="arWil" value="1"/>
+    <fieldval field="arPre" value="1"/>
+    <fieldval field="arWound" value="10"/>
+    <fieldval field="arStrain" value="10"/>
+    <fieldval field="arXP" value="175"/>
+    <usesource source="SpaceOpera"/>
+    <bootstrap thing="abCareerSkills6"></bootstrap>
+    <bootstrap thing="abInorganicRobot"></bootstrap>
+    <bootstrap thing="abRobot"></bootstrap>
+    </thing>
+  <thing id="arcVanguard" name="Vanguard" description="Our vanguard species is an alien race that is humanity’s superior in the galaxy. These aliens are more advanced scientifically, culturally, and even artistically than us poor, primitive humans—which inevitably makes it all the more satisfying when the human protagonist of a story accomplishes something they thought impossible." compset="Archetype" uniqueness="unique">
+    <fieldval field="arBra" value="2"/>
+    <fieldval field="arCun" value="1"/>
+    <fieldval field="arPre" value="3"/>
+    <fieldval field="arWound" value="9"/>
+    <fieldval field="arStrain" value="9"/>
+    <fieldval field="arXP" value="100"/>
+    <fieldval field="arAgi" value="2"/>
+    <fieldval field="arInt" value="2"/>
+    <fieldval field="arWil" value="2"/>
+    <usesource source="SpaceOpera"/>
+    <bootstrap thing="abHighTechBaub"></bootstrap>
+    <bootstrap thing="abSpaceBirthright"></bootstrap>
+    <eval phase="Setup">~ Starts with one rank in Cool during character creation.
+hero.child[skKnowledge].field[trtACFreeRank].value += 1</eval>
+    </thing>
+  <thing id="abSpaceBirthright" name="Space Is Our Birthright" description="A vanguard adds automatic [A] to the results of any  Astrocartography or Knowledge checks they make." compset="Ability">
+    <usesource source="SpaceOpera"/>
+    <eval phase="PreTraits" priority="2000">#addedadvantage[skAstrocartog] += 1</eval>
+    </thing>
+  <thing id="abHighTechBaub" name="High Tech Baubles" description="A vanguard starts the game with an additional 500 credits’ worth of starting gear (this is in addition to their normal starting gear allowance)." compset="Ability">
+    <usesource source="SpaceOpera"/>
+    <eval phase="Effects" priority="6000">herofield[acCashNet].value += 500</eval>
+    </thing>
   </document>

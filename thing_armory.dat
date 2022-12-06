@@ -293,4 +293,1191 @@
     <tag group="ItemModCatAllowed" tag="ArmorSuit"/>
     <child entity="ItemMods"></child>
     </thing>
+  <thing id="wpSpringFst" name="Spring-Fist" description="A spring-fist is essentially a clockwork pair of brass knuckles. At one end is a glove reinforced with metal banding. The rest of the spring-fist is a series of coilsprings connected to a sturdy framework that runs the length of your character’s arm. When activated, it lets your character strike with bone-breaking force. However, the springs require time to retighten after each use, hence the Slow-Firing item quality.\n\nThe Slow-Firing quality does not stop your character from making unarmed attacks in the intervening rounds, but they do not benefit from the spring-fist’s profile while doing so." compset="Melee">
+    <fieldval field="wpDamage" value="4"/>
+    <fieldval field="wpCrit" value="4"/>
+    <fieldval field="grRarity" value="5"/>
+    <fieldval field="grCost" value="525"/>
+    <fieldval field="gearWeight" value="2"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="Steampunk"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemQuality" tag="Concussive1"/>
+    <tag group="ItemQuality" tag="SlowFire2"/>
+    <tag group="WeaponSkill" tag="skBrawl"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBlunt"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpRotorsword" name="Rotorsword" description="This heavy “sword” features a rotating, bladed chain that runs most of the length of the weapon. It is little more than a steam-powered chainsaw held like a two-handed sword. Although a rotorsword is extremely deadly, the impracticality of having to fuel it before battle has prevented it from becoming a mainstay of fighting forces. Additionally, bringing it to a gunfight is still risky." compset="Melee">
+    <fieldval field="wpDamage" value="3"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="7"/>
+    <fieldval field="grCost" value="400"/>
+    <fieldval field="gearWeight" value="5"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="Steampunk"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee1H"/>
+    <tag group="ItemModCatAllowed" tag="WeaponSword"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMeleeHeavy"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemQuality" tag="Cumber1"/>
+    <tag group="ItemQuality" tag="Inaccurate1"/>
+    <tag group="ItemQuality" tag="Pierce2"/>
+    <tag group="ItemQuality" tag="Sunder"/>
+    <tag group="ItemQuality" tag="Vicious2"/>
+    <tag group="WeaponSkill" tag="skMelee"/>
+    <tag group="WeaponSkill" tag="skMeleeHeavy"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBladed"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpSwordcane" name="Swordcane" description="A sword cane fits this setting quite well: a deadly weapon concealed in aristocratic accessories. The blade remains hidden in the cane, while the hilt is disguised as the cane’s top. The sword cane has the Defensive quality (as do most swords), and it has a special rule to reflect how easy it is to hide.\n\nThose searching a character add [SB] to any Perception checks they make to find the sword inside the cane." compset="Melee">
+    <usesource source="Steampunk"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpAutoRotaryGun" name="Auto-Rotary Gun" description="This is a multi-barrel machine gun, like a real-world Gatling or Maxim gun. However, rather than achieving its high rate of fire through hand cranking or recoil operation, the steampunk auto-rotary gun is driven by a steam engine. This results in a rather large and heavy weapon that consumes a voracious amount of ammunition and coal (which take some time to arrange before firing, represented by the Prepare quality). For obvious reasons, this weapon has the Auto-fire and Cumbersome qualities." compset="Ranged">
+    <fieldval field="wpDamage" value="11"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="6"/>
+    <fieldval field="grCost" value="1100"/>
+    <fieldval field="gearWeight" value="7"/>
+    <fieldval field="grHardpoints" value="3"/>
+    <usesource source="Steampunk"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <tag group="WeaponRange" tag="Long"/>
+    <tag group="ItemQuality" tag="Autofire"/>
+    <tag group="ItemQuality" tag="Cumber4"/>
+    <tag group="ItemQuality" tag="Prepare1"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="WeaponSkill" tag="skRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponGunnery"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedHeavy"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpClockworkGren" name="Clockwork Grenade" compset="Ranged">
+    <fieldval field="wpDamage" value="8"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="6"/>
+    <fieldval field="grCost" value="50"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="Steampunk"/>
+    <tag group="WeaponRange" tag="Short"/>
+    <tag group="ItemQuality" tag="Blast5"/>
+    <tag group="ItemQuality" tag="Burn1"/>
+    <tag group="ItemQuality" tag="LimitedAmmo1"/>
+    <tag group="WeaponSkill" tag="skRanged"/>
+    <tag group="WeaponSkill" tag="skRangedLight"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpDeathRay" name="Death Ray" compset="Ranged">
+    <fieldval field="wpDamage" value="12"/>
+    <fieldval field="wpCrit" value="1"/>
+    <fieldval field="grRarity" value="10"/>
+    <fieldval field="grCost" value="4500"/>
+    <fieldval field="gearWeight" value="5"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="Steampunk"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <tag group="WeaponRange" tag="Short"/>
+    <tag group="ItemQuality" tag="Breech2"/>
+    <tag group="ItemQuality" tag="Inaccurate2"/>
+    <tag group="ItemQuality" tag="SlowFire1"/>
+    <tag group="ItemQuality" tag="Vicious5"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="WeaponSkill" tag="skRanged"/>
+    <tag group="WeaponSkill" tag="skRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedHeavy"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpHandCannon" name="Hand Cannon" compset="Ranged">
+    <fieldval field="wpDamage" value="9"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="6"/>
+    <fieldval field="grCost" value="400"/>
+    <fieldval field="gearWeight" value="3"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="Steampunk"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <tag group="WeaponRange" tag="Medium"/>
+    <tag group="ItemQuality" tag="Knockdown"/>
+    <tag group="ItemQuality" tag="LimitedAmmo1"/>
+    <tag group="ItemQuality" tag="Prepare1"/>
+    <tag group="WeaponSkill" tag="skRanged"/>
+    <tag group="WeaponSkill" tag="skRangedLight"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedLight"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpRepeatingRifle" name="Repeating Rifle" compset="Ranged">
+    <fieldval field="wpDamage" value="8"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="4"/>
+    <fieldval field="grCost" value="500"/>
+    <fieldval field="gearWeight" value="4"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="Steampunk"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRifle"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged2H"/>
+    <tag group="WeaponRange" tag="Long"/>
+    <tag group="WeaponSkill" tag="skRanged"/>
+    <tag group="WeaponSkill" tag="skRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedHeavy"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpRotorPistol" name="Rotor Pistol" compset="Ranged">
+    <fieldval field="wpDamage" value="5"/>
+    <fieldval field="wpCrit" value="4"/>
+    <fieldval field="grRarity" value="7"/>
+    <fieldval field="grCost" value="280"/>
+    <fieldval field="gearWeight" value="2"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="Steampunk"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedLight"/>
+    <tag group="WeaponRange" tag="Short"/>
+    <tag group="ItemQuality" tag="Autofire"/>
+    <tag group="ItemQuality" tag="LimitedAmmo1"/>
+    <tag group="WeaponSkill" tag="skRanged"/>
+    <tag group="WeaponSkill" tag="skRangedLight"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponPistol"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="armAmplimotive" name="Admiral Arthur’s Astounding Amplimotive Armor" description="This is a large, heavy suit of armor. The thick metal plating completely covers the wearer, although the helmet may be easily removable or have a hinged faceplate. This armor provides the best protection possible short of an actual tank, but it is far too heavy for anyone to support. That’s where Admiral Arthur Schilling’s patented steampowered amplimotive architecture comes in. By way of a complex system of gears and hydraulics, the armor responds to and enhances each movement by the wearer.  \n\nA character wearing this armor increases both their silhouette and Brawn by one. (This does increase your character’s soak accordingly.)" compset="Armor">
+    <fieldval field="shortname" value="Amplimotive Armor"/>
+    <fieldval field="defDefense" value="1"/>
+    <fieldval field="defSoak" value="2"/>
+    <fieldval field="gearWeight" value="3"/>
+    <fieldval field="grCost" value="1250"/>
+    <fieldval field="grRarity" value="9"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="Steampunk"/>
+    <tag group="ItemModCatAllowed" tag="Armor"/>
+    <tag group="ItemModCatAllowed" tag="ArmorPlate"/>
+    <tag group="ItemModCatAllowed" tag="ArmorSuit"/>
+    <eval phase="Effects" priority="2000">doneif (field[grIsEquip].value = 0)
+
+#silhouette[] += 1
+#traitbonus[attrBra] += 1</eval>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="armCogsuit" name="Cogsuit" description="A cogsuit is a suit of makeshift armor assembled from scavenged armor plates and machine parts (which sometimes include cogs). Such armor is common among pirates and other riffraff. However, these days the name is also often used for specially made armor worn by adventurers and agents of the Imperial Crown. Units in the military use a variant of the cogsuit that provides equivalent protection but looks much more professional." compset="Armor">
+    <fieldval field="defDefense" value="1"/>
+    <fieldval field="defSoak" value="1"/>
+    <fieldval field="grRarity" value="3"/>
+    <fieldval field="grCost" value="275"/>
+    <fieldval field="gearWeight" value="3"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="Steampunk"/>
+    <tag group="ItemModCatAllowed" tag="ArmorSuit"/>
+    <tag group="ItemModCatAllowed" tag="Armor"/>
+    <tag group="ItemModCatAllowed" tag="ArmorPlate"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="armInsulGarb" name="Insulated Garb" description="This covers any sort of outfit designed to protect the wearer from hostile environments. It may incorporate cotton, rubber, asbestos, lead, or pretty much anything that does, or might, protect against a particular hazard.\n\nIn addition to its soak, insulated garb provides [B][B]\nto any Resilience checks made to resist environmental extremes appropriate to the garb. If you need insulated garb, an air mask (below) is probably also a good call." compset="Armor">
+    <fieldval field="defSoak" value="1"/>
+    <fieldval field="grRarity" value="3"/>
+    <fieldval field="grCost" value="175"/>
+    <fieldval field="gearWeight" value="3"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="Steampunk"/>
+    <tag group="ItemModCatAllowed" tag="Armor"/>
+    <tag group="ItemModCatAllowed" tag="ArmorSuit"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpEleTruncheon" name="Electric Truncheon" compset="Melee">
+    <fieldval field="wpDamage" value="2"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="5"/>
+    <fieldval field="grCost" value="150"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="WeirdWar"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee"/>
+    <tag group="WeaponSkill" tag="skMeleeLight"/>
+    <tag group="WeaponSkill" tag="skMelee"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemQuality" tag="Disorient3"/>
+    <tag group="ItemQuality" tag="StunDamage"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBlunt"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMeleeLight"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee1H"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpRazorWhip" name="Razor Whip" compset="Melee">
+    <fieldval field="wpDamage" value="1"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="7"/>
+    <fieldval field="grCost" value="290"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="WeirdWar"/>
+    <tag group="WeaponSkill" tag="skMeleeLight"/>
+    <tag group="WeaponSkill" tag="skMelee"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMeleeLight"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee1H"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee"/>
+    <tag group="WeaponRange" tag="Short"/>
+    <tag group="ItemQuality" tag="Ensnare1"/>
+    <tag group="ItemQuality" tag="Pierce3"/>
+    <tag group="ItemQuality" tag="Unwieldy3"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpDewPistol" name="DEW Pistol" compset="Ranged">
+    <fieldval field="wpDamage" value="6"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="8"/>
+    <fieldval field="grCost" value="450"/>
+    <fieldval field="gearWeight" value="4"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="WeirdWar"/>
+    <tag group="WeaponSkill" tag="skRanged"/>
+    <tag group="WeaponRange" tag="Short"/>
+    <tag group="ItemQuality" tag="Burn1"/>
+    <tag group="WeaponSkill" tag="skRangedLight"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponPistol"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedLight"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpDEWRifle" name="DEW Rifle" compset="Ranged">
+    <fieldval field="wpDamage" value="8"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="8"/>
+    <fieldval field="grCost" value="900"/>
+    <fieldval field="gearWeight" value="6"/>
+    <fieldval field="grHardpoints" value="3"/>
+    <usesource source="WeirdWar"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <tag group="WeaponSkill" tag="skRanged"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="WeaponSkill" tag="skRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged2H"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRifle"/>
+    <tag group="WeaponRange" tag="Medium"/>
+    <tag group="ItemQuality" tag="Burn2"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpFlashGun" name="Flash Gun" compset="Ranged">
+    <fieldval field="wpDamage" value="6"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="7"/>
+    <fieldval field="grCost" value="900"/>
+    <fieldval field="gearWeight" value="4"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="WeirdWar"/>
+    <tag group="WeaponSkill" tag="skRanged"/>
+    <tag group="WeaponRange" tag="Medium"/>
+    <tag group="ItemQuality" tag="Autofire"/>
+    <tag group="ItemQuality" tag="Disorient2"/>
+    <tag group="ItemQuality" tag="Pierce2"/>
+    <tag group="WeaponSkill" tag="skRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged2H"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpFlashMG" name="Flash Machine Gun" compset="Ranged">
+    <fieldval field="wpDamage" value="10"/>
+    <fieldval field="wpCrit" value="2"/>
+    <fieldval field="grRarity" value="9"/>
+    <fieldval field="grCost" value="1450"/>
+    <fieldval field="gearWeight" value="8"/>
+    <fieldval field="grHardpoints" value="4"/>
+    <usesource source="WeirdWar"/>
+    <tag group="ItemQuality" tag="Autofire"/>
+    <tag group="ItemQuality" tag="Pierce2"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="WeaponSkill" tag="skGunnery"/>
+    <tag group="WeaponRange" tag="Long"/>
+    <tag group="ItemQuality" tag="Cumber3"/>
+    <tag group="ItemQuality" tag="Disorient3"/>
+    <tag group="ItemQuality" tag="Inaccurate1"/>
+    <tag group="ItemQuality" tag="Vicious3"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="ItemModCatAllowed" tag="WeaponGunnery"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpMeteopLauncher" name="Meteop Launcher" compset="Ranged">
+    <fieldval field="wpDamage" value="12"/>
+    <fieldval field="wpCrit" value="2"/>
+    <fieldval field="grRarity" value="7"/>
+    <fieldval field="grCost" value="850"/>
+    <fieldval field="gearWeight" value="6"/>
+    <fieldval field="grHardpoints" value="3"/>
+    <usesource source="WeirdWar"/>
+    <tag group="ItemQuality" tag="Blast8"/>
+    <tag group="ItemQuality" tag="Cumber3"/>
+    <tag group="ItemQuality" tag="LimitedAmmo1"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponGunnery"/>
+    <tag group="WeaponSkill" tag="skGunnery"/>
+    <tag group="WeaponRange" tag="Medium"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="armIlliriumBG42" name="Illirium BG-42 Vest" description="One of the factors that has allowed the Union to match its supernatural foes in the field is the rare and powerful element known as Illirium. Illirium batteries power Union flash guns, and Illirium-reinforced armor vests not only can absorb bullets (hence the soak value), but can temporarily be energized to create a force field.\n\nWhen wearing a BG-42 vest, once per encounter as an incidental, your character may activate the force field to gain melee and ranged defense 2 until the end of their next turn." compset="Armor">
+    <fieldval field="defSoak" value="2"/>
+    <fieldval field="grRarity" value="6"/>
+    <fieldval field="grCost" value="600"/>
+    <fieldval field="gearWeight" value="4"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="WeirdWar"/>
+    <tag group="ItemModCatAllowed" tag="ArmorSuit"/>
+    <tag group="User" tag="Activation"/>
+    <tag group="ItemModCatAllowed" tag="Armor"/>
+    <eval phase="PreTraits" priority="2000">doneif (field[grIsEquip].value = 0)
+
+doneif (field[grIsActive].value = 0)
+
+#meleedefensebonus[] += 2
+#rangeddefensebonus[] += 2</eval>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="armTeslaCoil" name="Tesla Coil" description="The Matriarchy pioneered Tesla coils as personal force fields. Made largely of glass and alloy and worn on a belt or strap, they project a crackling electric field to deflect enemy fire (represented by the item’s defense rating)." compset="Armor">
+    <fieldval field="defDefense" value="2"/>
+    <fieldval field="grRarity" value="8"/>
+    <fieldval field="grCost" value="550"/>
+    <fieldval field="gearWeight" value="2"/>
+    <usesource source="WeirdWar"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpBrassKnuck" name="Brass Knuckles" description="Brass knuckles are very simple weapons: chunks of brass designed to slip over your fingers and add power to your punches. Brass knuckles really are simple weapons, and this profile could also represent a roll of quarters." compset="Melee">
+    <fieldval field="wpDamage" value="1"/>
+    <fieldval field="wpCrit" value="4"/>
+    <fieldval field="grRarity" value="1"/>
+    <fieldval field="grCost" value="40"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="Modern"/>
+    <tag group="WeaponSkill" tag="skBrawl"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemQuality" tag="Disorient3"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBlunt"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBrawl"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpCollBaton" name="Collapsible Baton" description="Simple but effective, this is a telescoping baton with a weighted tip. A powerful swing can break bones. If you want to do a larger riot-control baton instead, increase the damage by one or two, but increase the encumbrance by the same amount." compset="Melee">
+    <fieldval field="wpDamage" value="2"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="2"/>
+    <fieldval field="grCost" value="70"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="Modern"/>
+    <tag group="WeaponSkill" tag="skMelee"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBlunt"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee1H"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpRiotBaton" name="Riot Baton" description="Simple but effective, a powerful swing can break bones." compset="Melee">
+    <fieldval field="wpDamage" value="4"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="2"/>
+    <fieldval field="grCost" value="150"/>
+    <fieldval field="gearWeight" value="3"/>
+    <usesource source="Modern"/>
+    <tag group="WeaponSkill" tag="skMelee"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBlunt"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee1H"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpStunGun" name="Stun Gun" description="The name “stun gun” is a bit of a misnomer; it’s a hand-held device with protruding electrodes. Push the electrodes into an opponent, and they get shocked. That’s why the weapon has damage that can’t be modified by your character’s Brawn (you don’t hit people with a stun gun; you just touch them with it), and any similar weapon should follow a similar profile. Obviously, the Stun Damage quality is another must, and we added the Stun quality to represent some people suffering worse effects than others from the electric shock. We also gave it a Critical rating; after all, an electric shock can occasionally do lasting damage!" compset="Melee">
+    <fieldval field="wpDamage" value="5"/>
+    <fieldval field="wpCrit" value="6"/>
+    <fieldval field="grRarity" value="1"/>
+    <fieldval field="grCost" value="100"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="Modern"/>
+    <tag group="WeaponSkill" tag="skMelee"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemQuality" tag="Stun3"/>
+    <tag group="ItemQuality" tag="StunDamage"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee1H"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpHeavyPistol" name="Heavy Pistol" description="The ubiquitous pistol is the go-to solution for law enforcement, sport shooting, self-defense, and criminal activity throughout the world. For game purposes, modern pistols are separated into two categories: light and heavy.\n\nHeavy pistols are the big, bulky hand cannons that show up in movies in the hands of cops on the edge or great big heroes." compset="Ranged">
+    <fieldval field="wpDamage" value="6"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="3"/>
+    <fieldval field="grCost" value="300"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="Modern"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedLight"/>
+    <tag group="WeaponSkill" tag="skRanged"/>
+    <tag group="WeaponRange" tag="Medium"/>
+    <tag group="WeaponSkill" tag="skRangedLight"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponPistol"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpHuntingRifle" name="Hunting Rifle" description="Hunting rifles are nearly as ubiquitous as pistols in developed countries with a long history of hunting and sporting. These rifles have long barrels and are often fitted with long-range telescopic sights to increase their performance and accuracy." compset="Ranged">
+    <fieldval field="wpDamage" value="8"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="4"/>
+    <fieldval field="grCost" value="750"/>
+    <fieldval field="gearWeight" value="4"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="Modern"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRifle"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged2H"/>
+    <tag group="WeaponSkill" tag="skRanged"/>
+    <tag group="WeaponRange" tag="Long"/>
+    <tag group="ItemQuality" tag="Accurate1"/>
+    <tag group="ItemQuality" tag="LimitedAmmo2"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="WeaponSkill" tag="skRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedHeavy"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpLightPistol" name="Light Pistol" description="The ubiquitous pistol is the go-to solution for law enforcement, sport shooting, self-defense, and criminal activity throughout the world. For game purposes, modern pistols are separated into two categories: light and heavy. \nThe light pistol listing is for a basic, medium-caliber pistol: a 9 mm or .38 caliber weapon, for example." compset="Ranged">
+    <fieldval field="wpDamage" value="5"/>
+    <fieldval field="wpCrit" value="4"/>
+    <fieldval field="grRarity" value="3"/>
+    <fieldval field="grCost" value="100"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="Modern"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedLight"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <tag group="ItemModCatAllowed" tag="WeaponPistol"/>
+    <tag group="WeaponSkill" tag="skRanged"/>
+    <tag group="WeaponRange" tag="Short"/>
+    <tag group="WeaponSkill" tag="skRangedLight"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpMachineGun" name="Machine Gun" description="Machine guns are large, heavy, often crew-served weapons. Depending on the type, a machine gun can be anything from a medium-weight, man-portable squad-support weapon to a heavy, turret-mounted .50 cal. \n\nThe machine gun presented here can be used for any of the medium-caliber squad-support weapons like the M60, M249, or MG4. They’re designed to be carried in the field, but they still have a high encumbrance (check out page 207 for rules for a bipod or tripod for this weapon)." compset="Ranged">
+    <fieldval field="wpDamage" value="10"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="6"/>
+    <fieldval field="grCost" value="1500"/>
+    <fieldval field="gearWeight" value="6"/>
+    <fieldval field="grHardpoints" value="3"/>
+    <usesource source="Modern"/>
+    <tag group="WeaponRange" tag="Long"/>
+    <tag group="ItemQuality" tag="Autofire"/>
+    <tag group="ItemQuality" tag="Cumber2"/>
+    <tag group="ItemQuality" tag="Pierce2"/>
+    <tag group="ItemQuality" tag="Vicious2"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponGunnery"/>
+    <tag group="WeaponSkill" tag="skGunnery"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpPorMisLauncher" name="Portable Missile Launcher" description="The weapon presented here represents one of the countless shoulder-fired anti-aircraft missiles used throughout the world, such as the Stinger missile. Their extreme range and Guided quality reflect the fact that they are long-ranged anti-vehicle weapons. They, of course, only hold one missile at a time and need a few moments to set up, so the Limited Ammo and Prepare qualities are a must for these weapons (reloads for these launchers should cost half of the weapon’s initial cost)." compset="Ranged">
+    <fieldval field="wpDamage" value="20"/>
+    <fieldval field="wpCrit" value="2"/>
+    <fieldval field="grRarity" value="8"/>
+    <fieldval field="grCost" value="100000"/>
+    <fieldval field="gearWeight" value="8"/>
+    <fieldval field="grHardpoints" value="4"/>
+    <usesource source="Modern"/>
+    <tag group="WeaponRange" tag="Extreme"/>
+    <tag group="ItemQuality" tag="Blast10"/>
+    <tag group="ItemQuality" tag="Breech2"/>
+    <tag group="ItemQuality" tag="Cumber3"/>
+    <tag group="ItemQuality" tag="Guided3"/>
+    <tag group="ItemQuality" tag="LimitedAmmo1"/>
+    <tag group="ItemQuality" tag="Prepare1"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponGunnery"/>
+    <tag group="WeaponSkill" tag="skGunnery"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpShotgun" name="Shotgun" description="When you really want to make an impression in a firefight, a shotgun is a great way to go. Pulling a pistol from a hidden pocket just doesn’t have the same dramatic effect as, say, drawing a lever-action 10 gauge out of a box of roses in slow motion. The flat thump of the report, the muzzle flash, the shocking recoil, even the loud {I}clack-clack{/I} noise of working a pump action make these weapons an assault on everyone’s senses, and also is what makes them so popular in action movies!" compset="Ranged">
+    <fieldval field="wpDamage" value="8"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="3"/>
+    <fieldval field="grCost" value="500"/>
+    <fieldval field="gearWeight" value="3"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="Modern"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRifle"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged2H"/>
+    <tag group="WeaponSkill" tag="skRanged"/>
+    <tag group="WeaponRange" tag="Short"/>
+    <tag group="ItemQuality" tag="Blast4"/>
+    <tag group="ItemQuality" tag="Knockdown"/>
+    <tag group="ItemQuality" tag="Vicious2"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="WeaponSkill" tag="skRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedHeavy"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpSMG" name="Submachine Gun" description="Submachine guns (SMGs) use pistol-caliber ammunition and a high rate of fire to provide a whole lot of damage capacity in a small, easy-to-use package. They are popular among criminals, police, and special forces operators the world over." compset="Ranged">
+    <fieldval field="wpDamage" value="5"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="6"/>
+    <fieldval field="grCost" value="400"/>
+    <fieldval field="gearWeight" value="2"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="Modern"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged2H"/>
+    <tag group="WeaponSkill" tag="skRanged"/>
+    <tag group="WeaponRange" tag="Medium"/>
+    <tag group="ItemQuality" tag="Autofire"/>
+    <tag group="WeaponSkill" tag="skRangedLight"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedLight"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpSniperRifle" name="Sniper Rifle" description="While they vary by service and country, all sniper rifles are designed to fire high-caliber, high-velocity rounds over long distances. The sniper rifle entry here is a basic dedicated sniper rifle like the U.S. Army’s M24 rifle. The range is extreme to represent its ability to reach farther than even regular hunting rifles. Sniper rifles possess the Accurate and Pierce qualities to reflect their excellent balance and specialized rounds. They do, however, have a smaller magazine, hence the Limited Ammo quality." compset="Ranged">
+    <fieldval field="wpDamage" value="9"/>
+    <fieldval field="wpCrit" value="2"/>
+    <fieldval field="grRarity" value="6"/>
+    <fieldval field="grCost" value="1200"/>
+    <fieldval field="gearWeight" value="4"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="Modern"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRifle"/>
+    <tag group="WeaponSkill" tag="skRanged"/>
+    <tag group="WeaponRange" tag="Extreme"/>
+    <tag group="ItemQuality" tag="Accurate2"/>
+    <tag group="ItemQuality" tag="LimitedAmmo4"/>
+    <tag group="ItemQuality" tag="Pierce2"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="WeaponSkill" tag="skRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged2H"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedHeavy"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpARCarbine" name="Assault Rifle (Carbine)" description="While clattering, hard-hitting assault rifles are ostensibly military weapons, they can and often do fall into the hands of gangs, crime syndicates, and insurgents. The assault rifle presented here is a basic AR- or AK-pattern rifle like those carried throughout the world. The Autofire quality is the primary thing that separates these weapons from other types of rifles, although they can be fired on semiautomatic as well (your character may choose whether or not to use Auto-fire). Assault rifles do roughly the same damage as other “long guns.”\n\nMany militaries make carbine versions of their assault rifles, such as the U.S. military’s Colt M4. They’re more compact than full-sized rifles and a bit easier to wield." compset="Ranged">
+    <fieldval field="wpDamage" value="8"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="gearWeight" value="3"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <fieldval field="grCost" value="800"/>
+    <fieldval field="grRarity" value="7"/>
+    <usesource source="Modern"/>
+    <tag group="WeaponSkill" tag="skRangedHeavy"/>
+    <tag group="ItemQuality" tag="Autofire"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged2H"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRifle"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="WeaponRange" tag="Medium"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpLeverRifle" name="Lever-Action Rifle" compset="Ranged">
+    <fieldval field="wpDamage" value="8"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="4"/>
+    <fieldval field="grCost" value="850"/>
+    <fieldval field="gearWeight" value="4"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="Modern"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRifle"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged2H"/>
+    <tag group="WeaponSkill" tag="skRanged"/>
+    <tag group="WeaponRange" tag="Long"/>
+    <tag group="ItemQuality" tag="Accurate1"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="WeaponSkill" tag="skRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedHeavy"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="amPNLReload" name="Portable Missile Launcher (Reload)" compset="Ammunition">
+    <fieldval field="grCost" value="50000"/>
+    <fieldval field="grRarity" value="8"/>
+    <fieldval field="gearWeight" value="4"/>
+    <usesource source="Modern"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpShotgunSODB" name="Sawed-Off Double Barrel Shotgun" description="When you really want to make an impression in a firefight, a shotgun is a great way to go. Pulling a pistol from a hidden pocket just doesn’t have the same dramatic effect as, say, drawing a lever-action 10 gauge out of a box of roses in slow motion. The flat thump of the report, the muzzle flash, the shocking recoil, even the loud {I}clack-clack{/I} noise of working a pump action make these weapons an assault on everyone’s senses, and also is what makes them so popular in action movies!" compset="Ranged">
+    <fieldval field="wpDamage" value="8"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="3"/>
+    <fieldval field="grCost" value="400"/>
+    <fieldval field="gearWeight" value="1"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="Modern"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRifle"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged2H"/>
+    <tag group="WeaponSkill" tag="skRanged"/>
+    <tag group="WeaponRange" tag="Short"/>
+    <tag group="ItemQuality" tag="Blast4"/>
+    <tag group="ItemQuality" tag="Knockdown"/>
+    <tag group="ItemQuality" tag="Vicious2"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="WeaponSkill" tag="skRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedHeavy"/>
+    <tag group="ItemQuality" tag="Inaccurate1"/>
+    <tag group="ItemQuality" tag="LimitedAmmo2"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="armFlakVest" name="Flak Vest" description="In modern times, most militaries, police departments, and people in a war zone use flak vests. These are made from lightweight polymers and ballistic fabrics and provide decent protection from small arms and shrapnel (as represented by the vest’s soak value)." compset="Armor">
+    <fieldval field="defSoak" value="2"/>
+    <fieldval field="grRarity" value="5"/>
+    <fieldval field="grCost" value="475"/>
+    <fieldval field="gearWeight" value="3"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="Modern"/>
+    <tag group="ItemModCatAllowed" tag="Armor"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="armRiotArmor" name="Riot Armor" description="A staple of police departments the world over, riot armor is designed to protect from stones, bottles, shrapnel, and small-arms fire. The suit includes a helmet with eye protection and a large polycarbonate shield for deflecting blows and pushing crowds. We represent this with the higher defense and moderate soak, since the armor deflects hits better than it stops bullets. Your character must use one hand to carry the riot shield. If they do not, the armor’s defense drops to 1." compset="Armor">
+    <fieldval field="defDefense" value="1"/>
+    <fieldval field="defSoak" value="1"/>
+    <fieldval field="grRarity" value="6"/>
+    <fieldval field="grCost" value="675"/>
+    <fieldval field="gearWeight" value="4"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="Modern"/>
+    <tag group="ItemModCatAllowed" tag="Armor"/>
+    <tag group="ItemModCatAllowed" tag="ArmorSuit"/>
+    <bootstrap thing="armRiotShield"></bootstrap>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="armRiotShield" name="Riot Shield" compset="Shield">
+    <fieldval field="defDefense" value="1"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="Modern"/>
+    <tag group="Hide" tag="Equipment"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="armGhillieSuit" name="Ghillie Suit" description="Ghillie suits are simple camouflage suits that conceal snipers and forward observers. A suit is little more than a baggy shirt and pair of trousers covered in countless strips of fabric, clumps of grass, and other detritus. Since ghillie suits are designed to obscure rather than protect, they have a single point of defense but no soak. \n\nCharacters trying to spot someone wearing a ghillie suit upgrade the difficulty of their check once." compset="Armor" summary="Characters trying to spot someone wearing a ghillie suit upgrade the difficulty of their check once.">
+    <fieldval field="defDefense" value="1"/>
+    <fieldval field="gearWeight" value="1"/>
+    <fieldval field="grCost" value="95"/>
+    <fieldval field="grRarity" value="4"/>
+    <usesource source="Modern"/>
+    <tag group="ItemModCatAllowed" tag="ArmorSuit"/>
+    <tag group="ItemModCatAllowed" tag="Armor"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpMonobladeKnife" name="Monoblade Knife" description="This is an age-old weapon with a futuristic twist, a knife given an impossibly sharp edge through materials sciences. This is just like the knife on page 91, except that this knife has a better Crit rating and the Pierce quality; it can cut through tough materials and is more likely to inflict deadly wounds." compset="Melee">
+    <fieldval field="wpDamage" value="1"/>
+    <fieldval field="wpCrit" value="2"/>
+    <fieldval field="grRarity" value="3"/>
+    <fieldval field="grCost" value="240"/>
+    <fieldval field="gearWeight" value="1"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemQuality" tag="Pierce2"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBladed"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee1H"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee"/>
+    <tag group="WeaponSkill" tag="skMelee"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpMonobladeSword" name="Monoblade Sword" description="This is an age-old weapon with a futuristic twist, a knife given an impossibly sharp edge through materials sciences. It can cut through tough materials and is more likely to inflict deadly wounds." compset="Melee">
+    <fieldval field="wpDamage" value="3"/>
+    <fieldval field="wpCrit" value="2"/>
+    <fieldval field="grRarity" value="4"/>
+    <fieldval field="grCost" value="480"/>
+    <fieldval field="gearWeight" value="2"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemQuality" tag="Pierce2"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBladed"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee1H"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee"/>
+    <tag group="ItemQuality" tag="Defense1"/>
+    <tag group="WeaponSkill" tag="skMelee"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpStunBaton" name="Stun Baton" description="This is supposed to be a slightly more futuristic version of a police riot club, a weapon that shocks opponents into submission. One thing to note is that even though this is a Melee weapon, it doesn’t add your character’s Brawn to the damage (signified by the lack of a “+” before the damage value). Since the weapon discharges an electric shock whenever it touches an opponent, how hard your character swings it doesn’t matter. Also, this weapon is non-lethal, so it has the Stun Damage quality." compset="Melee">
+    <fieldval field="wpDamage" value="6"/>
+    <fieldval field="wpCrit" value="4"/>
+    <fieldval field="grRarity" value="2"/>
+    <fieldval field="grCost" value="160"/>
+    <fieldval field="gearWeight" value="1"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemQuality" tag="Disorient3"/>
+    <tag group="ItemQuality" tag="StunDamage"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBlunt"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee1H"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee"/>
+    <tag group="WeaponSkill" tag="skMelee"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpFlechettePistol" name="Flechette Pistol" description="The flechette pistol uses electromagnetic coils to fire bursts of tiny metal spears called flechettes. These benefit from significant penetrative power and can sometimes punch straight through an opponent (represented by the Pierce 2 quality), but they don’t have a great deal of stopping power (hence the lower damage). Since each shot is actually a burst of several flechettes, the low Crit rating and Vicious 2 quality represent the high chance of internal damage" compset="Ranged">
+    <fieldval field="wpDamage" value="4"/>
+    <fieldval field="wpCrit" value="2"/>
+    <fieldval field="grRarity" value="5"/>
+    <fieldval field="grCost" value="500"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedLight"/>
+    <tag group="WeaponRange" tag="Short"/>
+    <tag group="ItemQuality" tag="Pierce2"/>
+    <tag group="ItemQuality" tag="Vicious2"/>
+    <tag group="WeaponSkill" tag="skRangedLight"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponPistol"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpFlechetteLaunch" name="Flechette Launcher" description="The flechette pistol uses electromagnetic coils to fire bursts of tiny metal spears called flechettes. These benefit from significant penetrative power and can sometimes punch straight through an opponent (represented by the Pierce 2 quality), but they don’t have a great deal of stopping power (hence the lower damage). Since each shot is actually a burst of several flechettes, the low Crit rating and Vicious 2 quality represent the high chance of internal damage" compset="Ranged">
+    <fieldval field="wpDamage" value="4"/>
+    <fieldval field="wpCrit" value="2"/>
+    <fieldval field="grRarity" value="5"/>
+    <fieldval field="grCost" value="800"/>
+    <fieldval field="gearWeight" value="3"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="WeaponRange" tag="Medium"/>
+    <tag group="ItemQuality" tag="Blast4"/>
+    <tag group="ItemQuality" tag="Pierce2"/>
+    <tag group="ItemQuality" tag="Vicious3"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="WeaponSkill" tag="skRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged2H"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpLaserPistol" name="Laser Pistol" description="Laser weapons fire a beam of coherent light, causing damage through intense, searing heat. In this setting, we’re assuming that handheld lasers are still being refined, so these early models have some drawbacks. One issue with laser weapons is beam diffusion over long distances, which is why our laser weapons are relatively short ranged. These lasers don’t have a lot of penetration, since they expend their energy on the surface of whatever they hit, so no Pierce. But they are very accurate and can light targets on fire, hence the Accurate and Burn qualities" compset="Ranged">
+    <fieldval field="wpDamage" value="6"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="7"/>
+    <fieldval field="grCost" value="650"/>
+    <fieldval field="gearWeight" value="2"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="SciFi"/>
+    <tag group="WeaponRange" tag="Short"/>
+    <tag group="ItemQuality" tag="Accurate1"/>
+    <tag group="ItemQuality" tag="Burn1"/>
+    <tag group="WeaponSkill" tag="skRangedLight"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponPistol"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedLight"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpLaserRifle" name="Laser Rifle" description="Laser weapons fire a beam of coherent light, causing damage through intense, searing heat. In this setting, we’re assuming that handheld lasers are still being refined, so these early models have some drawbacks. One issue with laser weapons is beam diffusion over long distances, which is why our laser weapons are relatively short ranged. These lasers don’t have a lot of penetration, since they expend their energy on the surface of whatever they hit, so no Pierce. But they are very accurate and can light targets on fire, hence the Accurate and Burn qualities" compset="Ranged">
+    <fieldval field="wpDamage" value="8"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="7"/>
+    <fieldval field="grCost" value="900"/>
+    <fieldval field="gearWeight" value="4"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="SciFi"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRifle"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <tag group="WeaponRange" tag="Medium"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="ItemQuality" tag="Accurate1"/>
+    <tag group="ItemQuality" tag="Burn1"/>
+    <tag group="WeaponSkill" tag="skRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged2H"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpGaussRifle" name="Gauss Rifle" description="A gauss rifle uses an electromagnetic rail or coil to hurl a metal projectile over a long distance at incredible speed. The main drawback of this weapon is that it takes some time to recharge its capacitors after firing, so we gave it Slow-Firing (it’s also important to do this for balance reasons, since this weapon is very powerful). We gave it Cumbersome as well, so a character needs to be strong to carry it around, or must use a bipod (see page 207)." compset="Ranged">
+    <fieldval field="wpDamage" value="10"/>
+    <fieldval field="wpCrit" value="2"/>
+    <fieldval field="grRarity" value="6"/>
+    <fieldval field="gearWeight" value="5"/>
+    <fieldval field="grCost" value="2000"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged2H"/>
+    <tag group="WeaponRange" tag="Extreme"/>
+    <tag group="ItemQuality" tag="Cumber3"/>
+    <tag group="ItemQuality" tag="Pierce5"/>
+    <tag group="ItemQuality" tag="SlowFire1"/>
+    <tag group="WeaponSkill" tag="skRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpMicroMissileLa" name="Micro-Missile Launcher" description="One thing we can expect in the future is the further miniaturization of computers, which leads us to the micromissile launcher. This portable weapon fires miniature missiles that lock onto a target, pursue it, and detonate. The tracking ability comes with the Guided quality (and the time to lock onto a target is represented by the Prepare quality). As with the gauss rifle, a weapon this powerful needs drawbacks to compensate, which are the weapon’s high Cumbersome rating and encumbrance." compset="Ranged">
+    <fieldval field="wpDamage" value="12"/>
+    <fieldval field="wpCrit" value="4"/>
+    <fieldval field="grRarity" value="6"/>
+    <fieldval field="grCost" value="3000"/>
+    <fieldval field="gearWeight" value="5"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="SciFi"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="ItemQuality" tag="Blast10"/>
+    <tag group="ItemQuality" tag="Cumber4"/>
+    <tag group="ItemQuality" tag="Guided3"/>
+    <tag group="ItemQuality" tag="LimitedAmmo3"/>
+    <tag group="ItemQuality" tag="Prepare1"/>
+    <tag group="WeaponSkill" tag="skGunnery"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponGunnery"/>
+    <tag group="WeaponRange" tag="Long"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="armPlasteelCara" name="Plasteel Carapace" description="Made from semifuturistic materials, a suit of plasteel carapace armor completely covers your character from head to toe, and with the right attachments can even be environmentally sealed. The armor has a rigid outer shell that deflects or blocks incoming attacks (represented by the reasonably high soak value and a defense value)." compset="Armor">
+    <fieldval field="defDefense" value="1"/>
+    <fieldval field="defSoak" value="2"/>
+    <fieldval field="grRarity" value="5"/>
+    <fieldval field="grCost" value="750"/>
+    <fieldval field="gearWeight" value="4"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="SciFi"/>
+    <tag group="ItemModCatAllowed" tag="ArmorPlate"/>
+    <tag group="ItemModCatAllowed" tag="ArmorSuit"/>
+    <tag group="ItemModCatAllowed" tag="Armor"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="armOpticalCamoS" name="Optical Camo Suit" description="An optical camo suit plays with the idea that holographic projectors and other similar technologies will, in the future, allow people to wear armor that “cloaks” them and makes them invisible to the naked eye. Our optical camo suit doesn’t quite go that far, but it does use holoprojectors to blur and obscure the wearer, making them much harder to hit (hence the defense value). Unfortunately, the complicated projector tech doesn’t do much if someone manages to land a lucky blow, which is why this armor has no soak value." compset="Armor">
+    <fieldval field="defDefense" value="2"/>
+    <fieldval field="grRarity" value="7"/>
+    <fieldval field="grCost" value="580"/>
+    <fieldval field="gearWeight" value="2"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="SciFi"/>
+    <tag group="ItemModCatAllowed" tag="ArmorSuit"/>
+    <tag group="ItemModCatAllowed" tag="Armor"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpAssaultCannon" name="Assaut Cannon" description="This is the evolution of modern day autocannons and heavy machine guns. It may or may not feature multiple rotating barrels, or use explosive or armor-piercing shells, but the end result is much the same, since we are assuming the explosive radius isn’t enough to justify the Blast quality. Instead, the Pierce and Vicious qualities combine with high damage to make a weapon that’s probably overkill against infantry and enough to threaten light vehicles." compset="Ranged">
+    <fieldval field="wpDamage" value="15"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="3"/>
+    <fieldval field="grCost" value="4500"/>
+    <fieldval field="gearWeight" value="6"/>
+    <fieldval field="grHardpoints" value="3"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="ItemQuality" tag="Autofire"/>
+    <tag group="ItemQuality" tag="Cumber3"/>
+    <tag group="ItemQuality" tag="Inaccurate1"/>
+    <tag group="ItemQuality" tag="Pierce3"/>
+    <tag group="ItemQuality" tag="Vicious3"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponGunnery"/>
+    <tag group="WeaponSkill" tag="skGunnery"/>
+    <tag group="WeaponRange" tag="Long"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpGrenadeLobber" name="Grenade Lobber" description="We’ve given this grenade launcher a profile reflecting a standard grenade. If you use a different kind of grenade (such as the particle grenade), change the damage and Crit ratings accordingly, and add the relevant qualities (you wouldn’t change the launcher’s Limited Ammo quality, for instance). Although this weapon is similar to a modern-day grenade launcher, sophisticated targeting systems help the user fire at the right trajectory to hit even distant targets, hence the long range and Accurate quality." compset="Ranged">
+    <fieldval field="wpDamage" value="8"/>
+    <fieldval field="wpCrit" value="4"/>
+    <fieldval field="grRarity" value="5"/>
+    <fieldval field="grCost" value="1000"/>
+    <fieldval field="gearWeight" value="5"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="ItemQuality" tag="Accurate2"/>
+    <tag group="ItemQuality" tag="Blast6"/>
+    <tag group="ItemQuality" tag="LimitedAmmo6"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponGunnery"/>
+    <tag group="WeaponSkill" tag="skGunnery"/>
+    <tag group="WeaponRange" tag="Long"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpLaserCannon" name="Laser Cannon" description="These weapons fire beams of energy, which is really all the explanation you need in a space opera setting. Unlike the laser weapons presented in the hard science fiction setting on page 175, we assume these weapons are sophisticated enough that diffusion over distance isn’t a problem. We also decided that the focused beams of these weapons can easily punch holes in armor, hence the Pierce (or even Breach) quality." compset="Ranged">
+    <fieldval field="wpDamage" value="9"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="6"/>
+    <fieldval field="grCost" value="3120"/>
+    <fieldval field="gearWeight" value="8"/>
+    <fieldval field="grHardpoints" value="4"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="ItemQuality" tag="Breech2"/>
+    <tag group="ItemQuality" tag="Cumber3"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponGunnery"/>
+    <tag group="WeaponSkill" tag="skGunnery"/>
+    <tag group="WeaponRange" tag="Extreme"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpLaserPistolSO" name="Laser Pistol" description="These weapons fire beams of energy, which is really all the explanation you need in a space opera setting. Unlike the laser weapons presented in the hard science fiction setting on page 175, we assume these weapons are sophisticated enough that diffusion over distance isn’t a problem. We also decided that the focused beams of these weapons can easily punch holes in armor, hence the Pierce (or even Breach) quality." compset="Ranged">
+    <fieldval field="wpDamage" value="5"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="4"/>
+    <fieldval field="grCost" value="360"/>
+    <fieldval field="gearWeight" value="2"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="WeaponSkill" tag="skRangedLight"/>
+    <tag group="WeaponRange" tag="Medium"/>
+    <tag group="ItemQuality" tag="Pierce2"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponPistol"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedLight"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpLaserPistolAnt" name="Laser Pistol (Antique)" description="Laser weapons fire a beam of coherent light, causing damage through intense, searing heat. In this setting, we’re assuming that handheld lasers are still being refined, so these early models have some drawbacks. One issue with laser weapons is beam diffusion over long distances, which is why our laser weapons are relatively short ranged. These lasers don’t have a lot of penetration, since they expend their energy on the surface of whatever they hit, so no Pierce. But they are very accurate and can light targets on fire, hence the Accurate and Burn qualities" compset="Ranged">
+    <fieldval field="wpDamage" value="6"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="7"/>
+    <fieldval field="grCost" value="650"/>
+    <fieldval field="gearWeight" value="2"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="ItemQuality" tag="Accurate1"/>
+    <tag group="ItemQuality" tag="Burn1"/>
+    <tag group="WeaponSkill" tag="skRangedLight"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponPistol"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedLight"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <tag group="WeaponRange" tag="Short"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpLaserRifleAnt" name="Laser Rifle (Antique)" description="Laser weapons fire a beam of coherent light, causing damage through intense, searing heat. In this setting, we’re assuming that handheld lasers are still being refined, so these early models have some drawbacks. One issue with laser weapons is beam diffusion over long distances, which is why our laser weapons are relatively short ranged. These lasers don’t have a lot of penetration, since they expend their energy on the surface of whatever they hit, so no Pierce. But they are very accurate and can light targets on fire, hence the Accurate and Burn qualities" compset="Ranged">
+    <fieldval field="wpDamage" value="8"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="7"/>
+    <fieldval field="grCost" value="900"/>
+    <fieldval field="gearWeight" value="4"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <tag group="WeaponRange" tag="Medium"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="ItemQuality" tag="Accurate1"/>
+    <tag group="ItemQuality" tag="Burn1"/>
+    <tag group="WeaponSkill" tag="skRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged2H"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRifle"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpLaserRifleSO" name="Laser Rifle" description="These weapons fire beams of energy, which is really all the explanation you need in a space opera setting. Unlike the laser weapons presented in the hard science fiction setting on page 175, we assume these weapons are sophisticated enough that diffusion over distance isn’t a problem. We also decided that the focused beams of these weapons can easily punch holes in armor, hence the Pierce (or even Breach) quality." compset="Ranged">
+    <fieldval field="wpDamage" value="6"/>
+    <fieldval field="wpCrit" value="3"/>
+    <fieldval field="grRarity" value="4"/>
+    <fieldval field="grCost" value="860"/>
+    <fieldval field="gearWeight" value="4"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="WeaponSkill" tag="skRangedHeavy"/>
+    <tag group="WeaponRange" tag="Long"/>
+    <tag group="ItemQuality" tag="Pierce4"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged2H"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRifle"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpParticleGren" name="Particle Grenade" description="This grenade releases a blast of highly energized particles that disrupt the nervous systems of most organic creatures. For this sci-fi take on the classic stun grenade, we figured the particles have a potent enough effect to leave the target dazed even once they regain control of their body, represented by a higher Disorient rating in addition to Concussive." compset="Ranged">
+    <fieldval field="wpDamage" value="6"/>
+    <fieldval field="wpCrit" value="4"/>
+    <fieldval field="grRarity" value="5"/>
+    <fieldval field="grCost" value="200"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="WeaponRange" tag="Short"/>
+    <tag group="ItemQuality" tag="Blast3"/>
+    <tag group="ItemQuality" tag="Concussive1"/>
+    <tag group="ItemQuality" tag="Disorient3"/>
+    <tag group="ItemQuality" tag="LimitedAmmo1"/>
+    <tag group="ItemQuality" tag="StunDamage"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedLight"/>
+    <tag group="WeaponSkill" tag="skRangedLight"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpPlasmaCannon" name="Plasma Cannon" description="These weapons all fire spherical bolts of high-energy ionized gas. The exact chemicals and technology involved are sure to differ between manufacturers and species, but the result is devastating, superheated energy projectiles. Even the larger weapons in this category have a fairly limited range, since we figure the electromagnetic field generated for each projectile can only maintain its coherency for a short time. The bolts of superheated gas leave flesh sizzling and armor smoldering, hence the Burn quality. The largest weapons— plasma cannons—need time to cool down after each shot (hence the Slow-Firing quality)." compset="Ranged">
+    <fieldval field="wpDamage" value="10"/>
+    <fieldval field="wpCrit" value="2"/>
+    <fieldval field="grRarity" value="7"/>
+    <fieldval field="grCost" value="2000"/>
+    <fieldval field="gearWeight" value="7"/>
+    <fieldval field="grHardpoints" value="3"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="ItemQuality" tag="Blast10"/>
+    <tag group="ItemQuality" tag="Burn1"/>
+    <tag group="ItemQuality" tag="Cumber3"/>
+    <tag group="ItemQuality" tag="SlowFire1"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponGunnery"/>
+    <tag group="WeaponSkill" tag="skGunnery"/>
+    <tag group="WeaponRange" tag="Long"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpPlasmaPistol" name="Plasma Pistol" description="These weapons all fire spherical bolts of high-energy ionized gas. The exact chemicals and technology involved are sure to differ between manufacturers and species, but the result is devastating, superheated energy projectiles. Even the larger weapons in this category have a fairly limited range, since we figure the electromagnetic field generated for each projectile can only maintain its coherency for a short time. The bolts of superheated gas leave flesh sizzling and armor smoldering, hence the Burn quality. The largest weapons— plasma cannons—need time to cool down after each shot (hence the Slow-Firing quality)." compset="Ranged">
+    <fieldval field="wpDamage" value="10"/>
+    <fieldval field="wpCrit" value="2"/>
+    <fieldval field="grRarity" value="4"/>
+    <fieldval field="grCost" value="1200"/>
+    <fieldval field="gearWeight" value="2"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="WeaponSkill" tag="skRangedLight"/>
+    <tag group="WeaponRange" tag="Short"/>
+    <tag group="ItemQuality" tag="Burn1"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponPistol"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedLight"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpPlasmaRifle" name="Plasma Rifle" description="These weapons all fire spherical bolts of high-energy ionized gas. The exact chemicals and technology involved are sure to differ between manufacturers and species, but the result is devastating, superheated energy projectiles. Even the larger weapons in this category have a fairly limited range, since we figure the electromagnetic field generated for each projectile can only maintain its coherency for a short time. The bolts of superheated gas leave flesh sizzling and armor smoldering, hence the Burn quality. The largest weapons— plasma cannons—need time to cool down after each shot (hence the Slow-Firing quality)." compset="Ranged">
+    <fieldval field="wpDamage" value="10"/>
+    <fieldval field="wpCrit" value="2"/>
+    <fieldval field="grRarity" value="4"/>
+    <fieldval field="grCost" value="1400"/>
+    <fieldval field="gearWeight" value="4"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="WeaponSkill" tag="skRangedHeavy"/>
+    <tag group="WeaponRange" tag="Medium"/>
+    <tag group="ItemQuality" tag="Burn1"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged2H"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRifle"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpSliverRL" name="Sliver Rocket Launcher" description="A sliver rocket launcher is named for the appearance of its narrow, supersonic projectiles. Sliver rockets don’t have an explosive payload, but their armor-piercing warheads are immensely effective against even the toughest vehicles. We’ve given the weapon Breach to account for the devastating effects of impact against both vehicles and flesh." compset="Ranged">
+    <fieldval field="wpDamage" value="15"/>
+    <fieldval field="wpCrit" value="2"/>
+    <fieldval field="grRarity" value="6"/>
+    <fieldval field="grCost" value="10000"/>
+    <fieldval field="gearWeight" value="7"/>
+    <fieldval field="grHardpoints" value="3"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="ItemQuality" tag="Breech4"/>
+    <tag group="ItemQuality" tag="Cumber3"/>
+    <tag group="ItemQuality" tag="Guided4"/>
+    <tag group="ItemQuality" tag="LimitedAmmo3"/>
+    <tag group="ItemQuality" tag="Prepare1"/>
+    <tag group="ItemQuality" tag="Vicious5"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponGunnery"/>
+    <tag group="WeaponSkill" tag="skGunnery"/>
+    <tag group="WeaponRange" tag="Extreme"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpSlugPistol" name="Slug Pistol" description="Despite thousands of years of innovation, handguns and rifles that chemically propel solid metal bullets remain a mainstay of fighting forces. These are common among poorer and less technologically advanced forces." compset="Ranged">
+    <fieldval field="wpDamage" value="6"/>
+    <fieldval field="wpCrit" value="4"/>
+    <fieldval field="grRarity" value="1"/>
+    <fieldval field="grCost" value="200"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="WeaponSkill" tag="skRangedLight"/>
+    <tag group="WeaponRange" tag="Short"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponPistol"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedLight"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpSlugRifle" name="Slug Rifle" description="Despite thousands of years of innovation, handguns and rifles that chemically propel solid metal bullets remain a mainstay of fighting forces. These are common among poorer and less technologically advanced forces." compset="Ranged">
+    <fieldval field="wpDamage" value="7"/>
+    <fieldval field="wpCrit" value="4"/>
+    <fieldval field="grRarity" value="1"/>
+    <fieldval field="grCost" value="375"/>
+    <fieldval field="gearWeight" value="3"/>
+    <fieldval field="grHardpoints" value="1"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="WeaponSkill" tag="skRangedHeavy"/>
+    <tag group="WeaponRange" tag="Medium"/>
+    <tag group="ItemQuality" tag="Autofire"/>
+    <tag group="Equipment" tag="TwoHand"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRangedHeavy"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged2H"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRanged"/>
+    <tag group="ItemModCatAllowed" tag="WeaponRifle"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="wpShudderBlade" name="Shudder Blade" description="This weapon is essentially a combat knife with a carbon alloy blade that vibrates at an ultrasonic frequency, allowing it to slice through even the strongest materials. These traits are represented with the Pierce and Vicious qualities as well as a good Crit rating, giving the weapon a chance to inflict significant injuries on even armored targets." compset="Melee">
+    <fieldval field="wpDamage" value="2"/>
+    <fieldval field="wpCrit" value="2"/>
+    <fieldval field="grRarity" value="5"/>
+    <fieldval field="grCost" value="450"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="WeaponSkill" tag="skMelee"/>
+    <tag group="WeaponRange" tag="Engaged"/>
+    <tag group="ItemQuality" tag="Pierce2"/>
+    <tag group="ItemQuality" tag="Vicious3"/>
+    <tag group="ItemModCatAllowed" tag="Weapon"/>
+    <tag group="ItemModCatAllowed" tag="WeaponBladed"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee1H"/>
+    <tag group="ItemModCatAllowed" tag="WeaponMelee"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="armEliteShockArm" name="Elite Shock Armor" description="Elite shock armor is the kind of horribly effective, horribly expensive armor that governments and armies only give to their very best soldiers. These might be marines assigned to board enemy starships, commando raiders sent behind enemy lines on the most dangerous missions, or the elite bodyguards of powerful emperors and rulers.\n\nWhen wearing this armor, characters increase their Brawn by 1, to a maximum of 5 (this does increase their soak value) and count their encumbrance capacity as 10+Brawn. This armor is also environmentally sealed, meaning that it counts as a space suit (see the next page)." compset="Armor" summary="When wearing this armor, characters increase their Brawn by 1, to a maximum of 5 (this does increase their soak value) and count their encumbrance capacity as 10+Brawn. This armor is also environmentally sealed (it counts as a space suit).">
+    <fieldval field="defDefense" value="1"/>
+    <fieldval field="defSoak" value="2"/>
+    <fieldval field="grRarity" value="6"/>
+    <fieldval field="grCost" value="4000"/>
+    <fieldval field="gearWeight" value="5"/>
+    <fieldval field="grHardpoints" value="3"/>
+    <usesource source="SpaceOpera"/>
+    <eval phase="PreTraits" priority="5000">doneif (field[grIsEquip].value = 0)
+
+#traitbonus[attrBra] += 1</eval>
+    <child entity="ItemMods">
+      <bootstrap thing="imodVacuumSeal"></bootstrap>
+      </child>
+    </thing>
+  <thing id="armInfantryCombat" name="Infantry Combat Armor" description="The combat armor used by foot soldiers of various interplanetary governments is pretty similar across the galaxy, providing a solid soak value with minimal encumbrance.\n\nIf you are using the hard point customization rules, infantry combat armor has three hard points (instead of the usual one)." compset="Armor">
+    <fieldval field="defSoak" value="2"/>
+    <fieldval field="grRarity" value="5"/>
+    <fieldval field="grCost" value="700"/>
+    <fieldval field="gearWeight" value="2"/>
+    <fieldval field="grHardpoints" value="3"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="ItemModCatAllowed" tag="ArmorSuit"/>
+    <tag group="ItemModCatAllowed" tag="Armor"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="armPersForceField" name="Personal Force Field" description="Force fields are a mainstay of space opera sci-fi, although in many settings they are primarily or exclusively used to protect ships and other large targets. The sophisticated technology and high power draw mean that personal force fields are rare and expensive. Mechanically, a high defense is less predictable than soak, but has the potential to cause otherwise successful attacks to fail." compset="Armor">
+    <fieldval field="defDefense" value="3"/>
+    <fieldval field="grRarity" value="8"/>
+    <fieldval field="grCost" value="2000"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="SpaceOpera"/>
+    <tag group="ItemModCatAllowed" tag="Armor"/>
+    <child entity="ItemMods"></child>
+    </thing>
   </document>

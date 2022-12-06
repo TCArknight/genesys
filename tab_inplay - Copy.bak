@@ -51,13 +51,12 @@
         ]]></headertitle>
       </table_fixed>
     </portal>
-	
   <portal
     id="ipActivateGear"
     style="tblNormal">
     <table_fixed
       component="Gear"
-      showtemplate="ipActivateGear"
+      showtemplate="ipActivate"
       columns="2">
       <list>User.Activation</list>
       <headertitle><![CDATA[
@@ -279,62 +278,6 @@
 
     </template>
 
-  <template
-    id="ipActivateGear"
-    name="Activated Gear"
-    compset="Equipment"
-    marginhorz="3"
-    marginvert="3">
-
-    <portal
-      id="activate"
-      style="chkNormal"
-      tiptext="Click to activate or deactivate this ability.">
-      <checkbox
-        field="grIsActive"
-        dynamicfield="name">
-        </checkbox>
-      </portal>
-
-    <portal
-      id="info"
-      style="actInfo">
-      <action
-        action="info">
-        </action>
-      <mouseinfo/>
-      </portal>
-
-    <position><![CDATA[
-      ~set up our height based on the tallest portal
-      height = portal[info].height
-
-      ~if this is a "sizing" calculation, we're done
-      doneif (issizing <> 0)
-
-      ~center the portals vertically
-      perform portal[info].centervert
-      perform portal[activate].centervert
-
-      ~position the info portal on the far right
-      perform portal[info].alignedge[right,0]
-
-      ~position the activate portal on the left
-      portal[activate].left = 0
-
-      ~make sure the text on the activate portal doesn't overwrite the info
-      ~button
-      var limit as number
-      limit = portal[info].left - portal[activate].left
-      if (portal[activate].width > limit) then
-        portal[activate].width = limit
-        perform portal[activate].sizetofit[32]
-        perform portal[activate].autoheight
-        perform portal[activate].centervert
-        endif
-      ]]></position>
-
-    </template>
 
   <!-- ipAdjust template
         This template presents a temporary adjustment for the user to configure.
@@ -901,17 +844,67 @@
       template[ipHealth].top = 0
 
       ~position the tracker table beneath the health template
-	  autotop = template[ipHealth].bottom + 9
-	  
-	  perform portal[ipTracker].autoplace[0]
-	  perform portal[ipActivate].autoplace[10]
-	  perform portal[ipActivateGear].autoplace[10]
-	  perform portal[ipAdjust].autoplace[10]
-	  
+      portal[ipTracker].top = template[ipHealth].bottom + 9
+
       ~position the adjustments table at the bottom, allowing for at least three rows
       portal[ipAdjust].maxrows = 3
+      portal[ipAdjust].top = height - portal[ipAdjust].height
 
-	  
+      ~set the height of the activated and resources tables to all the space available
+      portal[ipTracker].height = height
+      portal[ipActivate].height = height
+      portal[ipActivateGear].height = height
+
+      ~determine the gap to use between tables
+      var gap as number
+      gap = 8
+
+      ~determine the remaining space for the activated and resources tables
+      var remain as number
+      remain = portal[ipAdjust].top - portal[ipTracker].top - (gap - 1) * 2
+
+      ~if we don't have enough space for both the activated and resources tables,
+      ~divvy up the space between the two tables
+      if (portal[ipTracker].height + portal[ipActivate].height + portal[ipActivateGear].height  > remain) then
+
+        ~if the activated table is less than half the gap, limit the resources
+        ~table to whatever space remains
+        if (portal[ipActivate].height < remain / 3) then
+          portal[ipTracker].height = remain - portal[ipActivate].height
+
+        ~if the resources table is less than half the gap, limit the activated
+        ~table to whatever space remains
+        elseif (portal[ipTracker].height < remain / 3) then
+          portal[ipActivate].height = remain - portal[ipTracker].height
+
+        ~if both tables are larger than half the gap, split the space between them
+        ~NOTE! If we just divide the remaining amount by two and set both tables to
+        ~that height, we could end up with both tables being truncated by more than
+        ~a half item, with the combined height being a full item short of taking up
+        ~the remaining space. So we have to set the height of one table to half the
+        ~remaining space, then subtract that table's final height from our remaining
+        ~space, and finally set that as the height for the second table
+        else
+          portal[ipTracker].height = remain / 2
+          portal[ipActivate].height = remain - portal[ipTracker].height
+          endif
+        endif
+
+      ~now that both the tables are sized, re-position the activated table properly
+      portal[ipActivate].top = portal[ipTracker].bottom + gap
+
+      ~re-position the adjustment table beneath the activated abilities table
+      ~NOTE! This ensures we don't leave a gap between the two tables.
+      portal[ipAdjust].top = portal[ipActivate].bottom + gap
+
+      ~set the height of the adjustments table to all the space remaining at the
+      ~bottom; this allows the table to grow as needed if the above tables don't
+      ~use up all the available space
+      portal[ipAdjust].height = height - portal[ipAdjust].top
+
+      ~set the height of the layout to the bottom of the adjustments table; this
+      ~eliminates any gap at the bottom when used by the direct manipulation form
+      height = portal[ipAdjust].bottom
       ]]></position>
 
     </layout>

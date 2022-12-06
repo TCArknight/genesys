@@ -122,7 +122,7 @@
       selltemplate="SellCash"
 	  alwaysupdate="yes">
       <list>component.Defense</list>
-      <candidate inheritlist="yes">!Equipment.Natural</candidate>
+      <candidate inheritlist="yes">!(Hide.Equipment|Equipment.Natural)</candidate>
       <titlebar><![CDATA[
         @text = "Select Armor and Shields to Purchase from the List Below"
         ]]></titlebar>
@@ -370,8 +370,10 @@
     <portal
       id="name"
       style="lblNormal">
-      <label
-        field="name">
+      <label>
+        <labeltext><![CDATA[
+          @text = field[name].text
+          ]]></labeltext>
         </label>
       </portal>
 

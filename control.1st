@@ -87,22 +87,13 @@
     sortorder="0"
     description="Fantasy setting for Sword and Sorcery adventure">
     </source>
-
-  <source
-    id="Modern"
-    name="Modern"
-    parent="Settings"
-    selectable="yes"
-    sortorder="1"
-    description="Modern setting">
-    </source>
 	
   <source
     id="Steampunk"
     name="Steampunk"
     parent="Settings"
     selectable="yes"
-    sortorder="2"
+    sortorder="1"
     description="Steampunk setting for ">
     </source>
 
@@ -111,8 +102,17 @@
     name="Weird Wars"
     parent="Settings"
     selectable="yes"
-    sortorder="3"
+    sortorder="2"
     description="Weird Wars setting for Sword and Sorcery adventure">
+    </source>
+
+  <source
+    id="Modern"
+    name="Modern"
+    parent="Settings"
+    selectable="yes"
+    sortorder="3"
+    description="Modern setting">
     </source>
 
   <source
@@ -122,6 +122,7 @@
     selectable="yes"
     sortorder="4"
     description="Sci-Fi Future setting">
+	<autotag group="SettingRule" tag="Cybernetics"/>
     </source>	
 	
   <source
@@ -152,11 +153,21 @@
     </source>
 
   <source
+    id="UseCybernetics"
+    name="Use Cybernetics"
+    parent="Optional"
+    selectable="yes"
+    sortorder="0"
+    description="Use Cybernetics from SciFi settings.">
+	<autotag group="SettingRule" tag="Cybernetics"/>
+    </source>
+
+  <source
     id="UseHacking"
     name="Use Hacking"
     parent="Optional"
     selectable="yes"
-    sortorder="0"
+    sortorder="1"
     description="Use the optional Hacking rules from Core book.">
 	<autotag group="SettingRule" tag="Hacking"/>
     </source>
@@ -166,7 +177,7 @@
     name="Use Magic"
     parent="Optional"
     selectable="yes"
-    sortorder="1"
+    sortorder="2"
     description="Use Magic skills and abilities with setting (included as Fantasy)">
 	<autotag group="SettingRule" tag="UseMagic"/>
     </source>
@@ -176,7 +187,7 @@
     name="Use Vehicles"
     parent="Optional"
     selectable="yes"
-    sortorder="2"
+    sortorder="3"
     description="Use the optional Vehicle rules from Core book.">
 	<autotag group="SettingRule" tag="Vehicles"/>
     </source>

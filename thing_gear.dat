@@ -109,4 +109,214 @@ field[gearWeight].value = 0</eval>
 field[gearWeight].value = 1</eval>
     <child entity="ItemMods"></child>
     </thing>
+  <thing id="eqAirMask" name="Air Mask" description="An air mask allows a user to avoid being poisoned by airborne toxins and to operate in corrosive atmospheres without penalty. The more expensive version with a built-in air supply allows the user to operate underwater for one hour without penalty." compset="Equipment">
+    <fieldval field="grRarity" value="3"/>
+    <fieldval field="grCost" value="75"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="Steampunk"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqAirMaskTank" name="Air Mask (w/ Tank)" description="An air mask allows a user to avoid being poisoned by airborne toxins and to operate in corrosive atmospheres without penalty. The more expensive version with a built-in air supply allows the user to operate underwater for one hour without penalty." compset="Equipment">
+    <fieldval field="grRarity" value="5"/>
+    <fieldval field="grCost" value="150"/>
+    <fieldval field="gearWeight" value="3"/>
+    <usesource source="Steampunk"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqAeropack" name="Aeropack/Aerosuit" description="This is any sort of personal flight device. Such items vary greatly in operation and appearance, and most are unique inventions. An aeropack might feature a steam rocket, a propeller, or flapping wings of clockwork and canvas. \n\nA character wearing an aeropack can fly (see page 100). However, flying doesn’t come naturally to humans, and your GM might call for a Piloting check in dangerous or unusual circumstances. In addition, none of these devices are incredibly reliable, so a �󲊲 result means it runs out of power at the end of your character’s turn and remains unpowered for the rest of the session. (It also means that if your character doesn’t make it to solid ground by that point, they’re in for a fall!)" compset="Equipment">
+    <fieldval field="grRarity" value="7"/>
+    <fieldval field="grCost" value="1000"/>
+    <fieldval field="gearWeight" value="5"/>
+    <fieldval field="grHardpoints" value="2"/>
+    <usesource source="Steampunk"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqMiracleTonic" name="Miracle Tonic" description="This curious elixir is, despite its name, only one of countless such cure-alls available for purchase (also, it was not developed by a real doctor). As with most such products, both the ingredients and the effect of the tonic are vague, but it indeed fulfills its promise to soothe pain and enhance the user’s vigor and alertness. \n\nA character who uses a maneuver to drink the tonic increases their wound threshold and strain threshold by five until the end of the current encounter, but must succeed at an {b}Average ({/b}[DI][DI]{b}) Resilience check{/b} as an incidental or suffer 5 strain—an unfortunate side effect of the quicksilver included in the tincture. If your character is already benefiting from the use of the tonic, additional uses have no further effect. Furthermore, once the effects wear off, if your character’s wounds or strain now exceed their threshold, they’re immediately incapacitated and suffer all related effects." compset="Equipment" summary="A character who uses a maneuver to drink the tonic increases their wound threshold and strain threshold by five until the end of the current encounter, but must succeed at an {b}Average ({/b}[DI][DI]{b}) Resilience check{/b} or suffer 5 strain">
+    <fieldval field="grRarity" value="5"/>
+    <fieldval field="grCost" value="200"/>
+    <usesource source="Steampunk"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqHoodedLant" name="Hooded Lantern" description="A simple but ingenious modification of the common lantern, the hooded lantern uses a metal hood and glass lens to focus the lantern’s light, making the beam travel farther and also making the light harder to spot when it’s not directed squarely at an observer. \n\nA lit hooded lantern provides light and removes [SB] added to checks due to darkness. (If it becomes important to determine how far the light reaches, a focused hooded lantern’s light can reach out to medium range.) In addition, your character can use a hooded lantern and not automatically be spotted at night or in the dark (although they still need to add [SB] to any Stealth checks they make, because the light still makes it easier to be noticed)." compset="Equipment" summary="A lit hooded lantern provides light and removes [SB] added to checks due to darkness. In addition, your character can use a hooded lantern and not automatically be spotted at night or in the dark.">
+    <usesource source="Steampunk"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqPotionPara" name="Potion of Paralyzation" description="This tonic does have the distinction of being created by an actual doctor, who was attempting to invent an anesthetic. However, various unscrupulous individuals have repurposed it as a incapacitating poison. \n\nA character may covertly drug someone’s food with this poison (requiring an {b}opposed Skulduggery vs. Vigilance check{/b}) or apply it to a weapon such as a knife as a maneuver. If the target ingests the poison or it enters their bloodstream by other means, they must make a {b}Hard ({/b}[DI][DI][DI]{b}) Resilience check{/b} as an out-of-turn incidental or become immobilized for the next three rounds. The target also suffers 1 strain per [T], and your GM can spend [D] to make them test against the poison again at the start of their next turn, as it remains in their system." compset="Equipment" summary="Make a {b}Hard ({/b}[DI][DI][DI]{b}) Resilience check{/b} as an out-of-turn incidental or become immobilized for the next three rounds. Also 1 Strain per [T].">
+    <fieldval field="grRarity" value="6"/>
+    <fieldval field="grCost" value="525"/>
+    <usesource source="Steampunk"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqFirstAidKit" name="First Aid Kit" description="These are not medical kits, but they provide just enough medical material to be useful while being small and cheap enough to issue to most infantry on the battlefield.  \n\nThis kit provides your character with the equipment needed to make Medicine checks to heal wounds or Critical Injuries without penalty. However, [T][T][T] or [D] means your character has used all of the kit’s supplies." compset="Equipment" summary="This kit provides your character with the equipment needed to make Medicine checks to heal wounds or Critical Injuries without penalty. However, [T][T][T] or [D] means your character has used all of the kit’s supplies.">
+    <fieldval field="grRarity" value="3"/>
+    <fieldval field="grCost" value="100"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="WeirdWar"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqNighteyesGog" name="&quot;Nighteyes&quot; Goggles" description="These fantastic goggles are based on alien technology. They allow the wielder to see through smoke, fog, and darkness and even enhance their aim.  \n \n While wearing “Nighteyes,” your character removes [SB][SB] added to their checks due to smoke, darkness, or concealment. When performing the Aim maneuver, they can choose to add automatic [A] to their check instead of [B]." compset="Equipment" summary=" While wearing “Nighteyes,” your character removes [SB][SB] added to their checks due to smoke, darkness, or concealment. When performing the Aim maneuver, they can choose to add automatic [A] to their check instead of [B].">
+    <fieldval field="grRarity" value="7"/>
+    <fieldval field="grCost" value="800"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="WeirdWar"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqUnholyTome" name="Unholy Tome" description="This could be almost any book or parchment that describes dread rituals to summon and control the infernal. If your character reads from an unholy tome, for the remainder of the encounter they add automatic [S][S] to any social skill checks with supernatural or occult creatures. However, if your character generates [DI] on those checks, the creature immediately attacks your character." compset="Equipment" summary="If you read from an unholy tome, for the remainder of the encounter you add automatic [S][S] to any social skill checks with supernatural or occult creatures. However, if you generates [DI] on those checks, the creature immediately attacks you.">
+    <fieldval field="grRarity" value="9"/>
+    <fieldval field="grCost" value="3000"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="WeirdWar"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqWardingIcon" name="Warding Icon" description="A warding icon protects against the occult and can be worn around the neck or on one’s clothing. If your character is wearing a warding icon, any supernatural or occult creature engaged with them is disoriented while they remain engaged." compset="Equipment">
+    <fieldval field="grRarity" value="7"/>
+    <fieldval field="grCost" value="800"/>
+    <usesource source="WeirdWar"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqExtraClip" name="Extra Clip" description="This is exactly what it sounds like: an extra clip of ammunition for a ranged weapon. \n\nIf your character has an extra clip, they may spend a maneuver to reload and continue to use their weapon if it runs out of ammo. This uses up the extra clip. (You can’t use this to reload weapons with the Limited Ammo quality, as they usually have special costs for their reloads or are one-use weapons.)" compset="Equipment">
+    <fieldval field="grRarity" value="2"/>
+    <fieldval field="grCost" value="25"/>
+    <usesource source="Modern"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqNVG" name="Night Vision Goggles" description="These goggles allow the user to see normally in the dark.\n\nWhen wearing night vision goggles, your character removes up to [SB][SB] added to their checks due to darkness." compset="Equipment">
+    <fieldval field="grRarity" value="5"/>
+    <fieldval field="grCost" value="500"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="Modern"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqPortMedkit" name="Portable Medkit" description="A well-equipped portable medkit comes with everything someone might need to treat all manner of injuries, from bullet wounds to broken legs.\n\nA portable medkit allows your character to perform Medicine checks to heal wounds and Critical Injuries without penalty. The inclusion of modern drugs adds automatic [A] to the check results." compset="Equipment">
+    <fieldval field="grRarity" value="4"/>
+    <fieldval field="grCost" value="200"/>
+    <fieldval field="gearWeight" value="2"/>
+    <usesource source="Modern"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqCyberRig" name="Cyber Rig" description="Hackers use cyber-rigs to delve deep into the Internet (or its equivalent) and defeat the most dangerous firewalls and programs. These things are big, with multiple monitor screens, towers full of electronics, and countless wires.\n\nA cyber-rig does everything a personal computer does. It also adds automatic [S] to any checks made to hack into protected servers, and adds automatic [F] to any checks by opponents to hack into its own systems." compset="Equipment" summary="A cyber-rig does everything a personal computer does. It also adds automatic [S] to any checks made to hack into protected servers, and adds automatic [F] to any checks by opponents to hack into its own systems.">
+    <fieldval field="grRarity" value="5"/>
+    <fieldval field="grCost" value="2000"/>
+    <fieldval field="gearWeight" value="8"/>
+    <usesource source="SciFi"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqPAD" name="PAD" description="Personal access devices (PADs) are small, handheld computers not too dissimilar to today’s smartphones and tablets (although their capabilities are notably superior). \n\nA PAD does everything you would expect a personal computer to do, just slightly faster and more easily." compset="Equipment" summary="A PAD does everything you would expect a personal computer to do, just slightly faster and more easily.">
+    <fieldval field="grRarity" value="3"/>
+    <fieldval field="grCost" value="200"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="SciFi"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="cybCyberArm" name="Cybernetic Arm" description="Besides replacing a missing limb, a cybernetic arm or leg adds +1 to your character’s Brawn or Agility rating (your choice when your character obtains the limb). If your character has one or more cybernetic arms, they decrease their strain threshold by one, and if they have one or more cybernetic legs, they decrease their strain threshold by one." compset="Cybernetics">
+    <fieldval field="usrLabel1" value="Applies to"/>
+    <fieldval field="usrCandid1" value="thingid.attrAgi|thingid.skBrawl"/>
+    <fieldval field="grCost" value="2000"/>
+    <fieldval field="grRarity" value="5"/>
+    <fieldval field="cyStrainCost" value="1"/>
+    <usesource source="UseCybernetics"/>
+    <usesource source="SciFi"/>
+    <tag group="User" tag="NoAutoName"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <eval phase="PreTraits" priority="5000"><![CDATA[doneif (field[grIsEquip].value = 0)
+
+if (field[usrChosen1].ischosen <> 0) then
+  perform field[usrChosen1].chosen.assign[Helper.CyberIncreased]
+  endif]]></eval>
+    </thing>
+  <thing id="cybCyberLeg" name="Cybernetic Leg" description="Besides replacing a missing limb, a cybernetic arm or leg adds +1 to your character’s Brawn or Agility rating (your choice when your character obtains the limb). If your character has one or more cybernetic arms, they decrease their strain threshold by one, and if they have one or more cybernetic legs, they decrease their strain threshold by one." compset="Cybernetics">
+    <fieldval field="usrLabel1" value="Applies to"/>
+    <fieldval field="usrCandid1" value="thingid.attrAgi|thingid.skBrawl"/>
+    <fieldval field="grCost" value="2000"/>
+    <fieldval field="grRarity" value="5"/>
+    <fieldval field="cyStrainCost" value="1"/>
+    <usesource source="UseCybernetics"/>
+    <usesource source="SciFi"/>
+    <tag group="User" tag="NoAutoName"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <eval phase="PreTraits" priority="5000"><![CDATA[doneif (field[grIsEquip].value = 0)
+
+if (field[usrChosen1].ischosen <> 0) then
+  perform field[usrChosen1].chosen.assign[Helper.CyberIncreased]
+  endif]]></eval>
+    </thing>
+  <thing id="cybSkulljack" name="Skulljack" description="A skulljack is a cerebral point that allows your character to access a computer with their mind. As long as the skulljack is linked to a computer (either wired or wirelessly), it increases your character’s Intellect rating by one. If your character has a skulljack, they decrease their strain threshold by one." compset="Cybernetics">
+    <fieldval field="grRarity" value="5"/>
+    <fieldval field="grCost" value="2500"/>
+    <usesource source="SciFi"/>
+    <usesource source="UseCybernetics"/>
+    <tag group="User" tag="Activation"/>
+    <eval phase="PreTraits" priority="5000">doneif (field[grIsActive].value = 0)
+
+#traitbonus[attrInt] += 1</eval>
+    </thing>
+  <thing id="cybCyberEye" name="Cybernetic Eye" description="Cybernetic eyes provide +1 rank to your character’s Perception and Vigilance, and remove [SB] added to their checks due to darkness. If your character has one or more cybereyes, they decrease their strain threshold by one." compset="Cybernetics" summary="Cybernetic eyes provide +1 rank to your character’s Perception and Vigilance, and remove [SB] added to their checks due to darkness.">
+    <fieldval field="cyStrainCost" value="1"/>
+    <fieldval field="grRarity" value="5"/>
+    <fieldval field="grCost" value="800"/>
+    <usesource source="SciFi"/>
+    <usesource source="UseCybernetics"/>
+    <eval phase="PreTraits" priority="5000">doneif (field[grIsEquip].value = 0)
+perform hero.childfound[skPercept].assign[Helper.CyberIncreased]
+perform hero.childfound[skVigil].assign[Helper.CyberIncreased]</eval>
+    </thing>
+  <thing id="cybImplantArmor" name="Implant Armor" description="Implant armor is added beneath your character’s skin, giving them discreet protection. Implant armor provides +1 soak. If your character has implant armor, they decrease their strain threshold by one." compset="Cybernetics" uniqueness="useronce">
+    <fieldval field="grRarity" value="5"/>
+    <fieldval field="grCost" value="1000"/>
+    <usesource source="SciFi"/>
+    <usesource source="UseCybernetics"/>
+    <bootstrap thing="armImplantArmor"></bootstrap>
+    </thing>
+  <thing id="armImplantArmor" name="Implant Armor" compset="Armor">
+    <fieldval field="defSoak" value="1"/>
+    <usesource source="SciFi"/>
+    <usesource source="UseCybernetics"/>
+    <tag group="Equipment" tag="AutoEquip"/>
+    <tag group="Equipment" tag="Natural"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="cybCyberorgan" name="Cyberorgan" description="A skulljack is a cerebral point that allows your character to access a computer with their mind. As long as the skulljack is linked to a computer (either wired or wirelessly), it increases your character’s Intellect rating by one. If your character has a skulljack, they decrease their strain threshold by one." compset="Cybernetics">
+    <fieldval field="grRarity" value="5"/>
+    <fieldval field="grCost" value="2500"/>
+    <fieldval field="usrCandid1" value="thingid.trWoundThreshold | thingid.skResil | thingid.skAthlet"/>
+    <usesource source="UseCybernetics"/>
+    <usesource source="SciFi"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="User" tag="NoAutoName"/>
+    <eval phase="PreTraits" priority="5000"><![CDATA[doneif (field[grIsEquip].value = 0)
+
+if (field[usrChosen1].ischosen <> 0) then
+  notify field[usrChosen1].chosen.idstring
+  if (compare("thingid.trWoundThreshold",field[usrChosen1].chosen.idstring) = 0) then
+    perform field[usrChosen1].chosen.assign[Helper.CyberIncreased2]
+    endif
+  endif]]></eval>
+    </thing>
+  <thing id="eqCommBead" name="Comm-Bead" description="This communications device fits into a sentient’s ear (or other auditory orifice) and allows them to communicate with friends and allies within 100 kilometers. If the comm-bead can tie into a planetary communications network (the kind that any civilized planet has), then it can communicate with anyone on the same planet." compset="Equipment">
+    <fieldval field="grRarity" value="1"/>
+    <fieldval field="grCost" value="25"/>
+    <usesource source="SpaceOpera"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqPortMotionSen" name="Portable Motion Sensor" description="This handheld device, easily stored in a pocket or pouch, detects nearby movement. The user can calibrate sensitivity to avoid false alarms by small vermin.\n\nUnder normal conditions, a character using the sensor automatically detects any moving creatures within medium range. Of course, it can’t distinguish friend from foe or identify the creatures. If creatures within range are actively hidden, your character adds [B][B] to Vigilance or Perception checks to notice them while using the motion sensor (instead of spotting them automatically)." compset="Equipment">
+    <fieldval field="grRarity" value="4"/>
+    <fieldval field="grCost" value="120"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="SpaceOpera"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqSmartSystem" name="Smart-System" description="The next evolution of personal computing, this handheld device fits into a pocket or can be worn on a wrist and functions as a personal computer with an incorporated weak AI. Basically, this means your character can talk to their computer and it answers back. The AI isn’t as smart as an average person, and its “weak” status means it can’t learn or evolve, but it does everything a modern computer can do and can even allow futuristic hackers to access and attempt to override security systems.\n\nIn addition to functioning as a personal computer, the smart-system has information stores that allow the wearer to add [B] to any Intellect-based checks they make." compset="Equipment">
+    <fieldval field="grRarity" value="5"/>
+    <fieldval field="grCost" value="3000"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="SpaceOpera"/>
+    <child entity="ItemMods"></child>
+    </thing>
+  <thing id="eqSpaceSuit" name="Space Suit" description="Space suits are a must in every space opera setting. After all, one of the mainstays of the setting is traveling through space. They all do roughly the same thing: keep the wearer alive in a vacuum.\n\nGenerally, space suits include the following: multidirectional maneuvering thrusters, a built-in light, a communications device, magnetic-soled boots, and an emergency repair kit that allows the user to fix any small leaks or tears as a maneuver. The space suit also allows the wearer to survive in vacuum for up to four hours." compset="Equipment">
+    <fieldval field="grRarity" value="2"/>
+    <fieldval field="grCost" value="100"/>
+    <fieldval field="gearWeight" value="1"/>
+    <usesource source="SpaceOpera"/>
+    <child entity="ItemMods"></child>
+    </thing>
   </document>

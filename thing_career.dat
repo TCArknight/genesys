@@ -112,7 +112,7 @@
     <fieldval field="caSkillChoices" value="4"/>
     <usesource source="SciFi"/>
     <usesource source="SpaceOpera"/>
-    <usesource source="Hacking"/>
+    <usesource source="UseHacking"/>
     <tag group="Skill" tag="skStreet"/>
     <tag group="Skill" tag="skCompute"/>
     <tag group="Skill" tag="skKnowledge"/>

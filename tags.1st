@@ -17,6 +17,7 @@
   <group
     id="SettingRule"
     dynamic="yes">
+    <value id="Cybernetics"/>   	<!-- Use optional Hacking rules --> 
     <value id="Hacking"/>   	<!-- Use optional Hacking rules --> 
     <value id="Vehicles"/>   	<!-- Use optional Vehicle rules --> 
     <value id="SplitMelee"/>   	<!-- Use Light/Heavy versions of the Melee Skill --> 
@@ -51,10 +52,16 @@
     <value id="NoMinimum"/>   <!-- Resource does NOT need to be fully spent to avoid reporting a warning -->
     <value id="CustomItem"/>  <!-- Identifies a thing that has a user customizable name -->
     <value id="NoPersText"/>  <!-- User entered no background text -->
-    <value id="IsRanked"/>    <!-- User entered no background text -->
-    <value id="ShowSkill"/>   <!-- force display of skill on statblock -->
-    <value id="Shadow"/>   	  <!-- shadow item to hero -->
-    <value id="NoShadow"/>    <!-- don't shadow -->
+    <value id="NoDesire"/>  		<!-- User entered no background text -->
+    <value id="NoFear"/>  			<!-- User entered no background text -->
+    <value id="NoStrength"/>  		<!-- User entered no background text -->
+    <value id="NoFlaw"/>  			<!-- User entered no background text -->
+    <value id="IsRanked"/>    		<!-- User entered no background text -->
+    <value id="ShowSkill"/>   		<!-- force display of skill on statblock -->
+    <value id="Shadow"/>   	  		<!-- shadow item to hero -->
+    <value id="NoShadow"/>    		<!-- don't shadow -->
+    <value id="CyberIncreased"/>	<!-- Ability has reached its maximum level and cannot be improved -->
+    <value id="CyberIncreased2"/>	<!-- Ability has reached its maximum level and cannot be improved -->
     </group>
 
   <!-- User group - general helper tags that can be assigned by users via the Editor
@@ -73,7 +80,7 @@
     <value id="Power"/>      		<!-- Identifies a power trait -->
     <value id="Combat"/>			<!-- Identifies a combat trait -->
     <value id="SignatureWeapon"/>	<!-- Identifies a combat trait -->
-    <value id="OutputDefLine"/>	<!-- Identifies a combat trait -->
+    <value id="OutputDefLine"/>		<!-- Identifies a combat trait -->
     </group>
 
   <!-- Hero group - Helper tags assigned exclusively to the hero/actor
@@ -90,6 +97,7 @@
     <value id="RerollInit"/>  		<!-- Indicates that the hero can re-roll initiative values -->
     <value id="UseItemMods"/>  		<!--  -->
     <value id="NoStandardMods"/>  	<!--  -->
+    <value id="NoCyberStrain"/>  	<!--  -->
     </group>
 
   <!-- DashTacCon group - behaviors associated with the Dashboard and/or Tactical Console
@@ -497,6 +505,8 @@
     <value id="Accurate1" name="Accurate 1"/>
     <value id="Accurate2" name="Accurate 2"/>
     <value id="Accurate3" name="Accurate 3"/>
+    <value id="Accurate4" name="Accurate 4"/>
+    <value id="Accurate5" name="Accurate 5"/>
     <value id="Autofire" name="Auto-Fire"/>
     <value id="Blast1" name="Blast 1"/>
     <value id="Blast2" name="Blast 2"/>
@@ -506,7 +516,13 @@
     <value id="Blast6" name="Blast 6"/>
     <value id="Blast7" name="Blast 7"/>
     <value id="Blast8" name="Blast 8"/>
-    <value id="Breech" />
+    <value id="Blast9" name="Blast 9"/>
+    <value id="Blast10" name="Blast 10"/>
+    <value id="Breech1" name="Breech 1"/>
+    <value id="Breech2" name="Breech 2"/>
+    <value id="Breech3" name="Breech 3"/>
+    <value id="Breech4" name="Breech 4"/>
+    <value id="Breech5" name="Breech 5"/>
     <value id="Burn1" name="Burn 1"/>
     <value id="Burn2" name="Burn 2"/>
     <value id="Burn3" name="Burn 3"/>
@@ -515,6 +531,9 @@
     <value id="Burn6" name="Burn 6"/>
     <value id="Concussive1" name="Concussive 1"/>
     <value id="Concussive2" name="Concussive 2"/>
+    <value id="Concussive3" name="Concussive 3"/>
+    <value id="Concussive4" name="Concussive 4"/>
+    <value id="Concussive5" name="Concussive 5"/>
     <value id="Cumber1" name="Cumbersome 1"/>
     <value id="Cumber2" name="Cumbersome 2"/>
     <value id="Cumber3" name="Cumbersome 3"/>
@@ -523,8 +542,12 @@
     <value id="Cumber6" name="Cumbersome 6"/>
     <value id="Defense1" name="Defensive 1"/>
     <value id="Defense2" name="Defensive 2"/>
+    <value id="Defense3" name="Defensive 3"/>
+    <value id="Defense4" name="Defensive 4"/>
     <value id="Deflect1" name="Deflection 1"/>
     <value id="Deflect2" name="Deflection 2"/>
+    <value id="Deflect3" name="Deflection 3"/>
+    <value id="Deflect4" name="Deflection 4"/>
     <value id="Disorient1" name="Disorient 1"/>
     <value id="Disorient2" name="Disorient 2"/>
     <value id="Disorient3" name="Disorient 3"/>
@@ -533,10 +556,14 @@
     <value id="Ensnare2" name="Ensnare 2"/>
     <value id="Ensnare3" name="Ensnare 3"/>
     <value id="Ensnare4" name="Ensnare 4"/>
-    <value id="Guided" />
+    <value id="Guided1" name="Guided 1"/>
+    <value id="Guided2" name="Guided 2"/>
+    <value id="Guided3" name="Guided 3"/>
+    <value id="Guided4" name="Guided 4"/>
     <value id="Inaccurate1" name="Inaccurate 1"/>
     <value id="Inaccurate2" name="Inaccurate 2"/>
     <value id="Inaccurate3" name="Inaccurate 3"/>
+    <value id="Inaccurate4" name="Inaccurate 4"/>
     <value id="Inferior" />
     <value id="Knockdown" />
     <value id="LimitedAmmo1" name="Limited Ammo 1"/>
@@ -553,13 +580,17 @@
     <value id="Pierce2" name="Pierce 2"/>
     <value id="Pierce3" name="Pierce 3"/>
     <value id="Pierce4" name="Pierce 4"/>
+    <value id="Pierce5" name="Pierce 5"/>
+    <value id="Pierce6" name="Pierce 6"/>
     <value id="Prepare1" name="Prepare 1"/>
     <value id="Prepare2" name="Prepare 2"/>
     <value id="Prepare3" name="Prepare 3"/>
+    <value id="Prepare4" name="Prepare 4"/>
     <value id="Reinforced" />
     <value id="SignatureWpn" name="Signature Weapon"/>
     <value id="SlowFire1" name="Slow-Firing 1"/>
     <value id="SlowFire2" name="Slow-Firing 2"/>
+    <value id="SlowFire3" name="Slow-Firing 3"/>
     <value id="Stun1" name="Stun 1"/>
     <value id="Stun2" name="Stun 2"/>
     <value id="Stun3" name="Stun 3"/>
@@ -570,6 +601,8 @@
     <value id="Superior" />
     <value id="Tractor1" name="Tractor 1"/>
     <value id="Tractor2" name="Tractor 2"/>
+    <value id="Tractor3" name="Tractor 3"/>
+    <value id="Tractor4" name="Tractor 4"/>
     <value id="Unwieldy1" name="Unwieldy 1"/>
     <value id="Unwieldy2" name="Unwieldy 2"/>
     <value id="Unwieldy3" name="Unwieldy 3"/>

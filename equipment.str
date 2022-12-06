@@ -17,7 +17,19 @@
     autocompset="no"
     ispublic="no"
     addbehavior="never">
-
+	
+    <!-- Activation state of gear - we're not activated by default
+         this is used when a piece of gear ha a special ability that 
+         can be activated.
+		 -->
+    <field
+      id="grIsActive"
+      name="Is Activated?"
+      type="user"
+      minvalue="0"
+      maxvalue="1">
+      </field>
+	  
     <!-- Stack name field - name is prefixed with the quantity if not a value of one,
           which is important for stackable items that can have varying quantities
     -->
@@ -533,6 +545,20 @@
 	  ~  field[livename].text = field[name].text & " (" & matName & ")"
 	  ~	endif
       ]]></eval>
+
+    <!-- If the ability is activated, designate it appropriately -->
+    <eval index="8" phase="Setup" priority="100"><![CDATA[
+      ~if we're not able to be activated, we don't qualify
+      doneif (tagis[User.Activation] = 0)
+
+      ~if we've been activated by the user, mark ourselves as activated; in addition,
+      ~forward our identity tag to our parent actor; this allows the actor to track
+      ~when abilities are activated and reflect the state to the user
+      if (field[grIsActive].value <> 0) then
+        perform assign[Helper.Activated]
+        perform forward[Activated.?]
+        endif
+      ]]></eval>	  
 	  
     <evalrule index="1" phase="Validate" priority="9000" message="Too many Modifications."><![CDATA[
       var totaluses as number
@@ -1169,6 +1195,7 @@
   <component
     id="Armor"
     name="Armor"
+    hasshortname="yes"
     autocompset="no">
 	
     <!-- Penalty to Athletics when wearing armor -->
@@ -1243,7 +1270,7 @@
       field[arNotes].text = special
       ]]></eval>
 	  
-    <eval index="2" phase="Setup" priority="5000" name="Armor Stealth Penalty"><![CDATA[
+    <eval index="3" phase="Setup" priority="5000" name="Armor Stealth Penalty"><![CDATA[
       doneif (field[grIsEquip].value = 0)
 
       hero.childfound[skAthlet].field[sklAddedSetback].value += field[arAthleticsPen].value
@@ -1372,7 +1399,37 @@
 
     </component>
 
-
+  <!-- Equipment component
+        All general non-combat equipment derives from this component
+  -->
+  <component
+    id="Cybernetics"
+    name="Cybernetics"
+    autocompset="no"
+    panellink="gear">
+	
+    <!-- Penalty to Strain Threshold -->
+    <field
+      id="cyStrainCost"
+      name="Stealth Penalty"
+      type="derived"
+      defvalue="0">
+      </field>
+	  
+    <identity group="Cybernetics"/>
+	
+    <tag group="Equipment" tag="AutoEquip"/>
+	
+    <!-- Setup our tracker bounds based on the quantity purchased -->
+    <eval index="1" phase="PreTraits" priority="5000"><![CDATA[
+	  doneif (hero.tagis[Hero.NoCyberStrain] <> 0)
+	  
+      hero.childfound[trStrainThreshold].field[trtBonus].value -= field[cyStrainCost].value
+      ]]></eval>	
+	  
+	
+    </component>
+	
   <!-- Define various component sets associated with the components defined above.
   -->
 
@@ -1448,9 +1505,24 @@
     <compref component="Equipment"/>
     <compref component="Equippable"/>
     <compref component="Gear"/>
+    <compref component="Domain"/>
+    <compref component="UserSelect"/>
     <compref component="Custom"/>
     </compset>
-
+	
+  <!-- Equipment -->
+  <compset
+    id="Cybernetics"
+    stackable="yes">
+    <compref component="Cybernetics"/>
+    <compref component="Equipment"/>
+    <compref component="Equippable"/>
+    <compref component="Gear"/>
+    <compref component="Domain"/>
+    <compref component="UserSelect"/>
+    <compref component="Custom"/>
+    </compset>
+	
   <!-- Ammunition -->
   <compset
     id="Ammunition"

@@ -15,6 +15,14 @@
     autocompset="no"
     ispublic="no">
 
+    <!-- Size of the actor -->
+    <field
+      id="acSil"
+      name="Silhouette"
+      type="derived"
+      defvalue="1">
+      </field>
+	  
     <!-- Image to display in the TacCon -->
     <field
       id="acTacImage"
@@ -471,10 +479,48 @@
       maxlength="10000">
       </field>
 
+    <!-- Motivations of the actor -->
+    <field
+      id="perDesire"
+      name="Motivation - Desire"
+      type="user"
+      maxlength="1000">
+      </field>
+    <field
+      id="perFear"
+      name="Motivation - Fear"
+      type="user"
+      maxlength="1000">
+      </field>
+    <field
+      id="perStrength"
+      name="Motivation - Strength"
+      type="user"
+      maxlength="1000">
+      </field>
+    <field
+      id="perFlaw"
+      name="Motivation - Flaw"
+      type="user"
+      maxlength="1000">
+      </field>
     <eval index="1" phase="Setup" priority="1000"><![CDATA[
-      ~ Assign a tag if the user hasn't specified any background text
+      ~ Assign a tag if the user hasn't specified any background text or Motivations
       if (field[perInfo].isempty <> 0) then
         perform assign[Helper.NoPersText]
+        endif
+	  
+      if (field[perDesire].isempty <> 0) then
+        perform assign[Helper.NoDesire]
+        endif
+      if (field[perFear].isempty <> 0) then
+        perform assign[Helper.NoFear]
+        endif
+      if (field[perStrength].isempty <> 0) then
+        perform assign[Helper.NoStrength]
+        endif
+      if (field[perFlaw].isempty <> 0) then
+        perform assign[Helper.NoFlaw]
         endif
       ]]></eval>
 

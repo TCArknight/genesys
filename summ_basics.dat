@@ -23,7 +23,8 @@
       component="Attribute"
       showtemplate="smAttrib"
       showsortset="explicit"
-      scrollable="no">
+      scrollable="no"
+	  alwaysupdate="yes">
       <headertitle><![CDATA[
       @text = #summtitle_decoration[] & " Attributes " & #summtitle_decoration[]
       ]]></headertitle>

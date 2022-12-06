@@ -368,6 +368,8 @@
     var special as string
 	var iqual as string
 	
+	doneif (tagis[ItemQuality.?] = 0)
+	
     iqual = tagnames[ItemQuality.?,", "]
     if (empty(iqual) = 0) then
       special = splice(special,iqual,", ")

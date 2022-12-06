@@ -180,6 +180,23 @@ These data files provide a starting framework for implementing support for any g
   <scriptmacro
     name="isusemagic"
     result="hero.tagis[SettingRule.UseMagic]"/>
+
+
+  <scriptmacro
+    name="silhouette"
+    result="herofield[acSil].value"/>
+  <scriptmacro
+    name="meleedefense"
+    result="hero.child[trDefenseMel].field[trtFinal].value"/>
+  <scriptmacro
+    name="meleedefensebonus"
+    result="hero.child[trDefenseMel].field[trtBonus].value"/>
+  <scriptmacro
+    name="rangeddefense"
+    result="hero.child[trDefenseRng].field[trtFinal].value"/>
+  <scriptmacro
+    name="rangeddefensebonus"
+    result="hero.child[trDefenseRng].field[trtBonus].value"/>
 	
   <scriptmacro
     name="archetypename"
@@ -192,6 +209,39 @@ These data files provide a starting framework for implementing support for any g
     name="makecareerskill"
     param1="skill"
     result="perform hero.childfound[#skill].assign[SkillType.CareerSkill]"/>
+	
+  <scriptmacro
+    name="addedadvantage"
+    param1="skill"
+    result="hero.childfound[#skill].field[sklAddedAdvantage].value"/>
+  <scriptmacro
+    name="removedadvantage"
+    param1="skill"
+    result="hero.childfound[#skill].field[sklRemovedAdvantage].value"/>
+  <scriptmacro
+    name="addedboost"
+    param1="skill"
+    result="hero.childfound[#skill].field[sklAddedBoost].value"/>
+  <scriptmacro
+    name="removedadboost"
+    param1="skill"
+    result="hero.childfound[#skill].field[sklRemovedBoost].value"/>
+  <scriptmacro
+    name="addedsetback"
+    param1="skill"
+    result="hero.childfound[#skill].field[sklAddedSetback].value"/>
+  <scriptmacro
+    name="removedsetback"
+    param1="skill"
+    result="hero.childfound[#skill].field[sklRemovedSetback].value"/>
+  <scriptmacro
+    name="addedsuccess"
+    param1="skill"
+    result="hero.childfound[#skill].field[sklAddedSuccess].value"/>
+  <scriptmacro
+    name="removedsuccess"
+    param1="skill"
+    result="hero.childfound[#skill].field[sklRemovedSuccess].value"/>
 
 
   <!-- Decoration character used in summary panel headertitle scripts -->
